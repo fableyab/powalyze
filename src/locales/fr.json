@@ -1,0 +1,399 @@
+
+{
+  "nav": {
+    "home": "Accueil",
+    "services": "Expertises",
+    "blog": "Insights",
+    "clientSpace": "Espace Client",
+    "faq": "Questions",
+    "about": "À propos",
+    "contact": "Contact",
+    "pmoSolution": "PMO",
+    "login": "Connexion",
+    "freeAudit": "Audit"
+  },
+  "footer": {
+    "company": "Powalyze",
+    "rights": "Tous droits réservés",
+    "links": "Navigation",
+    "social": "Réseaux",
+    "services": "Expertises",
+    "legal": "Légal",
+    "privacy": "Confidentialité",
+    "cookies": "Cookies",
+    "description": "Excellence suisse en pilotage stratégique et intelligence de données."
+  },
+  "common": {
+    "search": "Rechercher",
+    "loading": "Chargement",
+    "error": "Erreur",
+    "retry": "Réessayer",
+    "contact": "Contact",
+    "readMore": "Lire",
+    "contactUs": "Nous contacter"
+  },
+  "forms": {
+    "name": "Nom",
+    "email": "Email professionnel",
+    "phone": "Téléphone",
+    "subject": "Objet",
+    "message": "Votre message",
+    "send": "Envoyer",
+    "service": "Expertise",
+    "date": "Date",
+    "time": "Créneau",
+    "book": "Réserver",
+    "success": "Envoyé avec succès"
+  },
+  "legal": {
+    "privacy": {
+      "title": "Politique de Confidentialité",
+      "intro": "Nous protégeons vos données personnelles avec la plus grande rigueur.",
+      "collection": { "title": "Données Collectées", "text": "Nous collectons uniquement les données nécessaires :" },
+      "usage": { "title": "Utilisation des Données", "text": "Vos données sont utilisées pour :" },
+      "rights": { "title": "Vos Droits", "text": "Vous disposez d'un droit d'accès, de modification et de suppression." },
+      "contact": { "title": "Contact DPO", "text": "Pour toute question relative à vos données :" }
+    },
+    "cookies": {
+      "title": "Politique des Cookies",
+      "banner": {
+        "title": "Préférences de Confidentialité",
+        "description": "Nous utilisons des cookies et technologies similaires pour améliorer votre expérience utilisateur, analyser l'utilisation du site et personnaliser le contenu. Veuillez sélectionner vos préférences.",
+        "accept": "Accepter tous les cookies",
+        "reject": "Refuser tous les cookies",
+        "customize": "Personnaliser mes préférences",
+        "save": "Enregistrer mes préférences",
+        "categories": {
+          "essential": { "title": "Cookies Essentiels", "desc": "Strictement nécessaires au fonctionnement du site. Ils permettent les fonctionnalités de base comme la navigation et l'authentification." },
+          "analytics": { "title": "Cookies d'Analyse", "desc": "Nous aident à analyser la façon dont vous utilisez le site pour en améliorer constamment les performances et la convivialité." },
+          "marketing": { "title": "Cookies Marketing", "desc": "Permettent de vous proposer du contenu et des offres pertinents basés sur votre intérêt pour nos services." }
+        }
+      }
+    },
+    "mentions": {
+      "title": "Mentions Légales",
+      "company": "Éditeur du site",
+      "hosting": "Hébergement",
+      "ip": "Propriété Intellectuelle",
+      "liability": "Responsabilité"
+    }
+  },
+  "homePmo": {
+    "hero": {
+      "tagline": "Excellence suisse",
+      "title": "L'excellence en pilotage stratégique",
+      "subtitle": "Transformez vos données en décisions. Optimisez votre performance.",
+      "cta": "Découvrir"
+    },
+    "hero": {
+      "title": "L'excellence en pilotage stratégique",
+      "subtitle": "Transformez vos données en décisions. Optimisez votre performance.",
+      "tagline": "Excellence Suisse",
+      "cta": "Découvrir"
+    },
+    "expertise": {
+      "title": "Expertises",
+      "subtitle": "Domaines",
+      "pmo": { "title": "PMO Stratégique", "sub": "Gouvernance", "desc": "Alignement et pilotage", "metricLabel": "Efficience" },
+      "bi": { "title": "Intelligence de Données", "sub": "Analytics", "desc": "Visualisation et insights", "metricLabel": "Impact" },
+      "ai": { "title": "Automatisation", "sub": "Innovation", "desc": "Optimisation processus", "metricLabel": "Gain" },
+      "gov": { "title": "Gouvernance", "sub": "Contrôle", "desc": "Conformité et risques", "metricLabel": "Sécurité" }
+    }
+  },
+  "homePmo": {
+    "hero": {
+      "tagline": "Excellence suisse",
+      "title": "L'excellence en pilotage stratégique",
+      "subtitle": "Transformez vos données en décisions. Optimisez votre performance.",
+      "cta": "Découvrir"
+    }
+  },
+  "home": {
+    "about": {
+      "title": "À propos",
+      "subtitle": "Partenaire de confiance",
+      "desc": "Nous accompagnons les dirigeants dans leur transformation."
+    },
+    "approach": {
+      "title": "Approche",
+      "subtitle": "Méthode",
+      "pillar1": { "title": "Analyse", "desc": "Comprendre vos besoins" },
+      "pillar2": { "title": "Stratégie", "desc": "Définir la feuille de route" },
+      "pillar3": { "title": "Implémentation", "desc": "Mise en œuvre agile" },
+      "pillar4": { "title": "Mesure", "desc": "Suivi de la performance" }
+    },
+    "challenges": {
+      "title": "Défis",
+      "subtitle": "Enjeux",
+      "c1": { "title": "Visibilité", "desc": "Manque de clarté", "metric": "100%", "metricLabel": "Transparence" },
+      "c2": { "title": "Données", "desc": "Silos d'information", "metric": "360°", "metricLabel": "Vue unifiée" },
+      "c3": { "title": "Reporting", "desc": "Processus manuels", "metric": "-80%", "metricLabel": "Gain temps" },
+      "c4": { "title": "Alignement", "desc": "Décalage IT/métier", "metric": "100%", "metricLabel": "Cohérence" },
+      "c5": { "title": "Coûts", "desc": "Budget non optimisé", "metric": "+20%", "metricLabel": "ROI" }
+    },
+    "dashboardPreview": {
+      "title": "Plateforme",
+      "subtitle": "Technologie",
+      "desc": "Des outils puissants pour décider",
+      "ctaDemo": "Démo",
+      "ctaImpl": "Implémenter"
+    },
+    "datasources": {
+      "title": "Intégrations",
+      "subtitle": "Connectez vos outils"
+    },
+    "tracking": {
+      "title": "Pilotage",
+      "subtitle": "Contrôle en temps réel",
+      "card1": { "title": "Performance", "status": "Optimal", "subtitle": "KPIs" },
+      "card2": { "title": "Ressources", "status": "Attention", "subtitle": "Allocation" },
+      "card3": { "title": "Budget", "status": "Conforme", "subtitle": "Suivi" },
+      "card4": { "title": "Risques", "status": "Critique", "subtitle": "Matrice" }
+    },
+    "vision": {
+      "subtitle": "Vision",
+      "text": "Excellence opérationnelle par la donnée",
+      "highlight1": "Innovation",
+      "highlight2": "Global"
+    },
+    "services": {
+      "title": "Nos Services",
+      "pil": { "title": "Pilotage IT", "desc": "Optimisez votre infrastructure IT avec une gestion strategique et une gouvernance efficace pour soutenir vos objectifs metier." },
+      "pmo": { "title": "PMO Strategique", "desc": "Alignez vos projets avec la strategie d'entreprise grace a une gestion de portefeuille optimisee et une gouvernance de projet robuste." },
+      "data": { "title": "Data & Power BI", "desc": "Transformez vos donnees en insights actionnables avec nos solutions de business intelligence et de visualisation avancee." },
+      "ai": { "title": "Automatisation & IA", "desc": "Automatisez vos processus metier et exploitez l'IA pour ameliorer l'efficacite operationnelle et la prise de decision." },
+      "portfolio": { "title": "Portefeuilles & Priorisation", "desc": "Gerez efficacement votre portefeuille de projets avec une priorisation intelligente basee sur la valeur metier." },
+      "reporting": { "title": "Reporting Executif", "desc": "Fournissez aux decideurs des rapports clairs et actionnables pour une gouvernance d'entreprise optimale." }
+    },
+    "valueProp": {
+      "title": "Ce que Powalyze",
+      "titleHigh": "change pour vous",
+      "intro": "La plupart des cabinets vous vendent des ressources. Nous vous vendons des resultats. Powalyze intervient la ou les methodes classiques echouent : dans les zones de haute incertitude et de forte complexite technique.",
+      "p1Title": "Clarte Radicale",
+      "p1Desc": "Finis les rapports illisibles. Nous traduisons la complexite technique en decisions business claires.",
+      "p2Title": "Execution Chirurgicale",
+      "p2Desc": "Pas de theorie. Nous sommes des operationnels qui securisent vos livrables critiques.",
+      "p3Title": "Independance Totale",
+      "p3Desc": "Nos recommandations servent vos interets, pas ceux des grands editeurs de logiciels.",
+      "p4Title": "Vision 360",
+      "p4Desc": "Nous connectons la strategie (C-Level) avec la realite terrain (Ingenierie) sans perte de signal."
+    },
+    "cta": {
+      "title": "Pret a transformer votre",
+      "titleHighlight": "PMO",
+      "subtitle": "Decouvrez comment Powalyze peut structurer, suivre et optimiser vos projets strategiques en moins de 30 jours.",
+      "btnStart": "Demarrer Gratuitement",
+      "btnDemo": "Voir la Solution PMO"
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "desc": "À votre écoute",
+    "schedule": { "label": "Rendez-vous", "sub": "Réserver un créneau", "btn": "Réserver" },
+    "email": { "label": "Email", "sub": "Écrire", "btn": "Envoyer" },
+    "offer": { "label": "Devis", "sub": "Demander une offre", "btn": "Demander" }
+  },
+  "blog": {
+    "hero": { "title": "Insights", "subtitle": "Analyses & perspectives" },
+    "backToBlog": "Retour",
+    "readTime": "min",
+    "related": "Articles liés",
+    "toc": "Sommaire",
+    "noResults": "Aucun article."
+  },
+  "about": {
+    "hero": { "title": "À propos" },
+    "label": "Histoire",
+    "title": "Excellence suisse",
+    "desc1": "Fondée à Genève",
+    "desc2": "Notre mission"
+  },
+  "booking": {
+    "title": "Réserver",
+    "desc": "Choisissez votre créneau",
+    "success": "Confirmé",
+    "benefits": { "title": "Inclus", "list": ["Audit initial", "Recommandations", "Roadmap"] },
+    "form": { "title": "Coordonnées", "name": "Nom", "email": "Email", "phone": "Tél", "company": "Société", "project": "Projet", "date": "Date", "time": "Heure", "submit": "Confirmer" },
+    "slots": { "morning": "Matin", "afternoon": "Après-midi" }
+  },
+  "freeAudit": {
+    "title": "Audit",
+    "description": "Analysez votre maturité",
+    "cta": "Démarrer",
+    "micro": "Sans engagement"
+  },
+  "upload": {
+    "dropZone": "Déposer vos fichiers",
+    "dropZoneActive": "Relâcher",
+    "browse": "Parcourir",
+    "limits": "Max 50MB - CSV, Excel",
+    "uploading": "Envoi en cours",
+    "emptyHistory": "Aucun fichier",
+    "columns": { "name": "Nom", "date": "Date", "size": "Taille" },
+    "actions": { "download": "Télécharger", "delete": "Supprimer" }
+  },
+  "login": {
+    "title": "Bienvenue",
+    "subtitle": "Accédez à votre espace",
+    "emailLabel": "Email",
+    "passwordLabel": "Mot de passe",
+    "forgotPassword": "Mot de passe oublié ?",
+    "submitButton": "Connexion",
+    "noAccount": "Pas de compte ?",
+    "signUp": "Créer un compte",
+    "successTitle": "Connecté",
+    "successMessage": "Bienvenue",
+    "errorTitle": "Échec",
+    "azureButton": "Connexion Microsoft",
+    "orContinue": "Ou avec email"
+  },
+  "dashboard": {
+    "projectsActive": "Projets actifs",
+    "onTrack": "Dans les temps",
+    "atRisk": "À risque",
+    "delayed": "Retard",
+    "resourceUtilization": "Ressources",
+    "budgetConsumption": "Budget",
+    "risks": "Risques",
+    "resources": "Ressources",
+    "systemHealth": "Système sain",
+    "dataFlowStatus": "Flux de données"
+  },
+  "errors": {
+    "invalidCredentials": "Identifiants invalides",
+    "configurationError": "Erreur de configuration",
+    "authenticationFailed": "Authentification échouée",
+    "connectionFailed": "Connexion échouée",
+    "loadingFailed": "Chargement échoué",
+    "parsingFailed": "Erreur de traitement"
+  },
+  "toast": {
+    "success": "Succès",
+    "error": "Erreur",
+    "warning": "Attention",
+    "info": "Information",
+    "configurationSaved": "Configuration enregistrée",
+    "connectionEstablished": "Connecté",
+    "fileLoaded": "Fichier chargé",
+    "recordsFound": "lignes trouvées",
+    "dataLoadedSuccessfully": "Données chargées",
+    "failedToParse": "Erreur de traitement"
+  },
+  "dataIntegration": {
+    "secureLogin": "Connexion sécurisée",
+    "productionModeWarning": "Mode production",
+    "productionModeDescription": "Authentification requise",
+    "demoMode": "Démo",
+    "connected": "Connecté",
+    "analyzing": "Analyse",
+    "complete": "Terminé",
+    "failedRecords": "Erreurs"
+  },
+  "fileUpload": {
+    "title": "Import de données",
+    "description": "Importez vos fichiers pour analyse",
+    "dragDrop": "Glisser-déposer",
+    "selectFile": "Sélectionner",
+    "fileLoaded": "Chargé",
+    "recordsFound": "lignes",
+    "failedToParse": "Erreur",
+    "pleaseCheckFormat": "Vérifier le format"
+  },
+  "charts": {
+    "month": "Mois",
+    "quarter": "Trimestre",
+    "year": "Année",
+    "performanceVsTarget": "Performance",
+    "totalRevenue": "Revenu total",
+    "quotaAchieved": "Objectif atteint",
+    "acquisitionRetention": "Acquisition et rétention",
+    "activityFlow": "Activité",
+    "predictiveAnalysis": "Analyse prédictive"
+  },
+  "connectors": {
+    "title": "Connecteurs",
+    "subtitle": "Connectez vos systèmes",
+    "pageTitle": "Connecteurs",
+    "pageDescription": "Gérez vos sources de données",
+    "apiDescription": "Connectez votre API REST",
+    "sharepointDescription": "Connectez SharePoint",
+    "powerbiDescription": "Connectez Power BI",
+    "connected": "Connecté",
+    "disconnected": "Déconnecté",
+    "connect": "Connecter",
+    "disconnect": "Déconnecter",
+    "configure": "Configurer",
+    "configDescription": "Paramètres de connexion",
+    "connectionSuccess": "Connecté à",
+    "disconnectionSuccess": "Déconnecté",
+    "testing": "Test",
+    "securityNotice": "Données chiffrées et sécurisées",
+    "apiUrl": "URL API",
+    "apiKey": "Clé API",
+    "siteUrl": "URL du site",
+    "tenantId": "ID locataire",
+    "clientId": "ID client",
+    "clientSecret": "Secret client",
+    "workspaceId": "ID workspace",
+    "datasetId": "ID dataset"
+  },
+  "caseStudies": {
+    "title": "Cas de succès",
+    "subtitle": "Transformations réelles. Résultats mesurables.",
+    "challenge": "Défi",
+    "solution": "Solution",
+    "results": "Résultats",
+    "duration": "Durée",
+    "client": "Client",
+    "ctaText": "Votre cas pourrait être le prochain succès Powalyze",
+    "ctaButton": "Discuter de votre cas",
+    "case1": {
+      "title": "Fusion bancaire",
+      "subtitle": "Harmonisation des systèmes d'information",
+      "challenge": "Deux banques fusionnaient avec des systèmes legacy incompatibles. Risque : -25% de productivité opérationnelle.",
+      "solution": "Mise en place d'un PMO stratégique avec gouvernance IT clairement définie. Dashboards temps réel pour suivi des risques.",
+      "duration": "12 mois",
+      "client": "Grande Banque Suisse",
+      "results": {
+        "metric1Label": "Retards projets",
+        "metric1Value": "-25%",
+        "metric2Label": "Coûts opérationnels",
+        "metric2Value": "-18%",
+        "metric3Label": "Satisfaction équipe",
+        "metric3Value": "+40%"
+      }
+    },
+    "case2": {
+      "title": "Transformation Agile",
+      "subtitle": "Migration Cycle en V vers SAFe",
+      "challenge": "Assurance avec processus en Cycle en V. Cycles de release : 18 mois. Time-to-market critique.",
+      "solution": "Implémentation SAFe avec coaching PMO. Dashboards Agile pour visibilité portefeuille. Automatisation CI/CD.",
+      "duration": "9 mois",
+      "client": "Assurance Multirisque",
+      "results": {
+        "metric1Label": "Time-to-market",
+        "metric1Value": "÷2",
+        "metric2Label": "Qualité livrables",
+        "metric2Value": "+35%",
+        "metric3Label": "Satisfaction clients",
+        "metric3Value": "+55%"
+      }
+    },
+    "case3": {
+      "title": "Gouvernance Cloud",
+      "subtitle": "FinOps & optimisation coûts",
+      "challenge": "Groupe industriel avec dépenses cloud incontrôlées. Budget +45% en 1 an. Aucune visibilité.",
+      "solution": "Gouvernance Cloud avec tagging & chargeback. Dashboards FinOps. Automatisation scaling. Optimisation réservations.",
+      "duration": "6 mois",
+      "client": "Groupe Industriel",
+      "results": {
+        "metric1Label": "Économies cloud",
+        "metric1Value": "-30%",
+        "metric2Label": "Visibilité coûts",
+        "metric2Value": "100%",
+        "metric3Label": "Adoption gouvernance",
+        "metric3Value": "+85%"
+      }
+    }
+  }
+}

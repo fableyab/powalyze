@@ -1,0 +1,207 @@
+
+{
+  "nav": {
+    "home": "Accueil",
+    "services": "Services",
+    "blog": "Blog",
+    "clientSpace": "Espace Client",
+    "faq": "FAQ",
+    "about": "À propos",
+    "contact": "Contact",
+    "pmoSolution": "Solution PMO",
+    "login": "Connexion",
+    "freeAudit": "Audit Gratuit"
+  },
+  "footer": {
+    "company": "Powalyze",
+    "rights": "Tous droits réservés",
+    "links": "Liens Utiles",
+    "social": "Suivez-nous",
+    "services": "Nos Expertises",
+    "legal": "Mentions Légales",
+    "privacy": "Confidentialité",
+    "cookies": "Cookies",
+    "description": "Cabinet de conseil suisse spécialisé en PMO Stratégique, Data Analytics et Gouvernance IT."
+  },
+  "common": {
+    "search": "Rechercher...",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "retry": "Réessayer",
+    "contact": "Contact",
+    "readMore": "Lire la suite",
+    "contactUs": "Nous Contacter"
+  },
+  "forms": {
+    "name": "Nom Complet",
+    "email": "Email",
+    "phone": "Téléphone",
+    "subject": "Sujet",
+    "message": "Message",
+    "send": "Envoyer",
+    "service": "Service",
+    "date": "Date",
+    "time": "Heure",
+    "book": "Réserver",
+    "success": "Succès"
+  },
+  "legal": {
+    "privacy": {
+      "title": "Politique de Confidentialité",
+      "intro": "Nous protégeons vos données personnelles avec la plus grande rigueur.",
+      "collection": { "title": "Données Collectées", "text": "Nous collectons uniquement les données nécessaires :" },
+      "usage": { "title": "Utilisation des Données", "text": "Vos données sont utilisées pour :" },
+      "rights": { "title": "Vos Droits", "text": "Vous disposez d'un droit d'accès, de modification et de suppression." },
+      "contact": { "title": "Contact DPO", "text": "Pour toute question relative à vos données :" }
+    },
+    "cookies": {
+      "title": "Politique des Cookies",
+      "banner": {
+        "title": "Préférences de Confidentialité",
+        "description": "Nous utilisons des cookies et technologies similaires pour améliorer votre expérience utilisateur, analyser l'utilisation du site et personnaliser le contenu. Veuillez sélectionner vos préférences.",
+        "accept": "Accepter tous les cookies",
+        "reject": "Refuser tous les cookies",
+        "customize": "Personnaliser mes préférences",
+        "save": "Enregistrer mes préférences",
+        "categories": {
+          "essential": { "title": "Cookies Essentiels", "desc": "Strictement nécessaires au fonctionnement du site. Ils permettent les fonctionnalités de base comme la navigation et l'authentification." },
+          "analytics": { "title": "Cookies d'Analyse", "desc": "Nous aident à analyser la façon dont vous utilisez le site pour en améliorer constamment les performances et la convivialité." },
+          "marketing": { "title": "Cookies Marketing", "desc": "Permettent de vous proposer du contenu et des offres pertinents basés sur votre intérêt pour nos services." }
+        }
+      }
+    },
+    "mentions": {
+      "title": "Mentions Légales",
+      "company": "Éditeur du site",
+      "hosting": "Hébergement",
+      "ip": "Propriété Intellectuelle",
+      "liability": "Responsabilité"
+    }
+  },
+  "homePmo": {
+    "hero": {
+      "title": "PMO Généraliste • Data Analyst • Power BI Expert",
+      "subtitle": "Transformez vos données en intelligence décisionnelle. Pilotez vos portefeuilles et créez de la valeur durable. Trusted by leading Swiss enterprises.",
+      "tagline": "Excellence Suisse",
+      "cta": "Découvrir"
+    },
+    "expertise": {
+      "title": "Nos Expertises",
+      "subtitle": "DOMAINES",
+      "pmo": { "title": "PMO Stratégique", "sub": "Gouvernance", "desc": "Alignement et pilotage.", "metricLabel": "Efficience" },
+      "bi": { "title": "Business Intelligence", "sub": "Data", "desc": "Visualisation et analyse.", "metricLabel": "Insight" },
+      "ai": { "title": "Automation & IA", "sub": "Innovation", "desc": "Optimisation processus.", "metricLabel": "Gain" },
+      "gov": { "title": "Gouvernance & Risque", "sub": "Contrôle", "desc": "Conformité et sécurité.", "metricLabel": "Sécurité" }
+    }
+  },
+  "home": {
+    "about": {
+      "title": "À PROPOS",
+      "subtitle": "Partenaire de confiance",
+      "desc": "Nous accompagnons les dirigeants dans leur transformation."
+    },
+    "approach": {
+      "title": "Notre Approche",
+      "subtitle": "MÉTHODE",
+      "pillar1": { "title": "Analyse", "desc": "Comprendre vos besoins." },
+      "pillar2": { "title": "Stratégie", "desc": "Définir la feuille de route." },
+      "pillar3": { "title": "Implémentation", "desc": "Mise en œuvre agile." },
+      "pillar4": { "title": "Suivi", "desc": "Mesure de la performance." }
+    },
+    "challenges": {
+      "title": "Vos Défis",
+      "subtitle": "ENJEUX",
+      "c1": { "title": "Visibilité", "desc": "Manque de clarté.", "metric": "100%", "metricLabel": "Transparence" },
+      "c2": { "title": "Données", "desc": "Silos d'information.", "metric": "360°", "metricLabel": "Vue Unifiée" },
+      "c3": { "title": "Reporting", "desc": "Processus manuels.", "metric": "-80%", "metricLabel": "Temps Perdu" },
+      "c4": { "title": "Alignement", "desc": "Décalage IT/Business.", "metric": "100%", "metricLabel": "Cohérence" },
+      "c5": { "title": "Coûts", "desc": "Dépenses non maîtrisées.", "metric": "+20%", "metricLabel": "ROI" }
+    },
+    "dashboardPreview": {
+      "title": "Aperçu Dashboard",
+      "subtitle": "TECHNOLOGIE",
+      "desc": "Des outils puissants pour décider.",
+      "ctaDemo": "Voir Démo",
+      "ctaImpl": "Implémenter"
+    },
+    "datasources": {
+      "title": "Intégrations",
+      "subtitle": "Connectez tous vos outils."
+    },
+    "tracking": {
+      "title": "Suivi de Projet",
+      "subtitle": "Gardez le contrôle.",
+      "card1": { "title": "Performance", "status": "Bon", "subtitle": "KPIs Clés" },
+      "card2": { "title": "Ressources", "status": "Attention", "subtitle": "Allocation" },
+      "card3": { "title": "Budget", "status": "Bon", "subtitle": "Suivi Financier" },
+      "card4": { "title": "Risques", "status": "Critique", "subtitle": "Matrice" }
+    },
+    "vision": {
+      "subtitle": "VISION",
+      "text": "L'excellence opérationnelle par la donnée.",
+      "highlight1": "Innovation",
+      "highlight2": "Global"
+    }
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "desc": "Nous sommes à votre écoute.",
+    "schedule": { "label": "Rendez-vous", "sub": "Réservez un créneau", "btn": "Réserver" },
+    "email": { "label": "Email", "sub": "Écrivez-nous", "btn": "Envoyer" },
+    "offer": { "label": "Offre", "sub": "Demander un devis", "btn": "Demander" }
+  },
+  "blog": {
+    "hero": { "title": "Le Blog", "subtitle": "Insights et Analyses" },
+    "backToBlog": "Retour au blog",
+    "readTime": "min de lecture",
+    "related": "Articles Similaires",
+    "toc": "Sommaire",
+    "noResults": "Aucun article trouvé."
+  },
+  "about": {
+    "hero": { "title": "À Propos" },
+    "label": "NOTRE HISTOIRE",
+    "title": "L'Excellence Suisse",
+    "desc1": "Fondée à Genève...",
+    "desc2": "Notre mission..."
+  },
+  "booking": {
+    "title": "Réserver une Consultation",
+    "desc": "Choisissez le moment qui vous convient.",
+    "success": "Réservation confirmée !",
+    "benefits": { "title": "Inclus", "list": ["Audit initial", "Recommandations", "Roadmap"] },
+    "form": { "title": "Vos Coordonnées", "name": "Nom", "email": "Email", "phone": "Tél", "company": "Société", "project": "Projet", "date": "Date", "time": "Heure", "submit": "Confirmer" },
+    "slots": { "morning": "Matin", "afternoon": "Après-midi" }
+  },
+  "freeAudit": {
+    "title": "Audit Gratuit",
+    "description": "Analysez votre maturité PMO.",
+    "cta": "Démarrer",
+    "micro": "Sans engagement"
+  },
+  "upload": {
+    "dropZone": "Déposez vos fichiers ici",
+    "dropZoneActive": "Relâchez pour uploader",
+    "browse": "ou cliquez pour parcourir",
+    "limits": "Max 50MB - CSV, Excel",
+    "uploading": "Téléchargement...",
+    "emptyHistory": "Aucun fichier récent.",
+    "columns": { "name": "Nom", "date": "Date", "size": "Taille" },
+    "actions": { "download": "Télécharger", "delete": "Supprimer" }
+  },
+  "login": {
+    "title": "Bienvenue",
+    "subtitle": "Connectez-vous à votre espace sécurisé",
+    "emailLabel": "Adresse email",
+    "passwordLabel": "Mot de passe",
+    "forgotPassword": "Mot de passe oublié ?",
+    "submitButton": "Se connecter",
+    "noAccount": "Pas encore de compte ?",
+    "signUp": "Créer un compte",
+    "successTitle": "Connexion réussie",
+    "successMessage": "Bienvenue !",
+    "errorTitle": "Échec de connexion",
+    "azureButton": "Se connecter avec Microsoft Azure AD",
+    "orContinue": "Ou continuer avec email"
+  }
+}

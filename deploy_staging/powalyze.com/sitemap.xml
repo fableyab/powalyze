@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://powalyze.ch/</loc>
+    <lastmod>2025-12-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://powalyze.ch/fr/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://powalyze.ch/en/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://powalyze.ch/de/" />
+  </url>
+  <url>
+    <loc>https://powalyze.ch/services</loc>
+    <lastmod>2025-12-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://powalyze.ch/fr/services" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://powalyze.ch/en/services" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://powalyze.ch/de/services" />
+  </url>
+  <url>
+    <loc>https://powalyze.ch/about</loc>
+    <lastmod>2025-12-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://powalyze.ch/fr/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://powalyze.ch/en/about" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://powalyze.ch/de/about" />
+  </url>
+  <url>
+    <loc>https://powalyze.ch/contact</loc>
+    <lastmod>2025-12-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://powalyze.ch/fr/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://powalyze.ch/en/contact" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://powalyze.ch/de/contact" />
+  </url>
+  <url>
+    <loc>https://powalyze.ch/blog</loc>
+    <lastmod>2025-12-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://powalyze.ch/fr/blog" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://powalyze.ch/en/blog" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://powalyze.ch/de/blog" />
+  </url>
+  <url>
+    <loc>https://powalyze.ch/faq</loc>
+    <lastmod>2025-12-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://powalyze.ch/fr/faq" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://powalyze.ch/en/faq" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://powalyze.ch/de/faq" />
+  </url>
+  <url>
+    <loc>https://powalyze.ch/pmo-solution</loc>
+    <lastmod>2025-12-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://powalyze.ch/fr/pmo-solution" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://powalyze.ch/en/pmo-solution" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://powalyze.ch/de/pmo-solution" />
+  </url>
+  <url>
+    <loc>https://powalyze.ch/rgpd</loc>
+    <lastmod>2025-12-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://powalyze.ch/fr/rgpd" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://powalyze.ch/en/rgpd" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://powalyze.ch/de/rgpd" />
+  </url>
+  <url>
+    <loc>https://powalyze.ch/terms</loc>
+    <lastmod>2025-12-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://powalyze.ch/fr/terms" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://powalyze.ch/en/terms" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://powalyze.ch/de/terms" />
+  </url>
+</urlset>

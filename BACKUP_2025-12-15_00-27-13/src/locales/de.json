@@ -1,0 +1,77 @@
+
+{
+  "nav": {
+    "home": "Startseite",
+    "services": "Dienstleistungen",
+    "blog": "Blog",
+    "clientSpace": "Kundenportal",
+    "faq": "FAQ",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "pmoSolution": "PMO Lösung",
+    "login": "Anmelden"
+  },
+  "footer": {
+    "company": "Powalyze",
+    "rights": "Alle Rechte vorbehalten",
+    "links": "Nützliche Links",
+    "social": "Folgen Sie uns",
+    "services": "Unsere Expertise",
+    "legal": "Impressum",
+    "privacy": "Datenschutz",
+    "cookies": "Cookies"
+  },
+  "services": {
+    "pilotageIT": "IT-Steuerung",
+    "pmoStrategic": "Strategisches PMO",
+    "dataPowerBI": "Data & Power BI",
+    "automationAI": "Automatisierung & KI",
+    "portfolio": "Portfolio & Priorisierung",
+    "reporting": "Executive Reporting"
+  },
+  "auth": {
+    "loginTitle": "Kundenportal Login",
+    "email": "E-Mail-Adresse",
+    "password": "Passwort",
+    "rememberMe": "Angemeldet bleiben",
+    "forgotPassword": "Passwort vergessen?",
+    "submit": "Anmelden",
+    "noAccount": "Noch kein Konto?"
+  },
+  "forms": {
+    "name": "Vollständiger Name",
+    "email": "Geschäftliche E-Mail",
+    "phone": "Telefonnummer",
+    "subject": "Betreff",
+    "message": "Ihre Nachricht",
+    "send": "Senden",
+    "date": "Wunschdatum",
+    "time": "Zeitfenster",
+    "service": "Benötigter Service",
+    "book": "Termin buchen",
+    "success": "Ihre Anfrage wurde erfolgreich gesendet.",
+    "error": "Ein Fehler ist aufgetreten."
+  },
+  "home": {
+    "hero": {
+      "title": "Die Kunst der strategischen Steuerung",
+      "subtitle": "Verwandeln Sie Daten in Entscheidungen. Optimieren Sie Ihre Projekte mit Powalyze.",
+      "cta": "Lösungen entdecken"
+    }
+  },
+  "cookies": {
+    "banner": {
+      "title": "Datenschutzeinstellungen",
+      "description": "Wir verwenden Cookies und ähnliche Technologien, um Ihr Nutzungserlebnis zu verbessern, die Websitenutzung zu analysieren und Inhalte zu personalisieren. Bitte wählen Sie Ihre Einstellungen.",
+      "accept": "Alle Cookies akzeptieren",
+      "reject": "Alle Cookies ablehnen",
+      "customize": "Meine Einstellungen anpassen",
+      "save": "Meine Einstellungen speichern",
+      "categories": {
+        "essential": { "title": "Erforderliche Cookies", "desc": "Für die grundlegende Funktionalität der Website erforderlich. Sie ermöglichen Navigation und Authentifizierung." },
+        "analytics": { "title": "Analyse-Cookies", "desc": "Helfen uns zu analysieren, wie Sie die Website nutzen, um Performance und Benutzerfreundlichkeit ständig zu verbessern." },
+        "marketing": { "title": "Marketing-Cookies", "desc": "Ermöglichen uns, Ihnen relevante Inhalte und Angebote basierend auf Ihrem Interesse an unseren Diensten anzubieten." }
+      }
+    }
+  }
+}

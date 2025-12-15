@@ -1,0 +1,284 @@
+
+{
+  "nav": {
+    "home": "Home",
+    "services": "Expertise",
+    "blog": "Insights",
+    "clientSpace": "Client Portal",
+    "faq": "Questions",
+    "about": "About",
+    "contact": "Contact",
+    "pmoSolution": "PMO",
+    "login": "Login"
+  },
+  "footer": {
+    "company": "Powalyze",
+    "rights": "All rights reserved",
+    "links": "Navigation",
+    "social": "Networks",
+    "services": "Expertise",
+    "legal": "Legal",
+    "privacy": "Privacy",
+    "cookies": "Cookies"
+  },
+  "common": {
+    "search": "Search",
+    "loading": "Loading",
+    "error": "Error",
+    "retry": "Retry",
+    "contact": "Contact",
+    "readMore": "Read",
+    "contactUs": "Contact us"
+  },
+  "services": {
+    "pilotageIT": "IT Steering",
+    "pmoStrategic": "Strategic PMO",
+    "dataPowerBI": "Data & Power BI",
+    "automationAI": "Automation & AI",
+    "portfolio": "Portfolio & Prioritization",
+    "reporting": "Executive Reporting"
+  },
+  "auth": {
+    "loginTitle": "Client Portal",
+    "email": "Email",
+    "password": "Password",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot password?",
+    "submit": "Login",
+    "noAccount": "No account?"
+  },
+  "login": {
+    "title": "Welcome",
+    "subtitle": "Access your workspace",
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "forgotPassword": "Forgot password?",
+    "submitButton": "Sign In",
+    "noAccount": "No account?",
+    "signUp": "Sign Up",
+    "successTitle": "Connected",
+    "successMessage": "Welcome",
+    "errorTitle": "Failed",
+    "azureButton": "Microsoft Sign In",
+    "orContinue": "Or with email"
+  },
+  "dashboard": {
+    "projectsActive": "Active projects",
+    "onTrack": "On track",
+    "atRisk": "At risk",
+    "delayed": "Delayed",
+    "resourceUtilization": "Resources",
+    "budgetConsumption": "Budget",
+    "risks": "Risks",
+    "resources": "Resources",
+    "systemHealth": "Healthy system",
+    "dataFlowStatus": "Data flow"
+  },
+  "errors": {
+    "invalidCredentials": "Invalid credentials",
+    "configurationError": "Configuration error",
+    "authenticationFailed": "Authentication failed",
+    "connectionFailed": "Connection failed",
+    "loadingFailed": "Loading failed",
+    "parsingFailed": "Processing error"
+  },
+  "toast": {
+    "success": "Success",
+    "error": "Error",
+    "warning": "Warning",
+    "info": "Information",
+    "configurationSaved": "Configuration saved",
+    "connectionEstablished": "Connected",
+    "fileLoaded": "File loaded",
+    "recordsFound": "records found",
+    "dataLoadedSuccessfully": "Data loaded",
+    "failedToParse": "Processing error"
+  },
+  "dataIntegration": {
+    "secureLogin": "Secure Login",
+    "productionModeWarning": "Production mode",
+    "productionModeDescription": "Authentication required",
+    "demoMode": "Demo",
+    "connected": "Connected",
+    "analyzing": "Analyzing",
+    "complete": "Complete",
+    "failedRecords": "Errors"
+  },
+  "fileUpload": {
+    "title": "Data Import",
+    "description": "Import your files for analysis",
+    "dragDrop": "Drag and drop",
+    "selectFile": "Select",
+    "fileLoaded": "Loaded",
+    "recordsFound": "records",
+    "failedToParse": "Error",
+    "pleaseCheckFormat": "Check format"
+  },
+  "charts": {
+    "month": "Month",
+    "quarter": "Quarter",
+    "year": "Year",
+    "performanceVsTarget": "Performance",
+    "totalRevenue": "Total revenue",
+    "quotaAchieved": "Goal achieved",
+    "acquisitionRetention": "Acquisition & retention",
+    "activityFlow": "Activity",
+    "predictiveAnalysis": "Predictive analysis"
+  },  "connectors": {
+    "title": "Connectors",
+    "subtitle": "Connect your systems",
+    "pageTitle": "Connectors",
+    "pageDescription": "Manage your data sources",
+    "apiDescription": "Connect your REST API",
+    "sharepointDescription": "Connect SharePoint",
+    "powerbiDescription": "Connect Power BI",
+    "connected": "Connected",
+    "disconnected": "Disconnected",
+    "connect": "Connect",
+    "disconnect": "Disconnect",
+    "configure": "Configure",
+    "configDescription": "Connection settings",
+    "connectionSuccess": "Connected to",
+    "disconnectionSuccess": "Disconnected",
+    "testing": "Testing",
+    "securityNotice": "Encrypted and secure data",
+    "apiUrl": "API URL",
+    "apiKey": "API Key",
+    "siteUrl": "Site URL",
+    "tenantId": "Tenant ID",
+    "clientId": "Client ID",
+    "clientSecret": "Client Secret",
+    "workspaceId": "Workspace ID",
+    "datasetId": "Dataset ID"
+  },
+  "home": {
+    "hero": {
+      "title": "Strategic steering excellence",
+      "subtitle": "Transform data into decisions. Optimize performance.",
+      "cta": "Discover"
+    },
+    "services": {
+      "title": "Our Services",
+      "pil": { "title": "IT Steering", "desc": "Optimize your IT infrastructure with strategic management and effective governance to support your business goals." },
+      "pmo": { "title": "Strategic PMO", "desc": "Align your projects with business strategy through optimized portfolio management and robust project governance." },
+      "data": { "title": "Data & Power BI", "desc": "Transform your data into actionable insights with our business intelligence and advanced visualization solutions." },
+      "ai": { "title": "Automation & AI", "desc": "Automate your business processes and leverage AI to improve operational efficiency and decision-making." },
+      "portfolio": { "title": "Portfolio & Prioritization", "desc": "Effectively manage your project portfolio with intelligent prioritization based on business value." },
+      "reporting": { "title": "Executive Reporting", "desc": "Provide decision-makers with clear, actionable reports for optimal enterprise governance." }
+    },
+    "valueProp": {
+      "title": "What Powalyze",
+      "titleHigh": "changes for you",
+      "intro": "Most firms sell you resources. We sell you results. Powalyze intervenes where traditional methods fail: in zones of high uncertainty and strong technical complexity.",
+      "p1Title": "Radical Clarity",
+      "p1Desc": "No more unreadable reports. We translate technical complexity into clear business decisions.",
+      "p2Title": "Surgical Execution",
+      "p2Desc": "No theory. We are operators who secure your critical deliverables.",
+      "p3Title": "Total Independence",
+      "p3Desc": "Our recommendations serve your interests, not those of major software publishers.",
+      "p4Title": "360 Vision",
+      "p4Desc": "We connect strategy (C-Level) with field reality (Engineering) without signal loss."
+    },
+    "cta": {
+      "title": "Ready to transform your",
+      "titleHighlight": "PMO",
+      "subtitle": "Discover how Powalyze can structure, track and optimize your strategic projects in less than 30 days.",
+      "btnStart": "Start Free",
+      "btnDemo": "View PMO Solution"
+    }
+  },
+  "caseStudies": {
+    "title": "Success stories",
+    "subtitle": "Real transformations. Measurable results.",
+    "challenge": "Challenge",
+    "solution": "Solution",
+    "results": "Results",
+    "duration": "Duration",
+    "client": "Client",
+    "ctaText": "Your case could be the next Powalyze success story",
+    "ctaButton": "Discuss your case",
+    "case1": {
+      "title": "Banking merger",
+      "subtitle": "IT systems harmonization",
+      "challenge": "Two banks merging with incompatible legacy systems. Risk: -25% operational productivity.",
+      "solution": "Strategic PMO implementation with clearly defined IT governance. Real-time dashboards for risk tracking.",
+      "duration": "12 months",
+      "client": "Major Swiss Bank",
+      "results": {
+        "metric1Label": "Project delays",
+        "metric1Value": "-25%",
+        "metric2Label": "Operating costs",
+        "metric2Value": "-18%",
+        "metric3Label": "Team satisfaction",
+        "metric3Value": "+40%"
+      }
+    },
+    "case2": {
+      "title": "Agile transformation",
+      "subtitle": "Waterfall to SAFe migration",
+      "challenge": "Insurance with Waterfall process. Release cycles: 18 months. Critical time-to-market.",
+      "solution": "SAFe implementation with PMO coaching. Agile dashboards for portfolio visibility. CI/CD automation.",
+      "duration": "9 months",
+      "client": "Multi-Risk Insurance",
+      "results": {
+        "metric1Label": "Time-to-market",
+        "metric1Value": "÷2",
+        "metric2Label": "Delivery quality",
+        "metric2Value": "+35%",
+        "metric3Label": "Customer satisfaction",
+        "metric3Value": "+55%"
+      }
+    },
+    "case3": {
+      "title": "Cloud governance",
+      "subtitle": "FinOps & cost optimization",
+      "challenge": "Industrial group with uncontrolled cloud spending. Budget +45% in 1 year. No visibility.",
+      "solution": "Cloud governance with tagging & chargeback. FinOps dashboards. Scaling automation. Reservation optimization.",
+      "duration": "6 months",
+      "client": "Industrial Group",
+      "results": {
+        "metric1Label": "Cloud savings",
+        "metric1Value": "-30%",
+        "metric2Label": "Cost visibility",
+        "metric2Value": "100%",
+        "metric3Label": "Governance adoption",
+        "metric3Value": "+85%"
+      }
+    }
+  },  "forms": {
+    "name": "Name",
+    "email": "Work email",
+    "phone": "Phone",
+    "subject": "Subject",
+    "message": "Your message",
+    "send": "Send",
+    "date": "Date",
+    "time": "Time slot",
+    "service": "Expertise",
+    "book": "Book",
+    "success": "Sent successfully"
+  },
+  "homePmo": {
+    "hero": {
+      "tagline": "Swiss excellence",
+      "title": "Strategic steering excellence",
+      "subtitle": "Transform data into decisions. Optimize performance.",
+      "cta": "Discover"
+    }
+  },
+  "cookies": {
+    "banner": {
+      "title": "Privacy Preferences",
+      "description": "We use cookies to improve your experience, analyze usage, and personalize content. Select your preferences.",
+      "accept": "Accept all",
+      "reject": "Reject all",
+      "customize": "Customize",
+      "save": "Save preferences",
+      "categories": {
+        "essential": { "title": "Essential Cookies", "desc": "Required for basic functionality, navigation and authentication." },
+        "analytics": { "title": "Analytics Cookies", "desc": "Help us improve performance and usability." },
+        "marketing": { "title": "Marketing Cookies", "desc": "Deliver relevant content based on your interests." }
+      }
+    }
+  }
+}
