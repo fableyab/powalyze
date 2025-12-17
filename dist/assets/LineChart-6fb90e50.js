@@ -1,0 +1,1 @@
+import{b2 as a,aU as i,aV as s,b3 as r}from"./index-b9d02c55.js";import{L as x}from"./PieChart-c48cadb9.js";var t=a({chartName:"LineChart",GraphicalChild:x,axisComponents:[{axisType:"xAxis",AxisComp:i},{axisType:"yAxis",AxisComp:s}],formatAxisMap:r});export{t as L};

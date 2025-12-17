@@ -1,0 +1,107 @@
+════════════════════════════════════════════════════════════════
+🚀 DÉPLOIEMENT FINAL - COPIE-COLLE DANS TERMINAL WEB HOSTINGER
+════════════════════════════════════════════════════════════════
+
+✅ ÉTAPE 1: NETTOYER
+────────────────────────────────────────────────────────────────
+
+Copie-colle ce bloc exactement:
+
+rm -f /etc/nginx/sites-enabled/*
+rm -f /etc/nginx/sites-available/powalyze*
+echo '✅ Nettoyage complété'
+
+
+Attendez le message "✅ Nettoyage complété" puis Entrée.
+
+════════════════════════════════════════════════════════════════
+
+✅ ÉTAPE 2: CRÉER CONFIG NGINX
+────────────────────────────────────────────────────────────────
+
+Copie-colle ce GRAND bloc exactement (tout d'un coup):
+
+cat > /etc/nginx/sites-available/powalyze.com << 'CONF'
+server {
+    listen 80;
+    server_name powalyze.com www.powalyze.com 193.203.169.19;
+    root /var/www/powalyze.com;
+    index index.html;
+    
+    gzip on;
+    gzip_vary on;
+    gzip_min_length 1024;
+    gzip_types text/plain text/css text/xml text/javascript application/javascript application/xml+rss application/json;
+    
+    location ~* \.(jpg|jpeg|png|gif|ico|css|js|svg|woff|woff2|ttf|eot)$ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+    
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+    
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+}
+CONF
+ln -sf /etc/nginx/sites-available/powalyze.com /etc/nginx/sites-enabled/
+nginx -t
+systemctl restart nginx
+echo '✅ Configuration appliquée!'
+
+
+Attendez jusqu'à "✅ Configuration appliquée!" puis Entrée.
+
+════════════════════════════════════════════════════════════════
+
+✅ ÉTAPE 3: VÉRIFIER
+────────────────────────────────────────────────────────────────
+
+Copie-colle pour vérifier les fichiers:
+
+ls -lh /var/www/powalyze.com/
+
+
+Vous devez voir:
+  • index.html
+  • assets/
+  • images/
+  • llms.txt
+  • robots.txt
+  • sitemap.xml
+
+
+Puis vérifiez NGINX:
+
+systemctl status nginx
+
+
+Vous devez voir "active (running)" en vert.
+
+════════════════════════════════════════════════════════════════
+
+✅ ÉTAPE 4: TESTER DANS LE NAVIGATEUR
+────────────────────────────────────────────────────────────────
+
+Fermez le Terminal Web et ouvrez votre navigateur.
+
+Allez à: http://193.203.169.19
+
+Vous devez voir la page d'accueil POWALYZE!
+
+Testez aussi:
+  • http://193.203.169.19/power-bi-advanced
+  • http://193.203.169.19/services/pmo-strategique
+  • http://193.203.169.19/pmo-360-demo
+
+════════════════════════════════════════════════════════════════
+
+🎉 TERMINÉ!
+
+Si vous voyez la page d'accueil, c'est GAGNÉ!
+Votre site POWALYZE est EN LIGNE sur 193.203.169.19!
+
+════════════════════════════════════════════════════════════════
