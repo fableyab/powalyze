@@ -1,0 +1,150 @@
+=================================================================
+🚀 COMMANDES À COPIER-COLLER DANS LE TERMINAL WEB HOSTINGER
+=================================================================
+
+Après avoir uploadé les fichiers avec WinSCP, ouvrez le terminal web
+Hostinger et copiez-collez ces commandes UNE PAR UNE :
+
+
+1️⃣ INSTALLER NGINX
+-----------------------------------------------------------------
+
+sudo apt-get update && sudo apt-get install -y nginx
+
+
+2️⃣ CRÉER LA CONFIGURATION DU SITE
+-----------------------------------------------------------------
+
+sudo nano /etc/nginx/sites-available/powalyze.com
+
+
+📝 Dans l'éditeur qui s'ouvre, copiez-collez TOUT ce texte :
+
+server {
+    listen 80;
+    listen [::]:80;
+    
+    server_name powalyze.com www.powalyze.com 193.203.169.19;
+    
+    root /var/www/powalyze.com;
+    index index.html;
+    
+    gzip on;
+    gzip_vary on;
+    gzip_min_length 1024;
+    gzip_types text/plain text/css text/xml text/javascript application/javascript application/xml+rss application/json;
+    
+    location ~* \.(jpg|jpeg|png|gif|ico|css|js|svg|woff|woff2|ttf|eot)$ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+    
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+    
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+}
+
+📌 Pour enregistrer :
+   • Appuyez sur Ctrl+X
+   • Tapez Y (pour Yes)
+   • Appuyez sur Entrée
+
+
+3️⃣ ACTIVER LE SITE
+-----------------------------------------------------------------
+
+sudo ln -sf /etc/nginx/sites-available/powalyze.com /etc/nginx/sites-enabled/
+
+
+4️⃣ SUPPRIMER LA CONFIG PAR DÉFAUT (si elle existe)
+-----------------------------------------------------------------
+
+sudo rm -f /etc/nginx/sites-enabled/default
+
+
+5️⃣ TESTER LA CONFIGURATION
+-----------------------------------------------------------------
+
+sudo nginx -t
+
+📌 Vous devez voir : "syntax is ok" et "test is successful"
+
+
+6️⃣ REDÉMARRER NGINX
+-----------------------------------------------------------------
+
+sudo systemctl restart nginx
+
+
+7️⃣ VÉRIFIER QUE NGINX TOURNE
+-----------------------------------------------------------------
+
+sudo systemctl status nginx
+
+📌 Vous devez voir "active (running)" en vert
+
+
+8️⃣ CORRIGER LES PERMISSIONS (si nécessaire)
+-----------------------------------------------------------------
+
+sudo chown -R www-data:www-data /var/www/powalyze.com
+sudo chmod -R 755 /var/www/powalyze.com
+
+
+=================================================================
+✅ TESTER VOTRE SITE
+=================================================================
+
+Dans votre navigateur, allez sur :
+
+http://193.203.169.19
+
+Vous devez voir votre site POWALYZE s'afficher ! ✅
+
+
+=================================================================
+🌐 CONFIGURER LE DOMAINE (OPTIONNEL)
+=================================================================
+
+Si vous voulez que powalyze.com fonctionne :
+
+1. Allez sur https://hpanel.hostinger.com/
+2. Domaines → powalyze.com → DNS
+3. Ajoutez ces 2 enregistrements :
+
+   Type : A  |  Nom : @    |  Valeur : 193.203.169.19
+   Type : A  |  Nom : www  |  Valeur : 193.203.169.19
+
+4. Attendez 10-30 minutes
+
+
+=================================================================
+🔒 INSTALLER LE SSL (OPTIONNEL)
+=================================================================
+
+Une fois le DNS configuré, dans le terminal web Hostinger :
+
+sudo apt-get install -y certbot python3-certbot-nginx
+sudo certbot --nginx -d powalyze.com -d www.powalyze.com
+
+
+=================================================================
+📞 SI ÇA NE MARCHE PAS
+=================================================================
+
+Vérifiez les logs :
+
+sudo tail -20 /var/log/nginx/error.log
+
+Ou relancez NGINX :
+
+sudo systemctl restart nginx
+
+
+=================================================================
+🎉 C'EST TERMINÉ !
+=================================================================
