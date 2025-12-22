@@ -1,11 +1,1 @@
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-}
+export default{content:['./index.html','./src/**/*.{js,ts,jsx,tsx}'],darkMode:'class',theme:{extend:{colors:{'brand-gold':{50:'#FFFBF0',100:'#FFF7E0',200:'#FFEEC2',300:'#FFE5A3',400:'#FFD266',500:'#BFA76A',600:'#A68B4B',700:'#8C7033',800:'#73541A',900:'#593900'},'neutral':{900:'#1A1A1A',925:'#141414',950:'#0F0F0F',975:'#0A0A0A'},'powalyze-blue':'#1E40AF','powalyze-blue-dark':'#1E3A8A'},fontFamily:{sans:['Inter','system-ui','sans-serif']},boxShadow:{'gold-glow':'0 0 20px rgba(191,167,106,0.3)'},animation:{fadeIn:'fadeIn 0.3s ease-in',slideUp:'slideUp 0.3s ease-out'},keyframes:{fadeIn:{'0%':{opacity:'0'},'100%':{opacity:'1'}},slideUp:{'0%':{transform:'translateY(10px)',opacity:'0'},'100%':{transform:'translateY(0)',opacity:'1'}}}}},plugins:[]}
