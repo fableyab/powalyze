@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased;
+  }
+}
+
+@layer components {
+  /* Styles premium pour Powalyze */
+  .btn-primary {
+    @apply bg-powalyze-blue hover:bg-powalyze-blue-dark text-white font-semibold py-3 px-8 rounded-lg transition-all shadow-md hover:shadow-lg;
+  }
+  
+  .btn-secondary {
+    @apply bg-powalyze-gold hover:bg-amber-600 text-white font-semibold py-3 px-8 rounded-lg transition-all shadow-md hover:shadow-lg;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-powalyze-blue text-powalyze-blue hover:bg-powalyze-blue hover:text-white font-semibold py-3 px-8 rounded-lg transition-all;
+  }
+  
+  .card-premium {
+    @apply bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition-shadow;
+  }
+  
+  .section-container {
+    @apply max-w-7xl mx-auto px-6 py-16;
+  }
+}

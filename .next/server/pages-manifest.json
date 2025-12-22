@@ -1,0 +1,18 @@
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/PMOCalendarPage": "pages/PMOCalendarPage.js",
+  "/ClientPortal/ClientPortalLayout": "pages/ClientPortal/ClientPortalLayout.js",
+  "/PMOProjectsPage": "pages/PMOProjectsPage.js",
+  "/PMOReportsPage": "pages/PMOReportsPage.js",
+  "/PMOTasksPage": "pages/PMOTasksPage.js",
+  "/pmo-calendar": "pages/pmo-calendar.js",
+  "/PMOTeamPage": "pages/PMOTeamPage.js",
+  "/pmo-projects": "pages/pmo-projects.js",
+  "/pmo-reports": "pages/pmo-reports.js",
+  "/pmo-settings": "pages/pmo-settings.js",
+  "/pmo-workspace": "pages/pmo-workspace.js",
+  "/pmo-team": "pages/pmo-team.js",
+  "/pmo-tasks": "pages/pmo-tasks.js",
+  "/_document": "pages/_document.js"
+}

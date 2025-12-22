@@ -1,8 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from '@/App';
-import '@/index.css';
+import { BrowserRouter } from 'react-router-dom';
+import { PMODataProvider } from './context/PMODataContext';
+import { AuthProvider } from './context/AuthContext';
+import { ClientProvider } from './context/ClientContext';
+import App from './App';
+import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <App />
+  <React.StrictMode>
+    <BrowserRouter>
+      <AuthProvider>
+        <PMODataProvider>
+          <ClientProvider>
+            <App />
+          </ClientProvider>
+        </PMODataProvider>
+      </AuthProvider>
+    </BrowserRouter>
+  </React.StrictMode>
 );

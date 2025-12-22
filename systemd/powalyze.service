@@ -1,0 +1,15 @@
+[Unit]
+Description=Powalyze Next.js
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/var/www/powalyze
+ExecStart=/usr/bin/npm run start --prefix /var/www/powalyze
+Restart=on-failure
+Environment=NODE_ENV=production
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
