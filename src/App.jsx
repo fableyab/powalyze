@@ -4,12 +4,16 @@ import { Spinner } from '@/shared/components/ui/Spinner';
 import WorkspaceLayout from '@/features/workspace/components/WorkspaceLayout';
 import AdminLayout from '@/features/admin/components/AdminLayout';
 
+const HomePage = lazy(() => import('@/pages/Home'));
+const SignupPage = lazy(() => import('@/pages/SignupPage'));
+const ContactPage = lazy(() => import('@/pages/ContactPage'));
+const PMOStrategiquePage = lazy(() => import('@/pages/services/PMOStrategiquePage'));
+const AutomatisationIAPage = lazy(() => import('@/pages/services/AutomatisationIAPage'));
 const DashboardPagePro = lazy(() => import('@/features/workspace/pages/DashboardPage'));
 const ProjectsPagePro = lazy(() => import('@/features/projects/pages/ProjectsPage'));
 const TasksPagePro = lazy(() => import('@/features/tasks/pages/TasksPage'));
 const DocumentsPagePro = lazy(() => import('@/features/documents/pages/DocumentsPage'));
 const IntegrationsPagePro = lazy(() => import('@/features/integrations/pages/IntegrationsPage'));
-
 const DashboardPageAdmin = lazy(() => import('@/features/admin/pages/DashboardPage'));
 const ProjectsPageAdmin = lazy(() => import('@/features/admin/pages/ProjectsPage'));
 const TasksPageAdmin = lazy(() => import('@/features/admin/pages/TasksPage'));
@@ -28,7 +32,11 @@ function App() {
   return (
     <Suspense fallback={<PageLoader />}>
       <Routes>
-        <Route path="/" element={<Navigate to="/espace-pro/dashboard" replace />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/services/pmo-strategique" element={<PMOStrategiquePage />} />
+        <Route path="/services/automatisation-ia" element={<AutomatisationIAPage />} />
         <Route path="/espace-pro" element={<WorkspaceLayout workspaceType="pro" />}>
           <Route index element={<Navigate to="/espace-pro/dashboard" replace />} />
           <Route path="dashboard" element={<DashboardPagePro />} />
@@ -49,7 +57,7 @@ function App() {
         </Route>
         <Route path="/espace-client/*" element={<Navigate to="/espace-pro/dashboard" replace />} />
         <Route path="/client/*" element={<Navigate to="/espace-pro/dashboard" replace />} />
-        <Route path="*" element={<Navigate to="/espace-pro/dashboard" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Suspense>
   );
