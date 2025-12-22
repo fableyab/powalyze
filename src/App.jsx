@@ -1,53 +1,36 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import MainLayout from './components/MainLayout';
-import FabriceFaysSite from './components/FabriceFaysSite';
+import React, { lazy, Suspense } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { Spinner } from '@/shared/components/ui/Spinner';
+import WorkspaceLayout from '@/features/workspace/components/WorkspaceLayout';
 
-// PMO Pages
-import PMOWorkspacePage from './pages/pmo-workspace';
-import PMOProjectsPage from './pages/pmo-projects';
-import PMOTasksPage from './pages/pmo-tasks';
-import PMOCalendarPage from './pages/pmo-calendar';
-import PMOTeamPage from './pages/pmo-team';
-import PMOReportsPage from './pages/pmo-reports';
-import PMOSettingsPage from './pages/pmo-settings';
+const DashboardPage = lazy(() => import('@/features/workspace/pages/DashboardPage'));
+const ProjectsPage = lazy(() => import('@/features/projects/pages/ProjectsPage'));
+const TasksPage = lazy(() => import('@/features/tasks/pages/TasksPage'));
+const DocumentsPage = lazy(() => import('@/features/documents/pages/DocumentsPage'));
 
-// Client Portal
-import ClientPortalLayout from './pages/ClientPortal/ClientPortalLayout';
+const PageLoader = () => (
+  <div className="flex items-center justify-center min-h-screen bg-neutral-975">
+    <Spinner size="lg" />
+  </div>
+);
 
 function App() {
   return (
-    <Routes>
-      {/* Site principal Fabrice Fays */}
-      <Route path="/" element={<FabriceFaysSite />} />
-      
-      {/* PMO Dashboard - avec layout */}
-      <Route path="/pmo/*" element={
-        <MainLayout>
-          <Routes>
-            <Route path="workspace" element={<PMOWorkspacePage />} />
-            <Route path="projects" element={<PMOProjectsPage />} />
-            <Route path="tasks" element={<PMOTasksPage />} />
-            <Route path="calendar" element={<PMOCalendarPage />} />
-            <Route path="team" element={<PMOTeamPage />} />
-            <Route path="reports" element={<PMOReportsPage />} />
-            <Route path="settings" element={<PMOSettingsPage />} />
-          </Routes>
-        </MainLayout>
-      } />
-
-      {/* Routes PMO legacy */}
-      <Route path="/pmo-workspace" element={<MainLayout><PMOWorkspacePage /></MainLayout>} />
-      <Route path="/pmo-projects" element={<MainLayout><PMOProjectsPage /></MainLayout>} />
-      <Route path="/pmo-tasks" element={<MainLayout><PMOTasksPage /></MainLayout>} />
-      <Route path="/pmo-calendar" element={<MainLayout><PMOCalendarPage /></MainLayout>} />
-      <Route path="/pmo-team" element={<MainLayout><PMOTeamPage /></MainLayout>} />
-      <Route path="/pmo-reports" element={<MainLayout><PMOReportsPage /></MainLayout>} />
-      <Route path="/pmo-settings" element={<MainLayout><PMOSettingsPage /></MainLayout>} />
-      
-      {/* Client Portal */}
-      <Route path="/client/*" element={<ClientPortalLayout />} />
-    </Routes>
+    <Suspense fallback={<PageLoader />}>
+      <Routes>
+        <Route path="/" element={<Navigate to="/espace-client/dashboard" replace />} />
+        <Route path="/espace-client" element={<WorkspaceLayout />}>
+          <Route index element={<Navigate to="/espace-client/dashboard" replace />} />
+          <Route path="dashboard" element={<DashboardPage />} />
+          <Route path="projets" element={<ProjectsPage />} />
+          <Route path="taches" element={<TasksPage />} />
+          <Route path="documents" element={<DocumentsPage />} />
+        </Route>
+        <Route path="/client/*" element={<Navigate to="/espace-client/dashboard" replace />} />
+        <Route path="/pmo-*" element={<Navigate to="/espace-client/dashboard" replace />} />
+        <Route path="*" element={<Navigate to="/espace-client/dashboard" replace />} />
+      </Routes>
+    </Suspense>
   );
 }
 
