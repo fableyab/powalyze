@@ -4,7 +4,6 @@ import { ArrowRight } from 'lucide-react';
 const Hero = () => {
   return (
     <section className="relative pt-32 pb-20 px-6 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 text-white overflow-hidden">
-      {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-full h-full" 
              style={{
@@ -15,28 +14,26 @@ const Hero = () => {
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Badge */}
         <div className="flex justify-center mb-8">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/20 border border-amber-500/30 rounded-full">
             <span className="text-amber-400 text-xs font-bold tracking-wider uppercase">Conseil Suisse Premium</span>
           </div>
         </div>
 
-        {/* Main Heading */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl md:text-7xl font-black mb-8 leading-tight">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight">
             L'Art du Pilotage<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-amber-400">
               Stratégique
             </span>
           </h1>
-          <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed font-light">
+          <p className="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed font-light">
             PMO + Power BI + Data Analytics : Transformez Vos Projets en Succès
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
             <a 
-              href="/pmo-demo" 
+              href="/espace-pro/dashboard" 
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold rounded-xl shadow-xl hover:shadow-2xl transition-all text-lg"
             >
               Voir la Solution PMO
@@ -51,7 +48,6 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Scroll Indicator */}
         <div className="flex justify-center mt-16">
           <div className="flex flex-col items-center gap-2 text-blue-300 animate-bounce">
             <span className="text-xs font-semibold uppercase tracking-wider">Scroll</span>
