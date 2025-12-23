@@ -1,159 +1,183 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
-const DocumentsContext = createContext(null);
+const DocumentsContext = createContext();
 
-const STORAGE_KEY = 'powalyze_documents_v2';
+// Types de documents
+export const DOCUMENT_TYPES = {
+  PDF: 'pdf',
+  WORD: 'word',
+  EXCEL: 'excel',
+  IMAGE: 'image',
+  CONTRACT: 'contract',
+  REPORT: 'report',
+  PRESENTATION: 'presentation',
+  OTHER: 'other',
+};
 
-export const FILE_TYPES = [
-  { id: 'pdf', label: 'PDF', icon: '📄', accept: '.pdf', color: 'red' },
-  { id: 'word', label: 'Word', icon: '📝', accept: '.doc,.docx', color: 'blue' },
-  { id: 'excel', label: 'Excel', icon: '📊', accept: '.xls,.xlsx', color: 'green' },
-  { id: 'powerpoint', label: 'PowerPoint', icon: '📽️', accept: '.ppt,.pptx', color: 'orange' },
-  { id: 'image', label: 'Image', icon: '🖼️', accept: '.jpg,.jpeg,.png,.gif,.svg', color: 'purple' },
-  { id: 'video', label: 'Vidéo', icon: '🎥', accept: '.mp4,.avi,.mov', color: 'pink' },
-  { id: 'archive', label: 'Archive', icon: '📦', accept: '.zip,.rar,.7z', color: 'yellow' },
-  { id: 'contract', label: 'Contrat', icon: '📑', accept: '.pdf,.doc,.docx', color: 'indigo' },
-  { id: 'report', label: 'Rapport', icon: '📈', accept: '.pdf,.doc,.docx,.xlsx', color: 'cyan' },
-  { id: 'other', label: 'Autre', icon: '📁', accept: '*', color: 'gray' },
-];
-
-export const CATEGORIES = [
-  { id: 'project', label: 'Projet', icon: '🎯', color: 'blue' },
-  { id: 'finance', label: 'Finance', icon: '💰', color: 'green' },
-  { id: 'hr', label: 'Ressources Humaines', icon: '👥', color: 'purple' },
-  { id: 'technical', label: 'Technique', icon: '⚙️', color: 'orange' },
-  { id: 'legal', label: 'Juridique', icon: '⚖️', color: 'red' },
-  { id: 'marketing', label: 'Marketing', icon: '📣', color: 'pink' },
-  { id: 'sales', label: 'Commercial', icon: '💼', color: 'indigo' },
-  { id: 'data', label: 'Données & Analytics', icon: '📊', color: 'cyan' },
-  { id: 'powerbi', label: 'Power BI', icon: '📈', color: 'yellow' },
-  { id: 'other', label: 'Autre', icon: '📁', color: 'gray' },
-];
-
-export const COMMON_TAGS = [
-  'Urgent', 'Important', 'Confidentiel', 'Brouillon', 'Final',
-  'Approuvé', 'En révision', 'Archivé', 'Template', 'Guide',
-  'Q1 2024', 'Q2 2024', 'Q3 2024', 'Q4 2024',
-  'Budget', 'Planning', 'Stratégie', 'ROI', 'KPI',
-];
+// Catégories de documents
+export const DOCUMENT_CATEGORIES = {
+  PROJECT: 'projet',
+  FINANCE: 'finance',
+  HR: 'rh',
+  TECHNICAL: 'technique',
+  LEGAL: 'juridique',
+  MARKETING: 'marketing',
+  ADMINISTRATIVE: 'administratif',
+  OTHER: 'other',
+};
 
 export function DocumentsProvider({ children }) {
-  const [documents, setDocuments] = useState(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    return saved ? JSON.parse(saved) : [];
-  });
+  // Utiliser localStorage pour la persistence
+  const [documents, setDocuments] = useLocalStorage('powalyze_documents', []);
+  const [loading, setLoading] = useState(false);
 
-  const [uploadProgress, setUploadProgress] = useState({});
+  // Ajouter un document
+  const addDocument = (documentData) => {
+    const newDocument = {
+      id: uuidv4(),
+      ...documentData,
+      uploadedAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      size: documentData.size || 0,
+      type: documentData.type || DOCUMENT_TYPES.OTHER,
+      category: documentData.category || DOCUMENT_CATEGORIES.OTHER,
+      tags: documentData.tags || [],
+      projectId: documentData.projectId || null,
+      uploadedBy: documentData.uploadedBy || 'current-user',
+      version: 1,
+      versions: [],
+    };
 
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(documents));
-  }, [documents]);
+    setDocuments(prev => [...prev, newDocument]);
+    return newDocument;
+  };
 
-  const uploadDocument = (file, metadata, onProgress) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      const uploadId = Date.now();
+  // Mettre à jour un document
+  const updateDocument = (documentId, updates) => {
+    setDocuments(prev =>
+      prev.map(doc =>
+        doc.id === documentId
+          ? {
+              ...doc,
+              ...updates,
+              updatedAt: new Date().toISOString(),
+            }
+          : doc
+      )
+    );
+  };
 
-      // Simulate upload progress
-      let progress = 0;
-      const interval = setInterval(() => {
-        progress += Math.random() * 30;
-        if (progress > 100) progress = 100;
-        
-        setUploadProgress(prev => ({ ...prev, [uploadId]: progress }));
-        if (onProgress) onProgress(progress);
+  // Supprimer un document
+  const deleteDocument = (documentId) => {
+    setDocuments(prev => prev.filter(doc => doc.id !== documentId));
+  };
 
-        if (progress >= 100) {
-          clearInterval(interval);
-          setTimeout(() => {
-            setUploadProgress(prev => {
-              const newProgress = { ...prev };
-              delete newProgress[uploadId];
-              return newProgress;
-            });
-          }, 500);
+  // Obtenir un document par ID
+  const getDocumentById = (documentId) => {
+    return documents.find(doc => doc.id === documentId);
+  };
+
+  // Obtenir les documents d'un projet
+  const getProjectDocuments = (projectId) => {
+    return documents.filter(doc => doc.projectId === projectId);
+  };
+
+  // Ajouter une nouvelle version
+  const addDocumentVersion = (documentId, versionData) => {
+    setDocuments(prev =>
+      prev.map(doc => {
+        if (doc.id === documentId) {
+          const newVersion = {
+            id: uuidv4(),
+            version: doc.version + 1,
+            ...versionData,
+            uploadedAt: new Date().toISOString(),
+          };
+          
+          return {
+            ...doc,
+            version: doc.version + 1,
+            versions: [...doc.versions, { ...doc, id: uuidv4() }],
+            ...versionData,
+            updatedAt: new Date().toISOString(),
+          };
         }
-      }, 200);
+        return doc;
+      })
+    );
+  };
 
-      reader.onload = (e) => {
-        const newDoc = {
-          id: uploadId,
-          name: file.name,
-          originalName: file.name,
-          fileType: metadata.fileType,
-          category: metadata.category,
-          tags: metadata.tags || [],
-          size: file.size,
-          mimeType: file.type,
-          data: e.target.result,
-          uploadedAt: new Date().toISOString(),
-          uploadedBy: 'Utilisateur',
-          lastModified: new Date().toISOString(),
-        };
-
-        setTimeout(() => {
-          setDocuments(prev => [newDoc, ...prev]);
-          resolve(newDoc);
-        }, 1000);
-      };
-
-      reader.onerror = () => {
-        clearInterval(interval);
-        reject(new Error('Erreur de lecture du fichier'));
-      };
-
-      reader.readAsDataURL(file);
+  // Filtrer les documents
+  const filterDocuments = (filters) => {
+    return documents.filter(doc => {
+      if (filters.type && doc.type !== filters.type) return false;
+      if (filters.category && doc.category !== filters.category) return false;
+      if (filters.projectId && doc.projectId !== filters.projectId) return false;
+      if (filters.search) {
+        const searchLower = filters.search.toLowerCase();
+        return (
+          doc.name.toLowerCase().includes(searchLower) ||
+          (doc.description && doc.description.toLowerCase().includes(searchLower)) ||
+          doc.tags.some(tag => tag.toLowerCase().includes(searchLower))
+        );
+      }
+      if (filters.tags && filters.tags.length > 0) {
+        return filters.tags.some(tag => doc.tags.includes(tag));
+      }
+      return true;
     });
   };
 
-  const deleteDocument = (docId) => {
-    setDocuments(prev => prev.filter(d => d.id !== docId));
+  // Obtenir les tags utilisés
+  const getAllTags = () => {
+    const tagsSet = new Set();
+    documents.forEach(doc => {
+      doc.tags.forEach(tag => tagsSet.add(tag));
+    });
+    return Array.from(tagsSet).sort();
   };
 
-  const renameDocument = (docId, newName) => {
-    setDocuments(prev => prev.map(d => 
-      d.id === docId 
-        ? { ...d, name: newName, lastModified: new Date().toISOString() }
-        : d
-    ));
-  };
-
-  const updateDocumentTags = (docId, tags) => {
-    setDocuments(prev => prev.map(d => 
-      d.id === docId 
-        ? { ...d, tags, lastModified: new Date().toISOString() }
-        : d
-    ));
-  };
-
-  const downloadDocument = (doc) => {
-    try {
-      const link = document.createElement('a');
-      link.href = doc.data;
-      link.download = doc.name;
-      link.style.display = 'none';
-      document.body.appendChild(link);
-      link.click();
-      setTimeout(() => {
-        document.body.removeChild(link);
-        if (doc.data.startsWith('blob:')) {
-          URL.revokeObjectURL(doc.data);
-        }
-      }, 100);
-    } catch (error) {
-      console.error('Erreur de téléchargement:', error);
-      throw error;
-    }
+  // Calculer les statistiques
+  const getStats = () => {
+    return {
+      total: documents.length,
+      byType: {
+        pdf: documents.filter(d => d.type === DOCUMENT_TYPES.PDF).length,
+        word: documents.filter(d => d.type === DOCUMENT_TYPES.WORD).length,
+        excel: documents.filter(d => d.type === DOCUMENT_TYPES.EXCEL).length,
+        image: documents.filter(d => d.type === DOCUMENT_TYPES.IMAGE).length,
+        contract: documents.filter(d => d.type === DOCUMENT_TYPES.CONTRACT).length,
+        report: documents.filter(d => d.type === DOCUMENT_TYPES.REPORT).length,
+        other: documents.filter(d => d.type === DOCUMENT_TYPES.OTHER).length,
+      },
+      byCategory: {
+        project: documents.filter(d => d.category === DOCUMENT_CATEGORIES.PROJECT).length,
+        finance: documents.filter(d => d.category === DOCUMENT_CATEGORIES.FINANCE).length,
+        hr: documents.filter(d => d.category === DOCUMENT_CATEGORIES.HR).length,
+        technical: documents.filter(d => d.category === DOCUMENT_CATEGORIES.TECHNICAL).length,
+        legal: documents.filter(d => d.category === DOCUMENT_CATEGORIES.LEGAL).length,
+        other: documents.filter(d => d.category === DOCUMENT_CATEGORIES.OTHER).length,
+      },
+      totalSize: documents.reduce((sum, doc) => sum + (doc.size || 0), 0),
+    };
   };
 
   const value = {
     documents,
-    uploadProgress,
-    uploadDocument,
+    loading,
+    addDocument,
+    updateDocument,
     deleteDocument,
-    renameDocument,
-    updateDocumentTags,
-    downloadDocument,
+    getDocumentById,
+    getProjectDocuments,
+    addDocumentVersion,
+    filterDocuments,
+    getAllTags,
+    getStats,
+    DOCUMENT_TYPES,
+    DOCUMENT_CATEGORIES,
   };
 
   return (
@@ -163,10 +187,12 @@ export function DocumentsProvider({ children }) {
   );
 }
 
-export function useDocumentsContext() {
+export function useDocuments() {
   const context = useContext(DocumentsContext);
   if (!context) {
-    throw new Error('useDocumentsContext must be used within DocumentsProvider');
+    throw new Error('useDocuments must be used within a DocumentsProvider');
   }
   return context;
 }
+
+export default DocumentsContext;
