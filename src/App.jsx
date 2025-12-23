@@ -11,6 +11,7 @@ import AdminLayout from './pages/Admin/AdminLayout';
 const HomePage = lazy(() => import('./pages/Home'));
 const SignupPage = lazy(() => import('./pages/SignupPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
+const LoginPage = lazy(() => import('./pages/LoginPage'));
 
 // Service Pages
 const ServicesPage = lazy(() => import('./pages/services/ServicesPage'));
@@ -37,6 +38,7 @@ const ProjectsPagePro = lazy(() => import('./pages/EspacePro/ProjectsPage'));
 const NouveauProjet = lazy(() => import('./pages/EspacePro/NouveauProjet'));
 const DocumentsPagePro = lazy(() => import('./pages/EspacePro/DocumentsPage'));
 const PowerBIPagePro = lazy(() => import('./pages/EspacePro/PowerBIPage'));
+const PowerBIDemoPage = lazy(() => import('./pages/EspacePro/PowerBIDemoPage'));
 const CalendrierPagePro = lazy(() => import('./pages/EspacePro/CalendrierPage'));
 const EquipePagePro = lazy(() => import('./pages/EspacePro/EquipePage'));
 const TachesPagePro = lazy(() => import('./pages/EspacePro/TachesPage'));
@@ -75,6 +77,7 @@ function App() {
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/contact" element={<ContactPage />} />
         
@@ -115,6 +118,7 @@ function App() {
           <Route path="projets/nouveau" element={<NouveauProjet />} />
           <Route path="documents" element={<DocumentsPagePro />} />
           <Route path="power-bi" element={<PowerBIPagePro />} />
+          <Route path="power-bi-demo" element={<PowerBIDemoPage />} />
           <Route path="calendrier" element={<CalendrierPagePro />} />
           <Route path="equipe" element={<EquipePagePro />} />
           <Route path="taches" element={<TachesPagePro />} />
