@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDashboardContext, DASHBOARD_VIEWS, DASHBOARD_FILTER_PRESETS } from '@/contexts/DashboardContext';
-import DashboardProjectCard from '@/components/dashboard/DashboardProjectCard';
+import { useDashboardContext, DASHBOARD_VIEWS, DASHBOARD_FILTER_PRESETS } from '../../contexts/DashboardContext';
+import DashboardProjectCard from '../../components/dashboard/DashboardProjectCard';
 import { FiFolder, FiCheckSquare, FiDollarSign, FiUsers, FiSearch, FiGrid, FiList, FiFilter, FiArrowRight, FiCalendar, FiAlertTriangle } from 'react-icons/fi';
 
 const DashboardMain = () => {
