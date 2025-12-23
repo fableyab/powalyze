@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useDashboardContext } from '@/contexts/DashboardContext';
-import { useProjectsContext } from '@/contexts/ProjectsContext';
-import BackToDashboard from '@/components/dashboard/BackToDashboard';
+import { useDashboardContext } from '../../contexts/DashboardContext';
+import { useProjectsContext } from '../../contexts/ProjectsContext';
+import BackToDashboard from '../../components/dashboard/BackToDashboard';
 import { FiSettings, FiSave, FiTrash2, FiAlertTriangle, FiCheck } from 'react-icons/fi';
 
 const DashboardSettings = () => {
