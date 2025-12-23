@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from '@/lib/cn';
+import { cn } from '../../lib/cn';
 
 const variants = {
   default: 'bg-white/10 text-white border-white/20',
