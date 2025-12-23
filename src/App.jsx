@@ -16,6 +16,7 @@ const AutomatisationIAPage = lazy(() => import('./pages/services/AutomatisationI
 // Espace Pro Pages
 const DashboardPagePro = lazy(() => import('./pages/EspacePro/DashboardPage'));
 const ProjectsPagePro = lazy(() => import('./pages/EspacePro/ProjectsPage'));
+const DocumentsPagePro = lazy(() => import('./pages/EspacePro/DocumentsPage'));
 
 // Espace Admin Pages
 const DashboardPageAdmin = lazy(() => import('./pages/EspaceAdmin/DashboardPage'));
@@ -46,6 +47,7 @@ function App() {
           <Route index element={<Navigate to="/espace-pro/dashboard" replace />} />
           <Route path="dashboard" element={<DashboardPagePro />} />
           <Route path="projets" element={<ProjectsPagePro />} />
+          <Route path="documents" element={<DocumentsPagePro />} />
         </Route>
         
         {/* Espace Admin Routes */}
