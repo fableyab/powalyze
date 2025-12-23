@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { FiHome, FiFolder, FiCheckSquare, FiCalendar, FiUsers, FiFileText, FiBarChart2, FiSettings, FiZap } from 'react-icons/fi';
-import { Badge } from '@/components/ui/badge';
-import { useAuth } from '@/context/AuthContext';
+import { Badge } from '../../components/ui/badge';
+import { useAuth } from '../../contexts/AuthContext';
 
 const WorkspaceLayout = () => {
   const location = useLocation();
