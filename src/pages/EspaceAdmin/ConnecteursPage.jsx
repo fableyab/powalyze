@@ -1,7 +1,5 @@
 import React from 'react';
 import { FiZap, FiCheck, FiClock, FiAlertCircle, FiSettings, FiTrendingUp } from 'react-icons/fi';
-import { Card } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 
 const AdminConnecteursPage = () => {
   const connectors = [
@@ -29,8 +27,9 @@ const AdminConnecteursPage = () => {
         <p className="text-gray-400">Supervision et configuration des intégrations</p>
       </div>
 
+      {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <Card className="bg-[#111] border-white/10 p-6">
+        <div className="bg-[#111] border border-white/10 rounded-lg p-6">
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center">
               <FiZap className="text-blue-400" size={24} />
@@ -40,8 +39,8 @@ const AdminConnecteursPage = () => {
               <p className="text-sm text-gray-400">Connecteurs</p>
             </div>
           </div>
-        </Card>
-        <Card className="bg-[#111] border-white/10 p-6">
+        </div>
+        <div className="bg-[#111] border border-white/10 rounded-lg p-6">
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 rounded-lg bg-green-500/20 flex items-center justify-center">
               <FiCheck className="text-green-400" size={24} />
@@ -51,8 +50,8 @@ const AdminConnecteursPage = () => {
               <p className="text-sm text-gray-400">Actifs</p>
             </div>
           </div>
-        </Card>
-        <Card className="bg-[#111] border-white/10 p-6">
+        </div>
+        <div className="bg-[#111] border border-white/10 rounded-lg p-6">
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center">
               <FiTrendingUp className="text-purple-400" size={24} />
@@ -62,8 +61,8 @@ const AdminConnecteursPage = () => {
               <p className="text-sm text-gray-400">Utilisateurs</p>
             </div>
           </div>
-        </Card>
-        <Card className="bg-[#111] border-white/10 p-6">
+        </div>
+        <div className="bg-[#111] border border-white/10 rounded-lg p-6">
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 rounded-lg bg-orange-500/20 flex items-center justify-center">
               <FiAlertCircle className="text-orange-400" size={24} />
@@ -73,20 +72,25 @@ const AdminConnecteursPage = () => {
               <p className="text-sm text-gray-400">Données</p>
             </div>
           </div>
-        </Card>
+        </div>
       </div>
 
+      {/* Connectors Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {connectors.map(connector => (
-          <Card key={connector.id} className="bg-[#111] border-white/10 p-6 hover:border-red-500/50 transition-all">
+          <div key={connector.id} className="bg-[#111] border border-white/10 rounded-lg p-6 hover:border-red-500/50 transition-all">
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center gap-4">
                 <div className="text-4xl">{connector.icon}</div>
                 <div>
                   <h3 className="font-bold text-white mb-1">{connector.name}</h3>
-                  <Badge className={connector.status === 'active' ? 'bg-green-500/20 text-green-400 border-green-500/50' : 'bg-yellow-500/20 text-yellow-400 border-yellow-500/50'}>
+                  <span className={`px-3 py-1 rounded-full text-xs font-medium border ${
+                    connector.status === 'active' 
+                      ? 'bg-green-500/20 text-green-400 border-green-500/50' 
+                      : 'bg-yellow-500/20 text-yellow-400 border-yellow-500/50'
+                  }`}>
                     {connector.status === 'active' ? 'Actif' : 'Bêta'}
-                  </Badge>
+                  </span>
                 </div>
               </div>
               <button className="flex items-center gap-2 bg-white/5 hover:bg-white/10 text-white border border-white/10 px-4 py-2 rounded-lg text-sm transition-all">
@@ -108,7 +112,7 @@ const AdminConnecteursPage = () => {
                 <p className="font-semibold text-white">{connector.dataVolume}</p>
               </div>
             </div>
-          </Card>
+          </div>
         ))}
       </div>
     </div>
