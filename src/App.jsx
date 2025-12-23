@@ -10,8 +10,14 @@ import AdminLayout from './pages/EspaceAdmin/AdminLayout';
 const HomePage = lazy(() => import('./pages/Home'));
 const SignupPage = lazy(() => import('./pages/SignupPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
+
+// Service Pages
+const PilotageITPage = lazy(() => import('./pages/services/PilotageITPage'));
 const PMOStrategiquePage = lazy(() => import('./pages/services/PMOStrategiquePage'));
+const DataPowerBIPage = lazy(() => import('./pages/services/DataPowerBIPage'));
 const AutomatisationIAPage = lazy(() => import('./pages/services/AutomatisationIAPage'));
+const PortefeuillesPriorisationPage = lazy(() => import('./pages/services/PortefeuillesPriorisationPage'));
+const ReportingExecutifPage = lazy(() => import('./pages/services/ReportingExecutifPage'));
 
 // Espace Pro Pages
 const DashboardPagePro = lazy(() => import('./pages/EspacePro/DashboardPage'));
@@ -49,8 +55,14 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        
+        {/* Service Pages */}
+        <Route path="/services/pilotage-it" element={<PilotageITPage />} />
         <Route path="/services/pmo-strategique" element={<PMOStrategiquePage />} />
+        <Route path="/services/data-powerbi" element={<DataPowerBIPage />} />
         <Route path="/services/automatisation-ia" element={<AutomatisationIAPage />} />
+        <Route path="/services/portefeuilles-priorisation" element={<PortefeuillesPriorisationPage />} />
+        <Route path="/services/reporting-executif" element={<ReportingExecutifPage />} />
         
         {/* Espace Pro Routes */}
         <Route path="/espace-pro" element={<WorkspaceLayout />}>
