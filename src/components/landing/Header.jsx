@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { FiMenu, FiX } from 'react-icons/fi';
+import { Link, useNavigate } from 'react-router-dom';
+import { FiMenu, FiX, FiPlay } from 'react-icons/fi';
+import { useAuth } from '@/context/AuthContext';
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const { loginDemo } = useAuth();
+
+  const handleDemoAccess = () => {
+    loginDemo();
+    navigate('/espace-pro/dashboard');
+  };
 
   return (
     <header className="fixed top-0 w-full bg-black/95 backdrop-blur-sm border-b border-white/10 z-50">
@@ -20,8 +28,15 @@ const Header = () => {
             <a href="#solutions" className="text-gray-300 hover:text-[#BFA76A] transition-colors">Solutions</a>
             <a href="#avantages" className="text-gray-300 hover:text-[#BFA76A] transition-colors">Avantages</a>
             <Link to="/contact" className="text-gray-300 hover:text-[#BFA76A] transition-colors">Contact</Link>
-            <Link to="/espace-pro/dashboard" className="bg-[#BFA76A] hover:bg-[#BFA76A]/90 text-black px-6 py-2 rounded-lg font-medium transition-all">
-              Espace Pro
+            <button 
+              onClick={handleDemoAccess}
+              className="flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-5 py-2 rounded-lg font-medium transition-all"
+            >
+              <FiPlay size={16} />
+              Démo
+            </button>
+            <Link to="/login" className="bg-[#BFA76A] hover:bg-[#BFA76A]/90 text-black px-6 py-2 rounded-lg font-medium transition-all">
+              Connexion
             </Link>
           </div>
 
@@ -38,8 +53,15 @@ const Header = () => {
             <a href="#solutions" className="block text-gray-300 hover:text-[#BFA76A] transition-colors">Solutions</a>
             <a href="#avantages" className="block text-gray-300 hover:text-[#BFA76A] transition-colors">Avantages</a>
             <Link to="/contact" className="block text-gray-300 hover:text-[#BFA76A] transition-colors">Contact</Link>
-            <Link to="/espace-pro/dashboard" className="block bg-[#BFA76A] hover:bg-[#BFA76A]/90 text-black px-6 py-2 rounded-lg font-medium transition-all text-center">
-              Espace Pro
+            <button 
+              onClick={handleDemoAccess}
+              className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-5 py-2 rounded-lg font-medium transition-all"
+            >
+              <FiPlay size={16} />
+              Démo
+            </button>
+            <Link to="/login" className="block bg-[#BFA76A] hover:bg-[#BFA76A]/90 text-black px-6 py-2 rounded-lg font-medium transition-all text-center">
+              Connexion
             </Link>
           </div>
         )}
