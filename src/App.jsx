@@ -13,6 +13,12 @@ const SignupPage = lazy(() => import('./pages/SignupPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 
 // Service Pages
+const ServicesPage = lazy(() => import('./pages/services/ServicesPage'));
+const PmoGovernance = lazy(() => import('./pages/services/PmoGovernance'));
+const PmoOperations = lazy(() => import('./pages/services/PmoOperations'));
+const PmoStrategy = lazy(() => import('./pages/services/PmoStrategy'));
+const PmoAudit = lazy(() => import('./pages/services/PmoAudit'));
+const PmoImplementation = lazy(() => import('./pages/services/PmoImplementation'));
 const PilotageITPage = lazy(() => import('./pages/services/PilotageITPage'));
 const PMOStrategiquePage = lazy(() => import('./pages/services/PMOStrategiquePage'));
 const DataPowerBIPage = lazy(() => import('./pages/services/DataPowerBIPage'));
@@ -23,6 +29,7 @@ const ReportingExecutifPage = lazy(() => import('./pages/services/ReportingExecu
 // Espace Pro Pages (Portail Utilisateur)
 const DashboardPagePro = lazy(() => import('./pages/EspacePro/DashboardPage'));
 const ProjectsPagePro = lazy(() => import('./pages/EspacePro/ProjectsPage'));
+const NouveauProjet = lazy(() => import('./pages/EspacePro/NouveauProjet'));
 const DocumentsPagePro = lazy(() => import('./pages/EspacePro/DocumentsPage'));
 const PowerBIPagePro = lazy(() => import('./pages/EspacePro/PowerBIPage'));
 const CalendrierPagePro = lazy(() => import('./pages/EspacePro/CalendrierPage'));
@@ -67,6 +74,12 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
         
         {/* Service Pages */}
+        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/services/pmo-governance" element={<PmoGovernance />} />
+        <Route path="/services/pmo-operations" element={<PmoOperations />} />
+        <Route path="/services/pmo-strategy" element={<PmoStrategy />} />
+        <Route path="/services/pmo-audit" element={<PmoAudit />} />
+        <Route path="/services/pmo-implementation" element={<PmoImplementation />} />
         <Route path="/services/pilotage-it" element={<PilotageITPage />} />
         <Route path="/services/pmo-strategique" element={<PMOStrategiquePage />} />
         <Route path="/services/data-powerbi" element={<DataPowerBIPage />} />
@@ -89,6 +102,7 @@ function App() {
           <Route index element={<Navigate to="/espace-pro/dashboard" replace />} />
           <Route path="dashboard" element={<DashboardPagePro />} />
           <Route path="projets" element={<ProjectsPagePro />} />
+          <Route path="projets/nouveau" element={<NouveauProjet />} />
           <Route path="documents" element={<DocumentsPagePro />} />
           <Route path="power-bi" element={<PowerBIPagePro />} />
           <Route path="calendrier" element={<CalendrierPagePro />} />
@@ -116,6 +130,9 @@ function App() {
         
         {/* Legacy Redirects */}
         <Route path="/espace-client" element={<Navigate to="/espace-pro/dashboard" replace />} />
+        <Route path="/espace-client/projets" element={<Navigate to="/espace-pro/projets" replace />} />
+        <Route path="/espace-client/projets/nouveau" element={<Navigate to="/espace-pro/projets/nouveau" replace />} />
+        <Route path="/espace-client/taches" element={<Navigate to="/espace-pro/taches" replace />} />
         <Route path="/espace-client/*" element={<Navigate to="/espace-pro/dashboard" replace />} />
         <Route path="/client/space" element={<Navigate to="/espace-pro/dashboard" replace />} />
         <Route path="/client/*" element={<Navigate to="/espace-pro/dashboard" replace />} />
