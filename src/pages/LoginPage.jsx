@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth, DEMO_ACCOUNT } from '@/context/AuthContext';
+import { useAuth, DEMO_ACCOUNT } from '../contexts/AuthContext';
 import { FiMail, FiLock, FiArrowRight, FiEye, FiEyeOff, FiPlay } from 'react-icons/fi';
 
 const LoginPage = () => {
