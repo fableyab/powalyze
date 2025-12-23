@@ -26,6 +26,11 @@ const AutomatisationIAPage = lazy(() => import('./pages/services/AutomatisationI
 const PortefeuillesPriorisationPage = lazy(() => import('./pages/services/PortefeuillesPriorisationPage'));
 const ReportingExecutifPage = lazy(() => import('./pages/services/ReportingExecutifPage'));
 
+// Dashboard Pages (NEW - /dashboard)
+const DashboardMain = lazy(() => import('./pages/Dashboard/DashboardMain'));
+const DashboardProjectDetail = lazy(() => import('./pages/Dashboard/DashboardProjectDetail'));
+const DashboardSettings = lazy(() => import('./pages/Dashboard/DashboardSettings'));
+
 // Espace Pro Pages (Portail Utilisateur)
 const DashboardPagePro = lazy(() => import('./pages/EspacePro/DashboardPage'));
 const ProjectsPagePro = lazy(() => import('./pages/EspacePro/ProjectsPage'));
@@ -86,6 +91,11 @@ function App() {
         <Route path="/services/automatisation-ia" element={<AutomatisationIAPage />} />
         <Route path="/services/portefeuilles-priorisation" element={<PortefeuillesPriorisationPage />} />
         <Route path="/services/reporting-executif" element={<ReportingExecutifPage />} />
+        
+        {/* DASHBOARD ROUTES (NEW - /dashboard) */}
+        <Route path="/dashboard" element={<DashboardMain />} />
+        <Route path="/dashboard/projet/:projectId" element={<DashboardProjectDetail />} />
+        <Route path="/dashboard/projet/:projectId/settings" element={<DashboardSettings />} />
         
         {/* NOUVEAU PORTAIL ADMIN (/admin) - Pour la société Powalyze */}
         <Route path="/admin" element={<AdminLayout />}>
