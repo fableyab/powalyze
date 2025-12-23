@@ -18,6 +18,12 @@ const DashboardPagePro = lazy(() => import('./pages/EspacePro/DashboardPage'));
 const ProjectsPagePro = lazy(() => import('./pages/EspacePro/ProjectsPage'));
 const DocumentsPagePro = lazy(() => import('./pages/EspacePro/DocumentsPage'));
 const PowerBIPagePro = lazy(() => import('./pages/EspacePro/PowerBIPage'));
+const CalendrierPagePro = lazy(() => import('./pages/EspacePro/CalendrierPage'));
+const EquipePagePro = lazy(() => import('./pages/EspacePro/EquipePage'));
+const TachesPagePro = lazy(() => import('./pages/EspacePro/TachesPage'));
+const RapportsPagePro = lazy(() => import('./pages/EspacePro/RapportsPage'));
+const ParametresPagePro = lazy(() => import('./pages/EspacePro/ParametresPage'));
+const ConnecteursPagePro = lazy(() => import('./pages/EspacePro/ConnecteursPage'));
 
 // Espace Admin Pages
 const DashboardPageAdmin = lazy(() => import('./pages/EspaceAdmin/DashboardPage'));
@@ -25,6 +31,9 @@ const ProjectsPageAdmin = lazy(() => import('./pages/EspaceAdmin/ProjectsPage'))
 const AnalyticsPageAdmin = lazy(() => import('./pages/EspaceAdmin/AnalyticsPage'));
 const UsersPageAdmin = lazy(() => import('./pages/EspaceAdmin/UsersPage'));
 const AuditPageAdmin = lazy(() => import('./pages/EspaceAdmin/AuditPage'));
+const TachesPageAdmin = lazy(() => import('./pages/EspaceAdmin/TachesPage'));
+const ConnecteursPageAdmin = lazy(() => import('./pages/EspaceAdmin/ConnecteursPage'));
+const ParametresPageAdmin = lazy(() => import('./pages/EspaceAdmin/ParametresPage'));
 
 const PageLoader = () => (
   <div className="flex items-center justify-center min-h-screen bg-[#0A0A0A]">
@@ -50,6 +59,12 @@ function App() {
           <Route path="projets" element={<ProjectsPagePro />} />
           <Route path="documents" element={<DocumentsPagePro />} />
           <Route path="power-bi" element={<PowerBIPagePro />} />
+          <Route path="calendrier" element={<CalendrierPagePro />} />
+          <Route path="equipe" element={<EquipePagePro />} />
+          <Route path="taches" element={<TachesPagePro />} />
+          <Route path="rapports" element={<RapportsPagePro />} />
+          <Route path="parametres" element={<ParametresPagePro />} />
+          <Route path="connecteurs" element={<ConnecteursPagePro />} />
         </Route>
         
         {/* Espace Admin Routes */}
@@ -60,6 +75,9 @@ function App() {
           <Route path="analytics" element={<AnalyticsPageAdmin />} />
           <Route path="utilisateurs" element={<UsersPageAdmin />} />
           <Route path="audit" element={<AuditPageAdmin />} />
+          <Route path="taches" element={<TachesPageAdmin />} />
+          <Route path="connecteurs" element={<ConnecteursPageAdmin />} />
+          <Route path="parametres" element={<ParametresPageAdmin />} />
         </Route>
         
         {/* Legacy Redirects */}
