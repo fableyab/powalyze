@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { PMODataProvider } from './context/PMODataContext';
 import { AuthProvider } from './context/AuthContext';
 import { ClientProvider } from './context/ClientContext';
+import { DocumentsProvider } from './contexts/DocumentsContext';
 import App from './App';
 import './index.css';
 
@@ -13,7 +14,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <AuthProvider>
         <PMODataProvider>
           <ClientProvider>
-            <App />
+            <DocumentsProvider>
+              <App />
+            </DocumentsProvider>
           </ClientProvider>
         </PMODataProvider>
       </AuthProvider>
