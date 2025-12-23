@@ -1,126 +1,168 @@
 import React, { useState } from 'react';
-import { FiCheckSquare, FiSquare, FiPlus, FiCalendar, FiAlertCircle } from 'react-icons/fi';
-import { Card } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { FiPlus, FiFilter } from 'react-icons/fi';
+import { useTasksContext, TASK_STATUSES } from '@/contexts/TasksContext';
+import TaskItem from '@/components/tasks/TaskItem';
+import TaskForm from '@/components/tasks/TaskForm';
 
-const TachesPage = () => {
-  const [tasks, setTasks] = useState([
-    { id: 1, title: 'Revue architecture cloud', project: 'Migration Azure', priority: 'Critique', status: 'todo', dueDate: '2025-12-26', assignee: 'Marie Dubois' },
-    { id: 2, title: 'Tests intégration paiement', project: 'E-commerce B2B', priority: 'Haute', status: 'in-progress', dueDate: '2025-12-28', assignee: 'Thomas Martin' },
-    { id: 3, title: 'Audit sécurité infrastructure', project: 'ISO 27001', priority: 'Critique', status: 'todo', dueDate: '2025-12-24', assignee: 'Sophie Laurent' },
-    { id: 4, title: 'Design maquettes mobile', project: 'App Mobile B2C', priority: 'Moyenne', status: 'in-progress', dueDate: '2025-12-30', assignee: 'Lucas Bernard' },
-    { id: 5, title: 'Configuration pipelines CI/CD', project: 'DevOps CI/CD', priority: 'Haute', status: 'done', dueDate: '2025-12-20', assignee: 'Hugo Moreau' },
-    { id: 6, title: 'Analyse données ventes Q4', project: 'Data Warehouse', priority: 'Moyenne', status: 'in-progress', dueDate: '2025-12-29', assignee: 'Emma Petit' },
-  ]);
+export default function TachesPage() {
+  const { tasks, createTask, updateTask, deleteTask, toggleTaskStatus } = useTasksContext();
+  const [showForm, setShowForm] = useState(false);
+  const [editingTask, setEditingTask] = useState(null);
+  const [statusFilter, setStatusFilter] = useState('all');
 
-  const [filter, setFilter] = useState('all');
-
-  const toggleTask = (taskId) => {
-    setTasks(tasks.map(task => 
-      task.id === taskId ? { ...task, status: task.status === 'done' ? 'todo' : 'done' } : task
-    ));
-  };
-
-  const filteredTasks = tasks.filter(task => {
-    if (filter === 'all') return true;
-    return task.status === filter;
-  });
+  const filteredTasks = statusFilter === 'all' 
+    ? tasks 
+    : tasks.filter(task => task.status === statusFilter);
 
   const stats = {
     total: tasks.length,
     todo: tasks.filter(t => t.status === 'todo').length,
     inProgress: tasks.filter(t => t.status === 'in-progress').length,
+    review: tasks.filter(t => t.status === 'review').length,
     done: tasks.filter(t => t.status === 'done').length,
   };
 
+  const handleSaveTask = (taskData) => {
+    if (editingTask) {
+      updateTask(editingTask.id, taskData);
+    } else {
+      createTask(taskData);
+    }
+    setShowForm(false);
+    setEditingTask(null);
+  };
+
+  const handleEditTask = (task) => {
+    setEditingTask(task);
+    setShowForm(true);
+  };
+
+  const handleDeleteTask = (taskId) => {
+    if (window.confirm('Voulez-vous vraiment supprimer cette tâche ?')) {
+      deleteTask(taskId);
+    }
+  };
+
   return (
-    <div className="p-8 space-y-8">
+    <div className="space-y-8">
+      {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-4xl font-bold text-white mb-2">Tâches</h1>
-          <p className="text-gray-400">Gestion et suivi des tâches projet</p>
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-[#BFA76A] to-[#D4AF37] bg-clip-text text-transparent">
+            Tâches
+          </h1>
+          <p className="text-gray-400 mt-2">Gestion et suivi des tâches projet</p>
         </div>
-        <button className="flex items-center gap-2 bg-[#BFA76A] hover:bg-[#BFA76A]/90 text-black px-6 py-3 rounded-lg font-medium transition-all">
-          <FiPlus size={20} />
+        <button
+          onClick={() => { setEditingTask(null); setShowForm(true); }}
+          className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#BFA76A] to-[#D4AF37] text-black font-bold rounded-lg hover:shadow-lg hover:shadow-[#BFA76A]/20 transition-all"
+        >
+          <FiPlus className="w-5 h-5" />
           Nouvelle Tâche
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <Card className="bg-[#111] border-white/10 p-6">
+      {/* Stats */}
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+        <div className="bg-gradient-to-br from-[#1A1A1A] to-[#0F0F0F] border border-[#BFA76A]/20 rounded-xl p-6 hover:border-[#BFA76A]/40 transition-all">
           <div className="text-3xl font-bold text-white mb-1">{stats.total}</div>
           <div className="text-sm text-gray-400">Total</div>
-        </Card>
-        <Card className="bg-[#111] border-white/10 p-6">
+        </div>
+        <div className="bg-gradient-to-br from-[#1A1A1A] to-[#0F0F0F] border border-[#BFA76A]/20 rounded-xl p-6 hover:border-[#BFA76A]/40 transition-all">
           <div className="text-3xl font-bold text-gray-400 mb-1">{stats.todo}</div>
           <div className="text-sm text-gray-400">À faire</div>
-        </Card>
-        <Card className="bg-[#111] border-white/10 p-6">
+        </div>
+        <div className="bg-gradient-to-br from-[#1A1A1A] to-[#0F0F0F] border border-[#BFA76A]/20 rounded-xl p-6 hover:border-[#BFA76A]/40 transition-all">
           <div className="text-3xl font-bold text-blue-400 mb-1">{stats.inProgress}</div>
           <div className="text-sm text-gray-400">En cours</div>
-        </Card>
-        <Card className="bg-[#111] border-white/10 p-6">
+        </div>
+        <div className="bg-gradient-to-br from-[#1A1A1A] to-[#0F0F0F] border border-[#BFA76A]/20 rounded-xl p-6 hover:border-[#BFA76A]/40 transition-all">
+          <div className="text-3xl font-bold text-purple-400 mb-1">{stats.review}</div>
+          <div className="text-sm text-gray-400">En revue</div>
+        </div>
+        <div className="bg-gradient-to-br from-[#1A1A1A] to-[#0F0F0F] border border-[#BFA76A]/20 rounded-xl p-6 hover:border-[#BFA76A]/40 transition-all">
           <div className="text-3xl font-bold text-green-400 mb-1">{stats.done}</div>
           <div className="text-sm text-gray-400">Terminées</div>
-        </Card>
+        </div>
       </div>
 
-      <div className="flex gap-2">
-        {['all', 'todo', 'in-progress', 'done'].map(status => (
+      {/* Filters */}
+      <div className="bg-gradient-to-br from-[#1A1A1A] to-[#0F0F0F] border border-[#BFA76A]/20 rounded-xl p-4">
+        <div className="flex items-center gap-2 flex-wrap">
+          <FiFilter className="w-5 h-5 text-[#BFA76A]" />
           <button
-            key={status}
-            onClick={() => setFilter(status)}
+            onClick={() => setStatusFilter('all')}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-              filter === status
+              statusFilter === 'all'
                 ? 'bg-[#BFA76A]/20 text-[#BFA76A] border border-[#BFA76A]/50'
-                : 'bg-white/5 text-gray-400 border border-white/10 hover:text-white'
+                : 'bg-[#0A0A0A] text-gray-400 border border-[#BFA76A]/20 hover:text-white'
             }`}
           >
-            {status === 'all' ? 'Toutes' : status === 'todo' ? 'À faire' : status === 'in-progress' ? 'En cours' : 'Terminées'}
+            Toutes ({stats.total})
           </button>
-        ))}
+          {TASK_STATUSES.map(status => (
+            <button
+              key={status.id}
+              onClick={() => setStatusFilter(status.id)}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                statusFilter === status.id
+                  ? 'bg-[#BFA76A]/20 text-[#BFA76A] border border-[#BFA76A]/50'
+                  : 'bg-[#0A0A0A] text-gray-400 border border-[#BFA76A]/20 hover:text-white'
+              }`}
+            >
+              {status.icon} {status.label} ({stats[status.id] || 0})
+            </button>
+          ))}
+        </div>
       </div>
 
-      <div className="space-y-4">
-        {filteredTasks.map(task => (
-          <Card key={task.id} className="bg-[#111] border-white/10 p-6 hover:border-[#BFA76A]/50 transition-all">
-            <div className="flex items-start gap-4">
-              <button onClick={() => toggleTask(task.id)} className="mt-1">
-                {task.status === 'done' ? (
-                  <FiCheckSquare className="text-green-400" size={24} />
-                ) : (
-                  <FiSquare className="text-gray-400" size={24} />
-                )}
-              </button>
-              <div className="flex-1">
-                <div className="flex items-center gap-3 mb-2">
-                  <h3 className={`text-lg font-semibold ${task.status === 'done' ? 'text-gray-500 line-through' : 'text-white'}`}>
-                    {task.title}
-                  </h3>
-                  <Badge className={task.priority === 'Critique' ? 'bg-red-500/20 text-red-400 border-red-500/50' : task.priority === 'Haute' ? 'bg-orange-500/20 text-orange-400 border-orange-500/50' : 'bg-yellow-500/20 text-yellow-400 border-yellow-500/50'}>
-                    {task.priority}
-                  </Badge>
-                  {task.status === 'in-progress' && (
-                    <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/50">En cours</Badge>
-                  )}
-                </div>
-                <p className="text-sm text-gray-400 mb-3">{task.project}</p>
-                <div className="flex items-center gap-4 text-sm text-gray-400">
-                  <div className="flex items-center gap-2">
-                    <FiCalendar size={14} />
-                    <span>Échéance: {new Date(task.dueDate).toLocaleDateString('fr-FR')}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span>Assigné à: {task.assignee}</span>
-                  </div>
-                </div>
-              </div>
+      {/* Tasks List */}
+      {filteredTasks.length === 0 ? (
+        <div className="bg-gradient-to-br from-[#1A1A1A] to-[#0F0F0F] border border-[#BFA76A]/20 rounded-xl p-12">
+          <div className="text-center">
+            <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-[#BFA76A]/20 to-[#D4AF37]/10 border border-[#BFA76A]/30 flex items-center justify-center">
+              <FiPlus className="w-12 h-12 text-[#BFA76A]" />
             </div>
-          </Card>
-        ))}
-      </div>
+            <h3 className="text-2xl font-bold text-white mb-2">
+              {statusFilter !== 'all' ? 'Aucune tâche dans ce statut' : 'Aucune tâche'}
+            </h3>
+            <p className="text-gray-400 mb-8">
+              {statusFilter !== 'all'
+                ? 'Essayez de sélectionner un autre filtre'
+                : 'Commencez par créer votre première tâche'
+              }
+            </p>
+            <button
+              onClick={() => { setEditingTask(null); setShowForm(true); }}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#BFA76A] to-[#D4AF37] text-black font-bold rounded-lg hover:shadow-lg hover:shadow-[#BFA76A]/20 transition-all"
+            >
+              <FiPlus className="w-5 h-5" />
+              Créer une tâche
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className="space-y-4">
+          {filteredTasks.map(task => (
+            <TaskItem
+              key={task.id}
+              task={task}
+              onToggle={toggleTaskStatus}
+              onEdit={handleEditTask}
+              onDelete={handleDeleteTask}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Task Form Modal */}
+      {showForm && (
+        <TaskForm
+          task={editingTask}
+          onClose={() => { setShowForm(false); setEditingTask(null); }}
+          onSave={handleSaveTask}
+        />
+      )}
     </div>
   );
-};
-
-export default TachesPage;
+}
