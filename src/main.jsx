@@ -5,6 +5,8 @@ import { PMODataProvider } from './context/PMODataContext';
 import { AuthProvider } from './context/AuthContext';
 import { ClientProvider } from './context/ClientContext';
 import { DocumentsProvider } from './contexts/DocumentsContext';
+import { ProjectsProvider } from './contexts/ProjectsContext';
+import { TasksProvider } from './contexts/TasksContext';
 import App from './App';
 import './index.css';
 
@@ -15,7 +17,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <PMODataProvider>
           <ClientProvider>
             <DocumentsProvider>
-              <App />
+              <ProjectsProvider>
+                <TasksProvider>
+                  <App />
+                </TasksProvider>
+              </ProjectsProvider>
             </DocumentsProvider>
           </ClientProvider>
         </PMODataProvider>
