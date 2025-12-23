@@ -1,99 +1,197 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 const ProjectsContext = createContext();
 
-export const useProjectsContext = () => {
-  const context = useContext(ProjectsContext);
-  if (!context) {
-    throw new Error('useProjectsContext must be used within ProjectsProvider');
-  }
-  return context;
+// États et priorités des projets
+export const PROJECT_STATUSES = {
+  PLANNING: 'planification',
+  IN_PROGRESS: 'en-cours',
+  ON_HOLD: 'en-pause',
+  COMPLETED: 'termine',
+  CANCELLED: 'annule',
 };
 
-export const PROJECT_STATUSES = [
-  { id: 'planification', label: 'Planification', color: 'purple', icon: '📋' },
-  { id: 'en-cours', label: 'En cours', color: 'blue', icon: '🚀' },
-  { id: 'en-pause', label: 'En pause', color: 'yellow', icon: '⏸️' },
-  { id: 'termine', label: 'Terminé', color: 'green', icon: '✅' },
-  { id: 'annule', label: 'Annulé', color: 'red', icon: '❌' },
-];
+export const PROJECT_PRIORITIES = {
+  CRITICAL: 'critique',
+  HIGH: 'haute',
+  MEDIUM: 'moyenne',
+  LOW: 'basse',
+};
 
-export const PROJECT_PRIORITIES = [
-  { id: 'critique', label: 'Critique', color: 'red', icon: '🔴' },
-  { id: 'haute', label: 'Haute', color: 'orange', icon: '🟠' },
-  { id: 'moyenne', label: 'Moyenne', color: 'yellow', icon: '🟡' },
-  { id: 'basse', label: 'Basse', color: 'green', icon: '🟢' },
-];
+export const PROJECT_CATEGORIES = {
+  IT: 'it',
+  FINANCE: 'finance',
+  MARKETING: 'marketing',
+  HR: 'hr',
+  OPERATIONS: 'operations',
+  LEGAL: 'legal',
+  OTHER: 'other',
+};
 
-export const PROJECT_CATEGORIES = [
-  { id: 'transformation', label: 'Transformation', icon: '🔄' },
-  { id: 'infrastructure', label: 'Infrastructure', icon: '🏗️' },
-  { id: 'application', label: 'Application', icon: '📱' },
-  { id: 'data', label: 'Data & Analytics', icon: '📊' },
-  { id: 'securite', label: 'Sécurité', icon: '🔒' },
-  { id: 'processus', label: 'Processus', icon: '⚙️' },
-  { id: 'formation', label: 'Formation', icon: '🎓' },
-  { id: 'autre', label: 'Autre', icon: '📦' },
-];
+export function ProjectsProvider({ children }) {
+  // Utiliser localStorage pour la persistence
+  const [projects, setProjects] = useLocalStorage('powalyze_projects', []);
+  const [loading, setLoading] = useState(false);
 
-const STORAGE_KEY = 'powalyze_projects_v1';
-
-export const ProjectsProvider = ({ children }) => {
-  const [projects, setProjects] = useState([]);
-
-  useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      try {
-        setProjects(JSON.parse(stored));
-      } catch (e) {
-        console.error('Failed to parse projects:', e);
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
-  }, [projects]);
-
+  // Créer un nouveau projet
   const createProject = (projectData) => {
     const newProject = {
-      id: Date.now().toString(),
+      id: uuidv4(),
       ...projectData,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
+      progress: projectData.progress || 0,
+      status: projectData.status || PROJECT_STATUSES.PLANNING,
+      priority: projectData.priority || PROJECT_PRIORITIES.MEDIUM,
+      documents: projectData.documents || [],
+      tasks: projectData.tasks || [],
+      team: projectData.team || [],
     };
-    setProjects(prev => [newProject, ...prev]);
+
+    setProjects(prev => [...prev, newProject]);
     return newProject;
   };
 
+  // Mettre à jour un projet
   const updateProject = (projectId, updates) => {
-    setProjects(prev => prev.map(project => 
-      project.id === projectId
-        ? { ...project, ...updates, updatedAt: new Date().toISOString() }
-        : project
-    ));
+    setProjects(prev =>
+      prev.map(project =>
+        project.id === projectId
+          ? {
+              ...project,
+              ...updates,
+              updatedAt: new Date().toISOString(),
+            }
+          : project
+      )
+    );
   };
 
+  // Supprimer un projet
   const deleteProject = (projectId) => {
     setProjects(prev => prev.filter(project => project.id !== projectId));
   };
 
+  // Obtenir un projet par ID
   const getProjectById = (projectId) => {
     return projects.find(project => project.id === projectId);
   };
 
-  const getProjectsByStatus = (status) => {
-    return projects.filter(project => project.status === status);
+  // Ajouter un document à un projet
+  const addDocumentToProject = (projectId, document) => {
+    const documentWithId = {
+      ...document,
+      id: document.id || uuidv4(),
+      uploadedAt: document.uploadedAt || new Date().toISOString(),
+    };
+
+    setProjects(prev =>
+      prev.map(project =>
+        project.id === projectId
+          ? {
+              ...project,
+              documents: [...(project.documents || []), documentWithId],
+              updatedAt: new Date().toISOString(),
+            }
+          : project
+      )
+    );
+
+    return documentWithId;
+  };
+
+  // Supprimer un document d'un projet
+  const removeDocumentFromProject = (projectId, documentId) => {
+    setProjects(prev =>
+      prev.map(project =>
+        project.id === projectId
+          ? {
+              ...project,
+              documents: project.documents.filter(doc => doc.id !== documentId),
+              updatedAt: new Date().toISOString(),
+            }
+          : project
+      )
+    );
+  };
+
+  // Ajouter une tâche à un projet
+  const addTaskToProject = (projectId, task) => {
+    const taskWithId = {
+      ...task,
+      id: task.id || uuidv4(),
+      createdAt: task.createdAt || new Date().toISOString(),
+    };
+
+    setProjects(prev =>
+      prev.map(project =>
+        project.id === projectId
+          ? {
+              ...project,
+              tasks: [...(project.tasks || []), taskWithId],
+              updatedAt: new Date().toISOString(),
+            }
+          : project
+      )
+    );
+
+    return taskWithId;
+  };
+
+  // Filtrer les projets
+  const filterProjects = (filters) => {
+    return projects.filter(project => {
+      if (filters.status && project.status !== filters.status) return false;
+      if (filters.priority && project.priority !== filters.priority) return false;
+      if (filters.category && project.category !== filters.category) return false;
+      if (filters.search) {
+        const searchLower = filters.search.toLowerCase();
+        return (
+          project.name.toLowerCase().includes(searchLower) ||
+          (project.description && project.description.toLowerCase().includes(searchLower))
+        );
+      }
+      return true;
+    });
+  };
+
+  // Calculer les statistiques
+  const getStats = () => {
+    return {
+      total: projects.length,
+      byStatus: {
+        planning: projects.filter(p => p.status === PROJECT_STATUSES.PLANNING).length,
+        inProgress: projects.filter(p => p.status === PROJECT_STATUSES.IN_PROGRESS).length,
+        onHold: projects.filter(p => p.status === PROJECT_STATUSES.ON_HOLD).length,
+        completed: projects.filter(p => p.status === PROJECT_STATUSES.COMPLETED).length,
+        cancelled: projects.filter(p => p.status === PROJECT_STATUSES.CANCELLED).length,
+      },
+      byPriority: {
+        critical: projects.filter(p => p.priority === PROJECT_PRIORITIES.CRITICAL).length,
+        high: projects.filter(p => p.priority === PROJECT_PRIORITIES.HIGH).length,
+        medium: projects.filter(p => p.priority === PROJECT_PRIORITIES.MEDIUM).length,
+        low: projects.filter(p => p.priority === PROJECT_PRIORITIES.LOW).length,
+      },
+    };
   };
 
   const value = {
     projects,
+    loading,
     createProject,
     updateProject,
     deleteProject,
     getProjectById,
-    getProjectsByStatus,
+    addDocumentToProject,
+    removeDocumentFromProject,
+    addTaskToProject,
+    filterProjects,
+    getStats,
+    PROJECT_STATUSES,
+    PROJECT_PRIORITIES,
+    PROJECT_CATEGORIES,
   };
 
   return (
@@ -101,4 +199,14 @@ export const ProjectsProvider = ({ children }) => {
       {children}
     </ProjectsContext.Provider>
   );
-};
+}
+
+export function useProjects() {
+  const context = useContext(ProjectsContext);
+  if (!context) {
+    throw new Error('useProjects must be used within a ProjectsProvider');
+  }
+  return context;
+}
+
+export default ProjectsContext;
