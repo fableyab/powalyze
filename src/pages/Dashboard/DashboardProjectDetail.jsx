@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useDashboardContext } from '@/contexts/DashboardContext';
-import { useTasksContext } from '@/contexts/TasksContext';
-import BackToDashboard from '@/components/dashboard/BackToDashboard';
-import TaskItem from '@/components/tasks/TaskItem';
-import TaskForm from '@/components/tasks/TaskForm';
+import { useDashboardContext } from '../../contexts/DashboardContext';
+import { useTasksContext } from '../../contexts/TasksContext';
+import BackToDashboard from '../../components/dashboard/BackToDashboard';
+import TaskItem from '../../components/tasks/TaskItem';
+import TaskForm from '../../components/tasks/TaskForm';
 import { FiFolder, FiCalendar, FiUser, FiSettings, FiTrendingUp, FiDollarSign, FiAlertTriangle, FiCheckCircle, FiClock, FiPlus } from 'react-icons/fi';
 
 const DashboardProjectDetail = () => {
