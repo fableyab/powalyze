@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { Spinner } from '@/components/ui/spinner';
+import { Spinner } from './components/ui/spinner';
 
 // Layouts
 import WorkspaceLayout from './pages/EspacePro/WorkspaceLayout';
