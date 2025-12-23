@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import { PMODataProvider } from './context/PMODataContext';
-import { AuthProvider } from './context/AuthContext';
-import { ClientProvider } from './context/ClientContext';
+import { PMODataProvider } from './contexts/PMODataContext';
+import { AuthProvider } from './contexts/AuthContext';
+import { ClientProvider } from './contexts/ClientContext';
 import { DocumentsProvider } from './contexts/DocumentsContext';
 import { ProjectsProvider } from './contexts/ProjectsContext';
 import { TasksProvider } from './contexts/TasksContext';
