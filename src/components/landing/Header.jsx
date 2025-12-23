@@ -1,74 +1,46 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { FiMenu, FiX } from 'react-icons/fi';
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
+    <header className="fixed top-0 w-full bg-black/95 backdrop-blur-sm border-b border-white/10 z-50">
       <nav className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-powalyze-blue to-blue-600 flex items-center justify-center text-white font-bold text-xl shadow-md group-hover:shadow-lg transition-shadow">
-              P
-            </div>
-            <span className="text-2xl font-bold text-powalyze-blue">Powalyze</span>
+          <Link to="/" className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-[#BFA76A] to-[#8B7355] rounded-lg flex items-center justify-center font-bold text-black text-xl">P</div>
+            <span className="text-2xl font-bold text-white">POWALYZE</span>
           </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#fonctionnalites" className="text-gray-700 hover:text-powalyze-blue font-medium transition">
-              Fonctionnalités
-            </a>
-            <a href="#cas-usage" className="text-gray-700 hover:text-powalyze-blue font-medium transition">
-              Cas d'usage
-            </a>
-            <a href="#avantages" className="text-gray-700 hover:text-powalyze-blue font-medium transition">
-              Avantages
-            </a>
-            <a href="#faq" className="text-gray-700 hover:text-powalyze-blue font-medium transition">
-              FAQ
-            </a>
-            <Link to="/login" className="text-gray-700 hover:text-powalyze-blue font-medium transition">
-              Se connecter
+            <a href="#features" className="text-gray-300 hover:text-[#BFA76A] transition-colors">Fonctionnalités</a>
+            <a href="#solutions" className="text-gray-300 hover:text-[#BFA76A] transition-colors">Solutions</a>
+            <a href="#avantages" className="text-gray-300 hover:text-[#BFA76A] transition-colors">Avantages</a>
+            <Link to="/contact" className="text-gray-300 hover:text-[#BFA76A] transition-colors">Contact</Link>
+            <Link to="/espace-pro/dashboard" className="bg-[#BFA76A] hover:bg-[#BFA76A]/90 text-black px-6 py-2 rounded-lg font-medium transition-all">
+              Espace Pro
             </Link>
-            <a href="#demo" className="btn-primary">
-              Demander une démo
-            </a>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden text-gray-700"
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden text-white">
+            {mobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
           </button>
         </div>
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 space-y-3 border-t border-gray-100 pt-4">
-            <a href="#fonctionnalites" className="block text-gray-700 hover:text-powalyze-blue font-medium transition">
-              Fonctionnalités
-            </a>
-            <a href="#cas-usage" className="block text-gray-700 hover:text-powalyze-blue font-medium transition">
-              Cas d'usage
-            </a>
-            <a href="#avantages" className="block text-gray-700 hover:text-powalyze-blue font-medium transition">
-              Avantages
-            </a>
-            <a href="#faq" className="block text-gray-700 hover:text-powalyze-blue font-medium transition">
-              FAQ
-            </a>
-            <Link to="/login" className="block text-gray-700 hover:text-powalyze-blue font-medium transition">
-              Se connecter
+          <div className="md:hidden mt-4 space-y-4 pb-4">
+            <a href="#features" className="block text-gray-300 hover:text-[#BFA76A] transition-colors">Fonctionnalités</a>
+            <a href="#solutions" className="block text-gray-300 hover:text-[#BFA76A] transition-colors">Solutions</a>
+            <a href="#avantages" className="block text-gray-300 hover:text-[#BFA76A] transition-colors">Avantages</a>
+            <Link to="/contact" className="block text-gray-300 hover:text-[#BFA76A] transition-colors">Contact</Link>
+            <Link to="/espace-pro/dashboard" className="block bg-[#BFA76A] hover:bg-[#BFA76A]/90 text-black px-6 py-2 rounded-lg font-medium transition-all text-center">
+              Espace Pro
             </Link>
-            <a href="#demo" className="block btn-primary text-center">
-              Demander une démo
-            </a>
           </div>
         )}
       </nav>

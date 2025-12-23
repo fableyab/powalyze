@@ -1,36 +1,61 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { TrendingUp, Users, Shield, Zap, BarChart3, GitBranch } from 'lucide-react';
+import { FiBarChart2, FiGitBranch, FiUsers, FiShield, FiZap, FiTrendingUp } from 'react-icons/fi';
 
 const Features = () => {
   const features = [
-    { icon: <BarChart3 />, title: 'Dashboards Power BI', desc: 'Visualisez vos KPIs en temps réel' },
-    { icon: <GitBranch />, title: 'Pilotage Multi-Projets', desc: 'Vue 360° sur votre portefeuille' },
-    { icon: <Users />, title: 'Collaboration Équipe', desc: 'Travaillez ensemble efficacement' },
-    { icon: <Shield />, title: 'Gouvernance PMO', desc: 'Standards et processus certifiés' },
-    { icon: <Zap />, title: 'Automatisation IA', desc: 'Gagnez jusqu’à 70% de temps' },
-    { icon: <TrendingUp />, title: 'Analytics Avancés', desc: 'Décisions basées sur les données' },
+    {
+      icon: FiBarChart2,
+      title: 'Dashboards Power BI',
+      description: 'Visualisez vos KPIs en temps réel avec des dashboards interactifs et personnalisables.'
+    },
+    {
+      icon: FiGitBranch,
+      title: 'Pilotage Multi-Projets',
+      description: 'Gérez tous vos projets depuis une interface unifiée avec vue Kanban et Gantt.'
+    },
+    {
+      icon: FiUsers,
+      title: 'Collaboration Avancée',
+      description: 'Centralisez les échanges, partagez les documents et suivez les décisions en un clic.'
+    },
+    {
+      icon: FiShield,
+      title: 'Gouvernance PMO',
+      description: 'Cadres de gouvernance, gestion des risques et traçabilité complète des actions.'
+    },
+    {
+      icon: FiZap,
+      title: 'Automatisation IA',
+      description: 'Génération automatique de rapports, prédictions et alertes intelligentes.'
+    },
+    {
+      icon: FiTrendingUp,
+      title: 'Analytics Prédictifs',
+      description: 'Anticipez les dérives budgétaires et les retards grâce à l’IA.'
+    }
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section id="features" className="py-20 bg-black">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
-            Fonctionnalités <span className="text-powalyze-blue">Puissantes</span>
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Tous les outils dont vous avez besoin pour piloter vos projets avec excellence
-          </p>
+          <h2 className="text-4xl font-bold text-white mb-4">Une Plateforme PMO Complète</h2>
+          <p className="text-xl text-gray-400">Tout ce dont vous avez besoin pour piloter vos projets avec excellence</p>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, i) => (
-            <motion.div key={i} className="card-premium group" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} viewport={{ once: true }}>
-              <div className="text-powalyze-blue mb-4 group-hover:scale-110 transition-transform">{feature.icon}</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
-              <p className="text-gray-600 leading-relaxed">{feature.desc}</p>
-            </motion.div>
-          ))}
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {features.map((feature, idx) => {
+            const Icon = feature.icon;
+            return (
+              <div key={idx} className="bg-[#111] border border-white/10 rounded-lg p-6 hover:border-[#BFA76A]/50 transition-all group">
+                <div className="w-14 h-14 rounded-lg bg-[#BFA76A]/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <Icon className="text-[#BFA76A]" size={28} />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">{feature.title}</h3>
+                <p className="text-gray-400">{feature.description}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
