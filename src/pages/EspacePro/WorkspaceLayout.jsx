@@ -2,15 +2,22 @@ import React from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { FiHome, FiFolder, FiCheckSquare, FiCalendar, FiUsers, FiFileText, FiBarChart2, FiSettings, FiZap } from 'react-icons/fi';
 import { Badge } from '@/components/ui/badge';
+import { useAuth } from '@/context/AuthContext';
 
 const WorkspaceLayout = () => {
   const location = useLocation();
+  const { user } = useAuth();
 
   const navigation = [
     { name: 'Dashboard', path: '/espace-pro/dashboard', icon: FiHome },
     { name: 'Projets', path: '/espace-pro/projets', icon: FiFolder },
+    { 
+      name: 'Power BI', 
+      path: user?.isDemo ? '/espace-pro/power-bi-demo' : '/espace-pro/power-bi', 
+      icon: FiBarChart2,
+      badge: user?.isDemo ? 'DEMO' : null
+    },
     { name: 'Documents', path: '/espace-pro/documents', icon: FiFileText },
-    { name: 'Power BI', path: '/espace-pro/power-bi', icon: FiBarChart2 },
     { name: 'Connecteurs', path: '/espace-pro/connecteurs', icon: FiZap },
     { name: 'Calendrier', path: '/espace-pro/calendrier', icon: FiCalendar },
     { name: 'Équipe', path: '/espace-pro/equipe', icon: FiUsers },
@@ -27,7 +34,12 @@ const WorkspaceLayout = () => {
             <div className="w-10 h-10 bg-gradient-to-br from-[#BFA76A] to-[#8B7355] rounded-lg flex items-center justify-center font-bold text-black text-xl">P</div>
             <div>
               <h1 className="text-xl font-bold text-white">POWALYZE</h1>
-              <Badge className="bg-[#BFA76A]/20 text-[#BFA76A] border-[#BFA76A]/50 text-xs mt-1">PRO</Badge>
+              <div className="flex items-center gap-2 mt-1">
+                <Badge className="bg-[#BFA76A]/20 text-[#BFA76A] border-[#BFA76A]/50 text-xs">PRO</Badge>
+                {user?.isDemo && (
+                  <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/50 text-xs">DEMO</Badge>
+                )}
+              </div>
             </div>
           </Link>
         </div>
@@ -40,14 +52,21 @@ const WorkspaceLayout = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
+                className={`flex items-center justify-between gap-3 px-4 py-3 rounded-lg transition-all ${
                   isActive
                     ? 'bg-[#BFA76A]/20 text-[#BFA76A] border border-[#BFA76A]/50'
                     : 'text-gray-400 hover:bg-white/5 hover:text-white'
                 }`}
               >
-                <Icon size={20} />
-                <span className="font-medium">{item.name}</span>
+                <div className="flex items-center gap-3">
+                  <Icon size={20} />
+                  <span className="font-medium">{item.name}</span>
+                </div>
+                {item.badge && (
+                  <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/50 text-[10px] px-1.5 py-0">
+                    {item.badge}
+                  </Badge>
+                )}
               </Link>
             );
           })}
