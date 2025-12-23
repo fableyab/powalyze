@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAuth } from '@/context/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 import { FiMaximize2, FiRefreshCw, FiDownload, FiShare2, FiBarChart2, FiTrendingUp, FiDollarSign, FiActivity } from 'react-icons/fi';
 
 const PowerBIDemoPage = () => {
