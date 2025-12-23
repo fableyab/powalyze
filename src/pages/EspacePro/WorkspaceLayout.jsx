@@ -9,12 +9,12 @@ const WorkspaceLayout = () => {
   const navigation = [
     { name: 'Dashboard', path: '/espace-pro/dashboard', icon: FiHome },
     { name: 'Projets', path: '/espace-pro/projets', icon: FiFolder },
-    { name: 'Tâches', path: '/espace-pro/taches', icon: FiCheckSquare },
     { name: 'Documents', path: '/espace-pro/documents', icon: FiFileText },
+    { name: 'Power BI', path: '/espace-pro/power-bi', icon: FiBarChart2 },
+    { name: 'Connecteurs', path: '/espace-pro/connecteurs', icon: FiZap },
     { name: 'Calendrier', path: '/espace-pro/calendrier', icon: FiCalendar },
     { name: 'Équipe', path: '/espace-pro/equipe', icon: FiUsers },
-    { name: 'Connecteurs', path: '/espace-pro/connecteurs', icon: FiZap },
-    { name: 'Rapports', path: '/espace-pro/rapports', icon: FiBarChart2 },
+    { name: 'Tâches', path: '/espace-pro/taches', icon: FiCheckSquare },
     { name: 'Paramètres', path: '/espace-pro/parametres', icon: FiSettings },
   ];
 

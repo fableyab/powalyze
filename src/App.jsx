@@ -17,6 +17,7 @@ const AutomatisationIAPage = lazy(() => import('./pages/services/AutomatisationI
 const DashboardPagePro = lazy(() => import('./pages/EspacePro/DashboardPage'));
 const ProjectsPagePro = lazy(() => import('./pages/EspacePro/ProjectsPage'));
 const DocumentsPagePro = lazy(() => import('./pages/EspacePro/DocumentsPage'));
+const PowerBIPagePro = lazy(() => import('./pages/EspacePro/PowerBIPage'));
 
 // Espace Admin Pages
 const DashboardPageAdmin = lazy(() => import('./pages/EspaceAdmin/DashboardPage'));
@@ -48,6 +49,7 @@ function App() {
           <Route path="dashboard" element={<DashboardPagePro />} />
           <Route path="projets" element={<ProjectsPagePro />} />
           <Route path="documents" element={<DocumentsPagePro />} />
+          <Route path="power-bi" element={<PowerBIPagePro />} />
         </Route>
         
         {/* Espace Admin Routes */}
@@ -61,7 +63,8 @@ function App() {
         </Route>
         
         {/* Legacy Redirects */}
-        <Route path="/espace-client/*" element={<Navigate to="/espace-pro/dashboard" replace />} />
+        <Route path="/espace-client" element={<Navigate to="/espace-pro/power-bi" replace />} />
+        <Route path="/espace-client/*" element={<Navigate to="/espace-pro/power-bi" replace />} />
         <Route path="/client/*" element={<Navigate to="/espace-pro/dashboard" replace />} />
         
         {/* 404 Redirect */}
