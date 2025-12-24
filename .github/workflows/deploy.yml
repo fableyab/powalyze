@@ -1,4 +1,4 @@
-name: Deploy Powalyze to Production
+name: Deploy Powalyze to Hostinger VPS
 
 on:
   push:
@@ -11,7 +11,7 @@ env:
 
 jobs:
   build-and-deploy:
-    name: Build and Deploy to Production
+    name: Build and Deploy to VPS
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
@@ -21,12 +21,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 🔧 Setup Node.js (WITHOUT CACHE)
+      - name: 🔧 Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: 🧹 Clean everything
+      - name: 🧹 Clean dependencies
         run: |
           echo "Cleaning all dependencies and cache..."
           rm -rf node_modules package-lock.json npm-shrinkwrap.json yarn.lock .npm
@@ -80,27 +80,19 @@ jobs:
           
           echo "✅ All files present"
 
-      - name: 📤 Deploy to FTP Server
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: 📤 Deploy to VPS via SSH
+        uses: appleboy/ssh-action@v1.0.3
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/
-          server-dir: /public_html/
-          protocol: ftps
-          port: 21
-          timeout: 600000
-          log-level: verbose
-          security: loose
-          dangerous-clean-slate: false
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
-            **/.DS_Store
-            **/Thumbs.db
-            **/*.map
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT }}
+          script: |
+            cd ${{ secrets.VPS_APP_PATH }}
+            git pull origin main
+            npm install --legacy-peer-deps --production
+            npm run build
+            pm2 reload powalyze || pm2 start npm --name "powalyze" -- start
 
       - name: 🎉 Deployment success
         if: success()
@@ -116,7 +108,7 @@ jobs:
           echo "  • Commit: ${{ github.sha }}"
           echo "  • Actor: ${{ github.actor }}"
           echo ""
-          echo "🌐 Site is now live!"
+          echo "🌐 Site is now live on VPS!"
           echo ""
 
       - name: ❌ Deployment failure
