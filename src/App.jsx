@@ -11,8 +11,9 @@ import PowerBI from './pages/client/PowerBI';
 
 // Pages Admin
 import AdminClients from './pages/admin/Clients';
+import AdminUsers from './pages/admin/Users';
 
-// Placeholder pages (à créer)
+// Placeholder pages
 const Home = () => (
   <div className="min-h-screen bg-dark-primary flex items-center justify-center">
     <div className="text-center">
@@ -100,8 +101,8 @@ function App() {
       {/* Espace Admin (Powalyze) */}
       <Route path="/admin" element={<Navigate to="/admin/clients" replace />} />
       <Route path="/admin/clients" element={<AdminLayout><AdminClients /></AdminLayout>} />
+      <Route path="/admin/utilisateurs" element={<AdminLayout><AdminUsers /></AdminLayout>} />
       <Route path="/admin/clients/:clientId" element={<AdminLayout><div className="text-white">Client Detail (à créer)</div></AdminLayout>} />
-      <Route path="/admin/utilisateurs" element={<AdminLayout><div className="text-white">Users (à créer)</div></AdminLayout>} />
 
       {/* 404 */}
       <Route path="*" element={<Navigate to="/" replace />} />
