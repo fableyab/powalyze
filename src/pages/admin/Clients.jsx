@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useClients } from '../../../contexts/ClientsContext';
-import Card from '../../../components/ui/Card';
-import Button from '../../../components/ui/Button';
-import Input, { Select } from '../../../components/ui/Input';
-import Modal from '../../../components/ui/Modal';
-import { useResponsive } from '../../../hooks/useResponsive';
+import { useClients } from '../../contexts/ClientsContext';
+import Card from '../../components/ui/Card';
+import Button from '../../components/ui/Button';
+import Input, { Select } from '../../components/ui/Input';
+import Modal from '../../components/ui/Modal';
+import { useResponsive } from '../../hooks/useResponsive';
 
 /**
  * Page admin - Gestion des clients (organisations)
