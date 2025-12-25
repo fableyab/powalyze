@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { useDocuments, DOCUMENT_TYPES, DOCUMENT_CATEGORIES } from '../../../contexts/DocumentsContext';
-import Card from '../../../components/ui/Card';
-import Button from '../../../components/ui/Button';
-import { Select } from '../../../components/ui/Input';
-import FileUploader from '../../../components/ui/FileUploader';
-import Modal from '../../../components/ui/Modal';
-import { useResponsive } from '../../../hooks/useResponsive';
+import { useDocuments, DOCUMENT_TYPES, DOCUMENT_CATEGORIES } from '../../contexts/DocumentsContext';
+import Card from '../../components/ui/Card';
+import Button from '../../components/ui/Button';
+import { Select } from '../../components/ui/Input';
+import FileUploader from '../../components/ui/FileUploader';
+import Modal from '../../components/ui/Modal';
+import { useResponsive } from '../../hooks/useResponsive';
 
 /**
  * Page Documents avec upload et gestion
