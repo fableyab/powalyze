@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Card from '../../../components/ui/Card';
-import Button from '../../../components/ui/Button';
-import { useResponsive } from '../../../hooks/useResponsive';
+import Card from '../../components/ui/Card';
+import Button from '../../components/ui/Button';
+import { useResponsive } from '../../hooks/useResponsive';
 
 /**
  * Page Power BI - Intégration complète des rapports
