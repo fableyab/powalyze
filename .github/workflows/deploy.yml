@@ -1,53 +1,31 @@
-name: Deploy Powalyze to VPS
+name: Deploy to VPS
 
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
 
-env:
-  NODE_VERSION: '20'
-
 jobs:
-  build-and-deploy:
-    name: Build and Deploy to VPS
+  deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
 
     steps:
-      - name: 📥 Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: 🔧 Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version: '20'
+          cache: 'npm'
 
-      - name: 🧹 Clean cache
-        run: npm cache clean --force
+      - name: Install
+        run: npm ci
 
-      - name: 📦 Install dependencies
-        run: npm install --legacy-peer-deps
+      - name: Build
+        run: npx vite build
 
-      - name: 🔐 Fix Vite permissions
-        run: chmod +x node_modules/.bin/vite
-
-      - name: 🔨 Build production
-        run: npm run build
-        env:
-          NODE_ENV: production
-          CI: false
-
-      - name: ✅ Verify build
-        run: |
-          if [ ! -d "dist" ]; then
-            echo "❌ Build failed: dist directory not found"
-            exit 1
-          fi
-          echo "✅ Build successful"
-          ls -lah dist/
-
-      - name: 📤 Deploy to VPS
+      - name: Deploy files
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.VPS_HOST }}
@@ -58,7 +36,7 @@ jobs:
           target: "/var/www/powalyze"
           strip_components: 1
 
-      - name: 🔄 Setup Nginx
+      - name: Configure Nginx
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.VPS_HOST }}
@@ -66,39 +44,18 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           port: ${{ secrets.VPS_PORT }}
           script: |
-            # Install Nginx if needed
-            if ! command -v nginx &> /dev/null; then
-                apt-get update && apt-get install -y nginx
-            fi
-            
-            # Create Nginx config
-            cat > /etc/nginx/sites-available/powalyze.com << 'EOF'
+            apt-get update && apt-get install -y nginx
+            cat > /etc/nginx/sites-available/powalyze << 'EOF'
             server {
                 listen 80;
                 server_name powalyze.com www.powalyze.com;
                 root /var/www/powalyze;
                 index index.html;
-                
                 location / {
-                    try_files $uri $uri/ /index.html;
+                    try_files $uri /index.html;
                 }
-                
-                gzip on;
-                gzip_types text/plain text/css application/json application/javascript text/xml application/xml;
             }
             EOF
-            
-            # Enable site
-            ln -sf /etc/nginx/sites-available/powalyze.com /etc/nginx/sites-enabled/
+            ln -sf /etc/nginx/sites-available/powalyze /etc/nginx/sites-enabled/
             rm -f /etc/nginx/sites-enabled/default
-            
-            # Test and reload Nginx
             nginx -t && systemctl reload nginx
-            
-            echo "✅ Deployed to powalyze.com"
-
-      - name: 🎉 Deployment success
-        if: success()
-        run: |
-          echo "✅ Successfully deployed to http://powalyze.com"
-          echo "Site is now live!"
