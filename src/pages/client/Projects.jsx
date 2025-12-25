@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useProjects, PROJECT_STATUSES, PROJECT_PRIORITIES } from '../../../contexts/ProjectsContext';
-import Card from '../../../components/ui/Card';
-import Button from '../../../components/ui/Button';
-import { Select } from '../../../components/ui/Input';
-import { useResponsive } from '../../../hooks/useResponsive';
+import { useProjects, PROJECT_STATUSES, PROJECT_PRIORITIES } from '../../contexts/ProjectsContext';
+import Card from '../../components/ui/Card';
+import Button from '../../components/ui/Button';
+import { Select } from '../../components/ui/Input';
+import { useResponsive } from '../../hooks/useResponsive';
 
 /**
  * Page liste des projets avec filtres
