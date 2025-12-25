@@ -8,23 +8,34 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
-      - name: Checkout
+      - name: 📥 Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: 🔧 Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Install
+      - name: 📦 Install
         run: npm install
 
-      - name: Build
+      - name: 🔨 Build
         run: npx vite build
 
-      - name: Deploy files
+      - name: ✅ Verify
+        run: |
+          if [ ! -f "dist/index.html" ]; then
+            echo "❌ Build failed"
+            exit 1
+          fi
+          echo "✅ Build OK"
+          ls -lh dist/
+
+      - name: 📤 Deploy files
+        if: success()
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.VPS_HOST }}
@@ -35,7 +46,8 @@ jobs:
           target: "/var/www/powalyze"
           strip_components: 1
 
-      - name: Configure Nginx
+      - name: 🔄 Configure Nginx
+        if: success()
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.VPS_HOST }}
@@ -58,3 +70,4 @@ jobs:
             ln -sf /etc/nginx/sites-available/powalyze /etc/nginx/sites-enabled/
             rm -f /etc/nginx/sites-enabled/default
             nginx -t && systemctl reload nginx
+            echo "✅ Deployed to http://powalyze.com"
