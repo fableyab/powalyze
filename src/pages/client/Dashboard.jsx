@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useProjects } from '../../../contexts/ProjectsContext';
-import { useDocuments } from '../../../contexts/DocumentsContext';
-import Card from '../../../components/ui/Card';
-import Button from '../../../components/ui/Button';
-import { useResponsive } from '../../../hooks/useResponsive';
+import { useProjects } from '../../contexts/ProjectsContext';
+import { useDocuments } from '../../contexts/DocumentsContext';
+import Card from '../../components/ui/Card';
+import Button from '../../components/ui/Button';
+import { useResponsive } from '../../hooks/useResponsive';
 
 /**
  * Dashboard principal de l'espace client
