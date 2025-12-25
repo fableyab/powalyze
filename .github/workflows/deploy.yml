@@ -23,8 +23,14 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
+      - name: 🧹 Clean cache
+        run: npm cache clean --force
+
       - name: 📦 Install dependencies
         run: npm install --legacy-peer-deps
+
+      - name: 🔐 Fix Vite permissions
+        run: chmod +x node_modules/.bin/vite
 
       - name: 🔨 Build production
         run: npm run build
@@ -39,6 +45,7 @@ jobs:
             exit 1
           fi
           echo "✅ Build successful"
+          ls -lah dist/
 
       - name: 📤 Deploy to VPS
         uses: appleboy/scp-action@v0.1.7
@@ -92,4 +99,6 @@ jobs:
 
       - name: 🎉 Deployment success
         if: success()
-        run: echo "✅ Successfully deployed to https://powalyze.com"
+        run: |
+          echo "✅ Successfully deployed to http://powalyze.com"
+          echo "Site is now live!"
