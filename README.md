@@ -119,6 +119,12 @@ npm run preview
 
 ## 🚀 Déploiement
 
+### Vercel (Recommandé)
+
+Déploiement automatique via Vercel. Connectez simplement votre repo GitHub et Vercel s'occupe du reste.
+
+Site en production : **powalyze.com**
+
 ### GitHub Pages
 
 ```bash
@@ -130,7 +136,6 @@ L'application sera disponible sur: `https://fableyab.github.io/powalyze/`
 
 ### Autres plateformes
 
-- **Vercel**: Connecter le repo GitHub
 - **Netlify**: Drag & drop du dossier `dist/`
 - **AWS S3 + CloudFront**: Upload `dist/` vers S3
 
@@ -168,7 +173,7 @@ embedUrl: 'https://app.powerbi.com/view?r=VOTRE_VRAI_ID'
 
 Les données de démo sont automatiquement initialisées au premier chargement:
 
-- **5 projets** (différents statuts et priorités)
+- **20 projets** (différents statuts et priorités)
 - **7 documents** (PDF, Excel, contrats)
 - **1 organisation** (TechCorp Solutions)
 - **3 utilisateurs** (1 responsable, 2 partenaires)
