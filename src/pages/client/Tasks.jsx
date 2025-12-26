@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { CheckCircle2, Circle, Clock, AlertCircle, Plus, Filter, Calendar, User, Tag, Search } from 'lucide-react';
+import { CheckCircle2, Circle, Clock, AlertCircle, Plus, Calendar, User, Tag, Search } from 'lucide-react';
 import { useTasks } from '../../contexts/TasksContext';
 import Card from '../../components/ui/Card';
 import Button from '../../components/ui/Button';
