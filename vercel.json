@@ -1,5 +1,9 @@
 {
-  "buildCommand": "chmod -R +x node_modules/.bin && npx vite build",
+  "buildCommand": "npm ci && npx vite build",
   "outputDirectory": "dist",
-  "framework": "vite"
+  "framework": "vite",
+  "installCommand": "npm install",
+  "functions": {
+    "maxDuration": 60
+  }
 }
