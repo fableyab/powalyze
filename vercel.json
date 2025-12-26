@@ -1,0 +1,6 @@
+{
+  "framework": null,
+  "buildCommand": "rm -rf node_modules && npm install --force && npm run build",
+  "installCommand": "echo 'Skip auto install'",
+  "outputDirectory": "dist"
+}
