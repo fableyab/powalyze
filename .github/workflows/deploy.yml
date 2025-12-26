@@ -20,10 +20,12 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm install
+          npx vite --version
 
-      - name: Build
-        run: npm run build
+      - name: Build with npx
+        run: npx vite build
         env:
           NODE_ENV: production
 
