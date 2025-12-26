@@ -8,6 +8,7 @@ import Dashboard from './pages/client/Dashboard';
 import Projects from './pages/client/Projects';
 import Documents from './pages/client/Documents';
 import PowerBI from './pages/client/PowerBI';
+import Tasks from './pages/client/Tasks';
 
 // Pages Admin
 import AdminClients from './pages/admin/Clients';
@@ -93,6 +94,7 @@ function App() {
       <Route path="/espace-client/projets" element={<PageLayout><Projects /></PageLayout>} />
       <Route path="/espace-client/documents" element={<PageLayout><Documents /></PageLayout>} />
       <Route path="/espace-client/power-bi" element={<PageLayout><PowerBI /></PageLayout>} />
+      <Route path="/espace-client/taches" element={<PageLayout><Tasks /></PageLayout>} />
       
       {/* Redirects legacy */}
       <Route path="/espace-client/parametres" element={<Navigate to="/espace-client" replace />} />
