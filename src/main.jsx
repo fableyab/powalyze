@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { ProjectsProvider } from './contexts/ProjectsContext';
 import { DocumentsProvider } from './contexts/DocumentsContext';
 import { ClientsProvider } from './contexts/ClientsContext';
+import { TasksProvider } from './contexts/TasksContext';
 import { initializeDemoData } from './utils/demo-data';
 import App from './App';
 import './index.css';
@@ -17,7 +18,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <ClientsProvider>
         <ProjectsProvider>
           <DocumentsProvider>
-            <App />
+            <TasksProvider>
+              <App />
+            </TasksProvider>
           </DocumentsProvider>
         </ProjectsProvider>
       </ClientsProvider>
