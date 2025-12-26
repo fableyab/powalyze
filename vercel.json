@@ -1,9 +1,5 @@
 {
-  "buildCommand": "npm ci && npx vite build",
+  "buildCommand": "npm install && npm run build",
   "outputDirectory": "dist",
-  "framework": "vite",
-  "installCommand": "npm install",
-  "functions": {
-    "maxDuration": 60
-  }
+  "framework": "vite"
 }
