@@ -1,86 +1,135 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 const TasksContext = createContext();
 
-export const useTasksContext = () => {
+export const useTasks = () => {
   const context = useContext(TasksContext);
   if (!context) {
-    throw new Error('useTasksContext must be used within TasksProvider');
+    throw new Error('useTasks must be used within a TasksProvider');
   }
   return context;
 };
 
-export const TASK_STATUSES = [
-  { id: 'todo', label: 'À faire', color: 'gray', icon: '⚪' },
-  { id: 'in-progress', label: 'En cours', color: 'blue', icon: '🔵' },
-  { id: 'review', label: 'En revue', color: 'purple', icon: '🟣' },
-  { id: 'done', label: 'Terminée', color: 'green', icon: '🟢' },
-];
-
-export const TASK_PRIORITIES = [
-  { id: 'critique', label: 'Critique', color: 'red', icon: '🔴' },
-  { id: 'haute', label: 'Haute', color: 'orange', icon: '🟠' },
-  { id: 'moyenne', label: 'Moyenne', color: 'yellow', icon: '🟡' },
-  { id: 'basse', label: 'Basse', color: 'green', icon: '🟢' },
-];
-
-const STORAGE_KEY = 'powalyze_tasks_v1';
-
 export const TasksProvider = ({ children }) => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState([
+    {
+      id: '1',
+      title: 'Analyse des besoins',
+      description: 'Réunion avec le client pour définir les objectifs',
+      projectId: '1',
+      projectName: 'Site e-commerce',
+      status: 'completed',
+      priority: 'high',
+      assignedTo: 'Jean Dupont',
+      dueDate: '2024-01-15',
+      completedDate: '2024-01-14',
+      tags: ['réunion', 'analyse'],
+      createdAt: '2024-01-10',
+    },
+    {
+      id: '2',
+      title: 'Design des maquettes',
+      description: 'Création des wireframes et mockups',
+      projectId: '1',
+      projectName: 'Site e-commerce',
+      status: 'in-progress',
+      priority: 'high',
+      assignedTo: 'Marie Laurent',
+      dueDate: '2024-01-25',
+      completedDate: null,
+      tags: ['design', 'UI/UX'],
+      createdAt: '2024-01-12',
+      progress: 65,
+    },
+    {
+      id: '3',
+      title: 'Configuration serveur',
+      description: 'Setup environnement de production',
+      projectId: '1',
+      projectName: 'Site e-commerce',
+      status: 'pending',
+      priority: 'medium',
+      assignedTo: 'Paul Martin',
+      dueDate: '2024-02-01',
+      completedDate: null,
+      tags: ['backend', 'devops'],
+      createdAt: '2024-01-15',
+    },
+    {
+      id: '4',
+      title: 'Migration base de données',
+      description: 'Transfer des données legacy vers le nouveau système',
+      projectId: '2',
+      projectName: 'Application mobile',
+      status: 'pending',
+      priority: 'low',
+      assignedTo: 'Sophie Bernard',
+      dueDate: '2024-02-10',
+      completedDate: null,
+      tags: ['database', 'migration'],
+      createdAt: '2024-01-18',
+    },
+    {
+      id: '5',
+      title: 'Tests utilisateurs',
+      description: 'Sessions de tests avec les utilisateurs finaux',
+      projectId: '2',
+      projectName: 'Application mobile',
+      status: 'in-progress',
+      priority: 'high',
+      assignedTo: 'Jean Dupont',
+      dueDate: '2024-01-30',
+      completedDate: null,
+      tags: ['testing', 'UX'],
+      createdAt: '2024-01-20',
+      progress: 40,
+    },
+    {
+      id: '6',
+      title: 'Documentation API',
+      description: 'Rédaction de la documentation technique',
+      projectId: '3',
+      projectName: 'Dashboard analytique',
+      status: 'blocked',
+      priority: 'medium',
+      assignedTo: 'Marc Dubois',
+      dueDate: '2024-02-05',
+      completedDate: null,
+      tags: ['documentation', 'API'],
+      createdAt: '2024-01-22',
+      blockedReason: 'En attente de validation client',
+    },
+  ]);
 
-  useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      try {
-        setTasks(JSON.parse(stored));
-      } catch (e) {
-        console.error('Failed to parse tasks:', e);
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
-  }, [tasks]);
-
-  const createTask = (taskData) => {
+  const addTask = (task) => {
     const newTask = {
+      ...task,
       id: Date.now().toString(),
-      ...taskData,
       createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
+      completedDate: null,
     };
-    setTasks(prev => [newTask, ...prev]);
+    setTasks([...tasks, newTask]);
     return newTask;
   };
 
   const updateTask = (taskId, updates) => {
-    setTasks(prev => prev.map(task => 
-      task.id === taskId
-        ? { ...task, ...updates, updatedAt: new Date().toISOString() }
-        : task
-    ));
+    setTasks(tasks.map(task => {
+      if (task.id === taskId) {
+        const updatedTask = { ...task, ...updates };
+        if (updates.status === 'completed' && !task.completedDate) {
+          updatedTask.completedDate = new Date().toISOString();
+          updatedTask.progress = 100;
+        } else if (updates.status !== 'completed' && task.completedDate) {
+          updatedTask.completedDate = null;
+        }
+        return updatedTask;
+      }
+      return task;
+    }));
   };
 
   const deleteTask = (taskId) => {
-    setTasks(prev => prev.filter(task => task.id !== taskId));
-  };
-
-  const toggleTaskStatus = (taskId) => {
-    setTasks(prev => prev.map(task => 
-      task.id === taskId
-        ? { 
-            ...task, 
-            status: task.status === 'done' ? 'todo' : 'done',
-            updatedAt: new Date().toISOString()
-          }
-        : task
-    ));
-  };
-
-  const getTaskById = (taskId) => {
-    return tasks.find(task => task.id === taskId);
+    setTasks(tasks.filter(task => task.id !== taskId));
   };
 
   const getTasksByProject = (projectId) => {
@@ -91,20 +140,44 @@ export const TasksProvider = ({ children }) => {
     return tasks.filter(task => task.status === status);
   };
 
-  const value = {
-    tasks,
-    createTask,
-    updateTask,
-    deleteTask,
-    toggleTaskStatus,
-    getTaskById,
-    getTasksByProject,
-    getTasksByStatus,
+  const getOverdueTasks = () => {
+    const today = new Date().toISOString().split('T')[0];
+    return tasks.filter(task => 
+      task.status !== 'completed' && 
+      task.dueDate && 
+      task.dueDate < today
+    );
   };
 
-  return (
-    <TasksContext.Provider value={value}>
-      {children}
-    </TasksContext.Provider>
-  );
+  const getTaskStats = () => {
+    const total = tasks.length;
+    const completed = tasks.filter(t => t.status === 'completed').length;
+    const inProgress = tasks.filter(t => t.status === 'in-progress').length;
+    const pending = tasks.filter(t => t.status === 'pending').length;
+    const blocked = tasks.filter(t => t.status === 'blocked').length;
+    const overdue = getOverdueTasks().length;
+
+    return {
+      total,
+      completed,
+      inProgress,
+      pending,
+      blocked,
+      overdue,
+      completionRate: total > 0 ? Math.round((completed / total) * 100) : 0,
+    };
+  };
+
+  const value = {
+    tasks,
+    addTask,
+    updateTask,
+    deleteTask,
+    getTasksByProject,
+    getTasksByStatus,
+    getOverdueTasks,
+    getTaskStats,
+  };
+
+  return <TasksContext.Provider value={value}>{children}</TasksContext.Provider>;
 };
