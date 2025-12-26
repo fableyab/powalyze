@@ -1,0 +1,5 @@
+{
+  "buildCommand": "chmod -R +x node_modules/.bin && npx vite build",
+  "outputDirectory": "dist",
+  "framework": "vite"
+}
