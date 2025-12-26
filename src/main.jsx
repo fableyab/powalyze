@@ -5,6 +5,7 @@ import { ProjectsProvider } from './contexts/ProjectsContext';
 import { DocumentsProvider } from './contexts/DocumentsContext';
 import { ClientsProvider } from './contexts/ClientsContext';
 import { TasksProvider } from './contexts/TasksContext';
+import { PowerBIProvider } from './contexts/PowerBIContext';
 import { initializeDemoData } from './utils/demo-data';
 import App from './App';
 import './index.css';
@@ -19,7 +20,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <ProjectsProvider>
           <DocumentsProvider>
             <TasksProvider>
-              <App />
+              <PowerBIProvider>
+                <App />
+              </PowerBIProvider>
             </TasksProvider>
           </DocumentsProvider>
         </ProjectsProvider>
