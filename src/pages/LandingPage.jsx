@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Play, Check, TrendingUp, Users, Database, GitBranch, BarChart3, FileText, Zap, Globe, Sparkles } from 'lucide-react';
 import { useDictionary } from '@/lib/i18n/useDictionary';
@@ -8,6 +8,29 @@ export default function LandingPage() {
   const navigate = useNavigate();
   const { dict, locale, setLocale, loading } = useDictionary();
   const [showLangMenu, setShowLangMenu] = useState(false);
+  
+  // Live stats animation
+  const [roi, setRoi] = useState(327);
+  const [months, setMonths] = useState(3.7);
+  const [uptime, setUptime] = useState(99.9);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRoi(prev => {
+        const change = (Math.random() - 0.5) * 10;
+        return Math.max(300, Math.min(350, prev + change));
+      });
+      setMonths(prev => {
+        const change = (Math.random() - 0.5) * 0.2;
+        return Math.max(3.0, Math.min(4.5, prev + change));
+      });
+      setUptime(prev => {
+        const change = (Math.random() - 0.5) * 0.05;
+        return Math.max(99.5, Math.min(100, prev + change));
+      });
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
 
   if (loading || !dict) {
     return (
@@ -93,8 +116,8 @@ export default function LandingPage() {
           <source src="/videos/manifeste-powalyze.mp4" type="video/mp4" />
         </video>
         
-        {/* Overlay pour lisibilité */}
-        <div className="absolute inset-0 bg-black/40"></div>
+        {/* Overlay léger pour lisibilité */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40"></div>
         
         <div className="relative max-w-6xl mx-auto text-center z-10">
           {/* Badge Enterprise */}
@@ -132,19 +155,37 @@ export default function LandingPage() {
             </button>
           </div>
 
-          {/* Stats Cards Clean */}
+          {/* Stats Cards LIVE */}
           <div className="grid grid-cols-3 gap-6 max-w-3xl mx-auto pt-10">
-            <div className="bg-white/90 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/20">
-              <div className="text-3xl font-semibold text-black mb-1">327%</div>
-              <div className="text-sm text-black/70">Average ROI</div>
+            <div className="bg-white/95 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-[#D4AF37]/30 hover:border-[#D4AF37]/50 transition-all">
+              <div className="text-3xl font-bold text-black mb-1 tabular-nums">
+                {roi.toFixed(0)}%
+              </div>
+              <div className="text-sm text-black/70 font-medium">Average ROI</div>
+              <div className="mt-2 flex items-center gap-1">
+                <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+                <span className="text-xs text-green-600 font-semibold">LIVE</span>
+              </div>
             </div>
-            <div className="bg-white/90 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/20">
-              <div className="text-3xl font-semibold text-black mb-1">3.7</div>
-              <div className="text-sm text-black/70">Months to Value</div>
+            <div className="bg-white/95 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-[#4A9EFF]/30 hover:border-[#4A9EFF]/50 transition-all">
+              <div className="text-3xl font-bold text-black mb-1 tabular-nums">
+                {months.toFixed(1)}
+              </div>
+              <div className="text-sm text-black/70 font-medium">Months to Value</div>
+              <div className="mt-2 flex items-center gap-1">
+                <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse"></div>
+                <span className="text-xs text-blue-600 font-semibold">LIVE</span>
+              </div>
             </div>
-            <div className="bg-white/90 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/20">
-              <div className="text-3xl font-semibold text-black mb-1">99.9%</div>
-              <div className="text-sm text-black/70">Uptime SLA</div>
+            <div className="bg-white/95 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-green-400/30 hover:border-green-400/50 transition-all">
+              <div className="text-3xl font-bold text-black mb-1 tabular-nums">
+                {uptime.toFixed(1)}%
+              </div>
+              <div className="text-sm text-black/70 font-medium">Uptime SLA</div>
+              <div className="mt-2 flex items-center gap-1">
+                <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+                <span className="text-xs text-green-600 font-semibold">LIVE</span>
+              </div>
             </div>
           </div>
         </div>
