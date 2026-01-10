@@ -154,17 +154,16 @@ export default function LandingPageRevolution() {
       {/* Particle Canvas */}
       <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0" />
 
-      {/* Floating Navigation */}
-      <nav className="fixed top-8 left-1/2 -translate-x-1/2 z-50 px-6 py-3 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-full">
+      {/* Floating Navigation - Apple Style */}
+      <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 px-6 py-2 bg-black/80 backdrop-blur-2xl border border-white/10">
         <div className="flex items-center gap-8">
-          <Link to="/" className="text-lg font-light">
-            <span className="text-white">Pow</span>
-            <span className="bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] bg-clip-text text-transparent">alyze</span>
+          <Link to="/" className="text-base font-light">
+            <span className="text-white">Powalyze</span>
           </Link>
-          <div className="flex items-center gap-6 text-xs">
+          <div className="flex items-center gap-6 text-sm">
             <a href="#live" className="text-white/60 hover:text-white transition-colors">Live Demo</a>
-            <a href="#roi" className="text-white/60 hover:text-white transition-colors">ROI Calculator</a>
-            <Link to="/login" className="px-4 py-1.5 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] text-black text-xs font-medium rounded-full">
+            <a href="#roi" className="text-white/60 hover:text-white transition-colors">ROI</a>
+            <Link to="/login" className="px-4 py-1.5 bg-white text-black text-sm font-medium hover:bg-white/90 transition-colors">
               Launch
             </Link>
           </div>
@@ -183,68 +182,56 @@ export default function LandingPageRevolution() {
               <span className="text-xs text-white/80">Live Platform · {formatNumber(liveData.users)} Active Users</span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-extralight mb-8 leading-[1.1]">
-              <span className="block text-white mb-2">The Portfolio</span>
-              <span className="block bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#4A9EFF] bg-clip-text text-transparent">
-                That Predicts
-              </span>
-              <span className="block text-white/60 text-3xl md:text-5xl mt-4 font-light">
-                Before You Decide
-              </span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 leading-tight tracking-tight">
+              <span className="block text-white mb-2">Strategic governance.</span>
+              <span className="block text-white">Powered by AI.</span>
             </h1>
 
-            <p className="text-base md:text-lg text-white/70 font-light max-w-2xl mx-auto mb-12">
-              AI-powered strategic intelligence that learns from your business patterns.
-              <br />
-              <span className="text-[#D4AF37]">See the future</span> of your portfolio in real-time.
+            <p className="text-lg md:text-xl text-white/60 font-light max-w-2xl mx-auto mb-12 leading-relaxed">
+              Real-time portfolio intelligence that predicts outcomes before you decide.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
               <Link
                 to="/demo-mode"
-                className="group relative px-10 py-4 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] text-black font-medium overflow-hidden rounded-full"
+                className="group px-8 py-3 bg-white text-black font-medium hover:bg-white/90 transition-all flex items-center justify-center gap-2"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-[#FFD700] to-[#5AB0FF] opacity-0 group-hover:opacity-100 transition-opacity" />
-                <span className="relative flex items-center justify-center gap-2">
-                  <Play className="w-4 h-4" />
-                  Watch It Live
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </span>
+                Watch live demo
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <button className="px-10 py-4 bg-white/5 backdrop-blur-xl border border-white/20 rounded-full hover:bg-white/10 transition-all">
-                <span className="flex items-center gap-2">
-                  <Sparkles className="w-4 h-4" />
-                  Start Free Trial
-                </span>
-              </button>
+              <Link
+                to="/login"
+                className="px-8 py-3 bg-white/10 backdrop-blur-xl border border-white/20 text-white hover:bg-white/20 transition-all flex items-center justify-center gap-2"
+              >
+                Try it free
+              </Link>
             </div>
           </div>
 
-          {/* Live Stats Grid - Morphing Cards */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl mx-auto">
+          {/* Live Stats Grid - Square Cards Apple Style */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-6xl mx-auto">
             {[
-              { icon: DollarSign, value: `$${formatNumber(liveData.revenue)}`, label: 'Revenue Tracked', color: 'from-emerald-500 to-green-600' },
-              { icon: BarChart3, value: formatNumber(liveData.projects), label: 'Active Projects', color: 'from-blue-500 to-cyan-600' },
-              { icon: Users, value: formatNumber(liveData.users), label: 'Team Members', color: 'from-purple-500 to-pink-600' },
-              { icon: TrendingUp, value: `${liveData.savings.toFixed(1)}%`, label: 'Cost Savings', color: 'from-amber-500 to-orange-600' }
+              { icon: DollarSign, value: `$${formatNumber(liveData.revenue)}`, label: 'Revenue Tracked', color: 'text-emerald-400' },
+              { icon: BarChart3, value: formatNumber(liveData.projects), label: 'Active Projects', color: 'text-blue-400' },
+              { icon: Users, value: formatNumber(liveData.users), label: 'Team Members', color: 'text-purple-400' },
+              { icon: TrendingUp, value: `${liveData.savings.toFixed(1)}%`, label: 'Cost Savings', color: 'text-amber-400' }
             ].map((stat, index) => {
               const Icon = stat.icon;
               return (
                 <div
                   key={index}
-                  className="group relative p-6 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl hover:border-white/30 transition-all duration-500"
+                  className="relative p-6 bg-white/[0.03] backdrop-blur-xl border border-white/10 hover:bg-white/[0.05] transition-all duration-300"
                   style={{
-                    transform: `translateY(${scrollY * 0.05 * (index + 1)}px) rotateX(${scrollY * 0.01}deg)`
+                    transform: `translateY(${scrollY * 0.03 * (index + 1)}px)`
                   }}
                 >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500`} />
-                  <Icon className="w-6 h-6 mb-3 text-white/60" />
-                  <div className="text-3xl font-light text-white mb-1 tabular-nums">
+                  <Icon className={`w-5 h-5 mb-3 ${stat.color}`} />
+                  <div className={`text-3xl font-light ${stat.color} mb-1 tabular-nums`}>
                     {stat.value}
                   </div>
                   <div className="text-xs text-white/50">{stat.label}</div>
-                  <div className="absolute bottom-2 right-2">
-                    <Activity className="w-3 h-3 text-[#D4AF37] animate-pulse" />
+                  <div className="absolute top-3 right-3">
+                    <div className="w-1.5 h-1.5 bg-[#D4AF37] animate-pulse" />
                   </div>
                 </div>
               );
@@ -264,10 +251,10 @@ export default function LandingPageRevolution() {
             <p className="text-white/60">See your potential returns in real-time</p>
           </div>
 
-          <div className="relative p-12 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-2xl border border-white/10 rounded-3xl">
-            {/* Holographic corner accents */}
-            <div className="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-[#D4AF37]/50 rounded-tl-3xl" />
-            <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-[#4A9EFF]/50 rounded-br-3xl" />
+          <div className="relative p-12 bg-white/[0.02] backdrop-blur-2xl border border-white/10">
+            {/* Square corner accents */}
+            <div className="absolute top-0 left-0 w-16 h-16 border-t border-l border-white/20" />
+            <div className="absolute bottom-0 right-0 w-16 h-16 border-b border-r border-white/20" />
 
             <div className="grid md:grid-cols-2 gap-12">
               <div>
@@ -278,7 +265,7 @@ export default function LandingPageRevolution() {
                     type="number"
                     value={roiInput}
                     onChange={(e) => setRoiInput(parseInt(e.target.value) || 0)}
-                    className="w-full pl-14 pr-6 py-6 text-4xl font-light bg-white/5 border border-white/20 rounded-2xl focus:outline-none focus:border-[#D4AF37]/50 transition-all text-white"
+                    className="w-full pl-14 pr-6 py-6 text-4xl font-light bg-white/5 border border-white/20 focus:outline-none focus:border-white/40 transition-all text-white"
                   />
                 </div>
                 <input
@@ -301,14 +288,14 @@ export default function LandingPageRevolution() {
                   <TrendingUp className="w-5 h-5" />
                   <span className="text-2xl font-light">+327% ROI</span>
                 </div>
-                <div className="mt-6 p-4 bg-white/5 rounded-xl border border-white/10">
+                <div className="mt-6 p-4 bg-white/5 border border-white/10">
                   <div className="flex items-center justify-between text-sm mb-2">
                     <span className="text-white/60">Break-even</span>
                     <span className="text-white">3.7 months</span>
                   </div>
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-white/60">5-year value</span>
-                    <span className="text-[#D4AF37] font-medium">${formatNumber(calculatedROI * 5)}</span>
+                    <span className="text-white font-medium">${formatNumber(calculatedROI * 5)}</span>
                   </div>
                 </div>
               </div>
@@ -338,14 +325,11 @@ export default function LandingPageRevolution() {
               return (
                 <div
                   key={index}
-                  className="group relative p-8 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl border border-white/10 rounded-2xl hover:border-[#D4AF37]/50 transition-all duration-500"
-                  style={{ animationDelay: `${feature.delay}ms` }}
+                  className="group relative p-8 bg-white/[0.02] backdrop-blur-xl border border-white/10 hover:bg-white/[0.04] transition-all duration-300"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/0 to-[#4A9EFF]/0 group-hover:from-[#D4AF37]/5 group-hover:to-[#4A9EFF]/5 rounded-2xl transition-all duration-500" />
-                  <Icon className="relative w-10 h-10 mb-6 text-[#D4AF37] group-hover:scale-110 transition-transform" />
-                  <h3 className="relative text-xl font-light text-white mb-3">{feature.title}</h3>
+                  <Icon className="relative w-8 h-8 mb-6 text-white/80" />
+                  <h3 className="relative text-lg font-light text-white mb-3">{feature.title}</h3>
                   <p className="relative text-sm text-white/60 leading-relaxed">{feature.desc}</p>
-                  <div className="absolute top-4 right-4 w-2 h-2 bg-[#D4AF37] rounded-full opacity-0 group-hover:opacity-100 animate-pulse transition-opacity" />
                 </div>
               );
             })}
@@ -353,23 +337,21 @@ export default function LandingPageRevolution() {
         </div>
       </section>
 
-      {/* Final CTA - Immersive */}
+      {/* Final CTA - Apple Minimalist */}
       <section className="relative py-32 px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="relative p-16 bg-gradient-to-br from-[#D4AF37]/10 via-transparent to-[#4A9EFF]/10 backdrop-blur-2xl border border-white/10 rounded-3xl">
-            <Sparkles className="w-12 h-12 mx-auto mb-6 text-[#D4AF37]" />
-            <h2 className="text-4xl md:text-6xl font-extralight mb-6">
-              <span className="text-white">Ready to </span>
-              <span className="bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] bg-clip-text text-transparent">Transform?</span>
+          <div className="relative p-16 bg-white/[0.02] backdrop-blur-2xl border border-white/10">
+            <h2 className="text-4xl md:text-5xl font-light mb-6">
+              <span className="text-white">Ready to transform?</span>
             </h2>
-            <p className="text-white/70 mb-10 text-lg">
-              Join 847 organizations already using Powalyze
+            <p className="text-white/60 mb-10 text-lg font-light">
+              Join 847 organizations using Powalyze
             </p>
             <Link
               to="/demo-mode"
-              className="inline-flex items-center gap-3 px-12 py-5 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] text-black text-lg font-medium rounded-full hover:scale-105 transition-transform shadow-2xl shadow-[#D4AF37]/50"
+              className="inline-flex items-center gap-3 px-10 py-4 bg-white text-black font-medium hover:bg-white/90 transition-all"
             >
-              Start Your Revolution
+              Get started
               <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
