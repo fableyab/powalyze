@@ -80,95 +80,67 @@ export default function LandingPage() {
         </div>
       </nav>
 
-      {/* Hero - Ultra-Tendance Noir Premium */}
-      <section className="relative pt-32 pb-24 px-6 overflow-hidden bg-black">
-        {/* Rich Dark Background */}
-        <div className="absolute inset-0">
-          {/* Gradient mesh noir */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/10 via-black to-[#4A9EFF]/10"></div>
-          {/* Tech grid lumineux */}
-          <div className="absolute inset-0 opacity-[0.08]" style={{
-            backgroundImage: 'linear-gradient(#D4AF37 1px, transparent 1px), linear-gradient(90deg, #4A9EFF 1px, transparent 1px)',
-            backgroundSize: '80px 80px'
-          }}></div>
-          {/* Floating orbs néon */}
-          <div className="absolute top-20 left-20 w-[600px] h-[600px] bg-[#D4AF37]/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-20 w-[600px] h-[600px] bg-[#4A9EFF]/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
-          {/* Spotlight effect */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-white/5 to-transparent rounded-full"></div>
-        </div>
-
+      {/* Hero - Style Apple Clean */}
+      <section className="relative pt-32 pb-24 px-6 overflow-hidden bg-[#F5F5F7]">
         <div className="relative max-w-6xl mx-auto text-center">
-          {/* Badge Enterprise Néon */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-black/60 border border-[#D4AF37]/40 rounded-full mb-6 backdrop-blur-xl shadow-lg shadow-[#D4AF37]/20">
-            <div className="w-2 h-2 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] rounded-full animate-pulse shadow-lg shadow-[#D4AF37]/50"></div>
-            <span className="text-xs font-bold bg-gradient-to-r from-[#D4AF37] via-white to-[#4A9EFF] bg-clip-text text-transparent tracking-wider uppercase">
+          {/* Badge Enterprise */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-black/10 rounded-full mb-6 shadow-sm">
+            <div className="w-2 h-2 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] rounded-full"></div>
+            <span className="text-xs font-semibold text-black/70 tracking-wider uppercase">
               Enterprise-Grade Governance Platform
             </span>
           </div>
 
-          {/* One Line Positioning Néon */}
+          {/* Title */}
           <div className="mb-8">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-none mb-6 bg-gradient-to-r from-[#D4AF37] via-white to-[#4A9EFF] bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(212,175,55,0.3)]">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight leading-tight mb-6 text-black">
               {dict.hero.title}
             </h1>
-            <p className="text-lg sm:text-xl font-semibold text-white/80 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
+            <p className="text-lg sm:text-xl text-black/60 max-w-3xl mx-auto leading-relaxed">
               {dict.hero.subtitle}
             </p>
           </div>
 
-          {/* CTAs Néon Ultra-Tendance */}
+          {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
             <button
               onClick={() => navigate('/dashboard?demo=1')}
-              className="group relative px-8 py-4 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] text-black rounded-2xl font-black text-base hover:shadow-2xl hover:shadow-[#D4AF37]/60 transition-all flex items-center gap-3 overflow-hidden"
+              className="px-8 py-4 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] text-white rounded-full font-semibold text-base hover:opacity-90 transition-opacity flex items-center gap-3"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-[#4A9EFF] to-[#D4AF37] opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              <span className="relative drop-shadow-lg">{dict.hero.primaryCTA}</span>
-              <Play className="relative w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <span>{dict.hero.primaryCTA}</span>
+              <Play className="w-4 h-4" />
             </button>
             <button
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="group px-8 py-4 bg-black/80 border-2 border-[#D4AF37]/50 rounded-2xl font-black text-base backdrop-blur-xl hover:border-[#4A9EFF]/80 hover:shadow-xl hover:shadow-[#4A9EFF]/30 transition-all"
+              className="px-8 py-4 bg-white border border-black/20 rounded-full font-semibold text-base text-black hover:bg-black/5 transition-colors"
             >
-              <span className="bg-gradient-to-r from-[#D4AF37] via-white to-[#4A9EFF] bg-clip-text text-transparent">
-                {dict.hero.secondaryCTA}
-              </span>
+              {dict.hero.secondaryCTA}
             </button>
           </div>
 
-          {/* Stats Cards Néon Ultra-Tendance */}
+          {/* Stats Cards Clean */}
           <div className="grid grid-cols-3 gap-6 max-w-3xl mx-auto pt-10">
-            <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/30 to-[#4A9EFF]/30 rounded-2xl blur-xl group-hover:blur-2xl transition-all"></div>
-              <div className="relative bg-black/70 backdrop-blur-xl rounded-2xl p-4 border border-[#D4AF37]/40 shadow-xl shadow-[#D4AF37]/20 hover:shadow-2xl hover:shadow-[#D4AF37]/30 transition-all">
-                <div className="text-3xl font-black bg-gradient-to-r from-[#D4AF37] via-white to-[#4A9EFF] bg-clip-text text-transparent mb-1 drop-shadow-[0_0_15px_rgba(212,175,55,0.5)]">327%</div>
-                <div className="text-xs font-bold text-white/70">Average ROI</div>
-              </div>
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-black/10">
+              <div className="text-3xl font-semibold text-black mb-1">327%</div>
+              <div className="text-sm text-black/60">Average ROI</div>
             </div>
-            <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#4A9EFF]/30 to-[#D4AF37]/30 rounded-2xl blur-xl group-hover:blur-2xl transition-all"></div>
-              <div className="relative bg-black/70 backdrop-blur-xl rounded-2xl p-4 border border-[#4A9EFF]/40 shadow-xl shadow-[#4A9EFF]/20 hover:shadow-2xl hover:shadow-[#4A9EFF]/30 transition-all">
-                <div className="text-3xl font-black bg-gradient-to-r from-[#4A9EFF] via-white to-[#D4AF37] bg-clip-text text-transparent mb-1 drop-shadow-[0_0_15px_rgba(74,158,255,0.5)]">3.7M</div>
-                <div className="text-xs font-bold text-white/70">Months to Value</div>
-              </div>
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-black/10">
+              <div className="text-3xl font-semibold text-black mb-1">3.7</div>
+              <div className="text-sm text-black/60">Months to Value</div>
             </div>
-            <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/30 to-[#4A9EFF]/30 rounded-2xl blur-xl group-hover:blur-2xl transition-all"></div>
-              <div className="relative bg-black/70 backdrop-blur-xl rounded-2xl p-4 border border-white/20 shadow-xl shadow-white/10 hover:shadow-2xl hover:shadow-white/20 transition-all">
-                <div className="text-3xl font-black text-white mb-1 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]">99.9%</div>
-                <div className="text-xs font-bold text-white/70">Uptime SLA</div>
-              </div>
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-black/10">
+              <div className="text-3xl font-semibold text-black mb-1">99.9%</div>
+              <div className="text-sm text-black/60">Uptime SLA</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Pour qui - 3 personas */}
-      <section id="for-who" className="py-20 px-6 bg-gradient-to-b from-white to-black/5">
+      <section id="for-who" className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-light mb-4">{dict.forWho.title}</h2>
+            <h2 className="text-4xl font-semibold mb-4 text-black">{dict.forWho.title}</h2>
             <p className="text-xl text-black/60">{dict.forWho.subtitle}</p>
           </div>
 
@@ -218,68 +190,51 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Ce que Powalyze remplace - Ultra-Riche */}
-      <section className="relative py-20 px-6 overflow-hidden">
-        {/* Rich dark background with gradients */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-[#0A1929] to-black"></div>
-        <div className="absolute inset-0 opacity-20" style={{
-          backgroundImage: 'radial-gradient(circle at 20% 50%, #D4AF37 0%, transparent 50%), radial-gradient(circle at 80% 50%, #4A9EFF 0%, transparent 50%)'
-        }}></div>
-        <div className="absolute top-1/4 left-10 w-[500px] h-[500px] bg-[#D4AF37]/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-10 w-[500px] h-[500px] bg-[#4A9EFF]/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
-        
-        <div className="relative max-w-6xl mx-auto">
+      {/* Ce que Powalyze remplace */}
+      <section className="py-20 px-6 bg-[#F5F5F7]">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-2 bg-gradient-to-r from-[#D4AF37] via-white to-[#4A9EFF] bg-clip-text text-transparent">{dict.replaces.title}</h2>
+            <h2 className="text-3xl sm:text-4xl font-semibold mb-2 text-black">{dict.replaces.title}</h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
             {/* Avant */}
-            <div className="group relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all"></div>
-              <div className="relative bg-white/5 backdrop-blur-xl rounded-3xl p-6 border-2 border-red-400/30">
-                <h3 className="text-base font-bold mb-4 bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">{dict.replaces.before.title}</h3>
-                <ul className="space-y-2">
-                  {dict.replaces.before.items.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <span className="text-red-400 mt-0.5 text-sm">×</span>
-                      <span className="text-sm font-medium bg-gradient-to-r from-white/70 to-white/50 bg-clip-text text-transparent leading-relaxed">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-red-200">
+              <h3 className="text-base font-semibold mb-4 text-red-600">{dict.replaces.before.title}</h3>
+              <ul className="space-y-2">
+                {dict.replaces.before.items.map((item, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <span className="text-red-500 mt-0.5 text-sm">×</span>
+                    <span className="text-sm text-black/70 leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
 
             {/* Avec */}
-            <div className="group relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/40 to-[#4A9EFF]/40 rounded-3xl blur-xl group-hover:blur-2xl transition-all"></div>
-              <div className="relative bg-gradient-to-br from-[#D4AF37]/20 to-[#4A9EFF]/20 backdrop-blur-xl rounded-3xl p-6 border-2 border-[#D4AF37]/50">
-                <h3 className="text-base font-bold mb-4 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] bg-clip-text text-transparent">{dict.replaces.with.title}</h3>
-                <ul className="space-y-2">
-                  {dict.replaces.with.items.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <Check className="w-4 h-4 text-[#D4AF37] mt-0.5 flex-shrink-0" />
-                      <span className="text-sm font-medium text-white leading-relaxed">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <div className="bg-gradient-to-br from-[#D4AF37]/10 to-[#4A9EFF]/10 rounded-2xl p-6 shadow-sm border border-[#D4AF37]/30">
+              <h3 className="text-base font-semibold mb-4 text-black">{dict.replaces.with.title}</h3>
+              <ul className="space-y-2">
+                {dict.replaces.with.items.map((item, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-[#D4AF37] mt-0.5 flex-shrink-0" />
+                    <span className="text-sm text-black/80 leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
 
             {/* Résultat */}
-            <div className="group relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-[#4A9EFF]/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all"></div>
-              <div className="relative bg-white/5 backdrop-blur-xl rounded-3xl p-6 border-2 border-green-400/30">
-                <h3 className="text-base font-bold mb-4 bg-gradient-to-r from-green-400 to-[#4A9EFF] bg-clip-text text-transparent">{dict.replaces.result.title}</h3>
-                <ul className="space-y-2">
-                  {dict.replaces.result.items.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <TrendingUp className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm font-medium bg-gradient-to-r from-white/70 to-white/50 bg-clip-text text-transparent leading-relaxed">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-green-200">
+              <h3 className="text-base font-semibold mb-4 text-green-600">{dict.replaces.result.title}</h3>
+              <ul className="space-y-2">
+                {dict.replaces.result.items.map((item, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <TrendingUp className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm text-black/70 leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
