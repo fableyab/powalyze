@@ -1,0 +1,86 @@
+{
+  "nav": {
+    "experience": "Expérience",
+    "product": "Produit",
+    "modules": "Modules",
+    "pricing": "Tarifs",
+    "login": "Connexion"
+  },
+  "hero": {
+    "brand": "Powalyze",
+    "subtitle": "Le Système d'Exploitation de la Gouvernance.",
+    "text": "La clarté pour les conseils, les dirigeants et le PMO. Une couche vivante pour chaque décision stratégique.",
+    "primary": "Entrer dans l'Expérience",
+    "secondary": "Voir le scénario en direct"
+  },
+  "product": {
+    "title": "Du bruit à la clarté.",
+    "text1": "Powalyze transforme données, projets et slides dispersés",
+    "text2": "en une seule couche de gouvernance vivante.",
+    "text3": "Chaque décision part enfin de la même réalité partagée.",
+    "bullets": {
+      "oneTruth": "Une seule source de vérité : projets, KPIs, risques, stratégie.",
+      "alwaysLive": "Toujours à jour : fini les slides figées.",
+      "forLeaders": "Pensé pour les dirigeants : conçu autour des rituels exécutifs."
+    }
+  },
+  "modules": {
+    "title": "Des modules comme des vitrines vivantes.",
+    "subtitle": "Chaque couche de Powalyze est conçue comme une expérience ciblée, pas un écran de plus.",
+    "governance": {
+      "title": "Gouvernance",
+      "description": "Conduisez conseils et comités depuis un espace unique et vivant."
+    },
+    "projects": {
+      "title": "Projets",
+      "description": "Voyez chaque initiative stratégique dans son contexte réel."
+    },
+    "kpis": {
+      "title": "KPIs",
+      "description": "Prenez le pouls de votre portefeuille en quelques secondes."
+    },
+    "strategy": {
+      "title": "Stratégie",
+      "description": "Reliez votre vision à des résultats mesurables."
+    }
+  },
+  "howItWorks": {
+    "title": "Votre couche de gouvernance, vivante.",
+    "steps": {
+      "one": {
+        "title": "Onboard",
+        "text": "Connectez projets, KPIs et rituels. Powalyze s'adapte à vous."
+      },
+      "two": {
+        "title": "Orchestrez",
+        "text": "Comités, portefeuilles, décisions : tout dans un seul espace."
+      },
+      "three": {
+        "title": "Décidez",
+        "text": "Des décisions avec contexte, traçabilité et alignement."
+      }
+    }
+  },
+  "scenarios": {
+    "title": "Conçu pour les vrais moments exécutifs.",
+    "board": "Entrez avec un OS vivant, pas vingt slides mortes.",
+    "pmo": "Moins de slides, plus de décisions.",
+    "transformation": "De l'intention aux résultats mesurables."
+  },
+  "proof": {
+    "title": "Pour les dirigeants qui refusent le bruit.",
+    "text": "Powalyze est pensé pour les organisations où la gouvernance n'est pas une formalité, mais le système d'exploitation de la stratégie, du risque et de l'exécution."
+  },
+  "cta": {
+    "title": "Entrez dans l'OS.",
+    "text1": "Powalyze n'est pas un outil.",
+    "text2": "C'est la couche de gouvernance qui manquait à votre organisation.",
+    "primary": "Commencer l'expérience",
+    "secondary": "Réserver une session"
+  },
+  "dashboard": {
+    "title": "Tableau de bord",
+    "welcome": "Bienvenue dans votre OS de gouvernance.",
+    "enterExperience": "Retour à l'expérience"
+  }
+}

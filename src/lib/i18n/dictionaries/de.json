@@ -1,0 +1,86 @@
+{
+  "nav": {
+    "experience": "Experience",
+    "product": "Produkt",
+    "modules": "Module",
+    "pricing": "Preise",
+    "login": "Login"
+  },
+  "hero": {
+    "brand": "Powalyze",
+    "subtitle": "Das Governance-Betriebssystem.",
+    "text": "Klarheit für Verwaltungsräte, Führungskräfte und PMO. Eine lebendige Schicht für jede strategische Entscheidung.",
+    "primary": "Die Experience betreten",
+    "secondary": "Live-Szenario ansehen"
+  },
+  "product": {
+    "title": "Vom Lärm zur Klarheit.",
+    "text1": "Powalyze verwandelt verstreute Daten, Projekte und Präsentationen",
+    "text2": "in eine einzige lebendige Governance-Schicht.",
+    "text3": "Jede Entscheidung beginnt mit derselben gemeinsamen Realität.",
+    "bullets": {
+      "oneTruth": "Eine einzige Wahrheitsquelle: Projekte, KPIs, Risiken, Strategie.",
+      "alwaysLive": "Immer aktuell: keine veralteten Folien mehr.",
+      "forLeaders": "Für Führungskräfte entwickelt: basierend auf echten Entscheidungsritualen."
+    }
+  },
+  "modules": {
+    "title": "Module als lebendige Vitrinen.",
+    "subtitle": "Jede Powalyze-Schicht ist als fokussierte Experience gestaltet, nicht als weiterer Bildschirm.",
+    "governance": {
+      "title": "Governance",
+      "description": "Führen Sie Gremien und Ausschüsse in einem einzigen Live-Raum."
+    },
+    "projects": {
+      "title": "Projekte",
+      "description": "Sehen Sie jede strategische Initiative im richtigen Kontext."
+    },
+    "kpis": {
+      "title": "KPIs",
+      "description": "Erfassen Sie den Puls Ihres Portfolios in Sekunden."
+    },
+    "strategy": {
+      "title": "Strategie",
+      "description": "Verbinden Sie Ihre Roadmap mit messbaren Ergebnissen."
+    }
+  },
+  "howItWorks": {
+    "title": "Ihre Governance-Schicht, live.",
+    "steps": {
+      "one": {
+        "title": "Onboarding",
+        "text": "Projekte, KPIs und Rituale verbinden. Powalyze passt sich an."
+      },
+      "two": {
+        "title": "Orchestrieren",
+        "text": "Gremien, Portfolios, Entscheidungen – alles an einem Ort."
+      },
+      "three": {
+        "title": "Entscheiden",
+        "text": "Entscheidungen mit Kontext, Nachvollziehbarkeit und Alignment."
+      }
+    }
+  },
+  "scenarios": {
+    "title": "Für echte Führungssituationen gebaut.",
+    "board": "Betreten Sie den Raum mit einem Live-OS, nicht mit zwanzig Folien.",
+    "pmo": "Weniger Folien, mehr Entscheidungen.",
+    "transformation": "Von Absicht zu messbaren Ergebnissen."
+  },
+  "proof": {
+    "title": "Für Führungskräfte, die Lärm ablehnen.",
+    "text": "Powalyze ist für Organisationen gedacht, in denen Governance keine Formalität, sondern das Betriebssystem für Strategie, Risiko und Ausführung ist."
+  },
+  "cta": {
+    "title": "Betreten Sie das OS.",
+    "text1": "Powalyze ist kein Tool.",
+    "text2": "Es ist die Governance-Schicht, die Ihrer Organisation gefehlt hat.",
+    "primary": "Experience starten",
+    "secondary": "Live-Session buchen"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Willkommen in Ihrem Governance-OS.",
+    "enterExperience": "Zur Experience zurückkehren"
+  }
+}

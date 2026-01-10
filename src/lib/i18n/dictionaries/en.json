@@ -1,0 +1,86 @@
+{
+  "nav": {
+    "experience": "Experience",
+    "product": "Product",
+    "modules": "Modules",
+    "pricing": "Pricing",
+    "login": "Login"
+  },
+  "hero": {
+    "brand": "Powalyze",
+    "subtitle": "The Governance Operating System.",
+    "text": "Clarity for boards, executives, and PMO. One live layer for every strategic decision.",
+    "primary": "Enter the Experience",
+    "secondary": "Watch the live scenario"
+  },
+  "product": {
+    "title": "From noise to clarity.",
+    "text1": "Powalyze turns scattered data, projects, and slides",
+    "text2": "into one living governance layer.",
+    "text3": "Every decision starts from the same shared reality.",
+    "bullets": {
+      "oneTruth": "One pane of truth: projects, KPIs, risks, strategy.",
+      "alwaysLive": "Always live: no more frozen slides.",
+      "forLeaders": "Designed for leaders: built around real executive rituals."
+    }
+  },
+  "modules": {
+    "title": "Modules as living vitrines.",
+    "subtitle": "Each layer of Powalyze is crafted as a focused experience, not just another screen.",
+    "governance": {
+      "title": "Governance",
+      "description": "Run boards and committees from a single live space."
+    },
+    "projects": {
+      "title": "Projects",
+      "description": "See every strategic initiative in context."
+    },
+    "kpis": {
+      "title": "KPIs",
+      "description": "Read the pulse of your portfolio in seconds."
+    },
+    "strategy": {
+      "title": "Strategy",
+      "description": "Connect your roadmap to measurable outcomes."
+    }
+  },
+  "howItWorks": {
+    "title": "Your governance layer, live.",
+    "steps": {
+      "one": {
+        "title": "Onboard",
+        "text": "Connect projects, KPIs, and rituals. Powalyze adapts to you."
+      },
+      "two": {
+        "title": "Orchestrate",
+        "text": "Boards, portfolios, decisions — all in one place."
+      },
+      "three": {
+        "title": "Decide",
+        "text": "Decisions with context, traceability, and alignment."
+      }
+    }
+  },
+  "scenarios": {
+    "title": "Built for real executive moments.",
+    "board": "Walk in with a live OS, not twenty dead slides.",
+    "pmo": "Less slide-making, more decision-making.",
+    "transformation": "From intent to measurable outcomes."
+  },
+  "proof": {
+    "title": "For leaders who refuse noise.",
+    "text": "Powalyze was designed for organizations where governance is not a formality, but the operating system of strategy, risk, and execution."
+  },
+  "cta": {
+    "title": "Enter the OS.",
+    "text1": "Powalyze is not a tool.",
+    "text2": "It's the governance layer your organization was missing.",
+    "primary": "Start the experience",
+    "secondary": "Book a live session"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome to your governance OS.",
+    "enterExperience": "Back to the experience"
+  }
+}

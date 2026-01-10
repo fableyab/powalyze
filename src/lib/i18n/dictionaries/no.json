@@ -1,0 +1,86 @@
+{
+  "nav": {
+    "experience": "Opplevelse",
+    "product": "Produkt",
+    "modules": "Moduler",
+    "pricing": "Priser",
+    "login": "Innlogging"
+  },
+  "hero": {
+    "brand": "Powalyze",
+    "subtitle": "Styringens operativsystem.",
+    "text": "Klarhet for styrer, ledere og PMO. Ett levende lag for hver strategiske beslutning.",
+    "primary": "Gå inn i opplevelsen",
+    "secondary": "Se det direkte scenariet"
+  },
+  "product": {
+    "title": "Fra støy til klarhet.",
+    "text1": "Powalyze gjør spredte data, prosjekter og presentasjoner",
+    "text2": "om til ett levende styringslag.",
+    "text3": "Hver beslutning starter fra samme delte virkelighet.",
+    "bullets": {
+      "oneTruth": "Én sannhetskilde: prosjekter, KPIer, risiko, strategi.",
+      "alwaysLive": "Alltid levende: ingen utdaterte slides.",
+      "forLeaders": "Designet for ledere: bygget rundt ekte lederritualer."
+    }
+  },
+  "modules": {
+    "title": "Moduler som levende vindusutstillinger.",
+    "subtitle": "Hvert lag i Powalyze er utformet som en fokusert opplevelse, ikke bare en ny skjerm.",
+    "governance": {
+      "title": "Governance",
+      "description": "Kjør styrer og komiteer fra ett levende rom."
+    },
+    "projects": {
+      "title": "Prosjekter",
+      "description": "Se hver strategiske initiativ i riktig kontekst."
+    },
+    "kpis": {
+      "title": "KPIer",
+      "description": "Les porteføljens puls på sekunder."
+    },
+    "strategy": {
+      "title": "Strategi",
+      "description": "Koble veikartet ditt til målbare resultater."
+    }
+  },
+  "howItWorks": {
+    "title": "Ditt styringslag, levende.",
+    "steps": {
+      "one": {
+        "title": "Onboard",
+        "text": "Koble prosjekter, KPIer og ritualer. Powalyze tilpasser seg deg."
+      },
+      "two": {
+        "title": "Orkestrer",
+        "text": "Styrer, porteføljer, beslutninger – alt på ett sted."
+      },
+      "three": {
+        "title": "Beslutninger",
+        "text": "Avgjørelser med kontekst, sporbarhet og samsvar."
+      }
+    }
+  },
+  "scenarios": {
+    "title": "Bygget for ekte lederøyeblikk.",
+    "board": "Gå inn med et levende OS, ikke tjue døde slides.",
+    "pmo": "Mindre slide-produksjon, flere beslutninger.",
+    "transformation": "Fra intensjon til målbare resultater."
+  },
+  "proof": {
+    "title": "For ledere som nekter støy.",
+    "text": "Powalyze er laget for organisasjoner der styring ikke er en formalitet, men operativsystemet for strategi, risiko og gjennomføring."
+  },
+  "cta": {
+    "title": "Gå inn i OS-et.",
+    "text1": "Powalyze er ikke et verktøy.",
+    "text2": "Det er styringslaget organisasjonen din manglet.",
+    "primary": "Start opplevelsen",
+    "secondary": "Book en live-sesjon"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Velkommen til ditt styrings-OS.",
+    "enterExperience": "Tilbake til opplevelsen"
+  }
+}
