@@ -80,53 +80,67 @@ export default function LandingPage() {
         </div>
       </nav>
 
-      {/* Hero - Ultra clair + Social proof */}
-      <section className="pt-32 pb-20 px-6">
-        <div className="max-w-5xl mx-auto text-center">
+      {/* Hero - Ultra Pro iTech */}
+      <section className="relative pt-32 pb-24 px-6 overflow-hidden">
+        {/* Tech Grid Background */}
+        <div className="absolute inset-0 opacity-[0.02]">
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)',
+            backgroundSize: '60px 60px'
+          }}></div>
+        </div>
+
+        <div className="relative max-w-6xl mx-auto text-center">
+          {/* Badge Enterprise */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#D4AF37]/10 to-[#4A9EFF]/10 border border-[#D4AF37]/20 rounded-full mb-8">
+            <div className="w-2 h-2 bg-[#D4AF37] rounded-full animate-pulse"></div>
+            <span className="text-xs font-medium text-black/70 tracking-wider uppercase">
+              Enterprise-Grade Governance Platform
+            </span>
+          </div>
+
           {/* One Line Positioning */}
-          <div className="mb-8">
-            <p className="text-sm font-medium text-black/50 uppercase tracking-wider mb-3">
-              {dict.hero.tagline}
-            </p>
-            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-extralight tracking-tight leading-none mb-6">
+          <div className="mb-10">
+            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-extralight tracking-tight leading-none mb-8 bg-gradient-to-br from-black via-black to-black/60 bg-clip-text text-transparent">
               {dict.hero.title}
             </h1>
-            <p className="text-2xl sm:text-3xl font-light text-black/60 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-2xl sm:text-3xl font-light text-black/60 max-w-4xl mx-auto leading-relaxed">
               {dict.hero.subtitle}
             </p>
           </div>
 
-          {/* Accroche 2 lignes */}
-          <div className="max-w-2xl mx-auto mb-10 space-y-3">
-            <p className="text-lg text-black/70 leading-relaxed">
-              {dict.hero.line1}
-            </p>
-            <p className="text-lg text-black/70 leading-relaxed">
-              {dict.hero.line2}
-            </p>
-          </div>
-
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
             <button
               onClick={() => navigate('/dashboard?demo=1')}
-              className="px-8 py-4 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] text-white rounded-full font-medium hover:shadow-2xl hover:scale-105 transition-all flex items-center gap-2"
+              className="group px-10 py-5 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] text-white rounded-xl font-semibold text-lg hover:shadow-2xl hover:shadow-[#D4AF37]/20 transition-all flex items-center gap-3"
             >
               {dict.hero.primaryCTA}
-              <Play className="w-4 h-4" />
+              <Play className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
             <button
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="px-8 py-4 bg-black/5 border border-black/10 rounded-full font-medium hover:bg-black/10 transition-colors"
+              className="px-10 py-5 bg-white border-2 border-black/10 rounded-xl font-semibold text-lg hover:border-black/20 hover:bg-black/5 transition-all"
             >
               {dict.hero.secondaryCTA}
             </button>
           </div>
 
-          {/* Réassurance */}
-          <p className="text-sm text-black/50 max-w-2xl mx-auto">
-            {dict.hero.reassurance}
-          </p>
+          {/* Stats Enterprise */}
+          <div className="grid grid-cols-3 gap-8 max-w-3xl mx-auto pt-12 border-t border-black/10">
+            <div>
+              <div className="text-3xl font-bold bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] bg-clip-text text-transparent mb-2">327%</div>
+              <div className="text-sm text-black/50">Average ROI</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] bg-clip-text text-transparent mb-2">3.7M</div>
+              <div className="text-sm text-black/50">Months to Value</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] bg-clip-text text-transparent mb-2">99.9%</div>
+              <div className="text-sm text-black/50">Uptime SLA</div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -245,45 +259,123 @@ export default function LandingPage() {
           {/* Scène 1 - Portfolio */}
           <div className="grid md:grid-cols-2 gap-16 items-center mb-32">
             <div>
-              <div className="text-sm font-medium text-[#D4AF37] uppercase tracking-wider mb-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#D4AF37]/10 border border-[#D4AF37]/20 rounded-full text-xs font-medium text-[#D4AF37] uppercase tracking-wider mb-6">
+                <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full"></span>
                 {dict.demo.scene1.tag}
               </div>
-              <h3 className="text-4xl font-light mb-6">{dict.demo.scene1.title}</h3>
-              <p className="text-xl text-black/70 leading-relaxed mb-6">
+              <h3 className="text-4xl font-semibold mb-6">{dict.demo.scene1.title}</h3>
+              <p className="text-xl text-black/70 leading-relaxed mb-8">
                 {dict.demo.scene1.text}
               </p>
-              <ul className="space-y-3">
+              <ul className="space-y-4">
                 {dict.demo.scene1.features.map((feature, i) => (
-                  <li key={i} className="flex items-center gap-3 text-black/60">
-                    <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF]"></div>
-                    {feature}
+                  <li key={i} className="flex items-start gap-3 text-black/70">
+                    <div className="w-5 h-5 bg-gradient-to-br from-[#D4AF37] to-[#4A9EFF] rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 text-white" />
+                    </div>
+                    <span className="leading-relaxed">{feature}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="bg-gradient-to-br from-black/5 to-black/10 rounded-3xl p-12 aspect-video flex items-center justify-center border border-black/10">
-              <BarChart3 className="w-24 h-24 text-[#D4AF37] opacity-30" />
+            <div className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/20 to-[#4A9EFF]/20 rounded-3xl blur-3xl group-hover:blur-2xl transition-all"></div>
+              <div className="relative bg-gradient-to-br from-black/5 to-black/10 rounded-3xl p-8 border border-black/10 backdrop-blur-xl">
+                {/* Mock Portfolio Dashboard */}
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between pb-4 border-b border-black/10">
+                    <span className="text-xs font-medium text-black/50 uppercase tracking-wider">Portfolio Health</span>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                      <span className="text-xs font-medium text-green-600">Healthy</span>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="bg-white/50 rounded-2xl p-4 border border-black/10">
+                      <div className="text-xs text-black/50 mb-2">Active Projects</div>
+                      <div className="text-3xl font-bold text-black">847</div>
+                      <div className="text-xs text-green-600 mt-2">↑ 12.3%</div>
+                    </div>
+                    <div className="bg-white/50 rounded-2xl p-4 border border-black/10">
+                      <div className="text-xs text-black/50 mb-2">Total Value</div>
+                      <div className="text-3xl font-bold bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] bg-clip-text text-transparent">€2.8M</div>
+                      <div className="text-xs text-green-600 mt-2">↑ 8.7%</div>
+                    </div>
+                  </div>
+                  <div className="bg-white/50 rounded-2xl p-4 border border-black/10">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-xs text-black/50">Success Rate</span>
+                      <span className="text-sm font-bold text-black">94.7%</span>
+                    </div>
+                    <div className="w-full bg-black/10 rounded-full h-2">
+                      <div className="bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] h-2 rounded-full" style={{width: '94.7%'}}></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Scène 2 - Comité */}
           <div className="grid md:grid-cols-2 gap-16 items-center mb-32">
-            <div className="bg-gradient-to-br from-black/5 to-black/10 rounded-3xl p-12 aspect-video flex items-center justify-center border border-black/10 md:order-first order-last">
-              <Users className="w-24 h-24 text-[#4A9EFF] opacity-30" />
+            <div className="relative group md:order-first order-last">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#4A9EFF]/20 to-[#D4AF37]/20 rounded-3xl blur-3xl group-hover:blur-2xl transition-all"></div>
+              <div className="relative bg-gradient-to-br from-black/5 to-black/10 rounded-3xl p-8 border border-black/10 backdrop-blur-xl">
+                {/* Mock Committee Interface */}
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3 pb-4 border-b border-black/10">
+                    <div className="w-10 h-10 bg-gradient-to-br from-[#4A9EFF] to-purple-600 rounded-xl flex items-center justify-center">
+                      <Users className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-semibold text-black">Board Meeting Q1 2026</div>
+                      <div className="text-xs text-black/50">Live • 12 participants</div>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    {[
+                      { title: 'Portfolio Review', status: 'done', color: 'green' },
+                      { title: 'Budget Allocation', status: 'live', color: 'blue' },
+                      { title: 'Risk Assessment', status: 'pending', color: 'gray' }
+                    ].map((item, i) => (
+                      <div key={i} className="bg-white/50 rounded-xl p-4 border border-black/10 flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className={`w-2 h-2 rounded-full ${
+                            item.color === 'green' ? 'bg-green-500' :
+                            item.color === 'blue' ? 'bg-blue-500 animate-pulse' :
+                            'bg-gray-400'
+                          }`}></div>
+                          <span className="text-sm font-medium text-black">{item.title}</span>
+                        </div>
+                        <span className={`text-xs font-medium px-2 py-1 rounded-full ${
+                          item.status === 'done' ? 'bg-green-100 text-green-700' :
+                          item.status === 'live' ? 'bg-blue-100 text-blue-700' :
+                          'bg-gray-100 text-gray-600'
+                        }`}>
+                          {item.status.toUpperCase()}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
             <div>
-              <div className="text-sm font-medium text-[#4A9EFF] uppercase tracking-wider mb-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#4A9EFF]/10 border border-[#4A9EFF]/20 rounded-full text-xs font-medium text-[#4A9EFF] uppercase tracking-wider mb-6">
+                <span className="w-1.5 h-1.5 bg-[#4A9EFF] rounded-full animate-pulse"></span>
                 {dict.demo.scene2.tag}
               </div>
-              <h3 className="text-4xl font-light mb-6">{dict.demo.scene2.title}</h3>
-              <p className="text-xl text-black/70 leading-relaxed mb-6">
+              <h3 className="text-4xl font-semibold mb-6">{dict.demo.scene2.title}</h3>
+              <p className="text-xl text-black/70 leading-relaxed mb-8">
                 {dict.demo.scene2.text}
               </p>
-              <ul className="space-y-3">
+              <ul className="space-y-4">
                 {dict.demo.scene2.features.map((feature, i) => (
-                  <li key={i} className="flex items-center gap-3 text-black/60">
-                    <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF]"></div>
-                    {feature}
+                  <li key={i} className="flex items-start gap-3 text-black/70">
+                    <div className="w-5 h-5 bg-gradient-to-br from-[#4A9EFF] to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 text-white" />
+                    </div>
+                    <span className="leading-relaxed">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -293,45 +385,121 @@ export default function LandingPage() {
           {/* Scène 3 - Data */}
           <div className="grid md:grid-cols-2 gap-16 items-center mb-32">
             <div>
-              <div className="text-sm font-medium text-[#D4AF37] uppercase tracking-wider mb-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#D4AF37]/10 border border-[#D4AF37]/20 rounded-full text-xs font-medium text-[#D4AF37] uppercase tracking-wider mb-6">
+                <Zap className="w-3 h-3" />
                 {dict.demo.scene3.tag}
               </div>
-              <h3 className="text-4xl font-light mb-6">{dict.demo.scene3.title}</h3>
-              <p className="text-xl text-black/70 leading-relaxed mb-6">
+              <h3 className="text-4xl font-semibold mb-6">{dict.demo.scene3.title}</h3>
+              <p className="text-xl text-black/70 leading-relaxed mb-8">
                 {dict.demo.scene3.text}
               </p>
-              <ul className="space-y-3">
+              <ul className="space-y-4">
                 {dict.demo.scene3.features.map((feature, i) => (
-                  <li key={i} className="flex items-center gap-3 text-black/60">
-                    <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF]"></div>
-                    {feature}
+                  <li key={i} className="flex items-start gap-3 text-black/70">
+                    <div className="w-5 h-5 bg-gradient-to-br from-[#D4AF37] to-[#4A9EFF] rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 text-white" />
+                    </div>
+                    <span className="leading-relaxed">{feature}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="bg-gradient-to-br from-black/5 to-black/10 rounded-3xl p-12 aspect-video flex items-center justify-center border border-black/10">
-              <Database className="w-24 h-24 text-[#D4AF37] opacity-30" />
+            <div className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/20 to-[#4A9EFF]/20 rounded-3xl blur-3xl group-hover:blur-2xl transition-all"></div>
+              <div className="relative bg-gradient-to-br from-black/5 to-black/10 rounded-3xl p-8 border border-black/10 backdrop-blur-xl">
+                {/* Mock Data Dashboard */}
+                <div className="space-y-6">
+                  <div className="flex items-center gap-3 pb-4 border-b border-black/10">
+                    <div className="flex items-center gap-2 px-2 py-1 bg-green-100 rounded-lg">
+                      <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
+                      <span className="text-xs font-medium text-green-700">Connected</span>
+                    </div>
+                    <span className="text-xs text-black/50">Power BI • Azure Synapse</span>
+                  </div>
+                  <div className="grid grid-cols-3 gap-3">
+                    {[
+                      { value: '2.4M', label: 'Data Points', trend: '+12%' },
+                      { value: '847', label: 'Projects', trend: '+8%' },
+                      { value: '99.9%', label: 'Accuracy', trend: '—' }
+                    ].map((stat, i) => (
+                      <div key={i} className="bg-white/50 rounded-xl p-3 border border-black/10">
+                        <div className="text-xl font-bold bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] bg-clip-text text-transparent mb-1">
+                          {stat.value}
+                        </div>
+                        <div className="text-[10px] text-black/50 mb-1">{stat.label}</div>
+                        <div className="text-[10px] text-green-600">{stat.trend}</div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="bg-white/50 rounded-xl p-4 border border-black/10">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-xs text-black/50">Real-time Sync</span>
+                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                    </div>
+                    <div className="flex items-end gap-1 h-16">
+                      {[40, 65, 45, 80, 55, 90, 70, 85].map((height, i) => (
+                        <div key={i} className="flex-1 bg-gradient-to-t from-[#D4AF37] to-[#4A9EFF] rounded-t-sm transition-all" style={{height: `${height}%`}}></div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Scène 4 - Trace */}
           <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="bg-gradient-to-br from-black/5 to-black/10 rounded-3xl p-12 aspect-video flex items-center justify-center border border-black/10 md:order-first order-last">
-              <FileText className="w-24 h-24 text-[#4A9EFF] opacity-30" />
+            <div className="relative group md:order-first order-last">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-[#4A9EFF]/20 rounded-3xl blur-3xl group-hover:blur-2xl transition-all"></div>
+              <div className="relative bg-gradient-to-br from-black/5 to-black/10 rounded-3xl p-8 border border-black/10 backdrop-blur-xl">
+                {/* Mock Audit Trail */}
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3 pb-4 border-b border-black/10">
+                    <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-[#4A9EFF] rounded-xl flex items-center justify-center">
+                      <FileText className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-semibold text-black">Decision History</div>
+                      <div className="text-xs text-black/50">Full audit trail</div>
+                    </div>
+                  </div>
+                  {[
+                    { action: 'Budget approved', user: 'CFO', time: '2 min ago', type: 'success' },
+                    { action: 'Risk flagged', user: 'PMO Lead', time: '15 min ago', type: 'warning' },
+                    { action: 'Project updated', user: 'CTO', time: '1 hour ago', type: 'info' },
+                    { action: 'Meeting scheduled', user: 'Board', time: '3 hours ago', type: 'info' }
+                  ].map((log, i) => (
+                    <div key={i} className="flex items-start gap-3 bg-white/50 rounded-xl p-3 border border-black/10">
+                      <div className={`w-2 h-2 rounded-full mt-1.5 ${
+                        log.type === 'success' ? 'bg-green-500' :
+                        log.type === 'warning' ? 'bg-yellow-500' :
+                        'bg-blue-500'
+                      }`}></div>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-xs font-medium text-black">{log.action}</div>
+                        <div className="text-[10px] text-black/50 mt-1">{log.user} • {log.time}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
             <div>
-              <div className="text-sm font-medium text-[#4A9EFF] uppercase tracking-wider mb-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-purple-100 border border-purple-200 rounded-full text-xs font-medium text-purple-700 uppercase tracking-wider mb-6">
+                <span className="w-1.5 h-1.5 bg-purple-600 rounded-full"></span>
                 {dict.demo.scene4.tag}
               </div>
-              <h3 className="text-4xl font-light mb-6">{dict.demo.scene4.title}</h3>
-              <p className="text-xl text-black/70 leading-relaxed mb-6">
+              <h3 className="text-4xl font-semibold mb-6">{dict.demo.scene4.title}</h3>
+              <p className="text-xl text-black/70 leading-relaxed mb-8">
                 {dict.demo.scene4.text}
               </p>
-              <ul className="space-y-3">
+              <ul className="space-y-4">
                 {dict.demo.scene4.features.map((feature, i) => (
-                  <li key={i} className="flex items-center gap-3 text-black/60">
-                    <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF]"></div>
-                    {feature}
+                  <li key={i} className="flex items-start gap-3 text-black/70">
+                    <div className="w-5 h-5 bg-gradient-to-br from-purple-600 to-[#4A9EFF] rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 text-white" />
+                    </div>
+                    <span className="leading-relaxed">{feature}</span>
                   </li>
                 ))}
               </ul>
