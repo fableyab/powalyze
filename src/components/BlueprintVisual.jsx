@@ -24,7 +24,16 @@ const BlueprintVisual = ({
       
       {/* Conteneur blueprint */}
       <div className={`relative ${heightClass} overflow-hidden rounded-md border border-slate-800/60 bg-black/90`}>
-        {/* Image blueprint si fournie */}
+        {/* Vidéo blueprint */}
+        <video
+          src="/videos/manifeste-powalyze.mp4"
+          className="absolute inset-0 w-full h-full object-contain opacity-90"
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
+        
         {imageSrc ? (
           <img
             src={imageSrc}
@@ -76,7 +85,7 @@ const BlueprintVisual = ({
         
         {/* Label technique */}
         <div className="relative z-10 p-3 flex justify-between text-[0.65rem] text-slate-400">
-          <span className="font-mono">SCHEMA_TECH_v2</span>
+          <span className="font-mono">POWALYZE_MANIFESTE</span>
           <span className="font-mono opacity-60">BLUEPRINT_SYS</span>
         </div>
       </div>
