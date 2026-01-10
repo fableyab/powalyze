@@ -80,65 +80,83 @@ export default function LandingPage() {
         </div>
       </nav>
 
-      {/* Hero - Ultra Pro iTech */}
+      {/* Hero - Ultra-Riche iTech Magnifique */}
       <section className="relative pt-32 pb-24 px-6 overflow-hidden">
-        {/* Tech Grid Background */}
-        <div className="absolute inset-0 opacity-[0.02]">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)',
-            backgroundSize: '60px 60px'
+        {/* Rich Tech Background */}
+        <div className="absolute inset-0">
+          {/* Animated gradient mesh */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/5 via-transparent to-[#4A9EFF]/5"></div>
+          {/* Tech grid */}
+          <div className="absolute inset-0 opacity-[0.03]" style={{
+            backgroundImage: 'linear-gradient(#D4AF37 1px, transparent 1px), linear-gradient(90deg, #4A9EFF 1px, transparent 1px)',
+            backgroundSize: '80px 80px'
           }}></div>
+          {/* Floating orbs */}
+          <div className="absolute top-20 left-20 w-96 h-96 bg-[#D4AF37]/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-96 h-96 bg-[#4A9EFF]/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
         </div>
 
         <div className="relative max-w-6xl mx-auto text-center">
           {/* Badge Enterprise */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#D4AF37]/10 to-[#4A9EFF]/10 border border-[#D4AF37]/20 rounded-full mb-8">
-            <div className="w-2 h-2 bg-[#D4AF37] rounded-full animate-pulse"></div>
-            <span className="text-xs font-medium text-black/70 tracking-wider uppercase">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#D4AF37]/20 to-[#4A9EFF]/20 border border-[#D4AF37]/30 rounded-full mb-6 backdrop-blur-xl">
+            <div className="w-2 h-2 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] rounded-full animate-pulse"></div>
+            <span className="text-xs font-semibold bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] bg-clip-text text-transparent tracking-wider uppercase">
               Enterprise-Grade Governance Platform
             </span>
           </div>
 
           {/* One Line Positioning */}
-          <div className="mb-10">
-            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-extralight tracking-tight leading-none mb-8 bg-gradient-to-br from-black via-black to-black/60 bg-clip-text text-transparent">
+          <div className="mb-8">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-none mb-6 bg-gradient-to-r from-[#D4AF37] via-[#4A9EFF] to-[#D4AF37] bg-clip-text text-transparent">
               {dict.hero.title}
             </h1>
-            <p className="text-2xl sm:text-3xl font-light text-black/60 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl font-medium bg-gradient-to-r from-[#D4AF37]/80 to-[#4A9EFF]/80 bg-clip-text text-transparent max-w-3xl mx-auto leading-relaxed">
               {dict.hero.subtitle}
             </p>
           </div>
 
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+          {/* CTAs Ultra-Riches */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
             <button
               onClick={() => navigate('/dashboard?demo=1')}
-              className="group px-10 py-5 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] text-white rounded-xl font-semibold text-lg hover:shadow-2xl hover:shadow-[#D4AF37]/20 transition-all flex items-center gap-3"
+              className="group relative px-8 py-4 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] text-white rounded-2xl font-bold text-base hover:shadow-2xl hover:shadow-[#D4AF37]/40 transition-all flex items-center gap-3 overflow-hidden"
             >
-              {dict.hero.primaryCTA}
-              <Play className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#4A9EFF] to-[#D4AF37] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <span className="relative">{dict.hero.primaryCTA}</span>
+              <Play className="relative w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
             <button
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="px-10 py-5 bg-white border-2 border-black/10 rounded-xl font-semibold text-lg hover:border-black/20 hover:bg-black/5 transition-all"
+              className="group px-8 py-4 bg-gradient-to-r from-[#D4AF37]/10 to-[#4A9EFF]/10 border-2 border-[#D4AF37]/30 rounded-2xl font-bold text-base backdrop-blur-xl hover:border-[#4A9EFF]/50 transition-all"
             >
-              {dict.hero.secondaryCTA}
+              <span className="bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] bg-clip-text text-transparent">
+                {dict.hero.secondaryCTA}
+              </span>
             </button>
           </div>
 
-          {/* Stats Enterprise */}
-          <div className="grid grid-cols-3 gap-8 max-w-3xl mx-auto pt-12 border-t border-black/10">
-            <div>
-              <div className="text-3xl font-bold bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] bg-clip-text text-transparent mb-2">327%</div>
-              <div className="text-sm text-black/50">Average ROI</div>
+          {/* Stats Enterprise Ultra-Riches */}
+          <div className="grid grid-cols-3 gap-6 max-w-3xl mx-auto pt-10">
+            <div className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/20 to-[#4A9EFF]/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all"></div>
+              <div className="relative bg-white/50 backdrop-blur-xl rounded-2xl p-4 border border-[#D4AF37]/20">
+                <div className="text-3xl font-black bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] bg-clip-text text-transparent mb-1">327%</div>
+                <div className="text-xs font-semibold bg-gradient-to-r from-[#D4AF37]/60 to-[#4A9EFF]/60 bg-clip-text text-transparent">Average ROI</div>
+              </div>
             </div>
-            <div>
-              <div className="text-3xl font-bold bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] bg-clip-text text-transparent mb-2">3.7M</div>
-              <div className="text-sm text-black/50">Months to Value</div>
+            <div className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#4A9EFF]/20 to-[#D4AF37]/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all"></div>
+              <div className="relative bg-white/50 backdrop-blur-xl rounded-2xl p-4 border border-[#4A9EFF]/20">
+                <div className="text-3xl font-black bg-gradient-to-r from-[#4A9EFF] to-[#D4AF37] bg-clip-text text-transparent mb-1">3.7M</div>
+                <div className="text-xs font-semibold bg-gradient-to-r from-[#4A9EFF]/60 to-[#D4AF37]/60 bg-clip-text text-transparent">Months to Value</div>
+              </div>
             </div>
-            <div>
-              <div className="text-3xl font-bold bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] bg-clip-text text-transparent mb-2">99.9%</div>
-              <div className="text-sm text-black/50">Uptime SLA</div>
+            <div className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/20 to-[#4A9EFF]/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all"></div>
+              <div className="relative bg-white/50 backdrop-blur-xl rounded-2xl p-4 border border-[#D4AF37]/20">
+                <div className="text-3xl font-black bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] bg-clip-text text-transparent mb-1">99.9%</div>
+                <div className="text-xs font-semibold bg-gradient-to-r from-[#D4AF37]/60 to-[#4A9EFF]/60 bg-clip-text text-transparent">Uptime SLA</div>
+              </div>
             </div>
           </div>
         </div>
@@ -198,51 +216,68 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Ce que Powalyze remplace */}
-      <section className="py-20 px-6 bg-black text-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-light mb-4">{dict.replaces.title}</h2>
+      {/* Ce que Powalyze remplace - Ultra-Riche */}
+      <section className="relative py-20 px-6 overflow-hidden">
+        {/* Rich dark background with gradients */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-[#0A1929] to-black"></div>
+        <div className="absolute inset-0 opacity-20" style={{
+          backgroundImage: 'radial-gradient(circle at 20% 50%, #D4AF37 0%, transparent 50%), radial-gradient(circle at 80% 50%, #4A9EFF 0%, transparent 50%)'
+        }}></div>
+        <div className="absolute top-1/4 left-10 w-[500px] h-[500px] bg-[#D4AF37]/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-10 w-[500px] h-[500px] bg-[#4A9EFF]/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+        
+        <div className="relative max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-2 bg-gradient-to-r from-[#D4AF37] via-white to-[#4A9EFF] bg-clip-text text-transparent">{dict.replaces.title}</h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-6">
             {/* Avant */}
-            <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/10">
-              <h3 className="text-xl font-semibold mb-6 text-red-400">{dict.replaces.before.title}</h3>
-              <ul className="space-y-3">
-                {dict.replaces.before.items.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-white/70">
-                    <span className="text-red-400 mt-1">×</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all"></div>
+              <div className="relative bg-white/5 backdrop-blur-xl rounded-3xl p-6 border-2 border-red-400/30">
+                <h3 className="text-base font-bold mb-4 bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">{dict.replaces.before.title}</h3>
+                <ul className="space-y-2">
+                  {dict.replaces.before.items.map((item, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="text-red-400 mt-0.5 text-sm">×</span>
+                      <span className="text-sm font-medium bg-gradient-to-r from-white/70 to-white/50 bg-clip-text text-transparent leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
             {/* Avec */}
-            <div className="bg-gradient-to-br from-[#D4AF37]/20 to-[#4A9EFF]/20 backdrop-blur-xl rounded-3xl p-8 border border-[#D4AF37]/30">
-              <h3 className="text-xl font-semibold mb-6 text-[#D4AF37]">{dict.replaces.with.title}</h3>
-              <ul className="space-y-3">
-                {dict.replaces.with.items.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-white/90">
-                    <Check className="w-5 h-5 text-[#D4AF37] mt-0.5 flex-shrink-0" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/40 to-[#4A9EFF]/40 rounded-3xl blur-xl group-hover:blur-2xl transition-all"></div>
+              <div className="relative bg-gradient-to-br from-[#D4AF37]/20 to-[#4A9EFF]/20 backdrop-blur-xl rounded-3xl p-6 border-2 border-[#D4AF37]/50">
+                <h3 className="text-base font-bold mb-4 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] bg-clip-text text-transparent">{dict.replaces.with.title}</h3>
+                <ul className="space-y-2">
+                  {dict.replaces.with.items.map((item, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <Check className="w-4 h-4 text-[#D4AF37] mt-0.5 flex-shrink-0" />
+                      <span className="text-sm font-medium text-white leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
             {/* Résultat */}
-            <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/10">
-              <h3 className="text-xl font-semibold mb-6 text-green-400">{dict.replaces.result.title}</h3>
-              <ul className="space-y-3">
-                {dict.replaces.result.items.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-white/70">
-                    <TrendingUp className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-[#4A9EFF]/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all"></div>
+              <div className="relative bg-white/5 backdrop-blur-xl rounded-3xl p-6 border-2 border-green-400/30">
+                <h3 className="text-base font-bold mb-4 bg-gradient-to-r from-green-400 to-[#4A9EFF] bg-clip-text text-transparent">{dict.replaces.result.title}</h3>
+                <ul className="space-y-2">
+                  {dict.replaces.result.items.map((item, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <TrendingUp className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-sm font-medium bg-gradient-to-r from-white/70 to-white/50 bg-clip-text text-transparent leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
