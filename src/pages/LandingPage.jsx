@@ -1,376 +1,406 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { TrendingUp, Zap, Shield, Database, Users, DollarSign, Activity, Sparkles, ArrowRight, Play, BarChart3, Clock, CheckCircle2, Layers } from 'lucide-react';
+import { ArrowRight, Play } from 'lucide-react';
 
-export default function LandingPageRevolution() {
-  const canvasRef = useRef(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [liveData, setLiveData] = useState({
-    revenue: 2847392,
-    projects: 847,
-    users: 12453,
-    savings: 94.7
-  });
-  const [scrollY, setScrollY] = useState(0);
+export default function LandingPage() {
   const [roiInput, setRoiInput] = useState(100000);
-  const [calculatedROI, setCalculatedROI] = useState(0);
-
-  // Particle system
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const particles = [];
-    const particleCount = 80;
-
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 0.5;
-        this.speedX = Math.random() * 0.5 - 0.25;
-        this.speedY = Math.random() * 0.5 - 0.25;
-        this.color = Math.random() > 0.5 ? 'rgba(212, 175, 55, 0.4)' : 'rgba(74, 158, 255, 0.3)';
-      }
-
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-
-        // Mouse interaction
-        const dx = mousePosition.x - this.x;
-        const dy = mousePosition.y - this.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        
-        if (distance < 150) {
-          const force = (150 - distance) / 150;
-          this.x -= (dx / distance) * force * 2;
-          this.y -= (dy / distance) * force * 2;
-        }
-
-        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-      }
-
-      draw() {
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      // Draw connections
-      particles.forEach((particle, i) => {
-        particles.slice(i + 1).forEach(otherParticle => {
-          const dx = particle.x - otherParticle.x;
-          const dy = particle.y - otherParticle.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          
-          if (distance < 120) {
-            ctx.strokeStyle = `rgba(212, 175, 55, ${0.1 * (1 - distance / 120)})`;
-            ctx.lineWidth = 0.5;
-            ctx.beginPath();
-            ctx.moveTo(particle.x, particle.y);
-            ctx.lineTo(otherParticle.x, otherParticle.y);
-            ctx.stroke();
-          }
-        });
-      });
-
-      particles.forEach(particle => {
-        particle.update();
-        particle.draw();
-      });
-
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-
-    const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [mousePosition]);
-
-  // Live data simulation
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setLiveData(prev => ({
-        revenue: prev.revenue + Math.floor(Math.random() * 10000 - 5000),
-        projects: prev.projects + Math.floor(Math.random() * 3 - 1),
-        users: prev.users + Math.floor(Math.random() * 20 - 10),
-        savings: prev.savings + (Math.random() * 0.2 - 0.1)
-      }));
-    }, 2000);
-    return () => clearInterval(interval);
-  }, []);
-
-  // Mouse tracking
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  // Scroll tracking
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // ROI Calculator
-  useEffect(() => {
-    setCalculatedROI(roiInput * 3.27); // Average 327% ROI
-  }, [roiInput]);
-
-  const formatNumber = (num) => {
-    return new Intl.NumberFormat('en-US', {
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    }).format(num);
-  };
 
   return (
-    <div className="relative min-h-screen bg-black text-white overflow-hidden">
-      {/* Particle Canvas */}
-      <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0" />
-
-      {/* Floating Navigation - Apple Style */}
-      <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 px-6 py-2 bg-black/80 backdrop-blur-2xl border border-white/10">
-        <div className="flex items-center gap-8">
-          <Link to="/" className="text-base font-light">
-            <span className="text-white">Powalyze</span>
-          </Link>
-          <div className="flex items-center gap-6 text-sm">
-            <a href="#live" className="text-white/60 hover:text-white transition-colors">Live Demo</a>
-            <a href="#roi" className="text-white/60 hover:text-white transition-colors">ROI</a>
-            <Link to="/login" className="px-4 py-1.5 bg-white text-black text-sm font-medium hover:bg-white/90 transition-colors">
-              Launch
+    <div className="relative bg-white">
+      
+      {/* Apple-style Navigation */}
+      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex items-center justify-between h-12">
+            <Link to="/" className="text-xl font-semibold text-black">
+              Powalyze
             </Link>
+            <div className="hidden md:flex items-center gap-8 text-sm">
+              <a href="#features" className="text-gray-600 hover:text-black transition-colors">Fonctionnalités</a>
+              <a href="#roi" className="text-gray-600 hover:text-black transition-colors">ROI</a>
+              <a href="#solution" className="text-gray-600 hover:text-black transition-colors">Solution</a>
+              <Link to="/login" className="text-blue-600 hover:text-blue-700 transition-colors">
+                Se connecter
+              </Link>
+            </div>
           </div>
         </div>
       </nav>
 
-      {/* Hero - Living Dashboard */}
-      <section className="relative min-h-screen flex items-center justify-center px-6 pt-32">
-        <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-[#D4AF37]/30 rounded-full mb-8">
-              <div className="relative">
-                <div className="w-2 h-2 bg-[#D4AF37] rounded-full animate-pulse" />
-                <div className="absolute inset-0 w-2 h-2 bg-[#D4AF37] rounded-full animate-ping" />
-              </div>
-              <span className="text-xs text-white/80">Live Platform · {formatNumber(liveData.users)} Active Users</span>
-            </div>
+      {/* Hero Section - Apple Style */}
+      <section className="relative pt-16 pb-20 px-6 text-center">
+        <div className="max-w-5xl mx-auto">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-semibold text-black mb-6 tracking-tight leading-none">
+            La gouvernance stratégique.
+            <br />
+            <span className="text-gray-600">Réinventée.</span>
+          </h1>
+          
+          <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto font-normal">
+            Pilotez vos portefeuilles de projets avec l'intelligence artificielle qui prédit avant que vous décidiez.
+          </p>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 leading-tight tracking-tight">
-              <span className="block text-white mb-2">Strategic governance.</span>
-              <span className="block text-white">Powered by AI.</span>
-            </h1>
-
-            <p className="text-lg md:text-xl text-white/60 font-light max-w-2xl mx-auto mb-12 leading-relaxed">
-              Real-time portfolio intelligence that predicts outcomes before you decide.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-              <Link
-                to="/demo-mode"
-                className="group px-8 py-3 bg-white text-black font-medium hover:bg-white/90 transition-all flex items-center justify-center gap-2"
-              >
-                Watch live demo
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link
-                to="/login"
-                className="px-8 py-3 bg-white/10 backdrop-blur-xl border border-white/20 text-white hover:bg-white/20 transition-all flex items-center justify-center gap-2"
-              >
-                Try it free
-              </Link>
-            </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+            <Link 
+              to="/demo-mode"
+              className="px-8 py-3 bg-blue-600 text-white rounded-full text-lg font-medium hover:bg-blue-700 transition-colors inline-flex items-center gap-2"
+            >
+              Essayer gratuitement
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+            <a 
+              href="#demo"
+              className="px-8 py-3 text-blue-600 text-lg font-medium hover:text-blue-700 transition-colors inline-flex items-center gap-2"
+            >
+              <Play className="w-5 h-5" />
+              Voir la démo
+            </a>
           </div>
+        </div>
 
-          {/* Live Stats Grid - Square Cards Apple Style */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-6xl mx-auto">
-            {[
-              { icon: DollarSign, value: `$${formatNumber(liveData.revenue)}`, label: 'Revenue Tracked', color: 'text-emerald-400' },
-              { icon: BarChart3, value: formatNumber(liveData.projects), label: 'Active Projects', color: 'text-blue-400' },
-              { icon: Users, value: formatNumber(liveData.users), label: 'Team Members', color: 'text-purple-400' },
-              { icon: TrendingUp, value: `${liveData.savings.toFixed(1)}%`, label: 'Cost Savings', color: 'text-amber-400' }
-            ].map((stat, index) => {
-              const Icon = stat.icon;
-              return (
-                <div
-                  key={index}
-                  className="relative p-6 bg-white/[0.03] backdrop-blur-xl border border-white/10 hover:bg-white/[0.05] transition-all duration-300"
-                  style={{
-                    transform: `translateY(${scrollY * 0.03 * (index + 1)}px)`
-                  }}
-                >
-                  <Icon className={`w-5 h-5 mb-3 ${stat.color}`} />
-                  <div className={`text-3xl font-light ${stat.color} mb-1 tabular-nums`}>
-                    {stat.value}
+        {/* Hero Visual - Product Screenshot */}
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-gray-900 to-black p-1">
+            <div className="bg-black rounded-2xl overflow-hidden">
+              {/* Mock Dashboard Interface */}
+              <div className="aspect-[16/9] bg-gradient-to-br from-gray-900 via-black to-gray-900 p-8">
+                <div className="grid grid-cols-3 gap-6 h-full">
+                  {/* Left: Stats */}
+                  <div className="space-y-4">
+                    <div className="bg-white/5 backdrop-blur rounded-2xl p-6 border border-white/10">
+                      <div className="text-3xl font-bold text-white mb-2">€2.8M</div>
+                      <div className="text-sm text-gray-400">Budget Total</div>
+                    </div>
+                    <div className="bg-white/5 backdrop-blur rounded-2xl p-6 border border-white/10">
+                      <div className="text-3xl font-bold text-[#D4AF37] mb-2">847</div>
+                      <div className="text-sm text-gray-400">Projets Actifs</div>
+                    </div>
+                    <div className="bg-white/5 backdrop-blur rounded-2xl p-6 border border-white/10">
+                      <div className="text-3xl font-bold text-blue-500 mb-2">94.7%</div>
+                      <div className="text-sm text-gray-400">Taux de Réussite</div>
+                    </div>
                   </div>
-                  <div className="text-xs text-white/50">{stat.label}</div>
-                  <div className="absolute top-3 right-3">
-                    <div className="w-1.5 h-1.5 bg-[#D4AF37] animate-pulse" />
+
+                  {/* Center: Chart */}
+                  <div className="bg-white/5 backdrop-blur rounded-2xl p-6 border border-white/10">
+                    <div className="h-full flex items-end justify-around gap-2">
+                      <div className="w-full bg-gradient-to-t from-[#D4AF37] to-blue-500 rounded-t-lg" style={{height: '60%'}}></div>
+                      <div className="w-full bg-gradient-to-t from-[#D4AF37] to-blue-500 rounded-t-lg" style={{height: '80%'}}></div>
+                      <div className="w-full bg-gradient-to-t from-[#D4AF37] to-blue-500 rounded-t-lg" style={{height: '45%'}}></div>
+                      <div className="w-full bg-gradient-to-t from-[#D4AF37] to-blue-500 rounded-t-lg" style={{height: '90%'}}></div>
+                      <div className="w-full bg-gradient-to-t from-[#D4AF37] to-blue-500 rounded-t-lg" style={{height: '70%'}}></div>
+                      <div className="w-full bg-gradient-to-t from-[#D4AF37] to-blue-500 rounded-t-lg" style={{height: '55%'}}></div>
+                    </div>
+                  </div>
+
+                  {/* Right: Live Alerts */}
+                  <div className="space-y-3">
+                    <div className="bg-white/5 backdrop-blur rounded-xl p-4 border border-white/10">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <span className="text-xs text-gray-400">TEMPS RÉEL</span>
+                      </div>
+                      <p className="text-sm text-white">Projet ALPHA validé</p>
+                    </div>
+                    <div className="bg-white/5 backdrop-blur rounded-xl p-4 border border-white/10">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-2 h-2 bg-[#D4AF37] rounded-full animate-pulse"></div>
+                        <span className="text-xs text-gray-400">PRÉDICTION IA</span>
+                      </div>
+                      <p className="text-sm text-white">Budget optimisé +12%</p>
+                    </div>
+                    <div className="bg-white/5 backdrop-blur rounded-xl p-4 border border-white/10">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                        <span className="text-xs text-gray-400">ALERTE</span>
+                      </div>
+                      <p className="text-sm text-white">Risque détecté Projet B</p>
+                    </div>
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Interactive ROI Calculator */}
-      <section id="roi" className="relative py-32 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-extralight mb-4">
-              <span className="text-white">Calculate Your </span>
-              <span className="bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] bg-clip-text text-transparent">ROI</span>
-            </h2>
-            <p className="text-white/60">See your potential returns in real-time</p>
-          </div>
-
-          <div className="relative p-12 bg-white/[0.02] backdrop-blur-2xl border border-white/10">
-            {/* Square corner accents */}
-            <div className="absolute top-0 left-0 w-16 h-16 border-t border-l border-white/20" />
-            <div className="absolute bottom-0 right-0 w-16 h-16 border-b border-r border-white/20" />
-
-            <div className="grid md:grid-cols-2 gap-12">
-              <div>
-                <label className="block text-sm text-white/60 mb-4">Your Current Budget</label>
-                <div className="relative">
-                  <span className="absolute left-6 top-1/2 -translate-y-1/2 text-3xl text-white/40">$</span>
-                  <input
-                    type="number"
-                    value={roiInput}
-                    onChange={(e) => setRoiInput(parseInt(e.target.value) || 0)}
-                    className="w-full pl-14 pr-6 py-6 text-4xl font-light bg-white/5 border border-white/20 focus:outline-none focus:border-white/40 transition-all text-white"
-                  />
+      {/* Feature Section 1 - Image Left */}
+      <section id="features" className="py-32 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="order-2 md:order-1">
+              <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-3xl aspect-square flex items-center justify-center">
+                <div className="text-center p-8">
+                  <div className="text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#D4AF37] to-blue-600">
+                    327%
+                  </div>
+                  <div className="text-2xl text-gray-600 mt-4">Retour sur Investissement</div>
                 </div>
+              </div>
+            </div>
+            <div className="order-1 md:order-2">
+              <h2 className="text-4xl md:text-6xl font-semibold text-black mb-6 leading-tight">
+                Un ROI qui parle<br />de lui-même.
+              </h2>
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                Nos clients réalisent en moyenne 327% de retour sur investissement en moins de 4 mois. 
+                Chaque décision est optimisée par l'IA pour maximiser vos résultats.
+              </p>
+              <a href="#roi" className="text-blue-600 text-lg font-medium inline-flex items-center gap-2 hover:gap-3 transition-all">
+                Calculer votre ROI
+                <ArrowRight className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Feature Section 2 - Image Right */}
+      <section className="py-32 px-6 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-4xl md:text-6xl font-semibold text-black mb-6 leading-tight">
+                L'IA qui anticipe<br />vos décisions.
+              </h2>
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                Notre moteur prédictif analyse en temps réel des milliers de données pour vous alerter 
+                avant qu'un problème ne survienne. Vous gardez toujours une longueur d'avance.
+              </p>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center mt-1 flex-shrink-0">
+                    <div className="w-2 h-2 bg-white rounded-full"></div>
+                  </div>
+                  <div>
+                    <div className="font-semibold text-black mb-1">Alertes prédictives</div>
+                    <div className="text-gray-600">Détection des risques avant qu'ils n'impactent vos projets</div>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center mt-1 flex-shrink-0">
+                    <div className="w-2 h-2 bg-white rounded-full"></div>
+                  </div>
+                  <div>
+                    <div className="font-semibold text-black mb-1">Optimisation automatique</div>
+                    <div className="text-gray-600">Recommandations IA pour améliorer vos performances</div>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center mt-1 flex-shrink-0">
+                    <div className="w-2 h-2 bg-white rounded-full"></div>
+                  </div>
+                  <div>
+                    <div className="font-semibold text-black mb-1">Temps réel garanti</div>
+                    <div className="text-gray-600">Toutes vos données actualisées à la seconde</div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <div className="bg-gradient-to-br from-black to-gray-900 rounded-3xl aspect-square flex items-center justify-center p-8">
+                <div className="w-full space-y-4">
+                  {[85, 92, 78, 95, 88].map((value, i) => (
+                    <div key={i} className="flex items-center gap-4">
+                      <div className="w-full bg-white/10 rounded-full h-3 overflow-hidden">
+                        <div 
+                          className="h-full bg-gradient-to-r from-[#D4AF37] to-blue-500 rounded-full"
+                          style={{width: `${value}%`}}
+                        ></div>
+                      </div>
+                      <span className="text-white font-semibold text-lg w-12 text-right">{value}%</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Feature Section 3 - Full Width */}
+      <section className="py-32 px-6">
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="text-4xl md:text-6xl font-semibold text-black mb-6 leading-tight">
+            Tout votre écosystème.<br />
+            <span className="text-gray-600">Unifié.</span>
+          </h2>
+          <p className="text-xl text-gray-600 mb-16 max-w-3xl mx-auto">
+            Connectez tous vos outils existants en un seul tableau de bord. Jira, Azure DevOps, Power BI, Excel... 
+            Powalyze s'intègre à votre workflow.
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white border border-gray-200 rounded-3xl p-8 hover:shadow-2xl transition-shadow">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#D4AF37] to-blue-600 rounded-2xl mb-6 flex items-center justify-center mx-auto">
+                <div className="w-8 h-8 bg-white rounded-lg"></div>
+              </div>
+              <h3 className="text-2xl font-semibold text-black mb-4">Intégrations natives</h3>
+              <p className="text-gray-600">
+                Plus de 50 connecteurs prêts à l'emploi pour synchroniser vos données en temps réel.
+              </p>
+            </div>
+
+            <div className="bg-white border border-gray-200 rounded-3xl p-8 hover:shadow-2xl transition-shadow">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl mb-6 flex items-center justify-center mx-auto">
+                <div className="w-8 h-8 bg-white rounded-lg"></div>
+              </div>
+              <h3 className="text-2xl font-semibold text-black mb-4">API ouverte</h3>
+              <p className="text-gray-600">
+                Développez vos propres connecteurs avec notre API REST documentée et nos SDK.
+              </p>
+            </div>
+
+            <div className="bg-white border border-gray-200 rounded-3xl p-8 hover:shadow-2xl transition-shadow">
+              <div className="w-16 h-16 bg-gradient-to-br from-green-600 to-teal-600 rounded-2xl mb-6 flex items-center justify-center mx-auto">
+                <div className="w-8 h-8 bg-white rounded-lg"></div>
+              </div>
+              <h3 className="text-2xl font-semibold text-black mb-4">Sécurité enterprise</h3>
+              <p className="text-gray-600">
+                Certifications SOC2, ISO 27001. Vos données restent dans votre région Azure.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ROI Calculator Section */}
+      <section id="roi" className="py-32 px-6 bg-black text-white">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-4xl md:text-6xl font-semibold mb-6 leading-tight">
+            Calculez votre retour<br />sur investissement.
+          </h2>
+          <p className="text-xl text-gray-400 mb-16 max-w-2xl mx-auto">
+            Estimez en quelques secondes les économies réalisables avec Powalyze.
+          </p>
+
+          <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-12">
+            <div className="mb-12">
+              <label className="block text-left mb-4 text-lg text-gray-300">
+                Budget annuel de vos projets
+              </label>
+              <div className="relative">
                 <input
                   type="range"
-                  min="10000"
+                  min="50000"
                   max="10000000"
-                  step="10000"
+                  step="50000"
+                  className="w-full h-2 bg-white/10 rounded-full appearance-none cursor-pointer"
+                  style={{
+                    background: `linear-gradient(to right, #D4AF37 0%, #4A9EFF ${((roiInput - 50000) / 9950000) * 100}%, rgba(255,255,255,0.1) ${((roiInput - 50000) / 9950000) * 100}%)`
+                  }}
+                  onChange={(e) => setRoiInput(Number(e.target.value))}
                   value={roiInput}
-                  onChange={(e) => setRoiInput(parseInt(e.target.value))}
-                  className="w-full mt-6 accent-[#D4AF37]"
                 />
+                <div className="mt-4 text-center">
+                  <span className="text-4xl font-bold">
+                    {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(roiInput)}
+                  </span>
+                  <span className="text-gray-400 ml-2">/ an</span>
+                </div>
               </div>
+            </div>
 
-              <div className="flex flex-col justify-center">
-                <div className="text-sm text-white/60 mb-2">Projected Annual Savings</div>
-                <div className="text-6xl font-light bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] bg-clip-text text-transparent mb-4 tabular-nums">
-                  ${formatNumber(calculatedROI)}
-                </div>
-                <div className="flex items-center gap-2 text-emerald-400">
-                  <TrendingUp className="w-5 h-5" />
-                  <span className="text-2xl font-light">+327% ROI</span>
-                </div>
-                <div className="mt-6 p-4 bg-white/5 border border-white/10">
-                  <div className="flex items-center justify-between text-sm mb-2">
-                    <span className="text-white/60">Break-even</span>
-                    <span className="text-white">3.7 months</span>
-                  </div>
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-white/60">5-year value</span>
-                    <span className="text-white font-medium">${formatNumber(calculatedROI * 5)}</span>
-                  </div>
+            <div className="grid md:grid-cols-3 gap-8 pt-8 border-t border-white/10">
+              <div>
+                <div className="text-sm text-gray-400 mb-2">Économies estimées (an 1)</div>
+                <div className="text-3xl font-bold text-[#D4AF37]">
+                  {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(roiInput * 0.27)}
                 </div>
               </div>
+              <div>
+                <div className="text-sm text-gray-400 mb-2">Rentabilité</div>
+                <div className="text-3xl font-bold text-green-500">3.7 mois</div>
+              </div>
+              <div>
+                <div className="text-sm text-gray-400 mb-2">Valeur sur 5 ans</div>
+                <div className="text-3xl font-bold text-blue-500">
+                  {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(roiInput * 3.27)}
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-12">
+              <Link
+                to="/demo-mode"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black rounded-full text-lg font-semibold hover:bg-gray-100 transition-colors"
+              >
+                Commencer gratuitement
+                <ArrowRight className="w-5 h-5" />
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Neural Network Visualization */}
-      <section className="relative py-32 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-extralight mb-4">
-              <span className="text-white">AI That </span>
-              <span className="bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] bg-clip-text text-transparent">Learns</span>
-            </h2>
-            <p className="text-white/60">Neural network powered decision engine</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { icon: Zap, title: 'Predictive Analytics', desc: 'Forecast outcomes before they happen', delay: 0 },
-              { icon: Shield, title: 'Risk Detection', desc: 'Identify threats in milliseconds', delay: 100 },
-              { icon: Database, title: 'Pattern Recognition', desc: 'Learn from every decision', delay: 200 }
-            ].map((feature, index) => {
-              const Icon = feature.icon;
-              return (
-                <div
-                  key={index}
-                  className="group relative p-8 bg-white/[0.02] backdrop-blur-xl border border-white/10 hover:bg-white/[0.04] transition-all duration-300"
-                >
-                  <Icon className="relative w-8 h-8 mb-6 text-white/80" />
-                  <h3 className="relative text-lg font-light text-white mb-3">{feature.title}</h3>
-                  <p className="relative text-sm text-white/60 leading-relaxed">{feature.desc}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA - Apple Minimalist */}
-      <section className="relative py-32 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="relative p-16 bg-white/[0.02] backdrop-blur-2xl border border-white/10">
-            <h2 className="text-4xl md:text-5xl font-light mb-6">
-              <span className="text-white">Ready to transform?</span>
-            </h2>
-            <p className="text-white/60 mb-10 text-lg font-light">
-              Join 847 organizations using Powalyze
-            </p>
+      {/* Final CTA - Apple Style */}
+      <section className="py-32 px-6 bg-white text-center">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-5xl md:text-7xl font-semibold text-black mb-8 leading-tight">
+            Prêt à transformer<br />votre gouvernance ?
+          </h2>
+          <p className="text-xl text-gray-600 mb-12">
+            Rejoignez les 847 organisations qui pilotent leurs projets avec Powalyze.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/demo-mode"
-              className="inline-flex items-center gap-3 px-10 py-4 bg-white text-black font-medium hover:bg-white/90 transition-all"
+              className="px-10 py-4 bg-blue-600 text-white rounded-full text-lg font-semibold hover:bg-blue-700 transition-colors inline-flex items-center justify-center gap-2"
             >
-              Get started
+              Essayer gratuitement
               <ArrowRight className="w-5 h-5" />
+            </Link>
+            <Link
+              to="/contact"
+              className="px-10 py-4 border-2 border-blue-600 text-blue-600 rounded-full text-lg font-semibold hover:bg-blue-50 transition-colors"
+            >
+              Parler à un expert
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Minimal Footer */}
-      <footer className="relative border-t border-white/10 py-12 px-6">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="text-sm text-white/40">
-            © 2025 Powalyze · Engineered in Switzerland
+      {/* Footer - Apple Minimal */}
+      <footer className="border-t border-gray-200 py-12 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8 mb-12">
+            <div>
+              <h3 className="font-semibold text-black mb-4">Produit</h3>
+              <ul className="space-y-2 text-gray-600">
+                <li><a href="#features" className="hover:text-black transition-colors">Fonctionnalités</a></li>
+                <li><a href="#roi" className="hover:text-black transition-colors">Tarifs</a></li>
+                <li><Link to="/demo-mode" className="hover:text-black transition-colors">Démo</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-semibold text-black mb-4">Solutions</h3>
+              <ul className="space-y-2 text-gray-600">
+                <li><Link to="/solutions/pmo" className="hover:text-black transition-colors">PMO</Link></li>
+                <li><Link to="/solutions/executive" className="hover:text-black transition-colors">Direction</Link></li>
+                <li><Link to="/solutions/data" className="hover:text-black transition-colors">Data & BI</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-semibold text-black mb-4">Entreprise</h3>
+              <ul className="space-y-2 text-gray-600">
+                <li><Link to="/about" className="hover:text-black transition-colors">À propos</Link></li>
+                <li><Link to="/contact" className="hover:text-black transition-colors">Contact</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-semibold text-black mb-4">Légal</h3>
+              <ul className="space-y-2 text-gray-600">
+                <li><a href="#" className="hover:text-black transition-colors">Confidentialité</a></li>
+                <li><a href="#" className="hover:text-black transition-colors">CGU</a></li>
+              </ul>
+            </div>
           </div>
-          <div className="flex gap-6 text-sm text-white/40">
-            <a href="#" className="hover:text-white transition-colors">Privacy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms</a>
-            <a href="#" className="hover:text-white transition-colors">Contact</a>
+          <div className="pt-8 border-t border-gray-200 text-center text-gray-600 text-sm">
+            <p>© 2026 Powalyze. Tous droits réservés.</p>
           </div>
         </div>
       </footer>
+
     </div>
   );
 }
