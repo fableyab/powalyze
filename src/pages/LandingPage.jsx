@@ -80,82 +80,84 @@ export default function LandingPage() {
         </div>
       </nav>
 
-      {/* Hero - Ultra-Riche iTech Magnifique */}
-      <section className="relative pt-32 pb-24 px-6 overflow-hidden">
-        {/* Rich Tech Background */}
+      {/* Hero - Ultra-Tendance Noir Premium */}
+      <section className="relative pt-32 pb-24 px-6 overflow-hidden bg-black">
+        {/* Rich Dark Background */}
         <div className="absolute inset-0">
-          {/* Animated gradient mesh */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/5 via-transparent to-[#4A9EFF]/5"></div>
-          {/* Tech grid */}
-          <div className="absolute inset-0 opacity-[0.03]" style={{
+          {/* Gradient mesh noir */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/10 via-black to-[#4A9EFF]/10"></div>
+          {/* Tech grid lumineux */}
+          <div className="absolute inset-0 opacity-[0.08]" style={{
             backgroundImage: 'linear-gradient(#D4AF37 1px, transparent 1px), linear-gradient(90deg, #4A9EFF 1px, transparent 1px)',
             backgroundSize: '80px 80px'
           }}></div>
-          {/* Floating orbs */}
-          <div className="absolute top-20 left-20 w-96 h-96 bg-[#D4AF37]/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-20 w-96 h-96 bg-[#4A9EFF]/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+          {/* Floating orbs néon */}
+          <div className="absolute top-20 left-20 w-[600px] h-[600px] bg-[#D4AF37]/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-[600px] h-[600px] bg-[#4A9EFF]/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+          {/* Spotlight effect */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-white/5 to-transparent rounded-full"></div>
         </div>
 
         <div className="relative max-w-6xl mx-auto text-center">
-          {/* Badge Enterprise */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#D4AF37]/20 to-[#4A9EFF]/20 border border-[#D4AF37]/30 rounded-full mb-6 backdrop-blur-xl">
-            <div className="w-2 h-2 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] rounded-full animate-pulse"></div>
-            <span className="text-xs font-semibold bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] bg-clip-text text-transparent tracking-wider uppercase">
+          {/* Badge Enterprise Néon */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-black/60 border border-[#D4AF37]/40 rounded-full mb-6 backdrop-blur-xl shadow-lg shadow-[#D4AF37]/20">
+            <div className="w-2 h-2 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] rounded-full animate-pulse shadow-lg shadow-[#D4AF37]/50"></div>
+            <span className="text-xs font-bold bg-gradient-to-r from-[#D4AF37] via-white to-[#4A9EFF] bg-clip-text text-transparent tracking-wider uppercase">
               Enterprise-Grade Governance Platform
             </span>
           </div>
 
-          {/* One Line Positioning */}
+          {/* One Line Positioning Néon */}
           <div className="mb-8">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-none mb-6 bg-gradient-to-r from-[#D4AF37] via-[#4A9EFF] to-[#D4AF37] bg-clip-text text-transparent">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-none mb-6 bg-gradient-to-r from-[#D4AF37] via-white to-[#4A9EFF] bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(212,175,55,0.3)]">
               {dict.hero.title}
             </h1>
-            <p className="text-lg sm:text-xl font-medium bg-gradient-to-r from-[#D4AF37]/80 to-[#4A9EFF]/80 bg-clip-text text-transparent max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl font-semibold text-white/80 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
               {dict.hero.subtitle}
             </p>
           </div>
 
-          {/* CTAs Ultra-Riches */}
+          {/* CTAs Néon Ultra-Tendance */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
             <button
               onClick={() => navigate('/dashboard?demo=1')}
-              className="group relative px-8 py-4 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] text-white rounded-2xl font-bold text-base hover:shadow-2xl hover:shadow-[#D4AF37]/40 transition-all flex items-center gap-3 overflow-hidden"
+              className="group relative px-8 py-4 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] text-black rounded-2xl font-black text-base hover:shadow-2xl hover:shadow-[#D4AF37]/60 transition-all flex items-center gap-3 overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-[#4A9EFF] to-[#D4AF37] opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              <span className="relative">{dict.hero.primaryCTA}</span>
+              <span className="relative drop-shadow-lg">{dict.hero.primaryCTA}</span>
               <Play className="relative w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
             <button
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="group px-8 py-4 bg-gradient-to-r from-[#D4AF37]/10 to-[#4A9EFF]/10 border-2 border-[#D4AF37]/30 rounded-2xl font-bold text-base backdrop-blur-xl hover:border-[#4A9EFF]/50 transition-all"
+              className="group px-8 py-4 bg-black/80 border-2 border-[#D4AF37]/50 rounded-2xl font-black text-base backdrop-blur-xl hover:border-[#4A9EFF]/80 hover:shadow-xl hover:shadow-[#4A9EFF]/30 transition-all"
             >
-              <span className="bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#D4AF37] via-white to-[#4A9EFF] bg-clip-text text-transparent">
                 {dict.hero.secondaryCTA}
               </span>
             </button>
           </div>
 
-          {/* Stats Enterprise Ultra-Riches */}
+          {/* Stats Cards Néon Ultra-Tendance */}
           <div className="grid grid-cols-3 gap-6 max-w-3xl mx-auto pt-10">
             <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/20 to-[#4A9EFF]/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all"></div>
-              <div className="relative bg-white/50 backdrop-blur-xl rounded-2xl p-4 border border-[#D4AF37]/20">
-                <div className="text-3xl font-black bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] bg-clip-text text-transparent mb-1">327%</div>
-                <div className="text-xs font-semibold bg-gradient-to-r from-[#D4AF37]/60 to-[#4A9EFF]/60 bg-clip-text text-transparent">Average ROI</div>
+              <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/30 to-[#4A9EFF]/30 rounded-2xl blur-xl group-hover:blur-2xl transition-all"></div>
+              <div className="relative bg-black/70 backdrop-blur-xl rounded-2xl p-4 border border-[#D4AF37]/40 shadow-xl shadow-[#D4AF37]/20 hover:shadow-2xl hover:shadow-[#D4AF37]/30 transition-all">
+                <div className="text-3xl font-black bg-gradient-to-r from-[#D4AF37] via-white to-[#4A9EFF] bg-clip-text text-transparent mb-1 drop-shadow-[0_0_15px_rgba(212,175,55,0.5)]">327%</div>
+                <div className="text-xs font-bold text-white/70">Average ROI</div>
               </div>
             </div>
             <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#4A9EFF]/20 to-[#D4AF37]/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all"></div>
-              <div className="relative bg-white/50 backdrop-blur-xl rounded-2xl p-4 border border-[#4A9EFF]/20">
-                <div className="text-3xl font-black bg-gradient-to-r from-[#4A9EFF] to-[#D4AF37] bg-clip-text text-transparent mb-1">3.7M</div>
-                <div className="text-xs font-semibold bg-gradient-to-r from-[#4A9EFF]/60 to-[#D4AF37]/60 bg-clip-text text-transparent">Months to Value</div>
+              <div className="absolute inset-0 bg-gradient-to-br from-[#4A9EFF]/30 to-[#D4AF37]/30 rounded-2xl blur-xl group-hover:blur-2xl transition-all"></div>
+              <div className="relative bg-black/70 backdrop-blur-xl rounded-2xl p-4 border border-[#4A9EFF]/40 shadow-xl shadow-[#4A9EFF]/20 hover:shadow-2xl hover:shadow-[#4A9EFF]/30 transition-all">
+                <div className="text-3xl font-black bg-gradient-to-r from-[#4A9EFF] via-white to-[#D4AF37] bg-clip-text text-transparent mb-1 drop-shadow-[0_0_15px_rgba(74,158,255,0.5)]">3.7M</div>
+                <div className="text-xs font-bold text-white/70">Months to Value</div>
               </div>
             </div>
             <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/20 to-[#4A9EFF]/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all"></div>
-              <div className="relative bg-white/50 backdrop-blur-xl rounded-2xl p-4 border border-[#D4AF37]/20">
-                <div className="text-3xl font-black bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] bg-clip-text text-transparent mb-1">99.9%</div>
-                <div className="text-xs font-semibold bg-gradient-to-r from-[#D4AF37]/60 to-[#4A9EFF]/60 bg-clip-text text-transparent">Uptime SLA</div>
+              <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/30 to-[#4A9EFF]/30 rounded-2xl blur-xl group-hover:blur-2xl transition-all"></div>
+              <div className="relative bg-black/70 backdrop-blur-xl rounded-2xl p-4 border border-white/20 shadow-xl shadow-white/10 hover:shadow-2xl hover:shadow-white/20 transition-all">
+                <div className="text-3xl font-black text-white mb-1 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]">99.9%</div>
+                <div className="text-xs font-bold text-white/70">Uptime SLA</div>
               </div>
             </div>
           </div>
