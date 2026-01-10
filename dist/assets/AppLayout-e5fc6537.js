@@ -1,1 +1,0 @@
-import{j as a,b6 as s}from"./index-5cd25306.js";const t=()=>a.jsx("main",{className:"flex-1 overflow-y-auto bg-black min-h-screen",children:a.jsx("div",{className:"max-w-7xl mx-auto p-6 md:p-8",children:a.jsx(s,{})})});export{t as default};

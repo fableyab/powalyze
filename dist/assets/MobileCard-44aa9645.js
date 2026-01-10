@@ -1,1 +1,0 @@
-import{j as t}from"./index-5cd25306.js";const e=({children:o,className:r="",onClick:s})=>t.jsx("div",{className:`bg-white rounded-xl shadow-sm p-4 mb-4 ${s?"cursor-pointer hover:shadow-md transition-shadow":""} ${r}`,onClick:s,children:o});export{e as M};
