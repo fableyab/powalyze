@@ -1,86 +1,166 @@
 {
   "nav": {
-    "experience": "Experience",
+    "forWho": "For Who",
     "product": "Product",
-    "modules": "Modules",
-    "pricing": "Pricing",
+    "scenarios": "Scenarios",
     "login": "Login"
   },
   "hero": {
-    "brand": "Powalyze",
-    "subtitle": "The Governance Operating System.",
-    "text": "Clarity for boards, executives, and PMO. One live layer for every strategic decision.",
-    "primary": "Enter the Experience",
-    "secondary": "Watch the live scenario"
+    "tagline": "Powalyze — The Governance Operating System for PMO and Data-Driven Leaders",
+    "title": "The operating system for your governance, PMO, and Data.",
+    "subtitle": "Align projects, decisions, and data in one living space — without multiplying tools, slides, and Excel files.",
+    "line1": "A single view for your portfolio, committees, KPIs, and risks.",
+    "line2": "Built for PMOs, data leaders, and executives who refuse noise.",
+    "primaryCTA": "Watch the 7-minute demo",
+    "secondaryCTA": "Book a live session",
+    "reassurance": "Used to structure committees, portfolios, and transformations in demanding organizations."
   },
-  "product": {
-    "title": "From noise to clarity.",
-    "text1": "Powalyze turns scattered data, projects, and slides",
-    "text2": "into one living governance layer.",
-    "text3": "Every decision starts from the same shared reality.",
-    "bullets": {
-      "oneTruth": "One pane of truth: projects, KPIs, risks, strategy.",
-      "alwaysLive": "Always live: no more frozen slides.",
-      "forLeaders": "Designed for leaders: built around real executive rituals."
+  "forWho": {
+    "title": "Who is Powalyze for?",
+    "subtitle": "Three roles. One operating system.",
+    "pmo": {
+      "title": "PMO & Portfolio Managers",
+      "line1": "An OS for your committees, trade-offs, and action plans.",
+      "line2": "No more remaking slides before every meeting."
+    },
+    "data": {
+      "title": "Data & Analytics / Power BI Leaders",
+      "line1": "A governance layer on top of your Power BI models.",
+      "line2": "Your numbers become decisions, not just files."
+    },
+    "direction": {
+      "title": "Executives / COMEX / CIO",
+      "line1": "A simple, stable, shared view.",
+      "line2": "Always the same narrative, regardless of the underlying tool."
     }
   },
-  "modules": {
-    "title": "Modules as living vitrines.",
-    "subtitle": "Each layer of Powalyze is crafted as a focused experience, not just another screen.",
-    "governance": {
-      "title": "Governance",
-      "description": "Run boards and committees from a single live space."
+  "replaces": {
+    "title": "What Powalyze replaces, concretely.",
+    "before": {
+      "title": "Before Powalyze",
+      "items": [
+        "12 Excel files in parallel",
+        "4 versions of the same KPI",
+        "20 slides per committee",
+        "Endless email threads",
+        "Project status hidden in chat"
+      ]
     },
-    "projects": {
-      "title": "Projects",
-      "description": "See every strategic initiative in context."
+    "with": {
+      "title": "With Powalyze",
+      "items": [
+        "One space for decisions",
+        "A living feed of commitments",
+        "Consolidated view of projects and KPIs",
+        "Power BI connected to governance",
+        "Every decision leaves a trace"
+      ]
     },
-    "kpis": {
-      "title": "KPIs",
-      "description": "Read the pulse of your portfolio in seconds."
-    },
-    "strategy": {
-      "title": "Strategy",
-      "description": "Connect your roadmap to measurable outcomes."
+    "result": {
+      "title": "Result",
+      "items": [
+        "Less preparation, more decisions",
+        "A coherent narrative, meeting after meeting",
+        "Committees that actually govern",
+        "ROI visible in 3.7 months",
+        "94.7% success rate"
+      ]
     }
   },
-  "howItWorks": {
-    "title": "Your governance layer, live.",
-    "steps": {
-      "one": {
-        "title": "Onboard",
-        "text": "Connect projects, KPIs, and rituals. Powalyze adapts to you."
-      },
-      "two": {
-        "title": "Orchestrate",
-        "text": "Boards, portfolios, decisions — all in one place."
-      },
-      "three": {
-        "title": "Decide",
-        "text": "Decisions with context, traceability, and alignment."
-      }
+  "demo": {
+    "title": "How Powalyze works",
+    "subtitle": "Four layers. One OS.",
+    "scene1": {
+      "tag": "Scene 1",
+      "title": "Portfolio View",
+      "text": "Visualize all your strategic projects as a living portfolio. Priorities, capacities, risks, and impacts in one view.",
+      "features": [
+        "Strategic alignment at a glance",
+        "Real-time portfolio health",
+        "Resource and capacity planning",
+        "Risk and dependency mapping"
+      ]
+    },
+    "scene2": {
+      "tag": "Scene 2",
+      "title": "Live Committee",
+      "text": "Run your committee directly in Powalyze. Agenda, decisions, action plans, and follow-up in the same place.",
+      "features": [
+        "Interactive agenda with embedded context",
+        "Decision log with accountability",
+        "Action items tracked automatically",
+        "Meeting-to-meeting continuity"
+      ]
+    },
+    "scene3": {
+      "tag": "Scene 3",
+      "title": "KPIs & Data Layer",
+      "text": "Connect your sources (Power BI, data warehouse...). Numbers integrate with your decisions, not separate reports.",
+      "features": [
+        "Power BI dashboards embedded",
+        "KPIs linked to projects and risks",
+        "Real-time data synchronization",
+        "From metrics to actions instantly"
+      ]
+    },
+    "scene4": {
+      "tag": "Scene 4",
+      "title": "Trace and Governance",
+      "text": "Every decision leaves a trace. You can revisit trade-offs, commitments, and risks.",
+      "features": [
+        "Full audit trail of decisions",
+        "Version history for every change",
+        "Compliance-ready documentation",
+        "Historical context always accessible"
+      ]
     }
+  },
+  "integrations": {
+    "title": "Powalyze on top of your data and existing tools.",
+    "subtitle": "Powalyze doesn't replace your technical bricks. It aligns them in a governance framework: PMO, Data, IT, business.",
+    "items": [
+      "Connect your Power BI models and existing dashboards",
+      "Align projects, KPIs, and risks in a governance view",
+      "Keep your operational tools (Jira, DevOps...), but clarify the decision layer"
+    ],
+    "tagline": "One layer to rule them all, without replacing anything."
   },
   "scenarios": {
-    "title": "Built for real executive moments.",
-    "board": "Walk in with a live OS, not twenty dead slides.",
-    "pmo": "Less slide-making, more decision-making.",
-    "transformation": "From intent to measurable outcomes."
+    "title": "Moments of truth: PMO / Board / IT",
+    "scenario1": {
+      "title": "Portfolio Committee",
+      "text": "You arrive with Powalyze, not 4 different files. Everyone looks at the same view. Every trade-off translates into actions and portfolio updates."
+    },
+    "scenario2": {
+      "title": "Data & KPIs Review",
+      "text": "Your KPIs don't just live in Power BI anymore. They're connected to decisions, risks, and action plans. Data becomes governance."
+    },
+    "scenario3": {
+      "title": "CIO / Transformation Steering",
+      "text": "Projects, capacities, risks, dependencies: everything is visible. The COMEX no longer consumes slides, but a living OS."
+    }
   },
-  "proof": {
-    "title": "For leaders who refuse noise.",
-    "text": "Powalyze was designed for organizations where governance is not a formality, but the operating system of strategy, risk, and execution."
+  "finalCTA": {
+    "title": "From a collection of tools to a governance OS.",
+    "subtitle": "You already have enough tools. What's missing is a space to align projects, data, and decisions.",
+    "primaryBtn": "Watch the 7-minute demo",
+    "secondaryBtn": "Book a session with a human",
+    "footer": "No credit card required. No sales pressure. Just clarity."
   },
-  "cta": {
-    "title": "Enter the OS.",
-    "text1": "Powalyze is not a tool.",
-    "text2": "It's the governance layer your organization was missing.",
-    "primary": "Start the experience",
-    "secondary": "Book a live session"
-  },
-  "dashboard": {
-    "title": "Dashboard",
-    "welcome": "Welcome to your governance OS.",
-    "enterExperience": "Back to the experience"
+  "footer": {
+    "tagline": "The governance operating system for PMO and data-driven leaders.",
+    "product": {
+      "title": "Product",
+      "links": ["Features", "Integrations", "Demo", "Pricing"]
+    },
+    "company": {
+      "title": "Company",
+      "links": ["About", "Contact", "Careers"]
+    },
+    "legal": {
+      "title": "Legal",
+      "links": ["Privacy", "Terms", "Security"]
+    },
+    "copyright": "Swiss precision meets Silicon Valley ambition."
   }
 }

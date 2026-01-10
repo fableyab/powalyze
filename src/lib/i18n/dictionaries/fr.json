@@ -1,86 +1,166 @@
 {
   "nav": {
-    "experience": "Expérience",
+    "forWho": "Pour qui",
     "product": "Produit",
-    "modules": "Modules",
-    "pricing": "Tarifs",
+    "scenarios": "Scénarios",
     "login": "Connexion"
   },
   "hero": {
-    "brand": "Powalyze",
-    "subtitle": "Le Système d'Exploitation de la Gouvernance.",
-    "text": "La clarté pour les conseils, les dirigeants et le PMO. Une couche vivante pour chaque décision stratégique.",
-    "primary": "Entrer dans l'Expérience",
-    "secondary": "Voir le scénario en direct"
+    "tagline": "Powalyze — Le Système d'Exploitation de la Gouvernance pour Dirigeants PMO et Data",
+    "title": "Le système d'exploitation de votre gouvernance, PMO et Data.",
+    "subtitle": "Alignez projets, décisions et données dans un seul espace vivant — sans multiplier les outils, slides et fichiers Excel.",
+    "line1": "Une vue unique pour votre portefeuille, vos comités, vos KPIs et vos risques.",
+    "line2": "Conçu pour les PMO, data leaders et dirigeants qui refusent le bruit.",
+    "primaryCTA": "Voir la démo en 7 minutes",
+    "secondaryCTA": "Réserver une session live",
+    "reassurance": "Utilisé pour structurer comités, portefeuilles et transformations dans des organisations exigeantes."
   },
-  "product": {
-    "title": "Du bruit à la clarté.",
-    "text1": "Powalyze transforme données, projets et slides dispersés",
-    "text2": "en une seule couche de gouvernance vivante.",
-    "text3": "Chaque décision part enfin de la même réalité partagée.",
-    "bullets": {
-      "oneTruth": "Une seule source de vérité : projets, KPIs, risques, stratégie.",
-      "alwaysLive": "Toujours à jour : fini les slides figées.",
-      "forLeaders": "Pensé pour les dirigeants : conçu autour des rituels exécutifs."
+  "forWho": {
+    "title": "À qui s'adresse Powalyze ?",
+    "subtitle": "Trois rôles. Un seul système d'exploitation.",
+    "pmo": {
+      "title": "PMO & Portfolio Managers",
+      "line1": "Un OS pour vos comités, vos arbitrages et vos plans d'actions.",
+      "line2": "Fini les slides à refaire avant chaque réunion."
+    },
+    "data": {
+      "title": "Data & Analytics / Responsables Power BI",
+      "line1": "Une vitrine de gouvernance au-dessus de vos modèles Power BI.",
+      "line2": "Vos chiffres deviennent des décisions, pas des fichiers."
+    },
+    "direction": {
+      "title": "Direction / COMEX / DSI",
+      "line1": "Une vue simple, stable, partagée.",
+      "line2": "Toujours le même récit, quel que soit l'outil sous-jacent."
     }
   },
-  "modules": {
-    "title": "Des modules comme des vitrines vivantes.",
-    "subtitle": "Chaque couche de Powalyze est conçue comme une expérience ciblée, pas un écran de plus.",
-    "governance": {
-      "title": "Gouvernance",
-      "description": "Conduisez conseils et comités depuis un espace unique et vivant."
+  "replaces": {
+    "title": "Ce que Powalyze remplace, concrètement.",
+    "before": {
+      "title": "Avant Powalyze",
+      "items": [
+        "12 fichiers Excel en parallèle",
+        "4 versions d'un même KPI",
+        "20 slides par comité",
+        "Des fils d'emails sans fin",
+        "L'état des projets caché dans le chat"
+      ]
     },
-    "projects": {
-      "title": "Projets",
-      "description": "Voyez chaque initiative stratégique dans son contexte réel."
+    "with": {
+      "title": "Avec Powalyze",
+      "items": [
+        "Un seul espace pour les décisions",
+        "Un fil vivant des engagements",
+        "Vue consolidée des projets et KPIs",
+        "Power BI connecté à la gouvernance",
+        "Chaque décision laisse une trace"
+      ]
     },
-    "kpis": {
-      "title": "KPIs",
-      "description": "Prenez le pouls de votre portefeuille en quelques secondes."
-    },
-    "strategy": {
-      "title": "Stratégie",
-      "description": "Reliez votre vision à des résultats mesurables."
+    "result": {
+      "title": "Résultat",
+      "items": [
+        "Moins de préparation, plus de décisions",
+        "Un récit cohérent, réunion après réunion",
+        "Des comités qui gouvernent vraiment",
+        "ROI visible en 3,7 mois",
+        "94,7% de taux de succès"
+      ]
     }
   },
-  "howItWorks": {
-    "title": "Votre couche de gouvernance, vivante.",
-    "steps": {
-      "one": {
-        "title": "Onboard",
-        "text": "Connectez projets, KPIs et rituels. Powalyze s'adapte à vous."
-      },
-      "two": {
-        "title": "Orchestrez",
-        "text": "Comités, portefeuilles, décisions : tout dans un seul espace."
-      },
-      "three": {
-        "title": "Décidez",
-        "text": "Des décisions avec contexte, traçabilité et alignement."
-      }
+  "demo": {
+    "title": "Comment fonctionne Powalyze",
+    "subtitle": "Quatre couches. Un seul OS.",
+    "scene1": {
+      "tag": "Scène 1",
+      "title": "Vue Portefeuille",
+      "text": "Visualisez tous vos projets stratégiques comme un portefeuille vivant. Priorités, capacités, risques et impacts dans une seule vue.",
+      "features": [
+        "Alignement stratégique d'un coup d'œil",
+        "Santé du portefeuille en temps réel",
+        "Planification des ressources et capacités",
+        "Cartographie des risques et dépendances"
+      ]
+    },
+    "scene2": {
+      "tag": "Scène 2",
+      "title": "Comité en direct",
+      "text": "Conduisez votre comité directement dans Powalyze. Ordre du jour, décisions, plans d'action et suivi au même endroit.",
+      "features": [
+        "Agenda interactif avec contexte intégré",
+        "Journal de décisions avec responsabilités",
+        "Actions suivies automatiquement",
+        "Continuité de réunion en réunion"
+      ]
+    },
+    "scene3": {
+      "tag": "Scène 3",
+      "title": "KPIs & Couche Data",
+      "text": "Connectez vos sources (Power BI, entrepôt de données...). Les chiffres s'intègrent à vos décisions, pas à des reportings à part.",
+      "features": [
+        "Tableaux de bord Power BI intégrés",
+        "KPIs reliés aux projets et risques",
+        "Synchronisation des données en temps réel",
+        "Des métriques aux actions instantanément"
+      ]
+    },
+    "scene4": {
+      "tag": "Scène 4",
+      "title": "Trace et Gouvernance",
+      "text": "Chaque décision laisse une trace. Vous pouvez revenir sur les arbitrages, les engagements, les risques.",
+      "features": [
+        "Trace d'audit complète des décisions",
+        "Historique des versions pour chaque changement",
+        "Documentation prête pour la conformité",
+        "Contexte historique toujours accessible"
+      ]
     }
+  },
+  "integrations": {
+    "title": "Powalyze au-dessus de vos données et de vos outils existants.",
+    "subtitle": "Powalyze ne remplace pas vos briques techniques. Il les aligne dans un cadre de gouvernance : PMO, Data, IT, métiers.",
+    "items": [
+      "Connecter vos modèles Power BI et vos tableaux de bord existants",
+      "Aligner projets, KPIs et risques dans une vue de gouvernance",
+      "Conserver vos outils opérationnels (Jira, DevOps...), mais clarifier la surcouche décisionnelle"
+    ],
+    "tagline": "Une couche pour les gouverner tous, sans rien remplacer."
   },
   "scenarios": {
-    "title": "Conçu pour les vrais moments exécutifs.",
-    "board": "Entrez avec un OS vivant, pas vingt slides mortes.",
-    "pmo": "Moins de slides, plus de décisions.",
-    "transformation": "De l'intention aux résultats mesurables."
+    "title": "Moments de vérité : PMO / Board / IT",
+    "scenario1": {
+      "title": "Comité de portefeuille",
+      "text": "Vous arrivez avec Powalyze, pas avec 4 fichiers différents. Tout le monde regarde la même vue. Chaque arbitrage se traduit en actions et en updates de portefeuille."
+    },
+    "scenario2": {
+      "title": "Revue Data & KPIs",
+      "text": "Vos KPIs ne vivent plus dans Power BI uniquement. Ils sont reliés à des décisions, des risques, des plans d'action. La data devient gouvernance."
+    },
+    "scenario3": {
+      "title": "Pilotage DSI / Transformation",
+      "text": "Projets, capacités, risques, dépendances : tout est visible. Le COMEX ne consomme plus des slides, mais un OS vivant."
+    }
   },
-  "proof": {
-    "title": "Pour les dirigeants qui refusent le bruit.",
-    "text": "Powalyze est pensé pour les organisations où la gouvernance n'est pas une formalité, mais le système d'exploitation de la stratégie, du risque et de l'exécution."
+  "finalCTA": {
+    "title": "Passez d'une collection d'outils à un OS de gouvernance.",
+    "subtitle": "Vous avez déjà assez d'outils. Ce qui manque, c'est un espace pour aligner projets, données et décisions.",
+    "primaryBtn": "Voir la démo en 7 minutes",
+    "secondaryBtn": "Réserver une session avec un humain",
+    "footer": "Pas de carte de crédit requise. Pas de pression commerciale. Juste de la clarté."
   },
-  "cta": {
-    "title": "Entrez dans l'OS.",
-    "text1": "Powalyze n'est pas un outil.",
-    "text2": "C'est la couche de gouvernance qui manquait à votre organisation.",
-    "primary": "Commencer l'expérience",
-    "secondary": "Réserver une session"
-  },
-  "dashboard": {
-    "title": "Tableau de bord",
-    "welcome": "Bienvenue dans votre OS de gouvernance.",
-    "enterExperience": "Retour à l'expérience"
+  "footer": {
+    "tagline": "Le système d'exploitation de la gouvernance pour dirigeants PMO et data.",
+    "product": {
+      "title": "Produit",
+      "links": ["Fonctionnalités", "Intégrations", "Démo", "Tarifs"]
+    },
+    "company": {
+      "title": "Entreprise",
+      "links": ["À propos", "Contact", "Carrières"]
+    },
+    "legal": {
+      "title": "Légal",
+      "links": ["Confidentialité", "Conditions", "Sécurité"]
+    },
+    "copyright": "La précision suisse rencontre l'ambition de la Silicon Valley."
   }
 }

@@ -1,86 +1,166 @@
 {
   "nav": {
-    "experience": "Opplevelse",
+    "forWho": "For hvem",
     "product": "Produkt",
-    "modules": "Moduler",
-    "pricing": "Priser",
-    "login": "Innlogging"
+    "scenarios": "Scenarier",
+    "login": "Logg inn"
   },
   "hero": {
-    "brand": "Powalyze",
-    "subtitle": "Styringens operativsystem.",
-    "text": "Klarhet for styrer, ledere og PMO. Ett levende lag for hver strategiske beslutning.",
-    "primary": "Gå inn i opplevelsen",
-    "secondary": "Se det direkte scenariet"
+    "tagline": "Powalyze — Styringens operativsystem for PMO- og datadrevne ledere",
+    "title": "Operativsystemet for din styring, PMO og Data.",
+    "subtitle": "Samordne prosjekter, beslutninger og data i ett levende rom — uten å multiplisere verktøy, presentasjoner og Excel-filer.",
+    "line1": "Én visning for din portefølje, dine komitéer, dine KPIer og dine risikoer.",
+    "line2": "Bygget for PMO-er, dataledere og ledere som nekter støy.",
+    "primaryCTA": "Se 7-minutters demo",
+    "secondaryCTA": "Bestill en live-sesjon",
+    "reassurance": "Brukes til å strukturere komitéer, porteføljer og transformasjoner i krevende organisasjoner."
   },
-  "product": {
-    "title": "Fra støy til klarhet.",
-    "text1": "Powalyze gjør spredte data, prosjekter og presentasjoner",
-    "text2": "om til ett levende styringslag.",
-    "text3": "Hver beslutning starter fra samme delte virkelighet.",
-    "bullets": {
-      "oneTruth": "Én sannhetskilde: prosjekter, KPIer, risiko, strategi.",
-      "alwaysLive": "Alltid levende: ingen utdaterte slides.",
-      "forLeaders": "Designet for ledere: bygget rundt ekte lederritualer."
+  "forWho": {
+    "title": "Hvem er Powalyze for?",
+    "subtitle": "Tre roller. Ett operativsystem.",
+    "pmo": {
+      "title": "PMO & Porteføljeledere",
+      "line1": "Et OS for dine komitéer, dine avveininger og dine handlingsplaner.",
+      "line2": "Slutt på å lage presentasjoner på nytt før hvert møte."
+    },
+    "data": {
+      "title": "Data & Analytics / Power BI-ledere",
+      "line1": "Et styringslag over Power BI-modellene dine.",
+      "line2": "Tallene dine blir beslutninger, ikke bare filer."
+    },
+    "direction": {
+      "title": "Ledelse / COMEX / CIO",
+      "line1": "En enkel, stabil, delt visning.",
+      "line2": "Alltid samme fortelling, uavhengig av underliggende verktøy."
     }
   },
-  "modules": {
-    "title": "Moduler som levende vindusutstillinger.",
-    "subtitle": "Hvert lag i Powalyze er utformet som en fokusert opplevelse, ikke bare en ny skjerm.",
-    "governance": {
-      "title": "Governance",
-      "description": "Kjør styrer og komiteer fra ett levende rom."
+  "replaces": {
+    "title": "Hva Powalyze erstatter, konkret.",
+    "before": {
+      "title": "Før Powalyze",
+      "items": [
+        "12 Excel-filer parallelt",
+        "4 versjoner av samme KPI",
+        "20 lysbilder per komité",
+        "Endeløse e-posttråder",
+        "Prosjektstatus skjult i chat"
+      ]
     },
-    "projects": {
-      "title": "Prosjekter",
-      "description": "Se hver strategiske initiativ i riktig kontekst."
+    "with": {
+      "title": "Med Powalyze",
+      "items": [
+        "Ett rom for beslutninger",
+        "En levende feed av forpliktelser",
+        "Konsolidert visning av prosjekter og KPI-er",
+        "Power BI koblet til styring",
+        "Hver beslutning etterlater et spor"
+      ]
     },
-    "kpis": {
-      "title": "KPIer",
-      "description": "Les porteføljens puls på sekunder."
-    },
-    "strategy": {
-      "title": "Strategi",
-      "description": "Koble veikartet ditt til målbare resultater."
+    "result": {
+      "title": "Resultat",
+      "items": [
+        "Mindre forberedelse, flere beslutninger",
+        "En sammenhengende fortelling, møte etter møte",
+        "Komitéer som faktisk styrer",
+        "ROI synlig på 3,7 måneder",
+        "94,7% suksessrate"
+      ]
     }
   },
-  "howItWorks": {
-    "title": "Ditt styringslag, levende.",
-    "steps": {
-      "one": {
-        "title": "Onboard",
-        "text": "Koble prosjekter, KPIer og ritualer. Powalyze tilpasser seg deg."
-      },
-      "two": {
-        "title": "Orkestrer",
-        "text": "Styrer, porteføljer, beslutninger – alt på ett sted."
-      },
-      "three": {
-        "title": "Beslutninger",
-        "text": "Avgjørelser med kontekst, sporbarhet og samsvar."
-      }
+  "demo": {
+    "title": "Hvordan Powalyze fungerer",
+    "subtitle": "Fire lag. Ett OS.",
+    "scene1": {
+      "tag": "Scene 1",
+      "title": "Porteføljevisning",
+      "text": "Visualiser alle strategiske prosjekter som en levende portefølje. Prioriteter, kapasiteter, risikoer og påvirkninger i én visning.",
+      "features": [
+        "Strategisk justering med ett blikk",
+        "Sanntids porteføljehelse",
+        "Ressurs- og kapasitetsplanlegging",
+        "Kartlegging av risiko og avhengigheter"
+      ]
+    },
+    "scene2": {
+      "tag": "Scene 2",
+      "title": "Live-komité",
+      "text": "Kjør komiteen din direkte i Powalyze. Dagsorden, beslutninger, handlingsplaner og oppfølging på samme sted.",
+      "features": [
+        "Interaktiv dagsorden med innebygd kontekst",
+        "Beslutningslogg med ansvar",
+        "Handlingselementer sporet automatisk",
+        "Kontinuitet fra møte til møte"
+      ]
+    },
+    "scene3": {
+      "tag": "Scene 3",
+      "title": "KPI-er & Datalag",
+      "text": "Koble dine kilder (Power BI, datalager...). Tall integreres med beslutningene dine, ikke separate rapporter.",
+      "features": [
+        "Power BI-dashboards innebygd",
+        "KPI-er koblet til prosjekter og risikoer",
+        "Sanntids datasynkronisering",
+        "Fra målinger til handlinger øyeblikkelig"
+      ]
+    },
+    "scene4": {
+      "tag": "Scene 4",
+      "title": "Spor og styring",
+      "text": "Hver beslutning etterlater et spor. Du kan gå tilbake på avveininger, forpliktelser og risikoer.",
+      "features": [
+        "Fullstendig revisjonsspor av beslutninger",
+        "Versjonshistorikk for hver endring",
+        "Compliance-klar dokumentasjon",
+        "Historisk kontekst alltid tilgjengelig"
+      ]
     }
+  },
+  "integrations": {
+    "title": "Powalyze over dine data og eksisterende verktøy.",
+    "subtitle": "Powalyze erstatter ikke dine tekniske byggeklosser. Det justerer dem i en styringsramme: PMO, Data, IT, virksomhet.",
+    "items": [
+      "Koble dine Power BI-modeller og eksisterende dashboards",
+      "Juster prosjekter, KPI-er og risikoer i en styringsvisning",
+      "Behold dine operative verktøy (Jira, DevOps...), men tydeliggjør beslutningslaget"
+    ],
+    "tagline": "Ett lag for å styre dem alle, uten å erstatte noe."
   },
   "scenarios": {
-    "title": "Bygget for ekte lederøyeblikk.",
-    "board": "Gå inn med et levende OS, ikke tjue døde slides.",
-    "pmo": "Mindre slide-produksjon, flere beslutninger.",
-    "transformation": "Fra intensjon til målbare resultater."
+    "title": "Sannhetens øyeblikk: PMO / Styre / IT",
+    "scenario1": {
+      "title": "Porteføljekomité",
+      "text": "Du ankommer med Powalyze, ikke med 4 forskjellige filer. Alle ser på samme visning. Hver avveining oversettes til handlinger og porteføljeoppdateringer."
+    },
+    "scenario2": {
+      "title": "Data & KPI-gjennomgang",
+      "text": "KPI-ene dine lever ikke lenger bare i Power BI. De er koblet til beslutninger, risikoer og handlingsplaner. Data blir styring."
+    },
+    "scenario3": {
+      "title": "CIO / Transformasjonsstyring",
+      "text": "Prosjekter, kapasiteter, risikoer, avhengigheter: alt er synlig. COMEX konsumerer ikke lysbilder lenger, men et levende OS."
+    }
   },
-  "proof": {
-    "title": "For ledere som nekter støy.",
-    "text": "Powalyze er laget for organisasjoner der styring ikke er en formalitet, men operativsystemet for strategi, risiko og gjennomføring."
+  "finalCTA": {
+    "title": "Fra en samling verktøy til et styrings-OS.",
+    "subtitle": "Du har allerede nok verktøy. Det som mangler er et rom for å justere prosjekter, data og beslutninger.",
+    "primaryBtn": "Se 7-minutters demo",
+    "secondaryBtn": "Bestill en sesjon med et menneske",
+    "footer": "Ingen kredittkort påkrevd. Inget salgstrykk. Bare klarhet."
   },
-  "cta": {
-    "title": "Gå inn i OS-et.",
-    "text1": "Powalyze er ikke et verktøy.",
-    "text2": "Det er styringslaget organisasjonen din manglet.",
-    "primary": "Start opplevelsen",
-    "secondary": "Book en live-sesjon"
-  },
-  "dashboard": {
-    "title": "Dashboard",
-    "welcome": "Velkommen til ditt styrings-OS.",
-    "enterExperience": "Tilbake til opplevelsen"
+  "footer": {
+    "tagline": "Styringens operativsystem for PMO- og datadrevne ledere.",
+    "product": {
+      "title": "Produkt",
+      "links": ["Funksjoner", "Integrasjoner", "Demo", "Priser"]
+    },
+    "company": {
+      "title": "Selskap",
+      "links": ["Om oss", "Kontakt", "Karriere"]
+    },
+    "legal": {
+      "title": "Juridisk",
+      "links": ["Personvern", "Vilkår", "Sikkerhet"]
+    },
+    "copyright": "Sveitsisk presisjon møter Silicon Valley-ambisjon."
   }
 }

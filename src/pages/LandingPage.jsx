@@ -1,74 +1,56 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowRight, Play, Sparkles, TrendingUp, Clock, Shield, Globe } from 'lucide-react';
+import { Play, Check, TrendingUp, Users, Database, GitBranch, BarChart3, FileText, Zap, Globe, Sparkles } from 'lucide-react';
 import { useDictionary } from '@/lib/i18n/useDictionary';
 import { locales, localeNames } from '@/lib/i18n/config';
 
 export default function LandingPage() {
   const navigate = useNavigate();
   const { dict, locale, setLocale, loading } = useDictionary();
-  const [isExperienceStarted, setIsExperienceStarted] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [showLangMenu, setShowLangMenu] = useState(false);
-  const heroRef = useRef(null);
 
   if (loading || !dict) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="min-h-screen bg-white flex items-center justify-center">
         <Sparkles className="w-12 h-12 text-[#D4AF37] animate-pulse" />
       </div>
     );
   }
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrolled = window.scrollY;
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      setScrollProgress(scrolled / maxScroll);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const handleEnterExperience = () => {
-    setIsExperienceStarted(true);
-    setTimeout(() => {
-      const element = document.getElementById('experience-modules');
-      element?.scrollIntoView({ behavior: 'smooth' });
-    }, 1500);
-  };
-
   return (
-    <div className="relative bg-black text-white overflow-x-hidden">
+    <div className="relative bg-white text-black overflow-x-hidden">
       
-      {/* Navigation - Ultra minimal + Language Selector */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-2xl border-b border-white/5">
+      {/* Navigation Apple-like */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-2xl border-b border-black/10">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-16">
-            <div className="text-xl font-light tracking-wider">
-              <span className="text-[#D4AF37]">POW</span>
-              <span className="text-white">ALYZE</span>
+            <div className="text-xl font-semibold tracking-tight">
+              <span className="bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] bg-clip-text text-transparent">
+                Powalyze
+              </span>
             </div>
-            <div className="flex items-center gap-6">
-              <a href="#modules" className="hidden sm:block text-sm text-white/60 hover:text-white transition-colors">
-                {dict.nav.modules}
+            <div className="flex items-center gap-8">
+              <a href="#for-who" className="hidden sm:block text-sm text-black/60 hover:text-black transition-colors">
+                {dict.nav.forWho}
               </a>
-              <a href="#product" className="hidden sm:block text-sm text-white/60 hover:text-white transition-colors">
+              <a href="#product" className="hidden sm:block text-sm text-black/60 hover:text-black transition-colors">
                 {dict.nav.product}
+              </a>
+              <a href="#scenarios" className="hidden sm:block text-sm text-black/60 hover:text-black transition-colors">
+                {dict.nav.scenarios}
               </a>
               
               {/* Language Selector */}
               <div className="relative">
                 <button
                   onClick={() => setShowLangMenu(!showLangMenu)}
-                  className="flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs text-white/80 hover:bg-white/10 transition-colors"
+                  className="flex items-center gap-2 px-3 py-1.5 bg-black/5 border border-black/10 rounded-full text-xs text-black/70 hover:bg-black/10 transition-colors"
                 >
                   <Globe className="w-3.5 h-3.5" />
-                  <span className="uppercase">{locale}</span>
+                  <span className="uppercase font-medium">{locale}</span>
                 </button>
                 {showLangMenu && (
-                  <div className="absolute right-0 top-full mt-2 bg-black/90 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+                  <div className="absolute right-0 top-full mt-2 bg-white/95 backdrop-blur-xl border border-black/10 rounded-2xl overflow-hidden shadow-2xl">
                     {locales.map((loc) => (
                       <button
                         key={loc}
@@ -76,8 +58,8 @@ export default function LandingPage() {
                           setLocale(loc);
                           setShowLangMenu(false);
                         }}
-                        className={`block w-full text-left px-6 py-3 text-sm hover:bg-white/10 transition-colors ${
-                          locale === loc ? 'text-[#D4AF37] bg-white/5' : 'text-white/70'
+                        className={`block w-full text-left px-6 py-3 text-sm hover:bg-black/5 transition-colors ${
+                          locale === loc ? 'text-[#D4AF37] bg-black/5 font-medium' : 'text-black/70'
                         }`}
                       >
                         {localeNames[loc]}
@@ -89,7 +71,7 @@ export default function LandingPage() {
               
               <Link 
                 to="/login" 
-                className="text-sm text-white/60 hover:text-white transition-colors"
+                className="px-4 py-2 bg-black text-white rounded-full text-sm font-medium hover:bg-black/90 transition-colors"
               >
                 {dict.nav.login}
               </Link>
@@ -98,417 +80,428 @@ export default function LandingPage() {
         </div>
       </nav>
 
-      {/* Hero Section - Cinematic Video Style */}
-      <section 
-        ref={heroRef}
-        className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      >
-        {/* Gradient Background - Blue Night to Black */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0A1A2F] via-black to-black"></div>
-        
-        {/* Golden Light Effect */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[#D4AF37] opacity-10 blur-[150px] rounded-full animate-pulse"></div>
-        
-        {/* Floating Particles */}
-        <div className="absolute inset-0">
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-[#D4AF37] rounded-full opacity-30"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animation: `float ${5 + Math.random() * 10}s ease-in-out infinite`,
-                animationDelay: `${Math.random() * 5}s`
-              }}
-            ></div>
-          ))}
-        </div>
-
-        {/* Hero Content */}
-        <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
+      {/* Hero - Ultra clair + Social proof */}
+      <section className="pt-32 pb-20 px-6">
+        <div className="max-w-5xl mx-auto text-center">
+          {/* One Line Positioning */}
           <div className="mb-8">
-            <div className="inline-block px-6 py-2 bg-white/5 backdrop-blur-xl border border-[#D4AF37]/30 rounded-full mb-12">
-              <span className="text-sm text-[#D4AF37] font-light tracking-wider">{dict.hero.brand.toUpperCase()}</span>
-            </div>
+            <p className="text-sm font-medium text-black/50 uppercase tracking-wider mb-3">
+              {dict.hero.tagline}
+            </p>
+            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-extralight tracking-tight leading-none mb-6">
+              {dict.hero.title}
+            </h1>
+            <p className="text-2xl sm:text-3xl font-light text-black/60 max-w-3xl mx-auto leading-relaxed">
+              {dict.hero.subtitle}
+            </p>
           </div>
 
-          <h1 className="text-7xl md:text-8xl lg:text-9xl font-extralight mb-8 leading-none tracking-tight">
-            <span className="block text-white mb-4">{dict.hero.subtitle}</span>
-          </h1>
+          {/* Accroche 2 lignes */}
+          <div className="max-w-2xl mx-auto mb-10 space-y-3">
+            <p className="text-lg text-black/70 leading-relaxed">
+              {dict.hero.line1}
+            </p>
+            <p className="text-lg text-black/70 leading-relaxed">
+              {dict.hero.line2}
+            </p>
+          </div>
 
-          <p className="text-xl md:text-2xl text-white/50 font-light max-w-3xl mx-auto mb-16 leading-relaxed">
-            {dict.hero.text}
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+            <button
+              onClick={() => navigate('/dashboard?demo=1')}
+              className="px-8 py-4 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] text-white rounded-full font-medium hover:shadow-2xl hover:scale-105 transition-all flex items-center gap-2"
+            >
+              {dict.hero.primaryCTA}
+              <Play className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              className="px-8 py-4 bg-black/5 border border-black/10 rounded-full font-medium hover:bg-black/10 transition-colors"
+            >
+              {dict.hero.secondaryCTA}
+            </button>
+          </div>
+
+          {/* Réassurance */}
+          <p className="text-sm text-black/50 max-w-2xl mx-auto">
+            {dict.hero.reassurance}
           </p>
-
-          <button
-            onClick={handleEnterExperience}
-            className="group relative px-12 py-5 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] rounded-full text-black font-medium text-lg hover:shadow-2xl hover:shadow-[#D4AF37]/50 transition-all duration-500 hover:scale-105"
-          >
-            <span className="relative z-10">{dict.hero.primary}</span>
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#4A9EFF] to-[#D4AF37] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          </button>
-
-          {/* Scroll Indicator */}
-          <div className="absolute bottom-12 left-1/2 -translate-x-1/2">
-            <div className="flex flex-col items-center gap-2 animate-bounce">
-              <div className="w-6 h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-2">
-                <div className="w-1 h-3 bg-[#D4AF37] rounded-full"></div>
-              </div>
-              <span className="text-xs text-white/40 tracking-wider">SCROLL</span>
-            </div>
-          </div>
         </div>
-
-        {/* Transition Overlay */}
-        {isExperienceStarted && (
-          <div className="fixed inset-0 z-50 bg-black animate-fade-out pointer-events-none">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-4xl text-[#D4AF37] animate-pulse">
-                <Sparkles className="w-16 h-16" />
-              </div>
-            </div>
-          </div>
-        )}
       </section>
 
-      {/* Experience Modules Section */}
-      <div id="experience-modules" className="relative">
-        
-        {/* Module 1: GOVERNANCE - White Purity */}
-        <section className="relative min-h-screen bg-white text-black flex items-center">
-          <div className="max-w-7xl mx-auto px-6 py-32">
-            <div className="grid md:grid-cols-2 gap-16 items-center">
-              <div>
-                <div className="inline-block px-4 py-1 bg-black/5 rounded-full mb-6">
-                  <span className="text-xs tracking-wider font-medium">MODULE 01</span>
-                </div>
-                <h2 className="text-6xl md:text-7xl font-bold mb-8 leading-tight">
-                  {dict.modules.governance.title}
-                </h2>
-                <p className="text-4xl font-light text-black/60 mb-12 leading-tight">
-                  {dict.product.title}
-                </p>
-                <p className="text-xl text-black/50 mb-12 leading-relaxed">
-                  {dict.modules.governance.description}
-                </p>
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-2">
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#D4AF37] to-[#4A9EFF] rounded-2xl flex items-center justify-center">
-                      <Shield className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold">100%</div>
-                      <div className="text-sm text-black/50">Compliance</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#4A9EFF] to-purple-600 rounded-2xl flex items-center justify-center">
-                      <TrendingUp className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold">94.7%</div>
-                      <div className="text-sm text-black/50">Success Rate</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Visual - Governance Dashboard Preview */}
-              <div className="relative">
-                <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-3xl overflow-hidden shadow-2xl">
-                  <div className="p-8 h-full flex flex-col justify-between">
-                    {/* Mock KPI Cards */}
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="bg-white rounded-2xl p-6 shadow-lg">
-                        <div className="text-3xl font-bold mb-2">847</div>
-                        <div className="text-sm text-gray-500">Active Projects</div>
-                      </div>
-                      <div className="bg-white rounded-2xl p-6 shadow-lg">
-                        <div className="text-3xl font-bold text-[#D4AF37] mb-2">€2.8M</div>
-                        <div className="text-sm text-gray-500">Portfolio Value</div>
-                      </div>
-                      <div className="bg-white rounded-2xl p-6 shadow-lg col-span-2">
-                        <div className="flex items-center justify-between mb-4">
-                          <span className="text-sm text-gray-500">Governance Score</span>
-                          <span className="text-2xl font-bold">94.7%</span>
-                        </div>
-                        <div className="w-full bg-gray-200 rounded-full h-3">
-                          <div className="bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] h-3 rounded-full" style={{width: '94.7%'}}></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {/* Floating accent */}
-                <div className="absolute -right-8 -bottom-8 w-32 h-32 bg-[#D4AF37] opacity-20 blur-3xl rounded-full"></div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Module 2: PROJECTS - Blue Night */}
-        <section className="relative min-h-screen bg-gradient-to-br from-[#0F2847] to-[#0A1A2F] text-white flex items-center">
-          <div className="max-w-7xl mx-auto px-6 py-32">
-            <div className="grid md:grid-cols-2 gap-16 items-center">
-              
-              {/* Visual - Floating Cards */}
-              <div className="order-2 md:order-1 relative">
-                <div className="relative">
-                  {/* Card 1 */}
-                  <div className="absolute top-0 left-0 w-72 bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 shadow-2xl transform hover:scale-105 transition-transform duration-500"
-                    style={{
-                      transform: `translateY(${scrollProgress * 20}px) rotate(-5deg)`
-                    }}
-                  >
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                      <span className="text-xs text-white/60 tracking-wider">ACTIVE</span>
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2">Project Alpha</h3>
-                    <p className="text-sm text-white/60">On track • 87% complete</p>
-                  </div>
-
-                  {/* Card 2 */}
-                  <div className="absolute top-20 left-20 w-72 bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 shadow-2xl transform hover:scale-105 transition-transform duration-500"
-                    style={{
-                      transform: `translateY(${scrollProgress * -30}px)`
-                    }}
-                  >
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-3 h-3 bg-[#D4AF37] rounded-full animate-pulse"></div>
-                      <span className="text-xs text-white/60 tracking-wider">PLANNING</span>
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2">Project Beta</h3>
-                    <p className="text-sm text-white/60">Starting Q2 • High priority</p>
-                  </div>
-
-                  {/* Card 3 */}
-                  <div className="absolute top-40 left-10 w-72 bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 shadow-2xl transform hover:scale-105 transition-transform duration-500"
-                    style={{
-                      transform: `translateY(${scrollProgress * 40}px) rotate(5deg)`
-                    }}
-                  >
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
-                      <span className="text-xs text-white/60 tracking-wider">REVIEW</span>
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2">Project Gamma</h3>
-                    <p className="text-sm text-white/60">Awaiting approval • $2.4M</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="order-1 md:order-2">
-                <div className="inline-block px-4 py-1 bg-white/10 rounded-full mb-6">
-                  <span className="text-xs tracking-wider font-medium text-white/80">MODULE 02</span>
-                </div>
-                <h2 className="text-6xl md:text-7xl font-bold mb-8 leading-tight">
-                  {dict.modules.projects.title}
-                </h2>
-                <p className="text-4xl font-light text-white/60 mb-12 leading-tight">
-                  {dict.product.text2}
-                </p>
-                <p className="text-xl text-white/50 mb-12 leading-relaxed">
-                  {dict.modules.projects.description}
-                </p>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-[#D4AF37] rounded-full"></div>
-                    <span className="text-white/70">Real-time synchronization across teams</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-[#D4AF37] rounded-full"></div>
-                    <span className="text-white/70">AI-powered risk detection</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-[#D4AF37] rounded-full"></div>
-                    <span className="text-white/70">Automated workflow optimization</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Module 3: KPIs - Black Glass */}
-        <section className="relative min-h-screen bg-black text-white flex items-center">
-          <div className="max-w-7xl mx-auto px-6 py-32">
-            <div className="grid md:grid-cols-2 gap-16 items-center">
-              <div>
-                <div className="inline-block px-4 py-1 bg-white/5 rounded-full mb-6">
-                  <span className="text-xs tracking-wider font-medium text-white/80">MODULE 03</span>
-                </div>
-                <h2 className="text-6xl md:text-7xl font-bold mb-8 leading-tight">
-                  {dict.modules.kpis.title}
-                </h2>
-                <p className="text-4xl font-light text-white/60 mb-12 leading-tight">
-                  {dict.product.text3}
-                </p>
-                <p className="text-xl text-white/50 mb-12 leading-relaxed">
-                  {dict.modules.kpis.description}
-                </p>
-              </div>
-
-              {/* Visual - Glass Metrics */}
-              <div className="relative">
-                <div className="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-3xl p-8 shadow-2xl">
-                  {/* Counter Animation */}
-                  <div className="space-y-8">
-                    <div>
-                      <div className="text-sm text-white/40 mb-2 tracking-wider">REVENUE GROWTH</div>
-                      <div className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] tabular-nums">
-                        +327%
-                      </div>
-                      <div className="mt-4 w-full bg-white/10 rounded-full h-2 overflow-hidden">
-                        <div className="bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] h-2 rounded-full animate-pulse" style={{width: '85%'}}></div>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="bg-white/5 rounded-2xl p-6">
-                        <div className="text-sm text-white/40 mb-2">PROJECTS</div>
-                        <div className="text-4xl font-bold tabular-nums">847</div>
-                        <div className="text-xs text-green-500 mt-2">↑ 23 this week</div>
-                      </div>
-                      <div className="bg-white/5 rounded-2xl p-6">
-                        <div className="text-sm text-white/40 mb-2">USERS</div>
-                        <div className="text-4xl font-bold tabular-nums">12.4K</div>
-                        <div className="text-xs text-[#D4AF37] mt-2">↑ 8.2% MoM</div>
-                      </div>
-                    </div>
-
-                    <div className="bg-white/5 rounded-2xl p-6">
-                      <div className="text-sm text-white/40 mb-4">EFFICIENCY SCORE</div>
-                      <div className="flex items-end gap-1">
-                        {[60, 75, 85, 70, 90, 95, 88, 92].map((height, i) => (
-                          <div key={i} className="flex-1 bg-gradient-to-t from-[#D4AF37] to-[#4A9EFF] rounded-t" style={{height: `${height}%`}}></div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Glow Effect */}
-                <div className="absolute -inset-4 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] opacity-20 blur-3xl -z-10"></div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Final CTA - Immersive */}
-        <section className="relative min-h-screen bg-gradient-to-br from-[#0A1A2F] via-black to-black text-white flex items-center justify-center">
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-[#D4AF37] opacity-5 blur-[200px] rounded-full animate-pulse"></div>
-          </div>
-
-          <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-            <div className="inline-block px-6 py-2 bg-white/5 backdrop-blur-xl border border-[#D4AF37]/30 rounded-full mb-12">
-              <span className="text-sm text-[#D4AF37] font-light tracking-wider">{dict.cta.title.toUpperCase()}</span>
-            </div>
-
-            <h2 className="text-5xl md:text-7xl font-light mb-8 leading-tight">
-              <span className="block text-white mb-4">{dict.cta.text1}</span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF]">
-                {dict.cta.text2}
-              </span>
-            </h2>
-
-            <p className="text-xl text-white/50 mb-16 leading-relaxed">
-              {dict.proof.text}
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link
-                to="/demo-mode"
-                className="group px-12 py-5 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] rounded-full text-black font-semibold text-lg hover:shadow-2xl hover:shadow-[#D4AF37]/50 transition-all duration-500 hover:scale-105 inline-flex items-center justify-center gap-2"
-              >
-                {dict.cta.primary}
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link
-                to="/contact"
-                className="px-12 py-5 bg-white/5 backdrop-blur-xl border border-white/20 rounded-full text-white font-medium text-lg hover:bg-white/10 transition-all duration-500 inline-flex items-center justify-center gap-2"
-              >
-                <Play className="w-5 h-5" />
-                {dict.cta.secondary}
-              </Link>
-            </div>
-
-            <div className="mt-24 grid grid-cols-3 gap-12 text-center">
-              <div>
-                <div className="text-4xl font-bold text-[#D4AF37] mb-2">327%</div>
-                <div className="text-sm text-white/40">Average ROI</div>
-              </div>
-              <div>
-                <div className="text-4xl font-bold text-[#D4AF37] mb-2">3.7</div>
-                <div className="text-sm text-white/40">Months to ROI</div>
-              </div>
-              <div>
-                <div className="text-4xl font-bold text-[#D4AF37] mb-2">94.7%</div>
-                <div className="text-sm text-white/40">Success Rate</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-      </div>
-
-      {/* Footer - Minimal */}
-      <footer className="relative bg-black border-t border-white/10 py-12 px-6">
+      {/* Pour qui - 3 personas */}
+      <section id="for-who" className="py-20 px-6 bg-gradient-to-b from-white to-black/5">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 mb-12">
-            <div>
-              <h3 className="font-semibold text-white mb-4">Product</h3>
-              <ul className="space-y-2 text-white/50">
-                <li><a href="#features" className="hover:text-white transition-colors">Features</a></li>
-                <li><Link to="/demo-mode" className="hover:text-white transition-colors">Demo</Link></li>
-                <li><a href="#roi" className="hover:text-white transition-colors">Pricing</a></li>
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-light mb-4">{dict.forWho.title}</h2>
+            <p className="text-xl text-black/60">{dict.forWho.subtitle}</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* PMO */}
+            <div className="bg-white rounded-3xl p-8 border border-black/10 hover:border-[#D4AF37]/30 hover:shadow-2xl transition-all">
+              <div className="w-12 h-12 bg-gradient-to-br from-[#D4AF37] to-[#4A9EFF] rounded-2xl flex items-center justify-center mb-6">
+                <GitBranch className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-2xl font-semibold mb-3">{dict.forWho.pmo.title}</h3>
+              <p className="text-black/70 leading-relaxed mb-4">
+                {dict.forWho.pmo.line1}
+              </p>
+              <p className="text-black/60 text-sm">
+                {dict.forWho.pmo.line2}
+              </p>
+            </div>
+
+            {/* Data Leaders */}
+            <div className="bg-white rounded-3xl p-8 border border-black/10 hover:border-[#D4AF37]/30 hover:shadow-2xl transition-all">
+              <div className="w-12 h-12 bg-gradient-to-br from-[#D4AF37] to-[#4A9EFF] rounded-2xl flex items-center justify-center mb-6">
+                <Database className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-2xl font-semibold mb-3">{dict.forWho.data.title}</h3>
+              <p className="text-black/70 leading-relaxed mb-4">
+                {dict.forWho.data.line1}
+              </p>
+              <p className="text-black/60 text-sm">
+                {dict.forWho.data.line2}
+              </p>
+            </div>
+
+            {/* Direction */}
+            <div className="bg-white rounded-3xl p-8 border border-black/10 hover:border-[#D4AF37]/30 hover:shadow-2xl transition-all">
+              <div className="w-12 h-12 bg-gradient-to-br from-[#D4AF37] to-[#4A9EFF] rounded-2xl flex items-center justify-center mb-6">
+                <Users className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-2xl font-semibold mb-3">{dict.forWho.direction.title}</h3>
+              <p className="text-black/70 leading-relaxed mb-4">
+                {dict.forWho.direction.line1}
+              </p>
+              <p className="text-black/60 text-sm">
+                {dict.forWho.direction.line2}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Ce que Powalyze remplace */}
+      <section className="py-20 px-6 bg-black text-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-light mb-4">{dict.replaces.title}</h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Avant */}
+            <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/10">
+              <h3 className="text-xl font-semibold mb-6 text-red-400">{dict.replaces.before.title}</h3>
+              <ul className="space-y-3">
+                {dict.replaces.before.items.map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-white/70">
+                    <span className="text-red-400 mt-1">×</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
               </ul>
             </div>
-            <div>
-              <h3 className="font-semibold text-white mb-4">Solutions</h3>
-              <ul className="space-y-2 text-white/50">
-                <li><Link to="/solutions/pmo" className="hover:text-white transition-colors">PMO</Link></li>
-                <li><Link to="/solutions/executive" className="hover:text-white transition-colors">Executive</Link></li>
-                <li><Link to="/solutions/data" className="hover:text-white transition-colors">Data & BI</Link></li>
+
+            {/* Avec */}
+            <div className="bg-gradient-to-br from-[#D4AF37]/20 to-[#4A9EFF]/20 backdrop-blur-xl rounded-3xl p-8 border border-[#D4AF37]/30">
+              <h3 className="text-xl font-semibold mb-6 text-[#D4AF37]">{dict.replaces.with.title}</h3>
+              <ul className="space-y-3">
+                {dict.replaces.with.items.map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-white/90">
+                    <Check className="w-5 h-5 text-[#D4AF37] mt-0.5 flex-shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
               </ul>
             </div>
-            <div>
-              <h3 className="font-semibold text-white mb-4">Company</h3>
-              <ul className="space-y-2 text-white/50">
-                <li><Link to="/about" className="hover:text-white transition-colors">About</Link></li>
-                <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold text-white mb-4">Legal</h3>
-              <ul className="space-y-2 text-white/50">
-                <li><a href="#" className="hover:text-white transition-colors">Privacy</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Terms</a></li>
+
+            {/* Résultat */}
+            <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/10">
+              <h3 className="text-xl font-semibold mb-6 text-green-400">{dict.replaces.result.title}</h3>
+              <ul className="space-y-3">
+                {dict.replaces.result.items.map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-white/70">
+                    <TrendingUp className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
-          <div className="pt-8 border-t border-white/10 text-center text-white/40 text-sm">
-            <p>© 2026 Powalyze. Swiss precision meets Silicon Valley ambition.</p>
+        </div>
+      </section>
+
+      {/* Démo guidée - 4 scènes */}
+      <section id="product" className="py-20 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="text-5xl font-light mb-4">{dict.demo.title}</h2>
+            <p className="text-xl text-black/60 max-w-2xl mx-auto">{dict.demo.subtitle}</p>
+          </div>
+
+          {/* Scène 1 - Portfolio */}
+          <div className="grid md:grid-cols-2 gap-16 items-center mb-32">
+            <div>
+              <div className="text-sm font-medium text-[#D4AF37] uppercase tracking-wider mb-3">
+                {dict.demo.scene1.tag}
+              </div>
+              <h3 className="text-4xl font-light mb-6">{dict.demo.scene1.title}</h3>
+              <p className="text-xl text-black/70 leading-relaxed mb-6">
+                {dict.demo.scene1.text}
+              </p>
+              <ul className="space-y-3">
+                {dict.demo.scene1.features.map((feature, i) => (
+                  <li key={i} className="flex items-center gap-3 text-black/60">
+                    <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF]"></div>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="bg-gradient-to-br from-black/5 to-black/10 rounded-3xl p-12 aspect-video flex items-center justify-center border border-black/10">
+              <BarChart3 className="w-24 h-24 text-[#D4AF37] opacity-30" />
+            </div>
+          </div>
+
+          {/* Scène 2 - Comité */}
+          <div className="grid md:grid-cols-2 gap-16 items-center mb-32">
+            <div className="bg-gradient-to-br from-black/5 to-black/10 rounded-3xl p-12 aspect-video flex items-center justify-center border border-black/10 md:order-first order-last">
+              <Users className="w-24 h-24 text-[#4A9EFF] opacity-30" />
+            </div>
+            <div>
+              <div className="text-sm font-medium text-[#4A9EFF] uppercase tracking-wider mb-3">
+                {dict.demo.scene2.tag}
+              </div>
+              <h3 className="text-4xl font-light mb-6">{dict.demo.scene2.title}</h3>
+              <p className="text-xl text-black/70 leading-relaxed mb-6">
+                {dict.demo.scene2.text}
+              </p>
+              <ul className="space-y-3">
+                {dict.demo.scene2.features.map((feature, i) => (
+                  <li key={i} className="flex items-center gap-3 text-black/60">
+                    <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF]"></div>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Scène 3 - Data */}
+          <div className="grid md:grid-cols-2 gap-16 items-center mb-32">
+            <div>
+              <div className="text-sm font-medium text-[#D4AF37] uppercase tracking-wider mb-3">
+                {dict.demo.scene3.tag}
+              </div>
+              <h3 className="text-4xl font-light mb-6">{dict.demo.scene3.title}</h3>
+              <p className="text-xl text-black/70 leading-relaxed mb-6">
+                {dict.demo.scene3.text}
+              </p>
+              <ul className="space-y-3">
+                {dict.demo.scene3.features.map((feature, i) => (
+                  <li key={i} className="flex items-center gap-3 text-black/60">
+                    <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF]"></div>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="bg-gradient-to-br from-black/5 to-black/10 rounded-3xl p-12 aspect-video flex items-center justify-center border border-black/10">
+              <Database className="w-24 h-24 text-[#D4AF37] opacity-30" />
+            </div>
+          </div>
+
+          {/* Scène 4 - Trace */}
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="bg-gradient-to-br from-black/5 to-black/10 rounded-3xl p-12 aspect-video flex items-center justify-center border border-black/10 md:order-first order-last">
+              <FileText className="w-24 h-24 text-[#4A9EFF] opacity-30" />
+            </div>
+            <div>
+              <div className="text-sm font-medium text-[#4A9EFF] uppercase tracking-wider mb-3">
+                {dict.demo.scene4.tag}
+              </div>
+              <h3 className="text-4xl font-light mb-6">{dict.demo.scene4.title}</h3>
+              <p className="text-xl text-black/70 leading-relaxed mb-6">
+                {dict.demo.scene4.text}
+              </p>
+              <ul className="space-y-3">
+                {dict.demo.scene4.features.map((feature, i) => (
+                  <li key={i} className="flex items-center gap-3 text-black/60">
+                    <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF]"></div>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Intégrations Power BI / Data */}
+      <section className="py-20 px-6 bg-gradient-to-b from-black/5 to-white">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-5xl font-light mb-6">{dict.integrations.title}</h2>
+          <p className="text-2xl text-black/60 leading-relaxed mb-12 max-w-3xl mx-auto">
+            {dict.integrations.subtitle}
+          </p>
+          
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            {dict.integrations.items.map((item, i) => (
+              <div key={i} className="bg-white rounded-2xl p-6 border border-black/10 text-left">
+                <Zap className="w-8 h-8 text-[#D4AF37] mb-4" />
+                <p className="text-black/80 leading-relaxed">{item}</p>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-lg text-black/50 italic">
+            {dict.integrations.tagline}
+          </p>
+        </div>
+      </section>
+
+      {/* Scénarios concrets */}
+      <section id="scenarios" className="py-20 px-6 bg-black text-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-light mb-4">{dict.scenarios.title}</h2>
+          </div>
+
+          <div className="space-y-12">
+            {/* Scénario 1 */}
+            <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-10 border border-white/10">
+              <div className="flex items-start gap-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#D4AF37] to-[#4A9EFF] rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <span className="text-xl font-bold text-white">1</span>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-semibold mb-3">{dict.scenarios.scenario1.title}</h3>
+                  <p className="text-white/80 text-lg leading-relaxed">
+                    {dict.scenarios.scenario1.text}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Scénario 2 */}
+            <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-10 border border-white/10">
+              <div className="flex items-start gap-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#D4AF37] to-[#4A9EFF] rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <span className="text-xl font-bold text-white">2</span>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-semibold mb-3">{dict.scenarios.scenario2.title}</h3>
+                  <p className="text-white/80 text-lg leading-relaxed">
+                    {dict.scenarios.scenario2.text}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Scénario 3 */}
+            <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-10 border border-white/10">
+              <div className="flex items-start gap-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#D4AF37] to-[#4A9EFF] rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <span className="text-xl font-bold text-white">3</span>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-semibold mb-3">{dict.scenarios.scenario3.title}</h3>
+                  <p className="text-white/80 text-lg leading-relaxed">
+                    {dict.scenarios.scenario3.text}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Final */}
+      <section id="contact" className="py-32 px-6 bg-gradient-to-br from-white via-[#D4AF37]/5 to-[#4A9EFF]/5">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-5xl sm:text-6xl font-light mb-6 leading-tight">
+            {dict.finalCTA.title}
+          </h2>
+          <p className="text-2xl text-black/60 mb-12 leading-relaxed max-w-2xl mx-auto">
+            {dict.finalCTA.subtitle}
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+            <button
+              onClick={() => navigate('/dashboard?demo=1')}
+              className="px-10 py-5 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] text-white rounded-full text-lg font-medium hover:shadow-2xl hover:scale-105 transition-all flex items-center gap-3"
+            >
+              {dict.finalCTA.primaryBtn}
+              <Play className="w-5 h-5" />
+            </button>
+            <a
+              href="mailto:contact@powalyze.com"
+              className="px-10 py-5 bg-black text-white rounded-full text-lg font-medium hover:bg-black/90 transition-colors"
+            >
+              {dict.finalCTA.secondaryBtn}
+            </a>
+          </div>
+
+          <p className="text-sm text-black/50">
+            {dict.finalCTA.footer}
+          </p>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-black text-white py-16 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-12 mb-12">
+            <div>
+              <div className="text-2xl font-semibold mb-4">
+                <span className="bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] bg-clip-text text-transparent">
+                  Powalyze
+                </span>
+              </div>
+              <p className="text-white/60 text-sm leading-relaxed">
+                {dict.footer.tagline}
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold mb-4">{dict.footer.product.title}</h3>
+              <ul className="space-y-2 text-sm text-white/60">
+                {dict.footer.product.links.map((link, i) => (
+                  <li key={i}>
+                    <a href="#" className="hover:text-white transition-colors">{link}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-semibold mb-4">{dict.footer.company.title}</h3>
+              <ul className="space-y-2 text-sm text-white/60">
+                {dict.footer.company.links.map((link, i) => (
+                  <li key={i}>
+                    <a href="#" className="hover:text-white transition-colors">{link}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-semibold mb-4">{dict.footer.legal.title}</h3>
+              <ul className="space-y-2 text-sm text-white/60">
+                {dict.footer.legal.links.map((link, i) => (
+                  <li key={i}>
+                    <a href="#" className="hover:text-white transition-colors">{link}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-white/10 pt-8 text-center text-sm text-white/50">
+            © 2026 Powalyze. {dict.footer.copyright}
           </div>
         </div>
       </footer>
 
-      {/* CSS Animations */}
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-20px); }
-        }
-        @keyframes fade-out {
-          0% { opacity: 1; }
-          100% { opacity: 0; }
-        }
-        .animate-fade-out {
-          animation: fade-out 1.5s ease-out forwards;
-        }
-      `}</style>
     </div>
   );
 }
