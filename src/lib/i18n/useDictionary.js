@@ -1,28 +1,27 @@
 import { useState, useEffect } from 'react';
 import { defaultLocale } from './config';
+import enDict from './dictionaries/en.json';
+import frDict from './dictionaries/fr.json';
+import deDict from './dictionaries/de.json';
+import noDict from './dictionaries/no.json';
+
+const dictionaries = {
+  en: enDict,
+  fr: frDict,
+  de: deDict,
+  no: noDict
+};
 
 export function useDictionary() {
   const [locale, setLocaleState] = useState(
     () => localStorage.getItem('powalyze-locale') || defaultLocale
   );
-  const [dict, setDict] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [dict, setDict] = useState(() => dictionaries[locale] || dictionaries[defaultLocale]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    async function loadDictionary() {
-      setLoading(true);
-      try {
-        const dictionary = await import(`./dictionaries/${locale}.json`);
-        setDict(dictionary.default);
-      } catch (error) {
-        console.error(`Failed to load dictionary for ${locale}`, error);
-        const fallback = await import(`./dictionaries/${defaultLocale}.json`);
-        setDict(fallback.default);
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadDictionary();
+    const newDict = dictionaries[locale] || dictionaries[defaultLocale];
+    setDict(newDict);
   }, [locale]);
 
   const setLocale = (newLocale) => {
