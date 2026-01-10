@@ -1,406 +1,475 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight, Play } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { ArrowRight, Play, Sparkles, TrendingUp, Clock, Shield } from 'lucide-react';
 
 export default function LandingPage() {
-  const [roiInput, setRoiInput] = useState(100000);
+  const navigate = useNavigate();
+  const [isExperienceStarted, setIsExperienceStarted] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(scrolled / maxScroll);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleEnterExperience = () => {
+    setIsExperienceStarted(true);
+    setTimeout(() => {
+      const element = document.getElementById('experience-modules');
+      element?.scrollIntoView({ behavior: 'smooth' });
+    }, 1500);
+  };
 
   return (
-    <div className="relative bg-white">
+    <div className="relative bg-black text-white overflow-x-hidden">
       
-      {/* Apple-style Navigation */}
-      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-200">
+      {/* Navigation - Ultra minimal */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-2xl border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-center justify-between h-12">
-            <Link to="/" className="text-xl font-semibold text-black">
-              Powalyze
-            </Link>
-            <div className="hidden md:flex items-center gap-8 text-sm">
-              <a href="#features" className="text-gray-600 hover:text-black transition-colors">Fonctionnalités</a>
-              <a href="#roi" className="text-gray-600 hover:text-black transition-colors">ROI</a>
-              <a href="#solution" className="text-gray-600 hover:text-black transition-colors">Solution</a>
-              <Link to="/login" className="text-blue-600 hover:text-blue-700 transition-colors">
-                Se connecter
-              </Link>
+          <div className="flex items-center justify-between h-16">
+            <div className="text-xl font-light tracking-wider">
+              <span className="text-[#D4AF37]">POW</span>
+              <span className="text-white">ALYZE</span>
             </div>
+            <Link 
+              to="/login" 
+              className="text-sm text-white/60 hover:text-white transition-colors"
+            >
+              Sign In
+            </Link>
           </div>
         </div>
       </nav>
 
-      {/* Hero Section - Apple Style */}
-      <section className="relative pt-16 pb-20 px-6 text-center">
-        <div className="max-w-5xl mx-auto">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-semibold text-black mb-6 tracking-tight leading-none">
-            La gouvernance stratégique.
-            <br />
-            <span className="text-gray-600">Réinventée.</span>
+      {/* Hero Section - Cinematic Video Style */}
+      <section 
+        ref={heroRef}
+        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      >
+        {/* Gradient Background - Blue Night to Black */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0A1A2F] via-black to-black"></div>
+        
+        {/* Golden Light Effect */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[#D4AF37] opacity-10 blur-[150px] rounded-full animate-pulse"></div>
+        
+        {/* Floating Particles */}
+        <div className="absolute inset-0">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-[#D4AF37] rounded-full opacity-30"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animation: `float ${5 + Math.random() * 10}s ease-in-out infinite`,
+                animationDelay: `${Math.random() * 5}s`
+              }}
+            ></div>
+          ))}
+        </div>
+
+        {/* Hero Content */}
+        <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
+          <div className="mb-8">
+            <div className="inline-block px-6 py-2 bg-white/5 backdrop-blur-xl border border-[#D4AF37]/30 rounded-full mb-12">
+              <span className="text-sm text-[#D4AF37] font-light tracking-wider">THE GOVERNANCE OPERATING SYSTEM</span>
+            </div>
+          </div>
+
+          <h1 className="text-7xl md:text-8xl lg:text-9xl font-extralight mb-8 leading-none tracking-tight">
+            <span className="block text-white mb-4">The Clarity</span>
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF]">
+              You Need.
+            </span>
           </h1>
-          
-          <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto font-normal">
-            Pilotez vos portefeuilles de projets avec l'intelligence artificielle qui prédit avant que vous décidiez.
+
+          <p className="text-xl md:text-2xl text-white/50 font-light max-w-3xl mx-auto mb-16 leading-relaxed">
+            Swiss precision meets Silicon Valley ambition.<br />
+            Experience governance like never before.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-            <Link 
-              to="/demo-mode"
-              className="px-8 py-3 bg-blue-600 text-white rounded-full text-lg font-medium hover:bg-blue-700 transition-colors inline-flex items-center gap-2"
-            >
-              Essayer gratuitement
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-            <a 
-              href="#demo"
-              className="px-8 py-3 text-blue-600 text-lg font-medium hover:text-blue-700 transition-colors inline-flex items-center gap-2"
-            >
-              <Play className="w-5 h-5" />
-              Voir la démo
-            </a>
+          <button
+            onClick={handleEnterExperience}
+            className="group relative px-12 py-5 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] rounded-full text-black font-medium text-lg hover:shadow-2xl hover:shadow-[#D4AF37]/50 transition-all duration-500 hover:scale-105"
+          >
+            <span className="relative z-10">Enter the Experience</span>
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#4A9EFF] to-[#D4AF37] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          </button>
+
+          {/* Scroll Indicator */}
+          <div className="absolute bottom-12 left-1/2 -translate-x-1/2">
+            <div className="flex flex-col items-center gap-2 animate-bounce">
+              <div className="w-6 h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-2">
+                <div className="w-1 h-3 bg-[#D4AF37] rounded-full"></div>
+              </div>
+              <span className="text-xs text-white/40 tracking-wider">SCROLL</span>
+            </div>
           </div>
         </div>
 
-        {/* Hero Visual - Product Screenshot */}
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-gray-900 to-black p-1">
-            <div className="bg-black rounded-2xl overflow-hidden">
-              {/* Mock Dashboard Interface */}
-              <div className="aspect-[16/9] bg-gradient-to-br from-gray-900 via-black to-gray-900 p-8">
-                <div className="grid grid-cols-3 gap-6 h-full">
-                  {/* Left: Stats */}
-                  <div className="space-y-4">
-                    <div className="bg-white/5 backdrop-blur rounded-2xl p-6 border border-white/10">
-                      <div className="text-3xl font-bold text-white mb-2">€2.8M</div>
-                      <div className="text-sm text-gray-400">Budget Total</div>
+        {/* Transition Overlay */}
+        {isExperienceStarted && (
+          <div className="fixed inset-0 z-50 bg-black animate-fade-out pointer-events-none">
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-4xl text-[#D4AF37] animate-pulse">
+                <Sparkles className="w-16 h-16" />
+              </div>
+            </div>
+          </div>
+        )}
+      </section>
+
+      {/* Experience Modules Section */}
+      <div id="experience-modules" className="relative">
+        
+        {/* Module 1: GOVERNANCE - White Purity */}
+        <section className="relative min-h-screen bg-white text-black flex items-center">
+          <div className="max-w-7xl mx-auto px-6 py-32">
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              <div>
+                <div className="inline-block px-4 py-1 bg-black/5 rounded-full mb-6">
+                  <span className="text-xs tracking-wider font-medium">MODULE 01</span>
+                </div>
+                <h2 className="text-6xl md:text-7xl font-bold mb-8 leading-tight">
+                  Governance
+                </h2>
+                <p className="text-4xl font-light text-black/60 mb-12 leading-tight">
+                  Clarity.<br />
+                  Alignment.<br />
+                  Control.
+                </p>
+                <p className="text-xl text-black/50 mb-12 leading-relaxed">
+                  Transform strategic chaos into Swiss precision. Every decision, 
+                  every stakeholder, every outcome — perfectly orchestrated.
+                </p>
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#D4AF37] to-[#4A9EFF] rounded-2xl flex items-center justify-center">
+                      <Shield className="w-6 h-6 text-white" />
                     </div>
-                    <div className="bg-white/5 backdrop-blur rounded-2xl p-6 border border-white/10">
-                      <div className="text-3xl font-bold text-[#D4AF37] mb-2">847</div>
-                      <div className="text-sm text-gray-400">Projets Actifs</div>
-                    </div>
-                    <div className="bg-white/5 backdrop-blur rounded-2xl p-6 border border-white/10">
-                      <div className="text-3xl font-bold text-blue-500 mb-2">94.7%</div>
-                      <div className="text-sm text-gray-400">Taux de Réussite</div>
+                    <div>
+                      <div className="text-2xl font-bold">100%</div>
+                      <div className="text-sm text-black/50">Compliance</div>
                     </div>
                   </div>
-
-                  {/* Center: Chart */}
-                  <div className="bg-white/5 backdrop-blur rounded-2xl p-6 border border-white/10">
-                    <div className="h-full flex items-end justify-around gap-2">
-                      <div className="w-full bg-gradient-to-t from-[#D4AF37] to-blue-500 rounded-t-lg" style={{height: '60%'}}></div>
-                      <div className="w-full bg-gradient-to-t from-[#D4AF37] to-blue-500 rounded-t-lg" style={{height: '80%'}}></div>
-                      <div className="w-full bg-gradient-to-t from-[#D4AF37] to-blue-500 rounded-t-lg" style={{height: '45%'}}></div>
-                      <div className="w-full bg-gradient-to-t from-[#D4AF37] to-blue-500 rounded-t-lg" style={{height: '90%'}}></div>
-                      <div className="w-full bg-gradient-to-t from-[#D4AF37] to-blue-500 rounded-t-lg" style={{height: '70%'}}></div>
-                      <div className="w-full bg-gradient-to-t from-[#D4AF37] to-blue-500 rounded-t-lg" style={{height: '55%'}}></div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#4A9EFF] to-purple-600 rounded-2xl flex items-center justify-center">
+                      <TrendingUp className="w-6 h-6 text-white" />
                     </div>
-                  </div>
-
-                  {/* Right: Live Alerts */}
-                  <div className="space-y-3">
-                    <div className="bg-white/5 backdrop-blur rounded-xl p-4 border border-white/10">
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                        <span className="text-xs text-gray-400">TEMPS RÉEL</span>
-                      </div>
-                      <p className="text-sm text-white">Projet ALPHA validé</p>
-                    </div>
-                    <div className="bg-white/5 backdrop-blur rounded-xl p-4 border border-white/10">
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className="w-2 h-2 bg-[#D4AF37] rounded-full animate-pulse"></div>
-                        <span className="text-xs text-gray-400">PRÉDICTION IA</span>
-                      </div>
-                      <p className="text-sm text-white">Budget optimisé +12%</p>
-                    </div>
-                    <div className="bg-white/5 backdrop-blur rounded-xl p-4 border border-white/10">
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                        <span className="text-xs text-gray-400">ALERTE</span>
-                      </div>
-                      <p className="text-sm text-white">Risque détecté Projet B</p>
+                    <div>
+                      <div className="text-2xl font-bold">94.7%</div>
+                      <div className="text-sm text-black/50">Success Rate</div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Feature Section 1 - Image Left */}
-      <section id="features" className="py-32 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="order-2 md:order-1">
-              <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-3xl aspect-square flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#D4AF37] to-blue-600">
-                    327%
-                  </div>
-                  <div className="text-2xl text-gray-600 mt-4">Retour sur Investissement</div>
-                </div>
-              </div>
-            </div>
-            <div className="order-1 md:order-2">
-              <h2 className="text-4xl md:text-6xl font-semibold text-black mb-6 leading-tight">
-                Un ROI qui parle<br />de lui-même.
-              </h2>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Nos clients réalisent en moyenne 327% de retour sur investissement en moins de 4 mois. 
-                Chaque décision est optimisée par l'IA pour maximiser vos résultats.
-              </p>
-              <a href="#roi" className="text-blue-600 text-lg font-medium inline-flex items-center gap-2 hover:gap-3 transition-all">
-                Calculer votre ROI
-                <ArrowRight className="w-5 h-5" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Feature Section 2 - Image Right */}
-      <section className="py-32 px-6 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-4xl md:text-6xl font-semibold text-black mb-6 leading-tight">
-                L'IA qui anticipe<br />vos décisions.
-              </h2>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Notre moteur prédictif analyse en temps réel des milliers de données pour vous alerter 
-                avant qu'un problème ne survienne. Vous gardez toujours une longueur d'avance.
-              </p>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center mt-1 flex-shrink-0">
-                    <div className="w-2 h-2 bg-white rounded-full"></div>
-                  </div>
-                  <div>
-                    <div className="font-semibold text-black mb-1">Alertes prédictives</div>
-                    <div className="text-gray-600">Détection des risques avant qu'ils n'impactent vos projets</div>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center mt-1 flex-shrink-0">
-                    <div className="w-2 h-2 bg-white rounded-full"></div>
-                  </div>
-                  <div>
-                    <div className="font-semibold text-black mb-1">Optimisation automatique</div>
-                    <div className="text-gray-600">Recommandations IA pour améliorer vos performances</div>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center mt-1 flex-shrink-0">
-                    <div className="w-2 h-2 bg-white rounded-full"></div>
-                  </div>
-                  <div>
-                    <div className="font-semibold text-black mb-1">Temps réel garanti</div>
-                    <div className="text-gray-600">Toutes vos données actualisées à la seconde</div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <div className="bg-gradient-to-br from-black to-gray-900 rounded-3xl aspect-square flex items-center justify-center p-8">
-                <div className="w-full space-y-4">
-                  {[85, 92, 78, 95, 88].map((value, i) => (
-                    <div key={i} className="flex items-center gap-4">
-                      <div className="w-full bg-white/10 rounded-full h-3 overflow-hidden">
-                        <div 
-                          className="h-full bg-gradient-to-r from-[#D4AF37] to-blue-500 rounded-full"
-                          style={{width: `${value}%`}}
-                        ></div>
-                      </div>
-                      <span className="text-white font-semibold text-lg w-12 text-right">{value}%</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Feature Section 3 - Full Width */}
-      <section className="py-32 px-6">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-4xl md:text-6xl font-semibold text-black mb-6 leading-tight">
-            Tout votre écosystème.<br />
-            <span className="text-gray-600">Unifié.</span>
-          </h2>
-          <p className="text-xl text-gray-600 mb-16 max-w-3xl mx-auto">
-            Connectez tous vos outils existants en un seul tableau de bord. Jira, Azure DevOps, Power BI, Excel... 
-            Powalyze s'intègre à votre workflow.
-          </p>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white border border-gray-200 rounded-3xl p-8 hover:shadow-2xl transition-shadow">
-              <div className="w-16 h-16 bg-gradient-to-br from-[#D4AF37] to-blue-600 rounded-2xl mb-6 flex items-center justify-center mx-auto">
-                <div className="w-8 h-8 bg-white rounded-lg"></div>
-              </div>
-              <h3 className="text-2xl font-semibold text-black mb-4">Intégrations natives</h3>
-              <p className="text-gray-600">
-                Plus de 50 connecteurs prêts à l'emploi pour synchroniser vos données en temps réel.
-              </p>
-            </div>
-
-            <div className="bg-white border border-gray-200 rounded-3xl p-8 hover:shadow-2xl transition-shadow">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl mb-6 flex items-center justify-center mx-auto">
-                <div className="w-8 h-8 bg-white rounded-lg"></div>
-              </div>
-              <h3 className="text-2xl font-semibold text-black mb-4">API ouverte</h3>
-              <p className="text-gray-600">
-                Développez vos propres connecteurs avec notre API REST documentée et nos SDK.
-              </p>
-            </div>
-
-            <div className="bg-white border border-gray-200 rounded-3xl p-8 hover:shadow-2xl transition-shadow">
-              <div className="w-16 h-16 bg-gradient-to-br from-green-600 to-teal-600 rounded-2xl mb-6 flex items-center justify-center mx-auto">
-                <div className="w-8 h-8 bg-white rounded-lg"></div>
-              </div>
-              <h3 className="text-2xl font-semibold text-black mb-4">Sécurité enterprise</h3>
-              <p className="text-gray-600">
-                Certifications SOC2, ISO 27001. Vos données restent dans votre région Azure.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ROI Calculator Section */}
-      <section id="roi" className="py-32 px-6 bg-black text-white">
-        <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-4xl md:text-6xl font-semibold mb-6 leading-tight">
-            Calculez votre retour<br />sur investissement.
-          </h2>
-          <p className="text-xl text-gray-400 mb-16 max-w-2xl mx-auto">
-            Estimez en quelques secondes les économies réalisables avec Powalyze.
-          </p>
-
-          <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-12">
-            <div className="mb-12">
-              <label className="block text-left mb-4 text-lg text-gray-300">
-                Budget annuel de vos projets
-              </label>
+              
+              {/* Visual - Governance Dashboard Preview */}
               <div className="relative">
-                <input
-                  type="range"
-                  min="50000"
-                  max="10000000"
-                  step="50000"
-                  className="w-full h-2 bg-white/10 rounded-full appearance-none cursor-pointer"
-                  style={{
-                    background: `linear-gradient(to right, #D4AF37 0%, #4A9EFF ${((roiInput - 50000) / 9950000) * 100}%, rgba(255,255,255,0.1) ${((roiInput - 50000) / 9950000) * 100}%)`
-                  }}
-                  onChange={(e) => setRoiInput(Number(e.target.value))}
-                  value={roiInput}
-                />
-                <div className="mt-4 text-center">
-                  <span className="text-4xl font-bold">
-                    {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(roiInput)}
-                  </span>
-                  <span className="text-gray-400 ml-2">/ an</span>
+                <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-3xl overflow-hidden shadow-2xl">
+                  <div className="p-8 h-full flex flex-col justify-between">
+                    {/* Mock KPI Cards */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="bg-white rounded-2xl p-6 shadow-lg">
+                        <div className="text-3xl font-bold mb-2">847</div>
+                        <div className="text-sm text-gray-500">Active Projects</div>
+                      </div>
+                      <div className="bg-white rounded-2xl p-6 shadow-lg">
+                        <div className="text-3xl font-bold text-[#D4AF37] mb-2">€2.8M</div>
+                        <div className="text-sm text-gray-500">Portfolio Value</div>
+                      </div>
+                      <div className="bg-white rounded-2xl p-6 shadow-lg col-span-2">
+                        <div className="flex items-center justify-between mb-4">
+                          <span className="text-sm text-gray-500">Governance Score</span>
+                          <span className="text-2xl font-bold">94.7%</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-3">
+                          <div className="bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] h-3 rounded-full" style={{width: '94.7%'}}></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* Floating accent */}
+                <div className="absolute -right-8 -bottom-8 w-32 h-32 bg-[#D4AF37] opacity-20 blur-3xl rounded-full"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Module 2: PROJECTS - Blue Night */}
+        <section className="relative min-h-screen bg-gradient-to-br from-[#0F2847] to-[#0A1A2F] text-white flex items-center">
+          <div className="max-w-7xl mx-auto px-6 py-32">
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              
+              {/* Visual - Floating Cards */}
+              <div className="order-2 md:order-1 relative">
+                <div className="relative">
+                  {/* Card 1 */}
+                  <div className="absolute top-0 left-0 w-72 bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 shadow-2xl transform hover:scale-105 transition-transform duration-500"
+                    style={{
+                      transform: `translateY(${scrollProgress * 20}px) rotate(-5deg)`
+                    }}
+                  >
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                      <span className="text-xs text-white/60 tracking-wider">ACTIVE</span>
+                    </div>
+                    <h3 className="text-xl font-semibold mb-2">Project Alpha</h3>
+                    <p className="text-sm text-white/60">On track • 87% complete</p>
+                  </div>
+
+                  {/* Card 2 */}
+                  <div className="absolute top-20 left-20 w-72 bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 shadow-2xl transform hover:scale-105 transition-transform duration-500"
+                    style={{
+                      transform: `translateY(${scrollProgress * -30}px)`
+                    }}
+                  >
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-3 h-3 bg-[#D4AF37] rounded-full animate-pulse"></div>
+                      <span className="text-xs text-white/60 tracking-wider">PLANNING</span>
+                    </div>
+                    <h3 className="text-xl font-semibold mb-2">Project Beta</h3>
+                    <p className="text-sm text-white/60">Starting Q2 • High priority</p>
+                  </div>
+
+                  {/* Card 3 */}
+                  <div className="absolute top-40 left-10 w-72 bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 shadow-2xl transform hover:scale-105 transition-transform duration-500"
+                    style={{
+                      transform: `translateY(${scrollProgress * 40}px) rotate(5deg)`
+                    }}
+                  >
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
+                      <span className="text-xs text-white/60 tracking-wider">REVIEW</span>
+                    </div>
+                    <h3 className="text-xl font-semibold mb-2">Project Gamma</h3>
+                    <p className="text-sm text-white/60">Awaiting approval • $2.4M</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="order-1 md:order-2">
+                <div className="inline-block px-4 py-1 bg-white/10 rounded-full mb-6">
+                  <span className="text-xs tracking-wider font-medium text-white/80">MODULE 02</span>
+                </div>
+                <h2 className="text-6xl md:text-7xl font-bold mb-8 leading-tight">
+                  Projects
+                </h2>
+                <p className="text-4xl font-light text-white/60 mb-12 leading-tight">
+                  From chaos<br />
+                  to orchestration.
+                </p>
+                <p className="text-xl text-white/50 mb-12 leading-relaxed">
+                  Your projects don't just exist in a list. They float, they breathe, 
+                  they connect. Like pieces of a symphony, perfectly timed.
+                </p>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-[#D4AF37] rounded-full"></div>
+                    <span className="text-white/70">Real-time synchronization across teams</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-[#D4AF37] rounded-full"></div>
+                    <span className="text-white/70">AI-powered risk detection</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-[#D4AF37] rounded-full"></div>
+                    <span className="text-white/70">Automated workflow optimization</span>
+                  </div>
                 </div>
               </div>
             </div>
+          </div>
+        </section>
 
-            <div className="grid md:grid-cols-3 gap-8 pt-8 border-t border-white/10">
+        {/* Module 3: KPIs - Black Glass */}
+        <section className="relative min-h-screen bg-black text-white flex items-center">
+          <div className="max-w-7xl mx-auto px-6 py-32">
+            <div className="grid md:grid-cols-2 gap-16 items-center">
               <div>
-                <div className="text-sm text-gray-400 mb-2">Économies estimées (an 1)</div>
-                <div className="text-3xl font-bold text-[#D4AF37]">
-                  {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(roiInput * 0.27)}
+                <div className="inline-block px-4 py-1 bg-white/5 rounded-full mb-6">
+                  <span className="text-xs tracking-wider font-medium text-white/80">MODULE 03</span>
                 </div>
+                <h2 className="text-6xl md:text-7xl font-bold mb-8 leading-tight">
+                  KPIs
+                </h2>
+                <p className="text-4xl font-light text-white/60 mb-12 leading-tight">
+                  Numbers that<br />
+                  tell stories.
+                </p>
+                <p className="text-xl text-white/50 mb-12 leading-relaxed">
+                  Not just dashboards. Living metrics that pulse with your business rhythm. 
+                  Tesla-inspired precision meets VisionOS elegance.
+                </p>
               </div>
-              <div>
-                <div className="text-sm text-gray-400 mb-2">Rentabilité</div>
-                <div className="text-3xl font-bold text-green-500">3.7 mois</div>
-              </div>
-              <div>
-                <div className="text-sm text-gray-400 mb-2">Valeur sur 5 ans</div>
-                <div className="text-3xl font-bold text-blue-500">
-                  {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(roiInput * 3.27)}
+
+              {/* Visual - Glass Metrics */}
+              <div className="relative">
+                <div className="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-3xl p-8 shadow-2xl">
+                  {/* Counter Animation */}
+                  <div className="space-y-8">
+                    <div>
+                      <div className="text-sm text-white/40 mb-2 tracking-wider">REVENUE GROWTH</div>
+                      <div className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] tabular-nums">
+                        +327%
+                      </div>
+                      <div className="mt-4 w-full bg-white/10 rounded-full h-2 overflow-hidden">
+                        <div className="bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] h-2 rounded-full animate-pulse" style={{width: '85%'}}></div>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="bg-white/5 rounded-2xl p-6">
+                        <div className="text-sm text-white/40 mb-2">PROJECTS</div>
+                        <div className="text-4xl font-bold tabular-nums">847</div>
+                        <div className="text-xs text-green-500 mt-2">↑ 23 this week</div>
+                      </div>
+                      <div className="bg-white/5 rounded-2xl p-6">
+                        <div className="text-sm text-white/40 mb-2">USERS</div>
+                        <div className="text-4xl font-bold tabular-nums">12.4K</div>
+                        <div className="text-xs text-[#D4AF37] mt-2">↑ 8.2% MoM</div>
+                      </div>
+                    </div>
+
+                    <div className="bg-white/5 rounded-2xl p-6">
+                      <div className="text-sm text-white/40 mb-4">EFFICIENCY SCORE</div>
+                      <div className="flex items-end gap-1">
+                        {[60, 75, 85, 70, 90, 95, 88, 92].map((height, i) => (
+                          <div key={i} className="flex-1 bg-gradient-to-t from-[#D4AF37] to-[#4A9EFF] rounded-t" style={{height: `${height}%`}}></div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
                 </div>
+
+                {/* Glow Effect */}
+                <div className="absolute -inset-4 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] opacity-20 blur-3xl -z-10"></div>
               </div>
             </div>
+          </div>
+        </section>
 
-            <div className="mt-12">
+        {/* Final CTA - Immersive */}
+        <section className="relative min-h-screen bg-gradient-to-br from-[#0A1A2F] via-black to-black text-white flex items-center justify-center">
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-[#D4AF37] opacity-5 blur-[200px] rounded-full animate-pulse"></div>
+          </div>
+
+          <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+            <div className="inline-block px-6 py-2 bg-white/5 backdrop-blur-xl border border-[#D4AF37]/30 rounded-full mb-12">
+              <span className="text-sm text-[#D4AF37] font-light tracking-wider">FLAGSHIP EXPERIENCE</span>
+            </div>
+
+            <h2 className="text-5xl md:text-7xl font-light mb-8 leading-tight">
+              <span className="block text-white mb-4">Ready to experience</span>
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF]">
+                governance differently?
+              </span>
+            </h2>
+
+            <p className="text-xl text-white/50 mb-16 leading-relaxed">
+              Join 847 organizations transforming strategic chaos into Swiss precision.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link
                 to="/demo-mode"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black rounded-full text-lg font-semibold hover:bg-gray-100 transition-colors"
+                className="group px-12 py-5 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] rounded-full text-black font-semibold text-lg hover:shadow-2xl hover:shadow-[#D4AF37]/50 transition-all duration-500 hover:scale-105 inline-flex items-center justify-center gap-2"
               >
-                Commencer gratuitement
-                <ArrowRight className="w-5 h-5" />
+                Start Free Trial
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
+                to="/contact"
+                className="px-12 py-5 bg-white/5 backdrop-blur-xl border border-white/20 rounded-full text-white font-medium text-lg hover:bg-white/10 transition-all duration-500 inline-flex items-center justify-center gap-2"
+              >
+                <Play className="w-5 h-5" />
+                Watch Demo
               </Link>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Final CTA - Apple Style */}
-      <section className="py-32 px-6 bg-white text-center">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-5xl md:text-7xl font-semibold text-black mb-8 leading-tight">
-            Prêt à transformer<br />votre gouvernance ?
-          </h2>
-          <p className="text-xl text-gray-600 mb-12">
-            Rejoignez les 847 organisations qui pilotent leurs projets avec Powalyze.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/demo-mode"
-              className="px-10 py-4 bg-blue-600 text-white rounded-full text-lg font-semibold hover:bg-blue-700 transition-colors inline-flex items-center justify-center gap-2"
-            >
-              Essayer gratuitement
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-            <Link
-              to="/contact"
-              className="px-10 py-4 border-2 border-blue-600 text-blue-600 rounded-full text-lg font-semibold hover:bg-blue-50 transition-colors"
-            >
-              Parler à un expert
-            </Link>
+            <div className="mt-24 grid grid-cols-3 gap-12 text-center">
+              <div>
+                <div className="text-4xl font-bold text-[#D4AF37] mb-2">327%</div>
+                <div className="text-sm text-white/40">Average ROI</div>
+              </div>
+              <div>
+                <div className="text-4xl font-bold text-[#D4AF37] mb-2">3.7</div>
+                <div className="text-sm text-white/40">Months to ROI</div>
+              </div>
+              <div>
+                <div className="text-4xl font-bold text-[#D4AF37] mb-2">94.7%</div>
+                <div className="text-sm text-white/40">Success Rate</div>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Footer - Apple Minimal */}
-      <footer className="border-t border-gray-200 py-12 px-6 bg-white">
+      </div>
+
+      {/* Footer - Minimal */}
+      <footer className="relative bg-black border-t border-white/10 py-12 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-4 gap-8 mb-12">
             <div>
-              <h3 className="font-semibold text-black mb-4">Produit</h3>
-              <ul className="space-y-2 text-gray-600">
-                <li><a href="#features" className="hover:text-black transition-colors">Fonctionnalités</a></li>
-                <li><a href="#roi" className="hover:text-black transition-colors">Tarifs</a></li>
-                <li><Link to="/demo-mode" className="hover:text-black transition-colors">Démo</Link></li>
+              <h3 className="font-semibold text-white mb-4">Product</h3>
+              <ul className="space-y-2 text-white/50">
+                <li><a href="#features" className="hover:text-white transition-colors">Features</a></li>
+                <li><Link to="/demo-mode" className="hover:text-white transition-colors">Demo</Link></li>
+                <li><a href="#roi" className="hover:text-white transition-colors">Pricing</a></li>
               </ul>
             </div>
             <div>
-              <h3 className="font-semibold text-black mb-4">Solutions</h3>
-              <ul className="space-y-2 text-gray-600">
-                <li><Link to="/solutions/pmo" className="hover:text-black transition-colors">PMO</Link></li>
-                <li><Link to="/solutions/executive" className="hover:text-black transition-colors">Direction</Link></li>
-                <li><Link to="/solutions/data" className="hover:text-black transition-colors">Data & BI</Link></li>
+              <h3 className="font-semibold text-white mb-4">Solutions</h3>
+              <ul className="space-y-2 text-white/50">
+                <li><Link to="/solutions/pmo" className="hover:text-white transition-colors">PMO</Link></li>
+                <li><Link to="/solutions/executive" className="hover:text-white transition-colors">Executive</Link></li>
+                <li><Link to="/solutions/data" className="hover:text-white transition-colors">Data & BI</Link></li>
               </ul>
             </div>
             <div>
-              <h3 className="font-semibold text-black mb-4">Entreprise</h3>
-              <ul className="space-y-2 text-gray-600">
-                <li><Link to="/about" className="hover:text-black transition-colors">À propos</Link></li>
-                <li><Link to="/contact" className="hover:text-black transition-colors">Contact</Link></li>
+              <h3 className="font-semibold text-white mb-4">Company</h3>
+              <ul className="space-y-2 text-white/50">
+                <li><Link to="/about" className="hover:text-white transition-colors">About</Link></li>
+                <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
               </ul>
             </div>
             <div>
-              <h3 className="font-semibold text-black mb-4">Légal</h3>
-              <ul className="space-y-2 text-gray-600">
-                <li><a href="#" className="hover:text-black transition-colors">Confidentialité</a></li>
-                <li><a href="#" className="hover:text-black transition-colors">CGU</a></li>
+              <h3 className="font-semibold text-white mb-4">Legal</h3>
+              <ul className="space-y-2 text-white/50">
+                <li><a href="#" className="hover:text-white transition-colors">Privacy</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Terms</a></li>
               </ul>
             </div>
           </div>
-          <div className="pt-8 border-t border-gray-200 text-center text-gray-600 text-sm">
-            <p>© 2026 Powalyze. Tous droits réservés.</p>
+          <div className="pt-8 border-t border-white/10 text-center text-white/40 text-sm">
+            <p>© 2026 Powalyze. Swiss precision meets Silicon Valley ambition.</p>
           </div>
         </div>
       </footer>
 
+      {/* CSS Animations */}
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+        @keyframes fade-out {
+          0% { opacity: 1; }
+          100% { opacity: 0; }
+        }
+        .animate-fade-out {
+          animation: fade-out 1.5s ease-out forwards;
+        }
+      `}</style>
     </div>
   );
 }
