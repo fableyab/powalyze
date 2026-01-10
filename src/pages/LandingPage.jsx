@@ -103,37 +103,23 @@ export default function LandingPage() {
         </div>
       </nav>
 
-      {/* Hero - Style Apple avec Vidéo Background */}
-      <section className="relative pt-32 pb-24 px-6 overflow-hidden bg-black">
-        {/* Video Background */}
-        <video 
-          autoPlay 
-          loop 
-          muted 
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="/videos/manifeste-powalyze.mp4" type="video/mp4" />
-        </video>
-        
-        {/* Overlay léger pour lisibilité */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40"></div>
-        
-        <div className="relative max-w-6xl mx-auto text-center z-10">
+      {/* Hero - Style Apple Blanc Épuré */}
+      <section className="relative pt-32 pb-24 px-6 overflow-hidden bg-white">
+        <div className="relative max-w-6xl mx-auto text-center">
           {/* Badge Enterprise */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur-sm border border-white/20 rounded-full mb-6 shadow-lg">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-black/10 rounded-full mb-6 shadow-sm">
             <div className="w-2 h-2 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] rounded-full"></div>
-            <span className="text-xs font-semibold text-black tracking-wider uppercase">
+            <span className="text-xs font-semibold text-black/70 tracking-wider uppercase">
               Enterprise-Grade Governance Platform
             </span>
           </div>
 
           {/* Title */}
           <div className="mb-8">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight leading-tight mb-6 text-white drop-shadow-2xl">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight leading-tight mb-6 text-black">
               {dict.hero.title}
             </h1>
-            <p className="text-lg sm:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
+            <p className="text-lg sm:text-xl text-black/60 max-w-3xl mx-auto leading-relaxed">
               {dict.hero.subtitle}
             </p>
           </div>
@@ -142,14 +128,14 @@ export default function LandingPage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
             <button
               onClick={() => navigate('/dashboard?demo=1')}
-              className="px-8 py-4 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] text-white rounded-full font-semibold text-base hover:opacity-90 transition-opacity flex items-center gap-3 shadow-xl"
+              className="px-8 py-4 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] text-white rounded-full font-semibold text-base hover:opacity-90 transition-opacity flex items-center gap-3 shadow-lg"
             >
               <span>{dict.hero.primaryCTA}</span>
               <Play className="w-4 h-4" />
             </button>
             <button
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="px-8 py-4 bg-white/90 backdrop-blur-sm border border-white/30 rounded-full font-semibold text-base text-black hover:bg-white transition-colors shadow-xl"
+              className="px-8 py-4 bg-white border border-black/20 rounded-full font-semibold text-base text-black hover:bg-black/5 transition-colors shadow-sm"
             >
               {dict.hero.secondaryCTA}
             </button>
@@ -157,7 +143,7 @@ export default function LandingPage() {
 
           {/* Stats Cards LIVE */}
           <div className="grid grid-cols-3 gap-6 max-w-3xl mx-auto pt-10">
-            <div className="bg-white/95 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-[#D4AF37]/30 hover:border-[#D4AF37]/50 transition-all">
+            <div className="bg-white rounded-2xl p-6 shadow-lg border border-[#D4AF37]/20 hover:border-[#D4AF37]/40 transition-all">
               <div className="text-3xl font-bold text-black mb-1 tabular-nums">
                 {roi.toFixed(0)}%
               </div>
