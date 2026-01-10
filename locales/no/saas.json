@@ -1,0 +1,138 @@
+{
+  "navigation": {
+    "dashboard": "Dashboard",
+    "projects": "Prosjekter",
+    "portfolio": "Portefølje",
+    "risks": "Risikoer",
+    "reports": "Rapporter",
+    "analytics": "Analytikk",
+    "calendar": "Kalender",
+    "team": "Team",
+    "settings": "Innstillinger",
+    "admin": "Administrasjon",
+    "logout": "Logg ut",
+    "profile": "Min profil"
+  },
+  "dashboard": {
+    "welcome": "Velkommen",
+    "overview": "Oversikt",
+    "activeProjects": "Aktive prosjekter",
+    "criticalRisks": "Kritiske risikoer",
+    "upcomingDeadlines": "Kommende frister",
+    "teamCapacity": "Teamkapasitet",
+    "budgetStatus": "Budgettstatus",
+    "recentActivity": "Siste aktivitet",
+    "quickActions": "Hurtighandlinger",
+    "createProject": "Opprett prosjekt",
+    "viewReports": "Vis rapporter",
+    "scheduleReview": "Planlegg gjennomgang"
+  },
+  "projects": {
+    "allProjects": "Alle prosjekter",
+    "myProjects": "Mine prosjekter",
+    "archived": "Arkivert",
+    "newProject": "Nytt prosjekt",
+    "status": {
+      "onTrack": "På sporet",
+      "atRisk": "I risiko",
+      "delayed": "Forsinket",
+      "completed": "Fullført",
+      "cancelled": "Kansellert"
+    },
+    "filters": {
+      "all": "Alle",
+      "byStatus": "Etter status",
+      "byPriority": "Etter prioritet",
+      "byOwner": "Etter eier"
+    },
+    "details": {
+      "overview": "Oversikt",
+      "timeline": "Tidslinje",
+      "budget": "Budsjett",
+      "team": "Team",
+      "documents": "Dokumenter",
+      "risks": "Risikoer",
+      "milestones": "Milepæler"
+    }
+  },
+  "portfolio": {
+    "title": "Porteføljestyring",
+    "capacity": "Global kapasitet",
+    "allocation": "Ressursallokering",
+    "strategicAlignment": "Strategisk tilpasning",
+    "valueDelivery": "Verdilevering",
+    "portfolioHealth": "Porteføljehelse"
+  },
+  "reports": {
+    "title": "Rapportsenter",
+    "executive": "Lederrapport",
+    "financial": "Finansrapport",
+    "operational": "Operasjonell rapport",
+    "custom": "Tilpassede rapporter",
+    "export": "Eksporter",
+    "schedule": "Planlegg levering",
+    "frequency": {
+      "daily": "Daglig",
+      "weekly": "Ukentlig",
+      "monthly": "Månedlig",
+      "quarterly": "Kvartalsvis"
+    }
+  },
+  "team": {
+    "members": "Teammedlemmer",
+    "roles": "Roller",
+    "permissions": "Tillatelser",
+    "inviteUser": "Inviter bruker",
+    "workload": "Arbeidsmengde",
+    "availability": "Tilgjengelighet"
+  },
+  "settings": {
+    "general": "Generelt",
+    "account": "Konto",
+    "security": "Sikkerhet",
+    "notifications": "Varsler",
+    "integrations": "Integrasjoner",
+    "billing": "Fakturering",
+    "preferences": {
+      "language": "Språk",
+      "timezone": "Tidssone",
+      "dateFormat": "Datoformat",
+      "currency": "Valuta"
+    }
+  },
+  "alerts": {
+    "critical": "Kritisk",
+    "warning": "Advarsel",
+    "info": "Informasjon",
+    "newAlert": "Nytt varsel",
+    "dismiss": "Avvis",
+    "markAsRead": "Merk som lest",
+    "configure": "Konfigurer varsler"
+  },
+  "actions": {
+    "save": "Lagre",
+    "cancel": "Avbryt",
+    "delete": "Slett",
+    "edit": "Rediger",
+    "duplicate": "Dupliser",
+    "archive": "Arkiver",
+    "restore": "Gjenopprett",
+    "export": "Eksporter",
+    "share": "Del",
+    "print": "Skriv ut"
+  },
+  "filters": {
+    "applyFilters": "Bruk filtre",
+    "clearFilters": "Fjern filtre",
+    "saveView": "Lagre visning",
+    "customView": "Tilpasset visning"
+  },
+  "status": {
+    "loading": "Laster...",
+    "saving": "Lagrer...",
+    "saved": "Lagret",
+    "error": "Feil",
+    "noData": "Ingen data tilgjengelig",
+    "noResults": "Ingen resultater funnet"
+  }
+}

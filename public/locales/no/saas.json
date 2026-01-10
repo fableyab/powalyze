@@ -1,0 +1,22 @@
+{
+  "reports": {
+    "title": "Rapporter",
+    "newReport": "Opprett rapport",
+    "noReports": "Ingen rapporter tilgjengelig",
+    "selectReport": "Velg en rapport for å vise"
+  },
+  "actions": {
+    "import": "Importer rapport",
+    "export": "Eksporter",
+    "share": "Del",
+    "delete": "Slett",
+    "edit": "Rediger"
+  },
+  "powerbi": {
+    "title": "Power BI — Rapporter-hub",
+    "subtitle": "Dine kommersielle, finansielle og PMO-rapporter, sentralisert i Powalyze.",
+    "visualization": "Visualisering",
+    "loading": "Laster rapport...",
+    "error": "Feil ved lasting av rapport"
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "navigation": {
+    "dashboard": "Dashboard",
+    "projects": "Progetti",
+    "portfolio": "Portfolio",
+    "risks": "Rischi",
+    "reports": "Report",
+    "analytics": "Analytics",
+    "calendar": "Calendario",
+    "team": "Team",
+    "settings": "Impostazioni",
+    "admin": "Amministrazione",
+    "logout": "Esci",
+    "profile": "Il mio profilo"
+  },
+  "dashboard": {
+    "welcome": "Benvenuto",
+    "overview": "Panoramica",
+    "activeProjects": "Progetti attivi",
+    "criticalRisks": "Rischi critici",
+    "upcomingDeadlines": "Scadenze imminenti",
+    "teamCapacity": "Capacità team",
+    "budgetStatus": "Stato budget",
+    "recentActivity": "Attività recente",
+    "quickActions": "Azioni rapide",
+    "createProject": "Crea progetto",
+    "viewReports": "Visualizza report",
+    "scheduleReview": "Pianifica revisione"
+  },
+  "projects": {
+    "allProjects": "Tutti i progetti",
+    "myProjects": "I miei progetti",
+    "archived": "Archiviati",
+    "newProject": "Nuovo progetto",
+    "status": {
+      "onTrack": "Nei tempi",
+      "atRisk": "A rischio",
+      "delayed": "In ritardo",
+      "completed": "Completato",
+      "cancelled": "Annullato"
+    },
+    "filters": {
+      "all": "Tutti",
+      "byStatus": "Per stato",
+      "byPriority": "Per priorità",
+      "byOwner": "Per responsabile"
+    },
+    "details": {
+      "overview": "Panoramica",
+      "timeline": "Cronologia",
+      "budget": "Budget",
+      "team": "Team",
+      "documents": "Documenti",
+      "risks": "Rischi",
+      "milestones": "Milestone"
+    }
+  },
+  "portfolio": {
+    "title": "Gestione portfolio",
+    "capacity": "Capacità globale",
+    "allocation": "Allocazione risorse",
+    "strategicAlignment": "Allineamento strategico",
+    "valueDelivery": "Creazione valore",
+    "portfolioHealth": "Salute portfolio"
+  },
+  "reports": {
+    "title": "Centro report",
+    "executive": "Report esecutivo",
+    "financial": "Report finanziario",
+    "operational": "Report operativo",
+    "custom": "Report personalizzati",
+    "export": "Esporta",
+    "schedule": "Pianifica invio",
+    "frequency": {
+      "daily": "Giornaliero",
+      "weekly": "Settimanale",
+      "monthly": "Mensile",
+      "quarterly": "Trimestrale"
+    }
+  },
+  "team": {
+    "members": "Membri del team",
+    "roles": "Ruoli",
+    "permissions": "Permessi",
+    "inviteUser": "Invita utente",
+    "workload": "Carico di lavoro",
+    "availability": "Disponibilità"
+  },
+  "settings": {
+    "general": "Generale",
+    "account": "Account",
+    "security": "Sicurezza",
+    "notifications": "Notifiche",
+    "integrations": "Integrazioni",
+    "billing": "Fatturazione",
+    "preferences": {
+      "language": "Lingua",
+      "timezone": "Fuso orario",
+      "dateFormat": "Formato data",
+      "currency": "Valuta"
+    }
+  },
+  "alerts": {
+    "critical": "Critico",
+    "warning": "Avviso",
+    "info": "Informazione",
+    "newAlert": "Nuovo avviso",
+    "dismiss": "Ignora",
+    "markAsRead": "Segna come letto",
+    "configure": "Configura avvisi"
+  },
+  "actions": {
+    "save": "Salva",
+    "cancel": "Annulla",
+    "delete": "Elimina",
+    "edit": "Modifica",
+    "duplicate": "Duplica",
+    "archive": "Archivia",
+    "restore": "Ripristina",
+    "export": "Esporta",
+    "share": "Condividi",
+    "print": "Stampa"
+  },
+  "filters": {
+    "applyFilters": "Applica filtri",
+    "clearFilters": "Cancella filtri",
+    "saveView": "Salva vista",
+    "customView": "Vista personalizzata"
+  },
+  "status": {
+    "loading": "Caricamento...",
+    "saving": "Salvataggio...",
+    "saved": "Salvato",
+    "error": "Errore",
+    "noData": "Nessun dato disponibile",
+    "noResults": "Nessun risultato trovato"
+  }
+}

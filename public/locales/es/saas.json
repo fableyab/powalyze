@@ -1,0 +1,22 @@
+{
+  "reports": {
+    "title": "Informes",
+    "newReport": "Crear informe",
+    "noReports": "No hay informes disponibles",
+    "selectReport": "Seleccione un informe para ver"
+  },
+  "actions": {
+    "import": "Importar informe",
+    "export": "Exportar",
+    "share": "Compartir",
+    "delete": "Eliminar",
+    "edit": "Editar"
+  },
+  "powerbi": {
+    "title": "Power BI — Centro de informes",
+    "subtitle": "Sus informes comerciales, financieros y PMO, centralizados en Powalyze.",
+    "visualization": "Visualización",
+    "loading": "Cargando informe...",
+    "error": "Error al cargar el informe"
+  }
+}

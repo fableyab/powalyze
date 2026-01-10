@@ -1,0 +1,101 @@
+{
+  "title": "Risk Heatmap",
+  "subtitle": "Simplified view for directors",
+  "globalStatus": {
+    "title": "Portfolio global status",
+    "okProjects": "projects OK",
+    "warningProjects": "projects to monitor",
+    "criticalProject": "critical project"
+  },
+  "aiSummary": {
+    "title": "AI Summary",
+    "criticalRisk": "critical risk",
+    "identified": "identified.",
+    "urgentAction": "Project Orion requires a decision within 48 hours to avoid a 3-week overall delay.",
+    "recommendation": "Immediate action recommended on 1 project. The 3 other orange risks can be handled within the week."
+  },
+  "immediateAction": {
+    "title": "Immediate action",
+    "decisionRequired": "Decision required:",
+    "responsible": "Responsible",
+    "deadline": "Deadline:",
+    "viewActions": "View recommended actions"
+  },
+  "allRisks": {
+    "title": "All risks",
+    "problem": "Problem",
+    "impact": "Impact",
+    "decision": "Expected decision"
+  },
+  "levels": {
+    "critical": "Critical",
+    "warning": "To monitor",
+    "ok": "OK",
+    "unknown": "Unknown"
+  },
+  "modal": {
+    "description": "Description",
+    "actions": "Recommended actions",
+    "estimatedDelay": "Estimated delay",
+    "budgetImpact": "Budget impact",
+    "validateDecision": "Validate decision"
+  },
+  "data": {
+    "orion": {
+      "project": "Orion Project",
+      "problem": "Key supplier delay",
+      "impact": "3-week schedule delay",
+      "decision": "Choose alternative supplier",
+      "responsible": "Alice Martin",
+      "deadline": "48h",
+      "description": "The main supplier announced a 3-week delivery delay for critical components. This situation blocks project progress and requires a quick decision to avoid cascading impact on other projects.",
+      "action1": "Immediately contact 2 pre-qualified alternative suppliers",
+      "action2": "Evaluate in-house production option (10-day lead time)",
+      "action3": "Negotiate financial compensation with current supplier",
+      "delay": "3 weeks",
+      "budget": "+15% (CHF 45,000)"
+    },
+    "phoenix": {
+      "project": "Phoenix Project",
+      "problem": "Insufficient resources",
+      "impact": "Deliverable quality",
+      "decision": "Hire 2 developers",
+      "responsible": "Marc Dubois",
+      "deadline": "1 week",
+      "description": "Current team is overloaded at 120% allocation. Deliverable quality is starting to degrade and several critical bugs haven't been fixed for 2 sprints.",
+      "action1": "Launch express recruitment via specialized agency",
+      "action2": "Temporarily reassign 1 senior developer from Nova project",
+      "action3": "Strictly prioritize critical functionalities",
+      "delay": "2 sprints",
+      "budget": "+8% (CHF 24,000)"
+    },
+    "atlas": {
+      "project": "Atlas Project",
+      "problem": "Unclear scope",
+      "impact": "Scope creep risk",
+      "decision": "Validate specifications",
+      "responsible": "Sophie Chen",
+      "deadline": "5 days",
+      "description": "Functional scope is still not formally validated after 3 iterations. Change requests are multiplying and creating confusion in the development team.",
+      "action1": "Organize framing workshop with all stakeholders",
+      "action2": "Freeze scope and create phase 2 backlog",
+      "action3": "Implement formal change request process",
+      "delay": "1 week",
+      "budget": "Neutral"
+    },
+    "nova": {
+      "project": "Nova Project",
+      "problem": "Slow client validation",
+      "impact": "Progress blocked",
+      "decision": "Escalate to sponsor",
+      "responsible": "Thomas Weber",
+      "deadline": "3 days",
+      "description": "Client validations systematically take 10+ days versus 3 days planned. This situation blocks progression and demotivates the team who must constantly review their priorities.",
+      "action1": "Escalate to client-side sponsor to accelerate decisions",
+      "action2": "Implement weekly validation routine",
+      "action3": "Define contractual maximum validation period (5 days)",
+      "delay": "1 week",
+      "budget": "Neutral"
+    }
+  }
+}

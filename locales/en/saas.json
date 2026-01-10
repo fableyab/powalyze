@@ -1,0 +1,138 @@
+{
+  "navigation": {
+    "dashboard": "Dashboard",
+    "projects": "Projects",
+    "portfolio": "Portfolio",
+    "risks": "Risks",
+    "reports": "Reports",
+    "analytics": "Analytics",
+    "calendar": "Calendar",
+    "team": "Team",
+    "settings": "Settings",
+    "admin": "Administration",
+    "logout": "Logout",
+    "profile": "My profile"
+  },
+  "dashboard": {
+    "welcome": "Welcome",
+    "overview": "Overview",
+    "activeProjects": "Active projects",
+    "criticalRisks": "Critical risks",
+    "upcomingDeadlines": "Upcoming deadlines",
+    "teamCapacity": "Team capacity",
+    "budgetStatus": "Budget status",
+    "recentActivity": "Recent activity",
+    "quickActions": "Quick actions",
+    "createProject": "Create project",
+    "viewReports": "View reports",
+    "scheduleReview": "Schedule review"
+  },
+  "projects": {
+    "allProjects": "All projects",
+    "myProjects": "My projects",
+    "archived": "Archived",
+    "newProject": "New project",
+    "status": {
+      "onTrack": "On track",
+      "atRisk": "At risk",
+      "delayed": "Delayed",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    },
+    "filters": {
+      "all": "All",
+      "byStatus": "By status",
+      "byPriority": "By priority",
+      "byOwner": "By owner"
+    },
+    "details": {
+      "overview": "Overview",
+      "timeline": "Timeline",
+      "budget": "Budget",
+      "team": "Team",
+      "documents": "Documents",
+      "risks": "Risks",
+      "milestones": "Milestones"
+    }
+  },
+  "portfolio": {
+    "title": "Portfolio management",
+    "capacity": "Global capacity",
+    "allocation": "Resource allocation",
+    "strategicAlignment": "Strategic alignment",
+    "valueDelivery": "Value delivery",
+    "portfolioHealth": "Portfolio health"
+  },
+  "reports": {
+    "title": "Report center",
+    "executive": "Executive report",
+    "financial": "Financial report",
+    "operational": "Operational report",
+    "custom": "Custom reports",
+    "export": "Export",
+    "schedule": "Schedule delivery",
+    "frequency": {
+      "daily": "Daily",
+      "weekly": "Weekly",
+      "monthly": "Monthly",
+      "quarterly": "Quarterly"
+    }
+  },
+  "team": {
+    "members": "Team members",
+    "roles": "Roles",
+    "permissions": "Permissions",
+    "inviteUser": "Invite user",
+    "workload": "Workload",
+    "availability": "Availability"
+  },
+  "settings": {
+    "general": "General",
+    "account": "Account",
+    "security": "Security",
+    "notifications": "Notifications",
+    "integrations": "Integrations",
+    "billing": "Billing",
+    "preferences": {
+      "language": "Language",
+      "timezone": "Timezone",
+      "dateFormat": "Date format",
+      "currency": "Currency"
+    }
+  },
+  "alerts": {
+    "critical": "Critical",
+    "warning": "Warning",
+    "info": "Information",
+    "newAlert": "New alert",
+    "dismiss": "Dismiss",
+    "markAsRead": "Mark as read",
+    "configure": "Configure alerts"
+  },
+  "actions": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "duplicate": "Duplicate",
+    "archive": "Archive",
+    "restore": "Restore",
+    "export": "Export",
+    "share": "Share",
+    "print": "Print"
+  },
+  "filters": {
+    "applyFilters": "Apply filters",
+    "clearFilters": "Clear filters",
+    "saveView": "Save view",
+    "customView": "Custom view"
+  },
+  "status": {
+    "loading": "Loading...",
+    "saving": "Saving...",
+    "saved": "Saved",
+    "error": "Error",
+    "noData": "No data available",
+    "noResults": "No results found"
+  }
+}

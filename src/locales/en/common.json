@@ -1,0 +1,219 @@
+{
+  "nav": {
+    "home": "Home",
+    "modules": "Modules",
+    "useCases": "Use Cases",
+    "about": "About",
+    "contact": "Contact",
+    "login": "Login",
+    "signup": "Sign Up",
+    "demo": "Demo",
+    "dashboard": "Dashboard"
+  },
+  "landing": {
+    "module1Title": "Portfolio Manager",
+    "module1Desc": "Structure your projects, programs and portfolios with total clarity.",
+    "module2Title": "Executive Cockpit",
+    "module2Desc": "Synthetic, reliable and decision-oriented views for your committees.",
+    "module3Title": "AI Analytics & Predictive",
+    "module3Desc": "Enhanced analysis, data consistency, intelligent recommendations.",
+    "step1Title": "Consolidate your data",
+    "step1Desc": "Bring together projects, KPIs, risks and decisions in one platform.",
+    "step2Title": "Steer with clarity",
+    "step2Desc": "Consolidated views, executive dashboards and automated reporting.",
+    "step3Title": "Anticipate risks",
+    "step3Desc": "AI detects weak signals and projects impacts before the crisis.",
+    "step4Title": "Decide faster",
+    "step4Desc": "Reliable data, visual scenarios, intelligent recommendations.",
+    "useCase1Title": "Strategic PMO",
+    "useCase1Desc": "Structure, consistency, reporting, arbitrations.",
+    "useCase2Title": "Executive Management",
+    "useCase2Desc": "Consolidated view, major risks, priority decisions.",
+    "useCase3Title": "Data & Analytics",
+    "useCase3Desc": "Reliability, consolidation, automation.",
+    "useCase4Title": "Multi-country Project Managers",
+    "useCase4Desc": "Harmonization, monitoring, dependencies.",
+    "testimonial1": "Powalyze transformed our strategic steering. Committees are shorter, decisions clearer.",
+    "testimonial1Author": "PMO Director",
+    "testimonial1Company": "International Company",
+    "testimonial2": "Finally a platform designed for governance and data, not task management.",
+    "testimonial2Author": "Data Manager",
+    "testimonial2Company": "Industrial Group",
+    "testimonial3": "Predictive AI allowed us to anticipate risks we weren't seeing.",
+    "testimonial3Author": "Program Manager",
+    "testimonial3Company": "Public Sector",
+    "faq1Question": "Does Powalyze replace my PMO?",
+    "faq1Answer": "No, Powalyze amplifies your PMO. It's a strategic steering tool that structures your portfolios, makes your data reliable and accelerates your decisions.",
+    "faq2Question": "Do I need a PMO to use Powalyze?",
+    "faq2Answer": "No. Powalyze adapts to your maturity. If you don't have a PMO, we can support you in structuring your governance.",
+    "faq3Question": "Is Powalyze compatible with my current tools?",
+    "faq3Answer": "Yes. Powalyze integrates with your existing tools (Jira, Azure DevOps, Excel, Power BI) and consolidates your data.",
+    "faq4Question": "How long does it take to deploy Powalyze?",
+    "faq4Answer": "A pilot scope can be operational in a few weeks. Full deployment depends on the complexity of your portfolios.",
+    "faq5Question": "Is Powalyze suitable for SMEs?",
+    "faq5Answer": "Yes. Our modular approach allows you to start with a targeted scope and evolve at the pace of your needs."
+  },
+  "hero": {
+    "title": "The platform that transforms your governance, data and decisions",
+    "subtitle": "Powalyze combines the best of PMO, data analysis and predictive AI in a SaaS platform designed to structure your portfolios, make your reporting reliable and accelerate your arbitrations.",
+    "ctaPlatform": "Discover the platform",
+    "ctaAccompaniment": "Get support"
+  },
+  "why": {
+    "title": "Why Powalyze is different",
+    "tagline": "Because modern governance requires more than a tool. It requires a system.",
+    "description": "Organizations juggle projects, data, committees, indicators and critical decisions. Powalyze brings clear structure, intelligent data reading and predictive steering.",
+    "youGet": "You get:",
+    "benefit1": "structured governance",
+    "benefit2": "reliable and consolidated data",
+    "benefit3": "automated reporting",
+    "benefit4": "faster decisions",
+    "benefit5": "risk anticipation",
+    "benefit6": "PMO / Management / Field alignment",
+    "conclusion": "It's the perfect fusion of method, data and technology."
+  },
+  "hybrid": {
+    "title": "The hybrid model: PMO + Data + SaaS + AI",
+    "subtitle": "Your business expertise, amplified by technology.",
+    "saas": {
+      "title": "SaaS: your governance cockpit",
+      "features": [
+        "Consolidated portfolio view",
+        "Risk, dependency and arbitration tracking",
+        "Executive views for committees",
+        "Complete decision traceability",
+        "Automatic reporting",
+        "Integrated predictive intelligence"
+      ]
+    },
+    "pmo": {
+      "title": "PMO: your strategic backbone",
+      "features": [
+        "Portfolio structuring",
+        "Committee setup",
+        "Indicator definition",
+        "Steering methodology",
+        "Team alignment"
+      ]
+    },
+    "data": {
+      "title": "Data Analyst: your operational truth",
+      "features": [
+        "Data modeling",
+        "Cleaning, reliability, consolidation",
+        "Reference database construction",
+        "Advanced analysis"
+      ]
+    },
+    "powerbi": {
+      "title": "Power BI: your total visibility",
+      "features": [
+        "Executive dashboards",
+        "Strategic KPIs",
+        "Visual scenarios",
+        "Reporting automation"
+      ]
+    },
+    "ai": {
+      "title": "Predictive AI: your decisive advantage",
+      "features": [
+        "Weak signal detection",
+        "Drift anticipation",
+        "Scenario simulation",
+        "Intelligent recommendations"
+      ]
+    }
+  },
+  "predictive": {
+    "title": "Anticipate what others discover too late",
+    "description": "Powalyze's predictive AI analyzes your data, detects inconsistencies, projects impacts and alerts you before risks become critical.",
+    "helps": "It helps you:",
+    "benefit1": "anticipate delays and drifts",
+    "benefit2": "identify critical dependencies",
+    "benefit3": "simulate budget impacts",
+    "benefit4": "optimize arbitrations",
+    "benefit5": "prepare your committees ahead of time",
+    "conclusion": "It's a new way of steering: proactive, intelligent, strategic."
+  },
+  "modules": {
+    "title": "Modules",
+    "portfolio": {
+      "name": "Portfolio Manager",
+      "description": "Structure your projects, programs and portfolios with total clarity."
+    },
+    "cockpit": {
+      "name": "Executive Cockpit",
+      "description": "Synthetic, reliable and decision-oriented views for your committees."
+    },
+    "executive": {
+      "name": "Executive Hub",
+      "description": "A dedicated space for decisions, risks, documents and actions."
+    },
+    "analytics": {
+      "name": "AI Analytics & Predictive",
+      "description": "Augmented analysis, data consistency, intelligent recommendations."
+    },
+    "theater": {
+      "name": "Cognitive Theater",
+      "description": "Visual scenarios to convince, align and decide."
+    }
+  },
+  "results": {
+    "title": "What you actually get",
+    "subtitle": "Concrete, measurable and fast results.",
+    "result1": "50% less time to prepare committees",
+    "result2": "Faster and better documented decisions",
+    "result3": "PMO, management and field alignment",
+    "result4": "Reduced risks and drifts",
+    "result5": "Automated and reliable reporting",
+    "result6": "Structured and sustainable governance",
+    "conclusion": "Powalyze transforms your steering into a strategic advantage."
+  },
+  "useCases": {
+    "title": "Use Cases",
+    "pmo": {
+      "name": "Strategic PMO",
+      "description": "Structure, consistency, reporting, arbitrations."
+    },
+    "direction": {
+      "name": "Executive Management",
+      "description": "Consolidated view, major risks, priority decisions."
+    },
+    "data": {
+      "name": "Data & Analytics",
+      "description": "Reliability, consolidation, automation."
+    },
+    "multiCountry": {
+      "name": "Multi-country project managers",
+      "description": "Harmonization, tracking, dependencies."
+    },
+    "consulting": {
+      "name": "Consulting firms",
+      "description": "A premium platform to support your clients."
+    }
+  },
+  "testimonials": {
+    "title": "What our clients say",
+    "testimonial1": {
+      "quote": "Powalyze transformed our strategic steering. Committees are shorter, decisions clearer.",
+      "author": "PMO Director",
+      "company": "International Group"
+    },
+    "testimonial2": {
+      "quote": "Finally a platform designed for governance and data, not for task management.",
+      "author": "Data Manager",
+      "company": "Public Sector"
+    },
+    "testimonial3": {
+      "quote": "Predictive AI allowed us to anticipate risks we didn't see.",
+      "author": "Program Manager",
+      "company": "Financial Services"
+    }
+  },
+  "finalCta": {
+    "title": "Move from reactive to intelligent steering",
+    "description": "Powalyze helps you structure your portfolios, make your data reliable and anticipate your decisions with a complete system: PMO + Data + Power BI + AI + SaaS.",
+    "ctaAccount": "Create account",
+    "ctaAccompaniment": "Get support"
+  }
+}

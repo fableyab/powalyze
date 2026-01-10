@@ -1,0 +1,219 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "modules": "Module",
+    "useCases": "Anwendungsfälle",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "login": "Anmelden",
+    "signup": "Konto erstellen",
+    "demo": "Demo",
+    "dashboard": "Dashboard"
+  },
+  "landing": {
+    "module1Title": "Portfolio Manager",
+    "module1Desc": "Strukturieren Sie Ihre Projekte, Programme und Portfolios mit vollständiger Klarheit.",
+    "module2Title": "Executive Cockpit",
+    "module2Desc": "Synthetische, zuverlässige und entscheidungsorientierte Ansichten für Ihre Gremien.",
+    "module3Title": "AI Analytics & Predictive",
+    "module3Desc": "Erweiterte Analyse, Datenkonsistenz, intelligente Empfehlungen.",
+    "step1Title": "Konsolidieren Sie Ihre Daten",
+    "step1Desc": "Bringen Sie Projekte, KPIs, Risiken und Entscheidungen auf einer Plattform zusammen.",
+    "step2Title": "Steuern Sie mit Klarheit",
+    "step2Desc": "Konsolidierte Ansichten, Executive Dashboards und automatisierte Berichterstattung.",
+    "step3Title": "Risiken antizipieren",
+    "step3Desc": "KI erkennt schwache Signale und projiziert Auswirkungen vor der Krise.",
+    "step4Title": "Schneller entscheiden",
+    "step4Desc": "Zuverlässige Daten, visuelle Szenarien, intelligente Empfehlungen.",
+    "useCase1Title": "Strategisches PMO",
+    "useCase1Desc": "Struktur, Konsistenz, Berichterstattung, Arbitrierungen.",
+    "useCase2Title": "Geschäftsführung",
+    "useCase2Desc": "Konsolidierte Sicht, Hauptrisiken, prioritäre Entscheidungen.",
+    "useCase3Title": "Data & Analytics",
+    "useCase3Desc": "Zuverlässigkeit, Konsolidierung, Automatisierung.",
+    "useCase4Title": "Multi-Country Projektmanager",
+    "useCase4Desc": "Harmonisierung, Überwachung, Abhängigkeiten.",
+    "testimonial1": "Powalyze hat unsere strategische Steuerung transformiert. Sitzungen sind kürzer, Entscheidungen klarer.",
+    "testimonial1Author": "PMO-Direktor",
+    "testimonial1Company": "Internationales Unternehmen",
+    "testimonial2": "Endlich eine Plattform, die für Governance und Daten konzipiert ist, nicht für Aufgabenverwaltung.",
+    "testimonial2Author": "Datenverantwortlicher",
+    "testimonial2Company": "Industriegruppe",
+    "testimonial3": "Prädiktive KI ermöglichte es uns, Risiken zu antizipieren, die wir nicht sahen.",
+    "testimonial3Author": "Programmmanager",
+    "testimonial3Company": "Öffentlicher Sektor",
+    "faq1Question": "Ersetzt Powalyze mein PMO?",
+    "faq1Answer": "Nein, Powalyze verstärkt Ihr PMO. Es ist ein strategisches Steuerungsinstrument, das Ihre Portfolios strukturiert, Ihre Daten zuverlässig macht und Ihre Entscheidungen beschleunigt.",
+    "faq2Question": "Brauche ich ein PMO, um Powalyze zu nutzen?",
+    "faq2Answer": "Nein. Powalyze passt sich Ihrer Reife an. Wenn Sie kein PMO haben, können wir Sie bei der Strukturierung Ihrer Governance unterstützen.",
+    "faq3Question": "Ist Powalyze mit meinen aktuellen Tools kompatibel?",
+    "faq3Answer": "Ja. Powalyze integriert sich mit Ihren vorhandenen Tools (Jira, Azure DevOps, Excel, Power BI) und konsolidiert Ihre Daten.",
+    "faq4Question": "Wie lange dauert die Bereitstellung von Powalyze?",
+    "faq4Answer": "Ein Pilotbereich kann in wenigen Wochen einsatzbereit sein. Die vollständige Bereitstellung hängt von der Komplexität Ihrer Portfolios ab.",
+    "faq5Question": "Ist Powalyze für KMU geeignet?",
+    "faq5Answer": "Ja. Unser modularer Ansatz ermöglicht es Ihnen, mit einem gezielten Bereich zu beginnen und sich im Tempo Ihrer Bedürfnisse weiterzuentwickeln."
+  },
+  "hero": {
+    "title": "Die Plattform, die Ihre Governance, Daten und Entscheidungen transformiert",
+    "subtitle": "Powalyze vereint das Beste aus PMO, Datenanalyse und prädiktiver KI in einer SaaS-Plattform zur Strukturierung Ihrer Portfolios, Zuverlässigkeit Ihrer Berichterstattung und Beschleunigung Ihrer Entscheidungen.",
+    "ctaPlatform": "Plattform entdecken",
+    "ctaAccompaniment": "Unterstützung erhalten"
+  },
+  "why": {
+    "title": "Warum Powalyze anders ist",
+    "tagline": "Weil moderne Governance mehr als ein Tool erfordert. Sie erfordert ein System.",
+    "description": "Organisationen jonglieren mit Projekten, Daten, Ausschüssen, Indikatoren und kritischen Entscheidungen. Powalyze bringt klare Struktur, intelligente Datenauswertung und prädiktive Steuerung.",
+    "youGet": "Sie erhalten:",
+    "benefit1": "strukturierte Governance",
+    "benefit2": "zuverlässige und konsolidierte Daten",
+    "benefit3": "automatisierte Berichterstattung",
+    "benefit4": "schnellere Entscheidungen",
+    "benefit5": "Risikoantizipation",
+    "benefit6": "PMO / Management / Feld-Alignment",
+    "conclusion": "Es ist die perfekte Fusion aus Methode, Daten und Technologie."
+  },
+  "hybrid": {
+    "title": "Das Hybridmodell: PMO + Daten + SaaS + KI",
+    "subtitle": "Ihre Geschäftsexpertise, verstärkt durch Technologie.",
+    "saas": {
+      "title": "SaaS: Ihr Governance-Cockpit",
+      "features": [
+        "Konsolidierte Portfolio-Ansicht",
+        "Risiko-, Abhängigkeits- und Schiedsverfolgung",
+        "Executive-Ansichten für Ausschüsse",
+        "Vollständige Entscheidungsrückverfolgbarkeit",
+        "Automatische Berichterstattung",
+        "Integrierte prädiktive Intelligenz"
+      ]
+    },
+    "pmo": {
+      "title": "PMO: Ihr strategisches Rückgrat",
+      "features": [
+        "Portfolio-Strukturierung",
+        "Ausschuss-Einrichtung",
+        "Indikatordefinition",
+        "Steuerungsmethodik",
+        "Team-Alignment"
+      ]
+    },
+    "data": {
+      "title": "Data Analyst: Ihre operative Wahrheit",
+      "features": [
+        "Datenmodellierung",
+        "Bereinigung, Zuverlässigkeit, Konsolidierung",
+        "Aufbau von Referenzdatenbanken",
+        "Erweiterte Analyse"
+      ]
+    },
+    "powerbi": {
+      "title": "Power BI: Ihre totale Sichtbarkeit",
+      "features": [
+        "Executive Dashboards",
+        "Strategische KPIs",
+        "Visuelle Szenarien",
+        "Berichtsautomatisierung"
+      ]
+    },
+    "ai": {
+      "title": "Prädiktive KI: Ihr entscheidender Vorteil",
+      "features": [
+        "Schwachsignalenerkennung",
+        "Drift-Antizipation",
+        "Szenario-Simulation",
+        "Intelligente Empfehlungen"
+      ]
+    }
+  },
+  "predictive": {
+    "title": "Antizipieren Sie, was andere zu spät entdecken",
+    "description": "Die prädiktive KI von Powalyze analysiert Ihre Daten, erkennt Inkonsistenzen, projiziert Auswirkungen und warnt Sie, bevor Risiken kritisch werden.",
+    "helps": "Sie hilft Ihnen:",
+    "benefit1": "Verzögerungen und Abweichungen antizipieren",
+    "benefit2": "kritische Abhängigkeiten identifizieren",
+    "benefit3": "Budgetauswirkungen simulieren",
+    "benefit4": "Schiedsverfahren optimieren",
+    "benefit5": "Ihre Ausschüsse im Voraus vorbereiten",
+    "conclusion": "Es ist eine neue Art der Steuerung: proaktiv, intelligent, strategisch."
+  },
+  "modules": {
+    "title": "Module",
+    "portfolio": {
+      "name": "Portfolio Manager",
+      "description": "Strukturieren Sie Ihre Projekte, Programme und Portfolios mit absoluter Klarheit."
+    },
+    "cockpit": {
+      "name": "Executive Cockpit",
+      "description": "Synthetische, zuverlässige und entscheidungsorientierte Ansichten für Ihre Ausschüsse."
+    },
+    "executive": {
+      "name": "Executive Hub",
+      "description": "Ein dedizierter Raum für Entscheidungen, Risiken, Dokumente und Aktionen."
+    },
+    "analytics": {
+      "name": "AI Analytics & Predictive",
+      "description": "Erweiterte Analyse, Datenkonsistenz, intelligente Empfehlungen."
+    },
+    "theater": {
+      "name": "Cognitive Theater",
+      "description": "Visuelle Szenarien zum Überzeugen, Ausrichten und Entscheiden."
+    }
+  },
+  "results": {
+    "title": "Was Sie tatsächlich erhalten",
+    "subtitle": "Konkrete, messbare und schnelle Ergebnisse.",
+    "result1": "50% weniger Zeit für Ausschussvorbereitung",
+    "result2": "Schnellere und besser dokumentierte Entscheidungen",
+    "result3": "PMO-, Management- und Feld-Alignment",
+    "result4": "Reduzierte Risiken und Abweichungen",
+    "result5": "Automatisierte und zuverlässige Berichterstattung",
+    "result6": "Strukturierte und nachhaltige Governance",
+    "conclusion": "Powalyze verwandelt Ihre Steuerung in einen strategischen Vorteil."
+  },
+  "useCases": {
+    "title": "Anwendungsfälle",
+    "pmo": {
+      "name": "Strategisches PMO",
+      "description": "Struktur, Konsistenz, Berichterstattung, Schiedsverfahren."
+    },
+    "direction": {
+      "name": "Executive Management",
+      "description": "Konsolidierte Ansicht, Hauptrisiken, prioritäre Entscheidungen."
+    },
+    "data": {
+      "name": "Daten & Analytics",
+      "description": "Zuverlässigkeit, Konsolidierung, Automatisierung."
+    },
+    "multiCountry": {
+      "name": "Multinationale Projektmanager",
+      "description": "Harmonisierung, Verfolgung, Abhängigkeiten."
+    },
+    "consulting": {
+      "name": "Beratungsfirmen",
+      "description": "Eine Premium-Plattform zur Unterstützung Ihrer Kunden."
+    }
+  },
+  "testimonials": {
+    "title": "Was unsere Kunden sagen",
+    "testimonial1": {
+      "quote": "Powalyze hat unsere strategische Steuerung transformiert. Ausschüsse sind kürzer, Entscheidungen klarer.",
+      "author": "PMO-Direktor",
+      "company": "Internationale Gruppe"
+    },
+    "testimonial2": {
+      "quote": "Endlich eine Plattform, die für Governance und Daten entwickelt wurde, nicht für Aufgabenverwaltung.",
+      "author": "Datenmanager",
+      "company": "Öffentlicher Sektor"
+    },
+    "testimonial3": {
+      "quote": "Prädiktive KI ermöglichte uns, Risiken zu antizipieren, die wir nicht sahen.",
+      "author": "Programmmanager",
+      "company": "Finanzdienstleistungen"
+    }
+  },
+  "finalCta": {
+    "title": "Von reaktiver zu intelligenter Steuerung wechseln",
+    "description": "Powalyze hilft Ihnen, Ihre Portfolios zu strukturieren, Ihre Daten zuverlässig zu machen und Ihre Entscheidungen mit einem vollständigen System zu antizipieren: PMO + Daten + Power BI + KI + SaaS.",
+    "ctaAccount": "Konto erstellen",
+    "ctaAccompaniment": "Unterstützung erhalten"
+  }
+}

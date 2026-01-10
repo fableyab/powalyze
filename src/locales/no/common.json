@@ -1,0 +1,219 @@
+{
+  "nav": {
+    "home": "Hjem",
+    "modules": "Moduler",
+    "useCases": "Bruksområder",
+    "about": "Om oss",
+    "contact": "Kontakt",
+    "login": "Logg inn",
+    "signup": "Opprett konto",
+    "demo": "Demo",
+    "dashboard": "Dashbord"
+  },
+  "landing": {
+    "module1Title": "Portfolio Manager",
+    "module1Desc": "Strukturer dine prosjekter, programmer og porteføljer med total klarhet.",
+    "module2Title": "Executive Cockpit",
+    "module2Desc": "Syntetiske, pålitelige og beslutningsorienterte visninger for dine komiteer.",
+    "module3Title": "AI Analytics & Predictive",
+    "module3Desc": "Forbedret analyse, datakonsistens, intelligente anbefalinger.",
+    "step1Title": "Konsolider dataene dine",
+    "step1Desc": "Samle prosjekter, KPIer, risikoer og beslutninger på én plattform.",
+    "step2Title": "Styr med klarhet",
+    "step2Desc": "Konsoliderte visninger, executive dashboards og automatisert rapportering.",
+    "step3Title": "Forutse risikoer",
+    "step3Desc": "AI oppdager svake signaler og projiserer konsekvenser før krisen.",
+    "step4Title": "Bestem raskere",
+    "step4Desc": "Pålitelige data, visuelle scenarioer, intelligente anbefalinger.",
+    "useCase1Title": "Strategisk PMO",
+    "useCase1Desc": "Struktur, konsistens, rapportering, avgjørelser.",
+    "useCase2Title": "Toppledelse",
+    "useCase2Desc": "Konsolidert oversikt, store risikoer, prioriterte beslutninger.",
+    "useCase3Title": "Data & Analytics",
+    "useCase3Desc": "Pålitelighet, konsolidering, automatisering.",
+    "useCase4Title": "Flerlands prosjektledere",
+    "useCase4Desc": "Harmonisering, overvåking, avhengigheter.",
+    "testimonial1": "Powalyze transformerte vår strategiske styring. Møter er kortere, beslutninger klarere.",
+    "testimonial1Author": "PMO-direktør",
+    "testimonial1Company": "Internasjonalt selskap",
+    "testimonial2": "Endelig en plattform designet for styring og data, ikke oppgavehåndtering.",
+    "testimonial2Author": "Dataansvarlig",
+    "testimonial2Company": "Industrigruppe",
+    "testimonial3": "Prediktiv AI tillot oss å forutse risikoer vi ikke så.",
+    "testimonial3Author": "Programleder",
+    "testimonial3Company": "Offentlig sektor",
+    "faq1Question": "Erstatter Powalyze min PMO?",
+    "faq1Answer": "Nei, Powalyze forsterker din PMO. Det er et strategisk styringsverktøy som strukturerer porteføljene dine, gjør dataene dine pålitelige og akselererer beslutningene dine.",
+    "faq2Question": "Trenger jeg en PMO for å bruke Powalyze?",
+    "faq2Answer": "Nei. Powalyze tilpasser seg din modenhet. Hvis du ikke har en PMO, kan vi støtte deg i å strukturere din styring.",
+    "faq3Question": "Er Powalyze kompatibel med mine nåværende verktøy?",
+    "faq3Answer": "Ja. Powalyze integreres med dine eksisterende verktøy (Jira, Azure DevOps, Excel, Power BI) og konsoliderer dataene dine.",
+    "faq4Question": "Hvor lang tid tar det å distribuere Powalyze?",
+    "faq4Answer": "Et pilotområde kan være operativt om noen uker. Full distribusjon avhenger av kompleksiteten i porteføljene dine.",
+    "faq5Question": "Er Powalyze egnet for SMB?",
+    "faq5Answer": "Ja. Vår modulære tilnærming lar deg starte med et målrettet område og utvikle deg i takt med dine behov."
+  },
+  "hero": {
+    "title": "Plattformen som transformerer din styring, data og beslutninger",
+    "subtitle": "Powalyze kombinerer det beste fra PMO, dataanalyse og prediktiv AI i en SaaS-plattform designet for å strukturere dine porteføljer, gjøre rapporteringen pålitelig og akselerere dine beslutninger.",
+    "ctaPlatform": "Oppdag plattformen",
+    "ctaAccompaniment": "Få støtte"
+  },
+  "why": {
+    "title": "Hvorfor Powalyze er forskjellig",
+    "tagline": "Fordi moderne styring krever mer enn et verktøy. Det krever et system.",
+    "description": "Organisasjoner jonglerer med prosjekter, data, komiteer, indikatorer og kritiske beslutninger. Powalyze gir klar struktur, intelligent datalesing og prediktiv styring.",
+    "youGet": "Du får:",
+    "benefit1": "strukturert styring",
+    "benefit2": "pålitelige og konsoliderte data",
+    "benefit3": "automatisert rapportering",
+    "benefit4": "raskere beslutninger",
+    "benefit5": "risikoanticipering",
+    "benefit6": "PMO / Ledelse / Felt-alignment",
+    "conclusion": "Det er den perfekte fusjonen av metode, data og teknologi."
+  },
+  "hybrid": {
+    "title": "Hybridmodellen: PMO + Data + SaaS + AI",
+    "subtitle": "Din forretningsekspertise, forsterket av teknologi.",
+    "saas": {
+      "title": "SaaS: din styringscockpit",
+      "features": [
+        "Konsolidert porteføljevisning",
+        "Risiko-, avhengighets- og voldgiftssporing",
+        "Executive-visninger for komiteer",
+        "Fullstendig beslutningssporbarhet",
+        "Automatisk rapportering",
+        "Integrert prediktiv intelligens"
+      ]
+    },
+    "pmo": {
+      "title": "PMO: din strategiske ryggrad",
+      "features": [
+        "Porteføljestrukturering",
+        "Komiteoppsett",
+        "Indikatordefinisjon",
+        "Styringsmetodikk",
+        "Team-alignment"
+      ]
+    },
+    "data": {
+      "title": "Data Analyst: din operasjonelle sannhet",
+      "features": [
+        "Datamodellering",
+        "Rensing, pålitelighet, konsolidering",
+        "Bygging av referansedatabaser",
+        "Avansert analyse"
+      ]
+    },
+    "powerbi": {
+      "title": "Power BI: din totale synlighet",
+      "features": [
+        "Executive dashboards",
+        "Strategiske KPIer",
+        "Visuelle scenarier",
+        "Rapporteringsautomatisering"
+      ]
+    },
+    "ai": {
+      "title": "Prediktiv AI: din avgjørende fordel",
+      "features": [
+        "Svak signaldeteksjon",
+        "Driftanticipering",
+        "Scenario-simulering",
+        "Intelligente anbefalinger"
+      ]
+    }
+  },
+  "predictive": {
+    "title": "Anticiper hva andre oppdager for sent",
+    "description": "Powalyzes prediktive AI analyserer dine data, oppdager inkonsekvenser, projiserer påvirkninger og varsler deg før risikoen blir kritisk.",
+    "helps": "Den hjelper deg med å:",
+    "benefit1": "anticipere forsinkelser og avvik",
+    "benefit2": "identifisere kritiske avhengigheter",
+    "benefit3": "simulere budsjetteffekter",
+    "benefit4": "optimalisere voldgifter",
+    "benefit5": "forberede komiteene dine på forhånd",
+    "conclusion": "Det er en ny måte å styre på: proaktiv, intelligent, strategisk."
+  },
+  "modules": {
+    "title": "Moduler",
+    "portfolio": {
+      "name": "Portfolio Manager",
+      "description": "Strukturer dine prosjekter, programmer og porteføljer med total klarhet."
+    },
+    "cockpit": {
+      "name": "Executive Cockpit",
+      "description": "Syntetiske, pålitelige og beslutningsorienterte visninger for dine komiteer."
+    },
+    "executive": {
+      "name": "Executive Hub",
+      "description": "Et dedikert rom for beslutninger, risikoer, dokumenter og handlinger."
+    },
+    "analytics": {
+      "name": "AI Analytics & Predictive",
+      "description": "Forsterket analyse, datakonsistens, intelligente anbefalinger."
+    },
+    "theater": {
+      "name": "Cognitive Theater",
+      "description": "Visuelle scenarier for å overbevise, tilpasse og beslutte."
+    }
+  },
+  "results": {
+    "title": "Hva du faktisk får",
+    "subtitle": "Konkrete, målbare og raske resultater.",
+    "result1": "50% mindre tid til å forberede komiteer",
+    "result2": "Raskere og bedre dokumenterte beslutninger",
+    "result3": "PMO-, ledelses- og felt-alignment",
+    "result4": "Reduserte risikoer og avvik",
+    "result5": "Automatisert og pålitelig rapportering",
+    "result6": "Strukturert og bærekraftig styring",
+    "conclusion": "Powalyze forvandler din styring til en strategisk fordel."
+  },
+  "useCases": {
+    "title": "Bruksområder",
+    "pmo": {
+      "name": "Strategisk PMO",
+      "description": "Struktur, konsistens, rapportering, voldgifter."
+    },
+    "direction": {
+      "name": "Executive Management",
+      "description": "Konsolidert visning, store risikoer, prioritære beslutninger."
+    },
+    "data": {
+      "name": "Data & Analytics",
+      "description": "Pålitelighet, konsolidering, automatisering."
+    },
+    "multiCountry": {
+      "name": "Flerlandsprosjektledere",
+      "description": "Harmonisering, sporing, avhengigheter."
+    },
+    "consulting": {
+      "name": "Konsulentfirmaer",
+      "description": "En premium plattform for å støtte dine kunder."
+    }
+  },
+  "testimonials": {
+    "title": "Hva våre kunder sier",
+    "testimonial1": {
+      "quote": "Powalyze transformerte vår strategiske styring. Komiteer er kortere, beslutninger klarere.",
+      "author": "PMO-direktør",
+      "company": "Internasjonal gruppe"
+    },
+    "testimonial2": {
+      "quote": "Endelig en plattform designet for styring og data, ikke for oppgaveadministrasjon.",
+      "author": "Dataansvarlig",
+      "company": "Offentlig sektor"
+    },
+    "testimonial3": {
+      "quote": "Prediktiv AI tillot oss å anticipere risikoer vi ikke så.",
+      "author": "Programleder",
+      "company": "Finansielle tjenester"
+    }
+  },
+  "finalCta": {
+    "title": "Gå fra reaktiv til intelligent styring",
+    "description": "Powalyze hjelper deg med å strukturere dine porteføljer, gjøre dataene dine pålitelige og anticipere dine beslutninger med et komplett system: PMO + Data + Power BI + AI + SaaS.",
+    "ctaAccount": "Opprett konto",
+    "ctaAccompaniment": "Få støtte"
+  }
+}

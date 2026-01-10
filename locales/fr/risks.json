@@ -1,0 +1,101 @@
+{
+  "title": "Risk Heatmap",
+  "subtitle": "Vision simplifiée pour directeurs",
+  "globalStatus": {
+    "title": "État global du portefeuille",
+    "okProjects": "projets OK",
+    "warningProjects": "projets à surveiller",
+    "criticalProject": "projet critique"
+  },
+  "aiSummary": {
+    "title": "Synthèse IA",
+    "criticalRisk": "risque critique",
+    "identified": "identifié.",
+    "urgentAction": "Le projet Orion nécessite une décision sous 48h pour éviter un retard global de 3 semaines.",
+    "recommendation": "Action immédiate recommandée sur 1 projet. Les 3 autres risques orange peuvent être traités dans la semaine."
+  },
+  "immediateAction": {
+    "title": "Action immédiate",
+    "decisionRequired": "Décision requise :",
+    "responsible": "Responsable",
+    "deadline": "Échéance :",
+    "viewActions": "Voir les actions recommandées"
+  },
+  "allRisks": {
+    "title": "Tous les risques",
+    "problem": "Problème",
+    "impact": "Impact",
+    "decision": "Décision attendue"
+  },
+  "levels": {
+    "critical": "Critique",
+    "warning": "À surveiller",
+    "ok": "OK",
+    "unknown": "Inconnu"
+  },
+  "modal": {
+    "description": "Description",
+    "actions": "Actions recommandées",
+    "estimatedDelay": "Retard estimé",
+    "budgetImpact": "Impact budget",
+    "validateDecision": "Valider la décision"
+  },
+  "data": {
+    "orion": {
+      "project": "Projet Orion",
+      "problem": "Retard fournisseur clé",
+      "impact": "Retard planning 3 semaines",
+      "decision": "Choisir fournisseur alternatif",
+      "responsible": "Alice Martin",
+      "deadline": "48h",
+      "description": "Le fournisseur principal a annoncé un retard de livraison de 3 semaines pour les composants critiques. Cette situation bloque l'avancement du projet et nécessite une décision rapide pour éviter un impact en cascade sur les autres projets.",
+      "action1": "Contacter immédiatement 2 fournisseurs alternatifs pré-qualifiés",
+      "action2": "Évaluer l'option de production interne (délai 10 jours)",
+      "action3": "Négocier compensation financière avec le fournisseur actuel",
+      "delay": "3 semaines",
+      "budget": "+15% (CHF 45'000)"
+    },
+    "phoenix": {
+      "project": "Projet Phoenix",
+      "problem": "Ressources insuffisantes",
+      "impact": "Qualité livrables",
+      "decision": "Recruter 2 développeurs",
+      "responsible": "Marc Dubois",
+      "deadline": "1 semaine",
+      "description": "L'équipe actuelle est surchargée avec 120% d'allocation. La qualité des livrables commence à se dégrader et plusieurs bugs critiques n'ont pas été corrigés depuis 2 sprints.",
+      "action1": "Lancer recrutement express via agence spécialisée",
+      "action2": "Réaffecter 1 développeur senior du projet Nova temporairement",
+      "action3": "Prioriser strictement les fonctionnalités critiques",
+      "delay": "2 sprints",
+      "budget": "+8% (CHF 24'000)"
+    },
+    "atlas": {
+      "project": "Projet Atlas",
+      "problem": "Périmètre flou",
+      "impact": "Risque dérive scope",
+      "decision": "Valider cahier des charges",
+      "responsible": "Sophie Chen",
+      "deadline": "5 jours",
+      "description": "Le périmètre fonctionnel n'est toujours pas formellement validé après 3 itérations. Les demandes de changement se multiplient et créent de la confusion dans l'équipe de développement.",
+      "action1": "Organiser atelier de cadrage avec tous les stakeholders",
+      "action2": "Geler le périmètre et créer backlog phase 2",
+      "action3": "Mettre en place processus formel de change request",
+      "delay": "1 semaine",
+      "budget": "Neutre"
+    },
+    "nova": {
+      "project": "Projet Nova",
+      "problem": "Validation client lente",
+      "impact": "Blocage avancement",
+      "decision": "Escalader au sponsor",
+      "responsible": "Thomas Weber",
+      "deadline": "3 jours",
+      "description": "Les validations client prennent systématiquement 10+ jours contre 3 jours prévus. Cette situation bloque la progression et démotive l'équipe qui doit constamment revoir ses priorités.",
+      "action1": "Escalader au sponsor côté client pour accélérer les décisions",
+      "action2": "Mettre en place routine hebdomadaire de validation",
+      "action3": "Définir délai maximum de validation contractuel (5 jours)",
+      "delay": "1 semaine",
+      "budget": "Neutre"
+    }
+  }
+}

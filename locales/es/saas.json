@@ -1,0 +1,138 @@
+{
+  "navigation": {
+    "dashboard": "Dashboard",
+    "projects": "Proyectos",
+    "portfolio": "Cartera",
+    "risks": "Riesgos",
+    "reports": "Informes",
+    "analytics": "Analytics",
+    "calendar": "Calendario",
+    "team": "Equipo",
+    "settings": "Configuración",
+    "admin": "Administración",
+    "logout": "Cerrar sesión",
+    "profile": "Mi perfil"
+  },
+  "dashboard": {
+    "welcome": "Bienvenido",
+    "overview": "Resumen",
+    "activeProjects": "Proyectos activos",
+    "criticalRisks": "Riesgos críticos",
+    "upcomingDeadlines": "Próximos plazos",
+    "teamCapacity": "Capacidad del equipo",
+    "budgetStatus": "Estado del presupuesto",
+    "recentActivity": "Actividad reciente",
+    "quickActions": "Acciones rápidas",
+    "createProject": "Crear proyecto",
+    "viewReports": "Ver informes",
+    "scheduleReview": "Programar revisión"
+  },
+  "projects": {
+    "allProjects": "Todos los proyectos",
+    "myProjects": "Mis proyectos",
+    "archived": "Archivados",
+    "newProject": "Nuevo proyecto",
+    "status": {
+      "onTrack": "En plazo",
+      "atRisk": "En riesgo",
+      "delayed": "Retrasado",
+      "completed": "Completado",
+      "cancelled": "Cancelado"
+    },
+    "filters": {
+      "all": "Todos",
+      "byStatus": "Por estado",
+      "byPriority": "Por prioridad",
+      "byOwner": "Por responsable"
+    },
+    "details": {
+      "overview": "Resumen",
+      "timeline": "Cronología",
+      "budget": "Presupuesto",
+      "team": "Equipo",
+      "documents": "Documentos",
+      "risks": "Riesgos",
+      "milestones": "Hitos"
+    }
+  },
+  "portfolio": {
+    "title": "Gestión de cartera",
+    "capacity": "Capacidad global",
+    "allocation": "Asignación de recursos",
+    "strategicAlignment": "Alineación estratégica",
+    "valueDelivery": "Entrega de valor",
+    "portfolioHealth": "Salud de la cartera"
+  },
+  "reports": {
+    "title": "Centro de informes",
+    "executive": "Informe ejecutivo",
+    "financial": "Informe financiero",
+    "operational": "Informe operacional",
+    "custom": "Informes personalizados",
+    "export": "Exportar",
+    "schedule": "Programar envío",
+    "frequency": {
+      "daily": "Diario",
+      "weekly": "Semanal",
+      "monthly": "Mensual",
+      "quarterly": "Trimestral"
+    }
+  },
+  "team": {
+    "members": "Miembros del equipo",
+    "roles": "Roles",
+    "permissions": "Permisos",
+    "inviteUser": "Invitar usuario",
+    "workload": "Carga de trabajo",
+    "availability": "Disponibilidad"
+  },
+  "settings": {
+    "general": "General",
+    "account": "Cuenta",
+    "security": "Seguridad",
+    "notifications": "Notificaciones",
+    "integrations": "Integraciones",
+    "billing": "Facturación",
+    "preferences": {
+      "language": "Idioma",
+      "timezone": "Zona horaria",
+      "dateFormat": "Formato de fecha",
+      "currency": "Moneda"
+    }
+  },
+  "alerts": {
+    "critical": "Crítico",
+    "warning": "Advertencia",
+    "info": "Información",
+    "newAlert": "Nueva alerta",
+    "dismiss": "Descartar",
+    "markAsRead": "Marcar como leído",
+    "configure": "Configurar alertas"
+  },
+  "actions": {
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "duplicate": "Duplicar",
+    "archive": "Archivar",
+    "restore": "Restaurar",
+    "export": "Exportar",
+    "share": "Compartir",
+    "print": "Imprimir"
+  },
+  "filters": {
+    "applyFilters": "Aplicar filtros",
+    "clearFilters": "Limpiar filtros",
+    "saveView": "Guardar vista",
+    "customView": "Vista personalizada"
+  },
+  "status": {
+    "loading": "Cargando...",
+    "saving": "Guardando...",
+    "saved": "Guardado",
+    "error": "Error",
+    "noData": "No hay datos disponibles",
+    "noResults": "No se encontraron resultados"
+  }
+}

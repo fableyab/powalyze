@@ -1,0 +1,987 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* GRID TECH ANIMÉ */
+.tech-grid {
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: gridMove 18s linear infinite;
+}
+
+@keyframes gridMove {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 40px 40px;
+  }
+}
+
+/* HOLOGRAPHIC BACKGROUND */
+.holo-grid {
+  background-image:
+    radial-gradient(circle at 0% 0%, rgba(212, 175, 55, 0.18), transparent 55%),
+    radial-gradient(circle at 100% 0%, rgba(56, 189, 248, 0.18), transparent 55%),
+    radial-gradient(circle at 0% 100%, rgba(129, 140, 248, 0.18), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(212, 175, 55, 0.18), transparent 55%);
+  background-color: #020617;
+}
+
+.holo-noise {
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.03) 0px,
+    transparent 1px,
+    transparent 2px,
+    rgba(255, 255, 255, 0.03) 3px
+  );
+  mix-blend-mode: soft-light;
+  opacity: 0.35;
+}
+
+/* ANIMATIONS PREMIUM */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+ 
+@layer base {
+  :root {
+    /* Radical Redesign Theme Configuration */
+    /* Backgrounds */
+    --background: 0 0% 0%; /* #000000 Pure Black */
+    --foreground: 0 0% 100%; /* #FFFFFF White */
+ 
+    --card: 0 0% 10%; /* #1A1A1A Dark Gray */
+    --card-foreground: 0 0% 100%;
+ 
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 100%;
+ 
+    /* Primary Brand Colors */
+    --primary: 216 100% 50%; /* #0066FF Electric Blue */
+    --primary-foreground: 0 0% 100%;
+ 
+    /* Secondary/Accent Colors */
+    --secondary: 51 100% 50%; /* #FFD700 Gold */
+    --secondary-foreground: 0 0% 0%;
+ 
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+ 
+    --accent: 216 100% 50%;
+    --accent-foreground: 0 0% 100%;
+ 
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+ 
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 216 100% 50%; /* Blue Ring */
+ 
+    --radius: 0.5rem;
+  }
+}
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  /* Typography Utilities */
+  .font-cinzel {
+    font-family: 'Cinzel', serif;
+  }
+  
+  .gold-text {
+    @apply text-[#FFD700];
+  }
+  
+  .blue-gradient {
+    @apply bg-gradient-to-r from-[#0066FF] to-[#0044AA];
+  }
+}
+
+/* Executive Dashboard Premium Styles */
+.dashboard-layout {
+  @apply min-h-screen bg-black flex flex-col lg:flex-row;
+}
+
+.dashboard-sidebar {
+  @apply w-64 bg-[#0A0A0A] border-r border-slate-800 flex flex-col px-4 py-6 sticky top-0 h-screen overflow-y-auto;
+  /* Mobile: sidebar cachée par défaut */
+  @apply fixed left-0 top-0 z-50 -translate-x-full lg:translate-x-0 lg:static transition-transform duration-300;
+}
+
+.sidebar-logo {
+  @apply flex items-center gap-3 mb-8 px-2;
+}
+
+.logo-mark {
+  @apply w-10 h-10 bg-gradient-to-br from-[#FFD700] to-[#B8860B] rounded-lg flex items-center justify-center text-black font-bold text-xl;
+}
+
+.logo-text {
+  @apply text-white font-bold text-xl;
+}
+
+.sidebar-nav {
+  @apply flex-1 space-y-6;
+}
+
+.sidebar-section {
+  @apply space-y-1;
+}
+
+.sidebar-section-label {
+  @apply text-xs font-semibold text-slate-500 uppercase tracking-wider px-2 mb-2;
+}
+
+.sidebar-link {
+  @apply block px-3 py-2 text-sm text-slate-400 rounded-lg hover:bg-slate-800/50 hover:text-white transition-all cursor-pointer;
+}
+
+.sidebar-link-active {
+  @apply bg-[#0066FF]/10 text-[#0066FF] border-l-2 border-[#0066FF] pl-2.5;
+}
+
+.dashboard-main {
+  @apply flex-1 p-4 sm:p-6 md:p-8 overflow-y-auto max-w-7xl mx-auto w-full;
+}
+
+.dashboard-header {
+  @apply flex flex-col lg:flex-row items-start justify-between mb-6 sm:mb-8 gap-4;
+}
+
+.header-titles {
+  @apply flex-1 min-w-[300px];
+}
+
+.header-title {
+  @apply text-3xl font-bold text-white mb-2;
+}
+
+.header-subtitle {
+  @apply text-sm sm:text-base text-slate-400 max-w-2xl leading-relaxed;
+}
+
+.header-user {
+  @apply flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 w-full lg:w-auto;
+}
+
+.user-meta {
+  @apply flex flex-col items-end;
+}
+
+.user-label {
+  @apply text-xs text-slate-500;
+}
+
+.user-name {
+  @apply text-sm font-semibold text-white;
+}
+
+.user-cta {
+  @apply px-4 py-2 bg-slate-800 text-white text-sm rounded-lg hover:bg-slate-700 transition-colors;
+}
+
+.executive-ribbon {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8;
+}
+
+.ribbon-item {
+  @apply bg-[#0A0A0A] border border-slate-800 rounded-xl p-4;
+}
+
+.ribbon-label {
+  @apply block text-xs text-slate-500 mb-1;
+}
+
+.ribbon-value {
+  @apply block text-xl font-bold text-white;
+}
+
+.ribbon-warning {
+  @apply text-orange-400;
+}
+
+.overview-grid {
+  @apply grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8;
+}
+
+.card {
+  @apply bg-[#0A0A0A] border border-slate-800 rounded-2xl p-4 sm:p-6;
+}
+
+.strategic-overview {
+  @apply lg:col-span-2;
+}
+
+.next-best-action {
+  @apply border-l-4 border-[#0066FF];
+}
+
+.card-header {
+  @apply flex items-center justify-between mb-4 flex-wrap gap-2;
+}
+
+.card-title {
+  @apply text-xl font-bold text-white;
+}
+
+.card-badge {
+  @apply px-3 py-1 bg-[#0066FF]/20 text-[#0066FF] text-xs font-semibold rounded-full;
+}
+
+.card-lead {
+  @apply text-slate-400 mb-6 leading-relaxed;
+}
+
+.kpi-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4;
+}
+
+.kpi-card {
+  @apply bg-black/50 border border-slate-800 rounded-xl p-4 text-left hover:border-[#0066FF] transition-all cursor-pointer hover:scale-105;
+}
+
+.kpi-label {
+  @apply text-xs text-slate-500 mb-1;
+}
+
+.kpi-value {
+  @apply text-2xl font-bold text-white mb-2;
+}
+
+.kpi-trend {
+  @apply text-xs flex items-center gap-1;
+}
+
+.kpi-trend-positive {
+  @apply text-green-400;
+}
+
+.kpi-trend-neutral {
+  @apply text-yellow-400;
+}
+
+.kpi-trend-stable {
+  @apply text-blue-400;
+}
+
+.nba-actions {
+  @apply flex flex-wrap gap-3 mt-4;
+}
+
+.btn-primary {
+  @apply px-4 py-2 bg-[#0066FF] text-white rounded-lg font-medium hover:bg-[#0052CC] transition-colors;
+}
+
+.btn-ghost {
+  @apply px-4 py-2 text-slate-400 border border-slate-800 rounded-lg hover:bg-slate-800 hover:text-white transition-colors;
+}
+
+.btn-outline {
+  @apply px-3 py-1.5 text-sm text-slate-400 border border-slate-800 rounded-lg hover:bg-slate-800 hover:text-white transition-colors;
+}
+
+.recommendations {
+  @apply mb-8;
+}
+
+.card-meta {
+  @apply text-xs text-slate-500;
+}
+
+.recommendations-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4;
+}
+
+.recommendation-card {
+  @apply bg-black/50 border border-slate-800 rounded-xl p-5 hover:border-[#0066FF] transition-all;
+}
+
+.recommendation-header {
+  @apply flex items-center justify-between mb-3;
+}
+
+.recommendation-label {
+  @apply text-xs font-semibold text-slate-500 uppercase;
+}
+
+.recommendation-pill {
+  @apply px-2 py-1 text-xs font-semibold rounded-full;
+}
+
+.recommendation-pill-positive {
+  @apply bg-green-500/20 text-green-400;
+}
+
+.recommendation-pill-warning {
+  @apply bg-yellow-500/20 text-yellow-400;
+}
+
+.recommendation-pill-neutral {
+  @apply bg-blue-500/20 text-blue-400;
+}
+
+.recommendation-title {
+  @apply text-sm font-bold text-white mb-2;
+}
+
+.recommendation-text {
+  @apply text-sm text-slate-400 mb-4 leading-relaxed;
+}
+
+.recommendation-footer {
+  @apply flex items-center justify-between flex-wrap gap-2;
+}
+
+.recommendation-meta {
+  @apply text-xs text-slate-600;
+}
+
+.lower-grid {
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-6;
+}
+
+.stats-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 gap-4;
+}
+
+.stat-card {
+  @apply bg-black/50 border border-slate-800 rounded-xl p-4;
+}
+
+.stat-label {
+  @apply text-xs text-slate-500 mb-1;
+}
+
+.stat-value {
+  @apply text-2xl font-bold text-white mb-2;
+}
+
+.stat-meta {
+  @apply text-xs mb-3;
+}
+
+.stat-meta-positive {
+  @apply text-green-400;
+}
+
+.stat-meta-neutral {
+  @apply text-slate-400;
+}
+
+.stat-meta-warning {
+  @apply text-orange-400;
+}
+
+.stat-cta {
+  @apply text-xs text-[#0066FF] hover:underline cursor-pointer;
+}
+
+.activity-list {
+  @apply space-y-3;
+}
+
+.activity-item {
+  @apply flex items-start justify-between py-3 border-b border-slate-800 last:border-0 gap-4;
+}
+
+.activity-main {
+  @apply flex flex-col gap-1 flex-1;
+}
+
+.activity-project {
+  @apply text-sm font-semibold text-white;
+}
+
+.activity-text {
+  @apply text-xs text-slate-400;
+}
+
+.activity-meta {
+  @apply flex items-center gap-2 flex-shrink-0;
+}
+
+.activity-badge {
+  @apply px-2 py-1 text-xs font-semibold rounded-full whitespace-nowrap;
+}
+
+.activity-badge-warning {
+  @apply bg-yellow-500/20 text-yellow-400;
+}
+
+.activity-badge-positive {
+  @apply bg-green-500/20 text-green-400;
+}
+
+.activity-badge-neutral {
+  @apply bg-blue-500/20 text-blue-400;
+}
+
+.activity-time {
+  @apply text-xs text-slate-600 whitespace-nowrap;
+}
+
+/* Projects Page Styles */
+.projects-layout {
+  @apply min-h-screen bg-black p-8;
+}
+
+.projects-header {
+  @apply flex items-start justify-between mb-8 flex-wrap gap-4;
+}
+
+.header-actions {
+  @apply flex items-center gap-3 flex-wrap;
+}
+
+.btn-secondary {
+  @apply px-4 py-2 text-slate-400 border border-slate-800 rounded-lg hover:bg-slate-800 hover:text-white transition-colors;
+}
+
+.filters-bar {
+  @apply flex items-center gap-4 mb-6 flex-wrap;
+}
+
+.filter-search {
+  @apply flex-1 min-w-[200px] px-4 py-2 bg-[#0A0A0A] border border-slate-800 rounded-lg text-white placeholder:text-slate-500 focus:outline-none focus:border-[#0066FF] transition-colors;
+}
+
+.filter-select {
+  @apply px-4 py-2 bg-[#0A0A0A] border border-slate-800 rounded-lg text-white focus:outline-none focus:border-[#0066FF] transition-colors cursor-pointer;
+}
+
+.projects-table {
+  @apply overflow-x-auto;
+}
+
+.table {
+  @apply w-full text-left;
+}
+
+.table thead {
+  @apply border-b border-slate-800;
+}
+
+.table th {
+  @apply px-4 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider;
+}
+
+.table tbody tr {
+  @apply border-b border-slate-800 hover:bg-slate-900/50 transition-colors;
+}
+
+.table td {
+  @apply px-4 py-4 text-sm text-slate-300;
+}
+
+.badge {
+  @apply px-3 py-1 text-xs font-semibold rounded-full inline-block;
+}
+
+.badge-progress {
+  @apply bg-blue-500/20 text-blue-400;
+}
+
+.badge-completed {
+  @apply bg-green-500/20 text-green-400;
+}
+
+.badge-hold {
+  @apply bg-yellow-500/20 text-yellow-400;
+}
+
+.badge-critical {
+  @apply bg-red-500/20 text-red-400;
+}
+
+.btn-table {
+  @apply px-3 py-1 text-xs text-[#0066FF] border border-[#0066FF]/30 rounded-lg hover:bg-[#0066FF]/10 transition-colors;
+}
+
+/* =========================== */
+/* PROJECTS LIST PAGE */
+/* =========================== */
+
+.projects-layout {
+  @apply p-6 max-w-7xl mx-auto;
+}
+
+.projects-header {
+  @apply flex items-start justify-between mb-6 flex-wrap gap-4;
+}
+
+.header-titles {
+  @apply flex-1 min-w-[300px];
+}
+
+.header-title {
+  @apply text-3xl font-bold text-white mb-2;
+}
+
+.header-subtitle {
+  @apply text-slate-400 text-sm leading-relaxed;
+}
+
+.header-actions {
+  @apply flex items-center gap-3;
+}
+
+.badge-in-progress {
+  @apply bg-blue-500/20 text-blue-400;
+}
+
+.badge-on-hold {
+  @apply bg-yellow-500/20 text-yellow-400;
+}
+
+/* =========================== */
+/* KANBAN BOARD */
+/* =========================== */
+
+.kanban-layout {
+  @apply p-6 max-w-[1600px] mx-auto;
+}
+
+.kanban-header {
+  @apply flex items-start justify-between mb-6;
+}
+
+.kanban-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4;
+}
+
+.kanban-column {
+  @apply bg-[#0A0A0A] border border-slate-800 rounded-lg p-4;
+}
+
+.kanban-title {
+  @apply text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4 pb-3 border-b border-slate-800;
+}
+
+.kanban-column-body {
+  @apply flex flex-col gap-3;
+}
+
+.kanban-card {
+  @apply block bg-slate-900/50 border border-slate-800 rounded-lg p-4 hover:border-[#0066FF] hover:shadow-lg hover:shadow-[#0066FF]/10 transition-all cursor-pointer;
+}
+
+.kanban-card-title {
+  @apply text-white font-medium mb-3;
+}
+
+.kanban-card-meta {
+  @apply flex items-center justify-between text-xs text-slate-500;
+}
+
+/* =========================== */
+/* PROJECT DETAIL PAGE */
+/* =========================== */
+
+.project-detail-layout {
+  @apply p-6 max-w-7xl mx-auto;
+}
+
+.project-detail-header {
+  @apply flex items-start justify-between mb-6;
+}
+
+.project-metrics-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6;
+}
+
+.metric-card {
+  @apply bg-[#0A0A0A] border border-slate-800 rounded-lg p-4;
+}
+
+.metric-label {
+  @apply text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2;
+}
+
+.metric-value {
+  @apply text-2xl font-bold text-white;
+}
+
+.project-description {
+  @apply mb-6;
+}
+
+.project-description p {
+  @apply text-slate-300 leading-relaxed;
+}
+
+.project-tasks {
+  @apply mb-6;
+}
+
+.task-list {
+  @apply space-y-2;
+}
+
+.task-item {
+  @apply text-slate-300 pl-6 relative before:content-['•'] before:absolute before:left-0 before:text-[#0066FF] before:text-xl before:leading-none;
+}
+
+/* =========================== */
+/* PROJECT EDIT/NEW PAGE */
+/* =========================== */
+
+.project-edit-layout {
+  @apply p-6 max-w-4xl mx-auto;
+}
+
+.project-edit-header {
+  @apply flex items-start justify-between mb-6;
+}
+
+.edit-form {
+  @apply space-y-6;
+}
+
+.form-group {
+  @apply space-y-2;
+}
+
+.form-group label {
+  @apply block text-sm font-semibold text-slate-400 uppercase tracking-wider;
+}
+
+.form-input {
+  @apply w-full px-4 py-3 bg-[#0A0A0A] border border-slate-800 rounded-lg text-white placeholder:text-slate-500 focus:outline-none focus:border-[#0066FF] focus:ring-1 focus:ring-[#0066FF] transition-colors;
+}
+
+.form-input[type="textarea"],
+textarea.form-input {
+  @apply resize-y min-h-[100px];
+}
+
+/* =========================== */
+/* PORTFOLIO PAGES */
+/* =========================== */
+
+.portfolio-layout {
+  @apply p-6 max-w-[1800px] mx-auto;
+}
+
+.portfolio-header {
+  @apply flex items-start justify-between mb-6 flex-wrap gap-4;
+}
+
+.back-button {
+  @apply flex items-center justify-center w-10 h-10 bg-slate-900 border border-slate-800 rounded-lg hover:bg-slate-800 hover:border-[#0066FF] transition-colors text-white;
+}
+
+/* KPI Grid 5 columns */
+.kpi-grid-5 {
+  @apply grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6;
+}
+
+.kpi-card-premium {
+  @apply bg-[#0A0A0A] border border-slate-800 rounded-lg p-4 flex items-center gap-4 hover:border-[#0066FF]/30 transition-colors;
+}
+
+.kpi-icon {
+  @apply w-12 h-12 rounded-lg flex items-center justify-center;
+}
+
+.kpi-content {
+  @apply flex-1;
+}
+
+.kpi-label {
+  @apply text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1;
+}
+
+.kpi-value {
+  @apply text-2xl font-bold text-white;
+}
+
+/* Segment Cards */
+.segment-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4;
+}
+
+.segment-card {
+  @apply block bg-slate-900/50 border-l-4 rounded-lg p-5 hover:bg-slate-900 hover:shadow-xl transition-all;
+}
+
+.segment-header {
+  @apply flex items-center justify-between mb-3;
+}
+
+.segment-icon {
+  @apply text-3xl;
+}
+
+.segment-badge {
+  @apply px-3 py-1 text-xs font-semibold rounded-full;
+}
+
+.segment-name {
+  @apply text-lg font-bold text-white mb-2;
+}
+
+.segment-budget {
+  @apply text-2xl font-mono text-[#FFD700];
+}
+
+/* Portfolio Map (2x2) */
+.portfolio-map {
+  @apply relative w-full h-[500px] bg-slate-950 border border-slate-800 rounded-lg;
+}
+
+.map-label {
+  @apply absolute text-xs font-semibold text-slate-600 uppercase tracking-wider;
+}
+
+.map-label-y {
+  @apply top-4 left-4;
+}
+
+.map-label-y-bottom {
+  @apply bottom-4 left-4;
+}
+
+.map-label-x {
+  @apply bottom-4 left-1/4;
+}
+
+.map-label-x-right {
+  @apply bottom-4 right-1/4;
+}
+
+.map-grid-line {
+  @apply absolute bg-slate-800;
+}
+
+.map-grid-h {
+  @apply w-full h-[1px];
+}
+
+.map-grid-v {
+  @apply h-full w-[1px];
+}
+
+.map-canvas {
+  @apply relative w-full h-full;
+}
+
+.map-bubble {
+  @apply absolute rounded-full flex items-center justify-center text-white text-xs font-semibold cursor-pointer hover:opacity-80 hover:scale-110 transition-all shadow-lg;
+  transform: translate(-50%, 50%);
+}
+
+.bubble-label {
+  @apply text-[10px] font-mono uppercase tracking-wider;
+}
+
+/* NBA Card */
+.nba-card {
+  @apply bg-gradient-to-br from-[#0066FF]/10 to-[#0066FF]/5 border border-[#0066FF]/30 rounded-lg p-6 mb-6;
+}
+
+.nba-header {
+  @apply flex items-center gap-3 mb-4;
+}
+
+.nba-icon {
+  @apply w-10 h-10 rounded-lg bg-[#0066FF]/20 flex items-center justify-center text-[#0066FF];
+}
+
+.nba-title {
+  @apply text-lg font-bold text-white;
+}
+
+.nba-subtitle {
+  @apply text-xs text-slate-500 uppercase tracking-wider;
+}
+
+.nba-content {
+  @apply text-slate-300 leading-relaxed mb-4;
+}
+
+.nba-actions {
+  @apply flex items-center gap-3;
+}
+
+/* Filter inline */
+.filter-inline {
+  @apply flex items-center gap-2;
+}
+
+.filter-select-inline {
+  @apply px-3 py-1 bg-slate-900 border border-slate-800 rounded-lg text-sm text-white focus:outline-none focus:border-[#0066FF] transition-colors cursor-pointer;
+}
+
+/* Score badges */
+.score-badge {
+  @apply px-2 py-1 text-xs font-bold rounded;
+}
+
+.score-value {
+  @apply bg-green-500/20 text-green-400;
+}
+
+.score-risk {
+  @apply bg-red-500/20 text-red-400;
+}
+
+.score-alignment {
+  @apply bg-blue-500/20 text-blue-400;
+}
+
+/* Analytics Grid */
+.analytics-grid {
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-6;
+}
+
+.analytics-card {
+  @apply col-span-1;
+}
+
+.analytics-card-wide {
+  @apply col-span-1 lg:col-span-2;
+}
+
+/* Heatmap */
+.heatmap-grid {
+  @apply relative grid grid-cols-3 grid-rows-3 gap-3 p-12 min-h-[400px];
+}
+
+.heatmap-label {
+  @apply absolute text-xs font-semibold text-slate-500 uppercase tracking-wider;
+}
+
+.heatmap-label-y {
+  @apply left-0;
+}
+
+.heatmap-label-x {
+  @apply bottom-0;
+}
+
+.heatmap-cell {
+  @apply border-2 rounded-lg flex flex-col items-center justify-center p-4 hover:shadow-lg transition-all;
+}
+
+.heatmap-count {
+  @apply text-4xl font-bold mb-1;
+}
+
+.heatmap-label-mini {
+  @apply text-xs text-slate-500;
+}
+
+/* Table wrapper for scroll */
+.table-wrapper {
+  @apply overflow-x-auto;
+}
+
+/* Power BI Responsive Styles */
+.report-wrapper {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.powerbi-report-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.powerbi-report-container iframe {
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+  .report-wrapper {
+    height: 80vh;
+  }
+  
+  /* Grid responsive pattern */
+  .grid-responsive {
+    @apply grid-cols-1;
+  }
+  
+  /* Typography mobile */
+  h1, h2 {
+    font-size: 1.6rem;
+    line-height: 1.2;
+  }
+  
+  /* Padding mobile */
+  section {
+    padding: 2rem 1rem;
+  }
+}
+
+/* Table overflow responsive */
+.responsive-table {
+  overflow-x: auto;
+}
+
+@media (min-width: 769px) {
+  .grid-responsive {
+    @apply md:grid-cols-2;
+  }
+}
+
+/* Animated Gradient for Hero Section */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-shift {
+  background-size: 200% 200%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+/* Custom scrollbar for sidebar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}

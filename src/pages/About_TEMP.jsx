@@ -1,0 +1,387 @@
+﻿import React from 'react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import PremiumLayout from '@/components/layout/PremiumLayout';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { 
+  Briefcase, 
+  Target, 
+  Users, 
+  Shield,
+  TrendingUp,
+  BarChart3,
+  CheckCircle2,
+  Award,
+  Lightbulb
+} from 'lucide-react';
+
+const About = () => {
+  const { t } = useLanguage();
+  
+  return (
+    <PremiumLayout>
+      {/* Hero Section */}
+      <section className="relative min-h-[70vh] flex items-center justify-center px-6 pt-32 pb-24">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="text-6xl md:text-7xl font-extralight tracking-tight mb-8">
+              {t('about.title')}
+            </h1>
+            
+            <p className="text-xl md:text-2xl font-light text-white/70 mb-12 leading-relaxed max-w-3xl mx-auto">
+              {t('about.subtitle')}
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Section Fabrice Fays */}
+      <section className="relative py-32 px-6 border-t border-white/5">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            {/* Vidéo Le Manifeste en pleine largeur */}
+            <div className="mb-16">
+              <div className="relative group max-w-5xl mx-auto">
+                <div className="absolute -inset-3 bg-gradient-to-r from-[#D4AF37] to-[#D4AF37] rounded-lg blur-lg opacity-20 group-hover:opacity-30 transition"></div>
+                <div className="relative aspect-video rounded-lg overflow-hidden border-4 border-[#D4AF37]/30">
+                  <video 
+                    controls
+                    className="w-full h-full object-cover"
+                    poster="/videos/manifeste-fabrice.mp4"
+                  >
+                    <source src="/videos/manifeste-fabrice.mp4" type="video/mp4" />
+                    Votre navigateur ne supporte pas la lecture de vidéos.
+                  </video>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-6 mb-12">
+              <div>
+                <h3 className="text-xl font-light text-[#D4AF37] mb-3">{t('about.experience')}</h3>
+                <div className="space-y-4 text-base font-light text-white/60 leading-relaxed">
+                  
+                  {/* Consultant Indépendant */}
+                  <div className="border-l-2 border-[#D4AF37]/30 pl-4">
+                    <p className="text-white/90 font-medium mb-1">{t('about.jobs.consultant.title')}</p>
+                    <p className="text-white/50 text-sm mb-2">{t('about.jobs.consultant.period')}</p>
+                    <ul className="space-y-1 text-sm">
+                      {t('about.jobs.consultant.tasks', { returnObjects: true }).map((task, i) => (
+                        <li key={i}>• {task}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* PMO Manager */}
+                  <div className="border-l-2 border-[#D4AF37]/30 pl-4">
+                        <p className="text-white/90 font-medium mb-1">{t('about.jobs.pmoManager.title')}</p>
+                        <p className="text-white/50 text-sm mb-2">{t('about.jobs.pmoManager.period')}</p>
+                        <ul className="space-y-1 text-sm">
+                          {t('about.jobs.pmoManager.tasks', { returnObjects: true }).map((task, i) => (
+                            <li key={i}>• {task}</li>
+                          ))}
+                        </ul>
+                  </div>
+
+                  {/* Ingénieur Projet */}
+                  <div className="border-l-2 border-[#D4AF37]/30 pl-4">
+                    <p className="text-white/90 font-medium mb-1">{t('about.jobs.engineer.title')}</p>
+                    <p className="text-white/50 text-sm mb-2">{t('about.jobs.engineer.period')}</p>
+                    <ul className="space-y-1 text-sm">
+                      {t('about.jobs.engineer.tasks', { returnObjects: true }).map((task, i) => (
+                        <li key={i}>• {task}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                </div>
+              </div>
+
+              {/* Formation */}
+              <div>
+                <h3 className="text-xl font-light text-[#D4AF37] mb-3">{t('about.education')}</h3>
+                <div className="space-y-3 text-base font-light text-white/60">
+                  <div className="border-l-2 border-[#D4AF37]/30 pl-4">
+                    <p className="text-white/90 font-medium">{t('about.educationItems.hes.title')}</p>
+                    <p className="text-white/50 text-sm">{t('about.educationItems.hes.period')}</p>
+                    <p className="text-sm mt-1">{t('about.educationItems.hes.desc')}</p>
+                  </div>
+                  <div className="border-l-2 border-[#D4AF37]/30 pl-4">
+                    <p className="text-white/90 font-medium">{t('about.educationItems.executive.title')}</p>
+                    <p className="text-white/50 text-sm">{t('about.educationItems.executive.period')}</p>
+                    <p className="text-sm mt-1">{t('about.educationItems.executive.desc')}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Certifications */}
+              <div>
+                <h3 className="text-xl font-light text-[#D4AF37] mb-3">{t('about.certifications')}</h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-2 text-sm font-light text-white/60">
+                        <div className="flex items-start gap-2">
+                          <span className="text-[#D4AF37]">✓</span>
+                          <div>
+                            <p className="text-white/80 font-medium">{t('about.certList.pmp.title')}</p>
+                            <p className="text-white/50 text-xs">{t('about.certList.pmp.org')}</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <span className="text-[#D4AF37]">✓</span>
+                          <div>
+                            <p className="text-white/80 font-medium">{t('about.certList.prince2.title')}</p>
+                            <p className="text-white/50 text-xs">{t('about.certList.prince2.org')}</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <span className="text-[#D4AF37]">✓</span>
+                          <div>
+                            <p className="text-white/80 font-medium">{t('about.certList.ipma.title')}</p>
+                            <p className="text-white/50 text-xs">{t('about.certList.ipma.org')}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="space-y-2 text-sm font-light text-white/60">
+                        <div className="flex items-start gap-2">
+                          <span className="text-[#D4AF37]">✓</span>
+                          <div>
+                            <p className="text-white/80 font-medium">{t('about.certList.powerbi.title')}</p>
+                            <p className="text-white/50 text-xs">{t('about.certList.powerbi.org')}</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <span className="text-[#D4AF37]">✓</span>
+                          <div>
+                            <p className="text-white/80 font-medium">{t('about.certList.rmp.title')}</p>
+                            <p className="text-white/50 text-xs">{t('about.certList.rmp.org')}</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <span className="text-[#D4AF37]">✓</span>
+                          <div>
+                            <p className="text-white/80 font-medium">{t('about.certList.agile.title')}</p>
+                            <p className="text-white/50 text-xs">{t('about.certList.agile.org')}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Enseignement */}
+                  <div>
+                    <h3 className="text-xl font-light text-[#D4AF37] mb-3">{t('about.teaching')}</h3>
+                    <div className="space-y-3 text-base font-light text-white/60">
+                      <div className="border-l-2 border-[#D4AF37]/30 pl-4">
+                        <p className="text-white/90 font-medium mb-1">{t('about.teachingItems.hes.title')}</p>
+                        <p className="text-white/50 text-sm mb-2">{t('about.teachingItems.hes.period')}</p>
+                        <p className="text-sm">{t('about.teachingItems.hes.desc')}</p>
+                      </div>
+                      <div className="border-l-2 border-[#D4AF37]/30 pl-4">
+                        <p className="text-white/90 font-medium mb-1">{t('about.teachingItems.trainer.title')}</p>
+                        <p className="text-white/50 text-sm mb-2">{t('about.teachingItems.trainer.period')}</p>
+                        <p className="text-sm">{t('about.teachingItems.trainer.desc')}</p>
+                      </div>
+                      <div className="border-l-2 border-[#D4AF37]/30 pl-4">
+                        <p className="text-white/90 font-medium mb-1">{t('about.teachingItems.conferences.title')}</p>
+                        <p className="text-white/50 text-sm">{t('about.teachingItems.conferences.period')}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Références clients */}
+                  <div>
+                    <h3 className="text-xl font-light text-[#D4AF37] mb-3">Références & Secteurs d'intervention</h3>
+                    <div className="grid md:grid-cols-3 gap-4 mb-4">
+                      <div className="bg-white/5 rounded-lg p-4 border border-[#D4AF37]/20">
+                        <p className="text-white/90 font-medium mb-2">🏛️ Secteur Public</p>
+                        <ul className="space-y-1 text-xs text-white/60">
+                          <li>• Administrations cantonales</li>
+                          <li>• Collectivités publiques</li>
+                          <li>• Services de l'État</li>
+                        </ul>
+                      </div>
+                      <div className="bg-white/5 rounded-lg p-4 border border-[#D4AF37]/20">
+                        <p className="text-white/90 font-medium mb-2">⚡ Énergie & Infrastructures</p>
+                        <ul className="space-y-1 text-xs text-white/60">
+                          <li>• Services industriels</li>
+                          <li>• Projets énergétiques</li>
+                          <li>• Grandes infrastructures</li>
+                        </ul>
+                      </div>
+                      <div className="bg-white/5 rounded-lg p-4 border border-[#D4AF37]/20">
+                        <p className="text-white/90 font-medium mb-2">🏢 Industrie & Finance</p>
+                        <ul className="space-y-1 text-xs text-white/60">
+                          <li>• Groupes industriels</li>
+                          <li>• Institutions financières</li>
+                          <li>• Multinationales</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <p className="text-xs font-light text-white/40 italic text-center">
+                      Portfolio de références détaillées disponible sur demande (confidentialité clients)
+                    </p>
+                  </div>
+
+                  {/* Expertises */}
+                  <div>
+                    <h3 className="text-xl font-light text-[#D4AF37] mb-3">{t('about.expertise')}</h3>
+                    <div className="grid md:grid-cols-2 gap-x-8 gap-y-2">
+                      <ul className="space-y-2 text-sm font-light text-white/60">
+                        {t('about.expertiseList', { returnObjects: true }).slice(0, 4).map((item, i) => (
+                          <li key={i}>• {item}</li>
+                        ))}
+                      </ul>
+                      <ul className="space-y-2 text-sm font-light text-white/60">
+                        {t('about.expertiseList', { returnObjects: true }).slice(4).map((item, i) => (
+                          <li key={i}>• {item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  {[
+                    { icon: Briefcase, text: t('about.stats.experience') },
+                    { icon: Users, text: t('about.stats.projects') },
+                    { icon: Target, text: t('about.stats.sectors') },
+                    { icon: Award, text: t('about.stats.standard') }
+                  ].map((stat, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: i * 0.1 }}
+                      className="flex items-center gap-4 p-6 border border-white/5 bg-white/[0.01] rounded-sm"
+                    >
+                      <stat.icon className="w-6 h-6 text-[#D4AF37]" />
+                      <span className="text-sm font-light text-white/80">{stat.text}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Section Expertises */}
+      <section className="relative py-32 px-6 border-t border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-20"
+          >
+            <h2 className="text-4xl md:text-5xl font-extralight mb-6">
+              {t('about.expertiseSection')}
+            </h2>
+            <p className="text-lg font-light text-white/60 max-w-3xl">
+              {t('about.expertiseSubtitle')}
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {t('about.expertiseCards', { returnObjects: true }).map((expertise, i) => {
+              const icons = [Target, BarChart3, Shield, Users, TrendingUp, Lightbulb];
+              const Icon = icons[i];
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  className="p-10 border border-white/5 bg-white/[0.01] hover:border-[#D4AF37]/20 hover:bg-white/[0.02] transition-all rounded-sm group"
+                >
+                  <Icon className="w-8 h-8 text-[#D4AF37] mb-6 group-hover:scale-110 transition-transform" />
+                  <h3 className="text-xl font-light mb-4">{expertise.title}</h3>
+                  <p className="text-sm font-light text-white/50 leading-relaxed">{expertise.desc}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Section Valeurs */}
+      <section className="relative py-32 px-6 border-t border-white/5">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-20 text-center"
+          >
+            <h2 className="text-4xl md:text-5xl font-extralight mb-6">
+              {t('about.values')}
+            </h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {t('about.valuesList', { returnObjects: true }).map((value, i) => {
+              const icons = [Target, Shield, Award, CheckCircle2];
+              const ValueIcon = icons[i];
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  className="text-center p-8"
+                >
+                  <ValueIcon className="w-10 h-10 text-[#D4AF37] mb-6 mx-auto" />
+                  <h3 className="text-xl font-light mb-4">{value.title}</h3>
+                  <p className="text-sm font-light text-white/50 leading-relaxed">{value.desc}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="relative py-32 px-6 border-t border-white/5">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-4xl md:text-5xl font-extralight mb-8 leading-tight">
+              {t('about.cta')}
+            </h2>
+            
+            <p className="text-lg font-light text-white/60 mb-12 max-w-2xl mx-auto">
+              {t('about.ctaDesc')}
+            </p>
+
+            <Link
+              to="/contact"
+              className="px-10 py-4 bg-[#D4AF37] text-[#000000] font-light hover:bg-[#D4AF37] transition-all rounded-sm inline-flex items-center gap-2"
+            >
+              {t('about.ctaButton')}
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+    </PremiumLayout>
+  );
+};
+
+export default About;

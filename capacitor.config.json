@@ -1,0 +1,16 @@
+{
+  "appId": "com.powalyze.app",
+  "appName": "Powalyze",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 2000,
+      "backgroundColor": "#000000",
+      "showSpinner": false
+    }
+  }
+}

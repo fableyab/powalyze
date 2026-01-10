@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Powalyze</string>
+    <string name="title_activity_main">Powalyze</string>
+    <string name="package_name">com.powalyze.app</string>
+    <string name="custom_url_scheme">com.powalyze.app</string>
+</resources>

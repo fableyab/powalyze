@@ -1,0 +1,164 @@
+{
+  "hero": {
+    "title": "Competenza svizzera nel controllo strategico",
+    "subtitle": "Governance, decisioni esecutive e trasparenza per i tuoi progetti critici",
+    "cta": {
+      "demo": "Richiedi una demo",
+      "contact": "Contattaci"
+    }
+  },
+  "positioning": {
+    "title": "Powalyze — Piattaforma SaaS Premium",
+    "subtitle": "Progettata per direttori, CFO e PMO",
+    "description": "Vista 360° del tuo portafoglio progetti con automazione AI e insight predittivi in tempo reale."
+  },
+  "problems": {
+    "title": "Le sfide che affronti",
+    "lack_visibility": {
+      "title": "Mancanza di visibilità",
+      "description": "Dati sparsi, report manuali, impossibile prendere decisioni rapide"
+    },
+    "risks_undetected": {
+      "title": "Rischi non rilevati",
+      "description": "Gli avvisi arrivano troppo tardi, quando è già difficile correggere"
+    },
+    "manual_reporting": {
+      "title": "Reporting che richiede tempo",
+      "description": "Il tuo team passa il 40% del tempo a compilare Excel invece di guidare"
+    },
+    "no_predictive": {
+      "title": "Nessuna analisi predittiva",
+      "description": "Reagisci ai problemi invece di anticiparli"
+    }
+  },
+  "features": {
+    "title": "Una piattaforma progettata per l'eccellenza",
+    "pmo": {
+      "title": "PMO Strategico",
+      "description": "Gestione del portafoglio, monitoraggio delle milestone, allocazione delle risorse e governance centralizzata"
+    },
+    "powerbi": {
+      "title": "Dati & Power BI",
+      "description": "Dashboard interattive, dati in tempo reale, KPI personalizzabili ed esportazioni automatiche"
+    },
+    "ai": {
+      "title": "Automazione & IA",
+      "description": "Previsione dei ritardi, raccomandazioni intelligenti, avvisi automatici e insight predittivi"
+    },
+    "cockpit": {
+      "title": "Cockpit Esecutivo",
+      "description": "Vista direttore ultra-semplice, sintesi IA, decisioni con 1 clic e report per il consiglio di amministrazione"
+    }
+  },
+  "testimonials": {
+    "title": "Si fidano di noi",
+    "quote1": {
+      "text": "Powalyze ci ha permesso di ridurre i ritardi dei progetti del 35% in 6 mesi",
+      "author": "CFO, Gruppo industriale svizzero",
+      "company": "CHF 150M di fatturato"
+    },
+    "quote2": {
+      "text": "La visione predittiva cambia tutto. Anticipiamo i problemi con 3 settimane di anticipo",
+      "author": "Direttore PMO",
+      "company": "Organizzazione pubblica cantonale"
+    },
+    "quote3": {
+      "text": "Finalmente uno strumento pensato per i direttori, non per i project manager",
+      "author": "CEO",
+      "company": "Scale-up tecnologica"
+    }
+  },
+  "pricing": {
+    "title": "Piani tariffari",
+    "subtitle": "Scegli il piano adatto alla tua organizzazione",
+    "starter": {
+      "name": "Starter",
+      "price": "CHF 990",
+      "period": "/mese",
+      "description": "Per PMI e team con 5-15 progetti",
+      "features": [
+        "Fino a 15 progetti attivi",
+        "5 utenti inclusi",
+        "Dashboard Power BI",
+        "Supporto email",
+        "Dati in tempo reale"
+      ]
+    },
+    "business": {
+      "name": "Business",
+      "price": "CHF 2'490",
+      "period": "/mese",
+      "description": "Per organizzazioni con 15-50 progetti",
+      "features": [
+        "Fino a 50 progetti attivi",
+        "20 utenti inclusi",
+        "IA predittiva avanzata",
+        "Cockpit esecutivo",
+        "Supporto prioritario",
+        "Integrazioni API",
+        "Dati storici 24 mesi"
+      ],
+      "badge": "Il più popolare"
+    },
+    "enterprise": {
+      "name": "Enterprise",
+      "price": "Su misura",
+      "period": "",
+      "description": "Per grandi gruppi e amministrazioni",
+      "features": [
+        "Progetti illimitati",
+        "Utenti illimitati",
+        "Distribuzione on-premise disponibile",
+        "Formazione del team inclusa",
+        "Supporto dedicato 24/7",
+        "SLA garantito del 99,9%",
+        "Conformità Swiss Cloud",
+        "Sviluppi su misura"
+      ]
+    },
+    "cta": "Inizia prova gratuita di 14 giorni"
+  },
+  "trust": {
+    "title": "Sicurezza e conformità svizzera",
+    "swiss_hosting": {
+      "title": "Hosting svizzero",
+      "description": "Dati ospitati in Svizzera, conformi al GDPR"
+    },
+    "iso27001": {
+      "title": "Certificato ISO 27001",
+      "description": "Sicurezza IT e gestione dei rischi"
+    },
+    "encryption": {
+      "title": "Crittografia End-to-End",
+      "description": "I tuoi dati sono crittografati durante il transito e a riposo"
+    },
+    "uptime": {
+      "title": "99,9% di uptime",
+      "description": "Infrastruttura ridondante e alta disponibilità"
+    }
+  },
+  "cta_final": {
+    "title": "Pronto a trasformare il tuo controllo strategico?",
+    "subtitle": "Unisciti alle organizzazioni che guidano con intelligenza",
+    "button": "Prenota una demo personalizzata"
+  },
+  "faq": {
+    "title": "Domande frequenti",
+    "q1": {
+      "question": "Quanto tempo richiede l'implementazione?",
+      "answer": "Tra 2 e 4 settimane a seconda della complessità della tua organizzazione. Il nostro team ti supporta durante l'intera distribuzione."
+    },
+    "q2": {
+      "question": "Posso integrare i miei strumenti esistenti?",
+      "answer": "Sì, Powalyze si integra con Jira, Azure DevOps, Monday, Smartsheet e tutti gli strumenti tramite API REST."
+    },
+    "q3": {
+      "question": "I dati rimangono in Svizzera?",
+      "answer": "Assolutamente. Tutti i dati sono ospitati su server svizzeri e soggetti alla legge svizzera."
+    },
+    "q4": {
+      "question": "Qual è la differenza con Excel o uno strumento PMO classico?",
+      "answer": "Powalyze porta IA predittiva, reporting automatizzato, avvisi intelligenti e visione in tempo reale impossibile con Excel."
+    }
+  }
+}

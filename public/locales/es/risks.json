@@ -1,0 +1,99 @@
+{
+  "title": "Mapa de calor de riesgos",
+  "subtitle": "Vista simplificada para directores",
+  "globalStatus": {
+    "title": "Estado global de la cartera",
+    "okProjects": "proyectos OK",
+    "warningProjects": "proyectos a supervisar",
+    "criticalProject": "proyecto crítico"
+  },
+  "aiSummary": {
+    "title": "Resumen IA",
+    "criticalRisk": "riesgo crítico",
+    "identified": "identificado.",
+    "recommendation": "Acción inmediata recomendada en 1 proyecto. Los otros 3 riesgos naranjas pueden manejarse dentro de la semana."
+  },
+  "immediateAction": {
+    "title": "Acción inmediata",
+    "decisionRequired": "Decisión requerida:",
+    "responsible": "Responsable",
+    "deadline": "Plazo:",
+    "viewActions": "Ver acciones recomendadas"
+  },
+  "allRisks": {
+    "title": "Todos los riesgos",
+    "problem": "Problema",
+    "impact": "Impacto",
+    "decision": "Decisión esperada"
+  },
+  "levels": {
+    "critical": "Crítico",
+    "warning": "A supervisar",
+    "ok": "OK"
+  },
+  "modal": {
+    "description": "Descripción",
+    "actions": "Acciones recomendadas",
+    "estimatedDelay": "Retraso estimado",
+    "budgetImpact": "Impacto presupuestario",
+    "validateDecision": "Validar decisión"
+  },
+  "data": {
+    "orion": {
+      "project": "Proyecto Orion",
+      "problem": "Retraso proveedor clave",
+      "impact": "Retraso de 3 semanas en el proyecto total si no se encuentra alternativa.",
+      "decision": "Elegir proveedor alternativo",
+      "responsible": "J. García",
+      "deadline": "48h",
+      "description": "El proveedor principal ha anunciado 6 semanas de retraso en la entrega de componentes críticos. Esto amenaza el cronograma del proyecto.",
+      "action1": "Validación inmediata de un proveedor alternativo (ya identificado)",
+      "action2": "Negociar condiciones de entrega exprés",
+      "action3": "Ajustar el hito M3 si no hay solución antes del viernes",
+      "delay": "3 semanas",
+      "budget": "+15% (CHF 45'000)"
+    },
+    "phoenix": {
+      "project": "Proyecto Phoenix",
+      "problem": "Recursos insuficientes",
+      "impact": "Retraso de 2 sprints, riesgo de deterioro de la calidad.",
+      "decision": "Reclutar 2 desarrolladores",
+      "responsible": "M. Martínez",
+      "deadline": "1 semana",
+      "description": "El equipo está sobrecargado y no podrá cumplir con el cronograma planificado sin recursos adicionales.",
+      "action1": "Validar presupuesto para 2 desarrolladores adicionales",
+      "action2": "Iniciar reclutamiento rápido a través de red freelance",
+      "action3": "Posponer funcionalidades no críticas para v2",
+      "delay": "2 sprints",
+      "budget": "+8% (CHF 24'000)"
+    },
+    "atlas": {
+      "project": "Proyecto Atlas",
+      "problem": "Perímetro poco claro",
+      "impact": "Riesgo de redefinir el proyecto a mitad de realización.",
+      "decision": "Validar especificaciones",
+      "responsible": "L. López",
+      "deadline": "5 días",
+      "description": "Algunos requisitos funcionales siguen siendo vagos y podrían llevar a retrabajos.",
+      "action1": "Organizar taller de validación de requisitos con el cliente",
+      "action2": "Eliminar funcionalidades no validadas del scope 1",
+      "action3": "Formalizar la documentación de requisitos",
+      "delay": "1 semana",
+      "budget": "Neutro"
+    },
+    "nova": {
+      "project": "Proyecto Nova",
+      "problem": "Validación cliente lenta",
+      "impact": "Acumulación de validaciones pendientes, entregas retrasadas.",
+      "decision": "Escalar al patrocinador",
+      "responsible": "S. Fernández",
+      "deadline": "3 días",
+      "description": "El cliente tarda demasiado en validar las entregas, bloqueando el progreso del proyecto.",
+      "action1": "Escalar el problema al patrocinador del proyecto",
+      "action2": "Proponer plazos de validación reducidos para las próximas fases",
+      "action3": "Trabajar en paralelo en las siguientes actividades mientras se espera validación",
+      "delay": "1 semana",
+      "budget": "Neutro"
+    }
+  }
+}

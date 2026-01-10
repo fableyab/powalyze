@@ -1,0 +1,22 @@
+{
+  "reports": {
+    "title": "Reports",
+    "newReport": "Create Report",
+    "noReports": "No reports available",
+    "selectReport": "Select a report to view"
+  },
+  "actions": {
+    "import": "Import Report",
+    "export": "Export",
+    "share": "Share",
+    "delete": "Delete",
+    "edit": "Edit"
+  },
+  "powerbi": {
+    "title": "Power BI — Reports Hub",
+    "subtitle": "Your commercial, financial and PMO reports, centralized in Powalyze.",
+    "visualization": "Visualization",
+    "loading": "Loading report...",
+    "error": "Error loading report"
+  }
+}

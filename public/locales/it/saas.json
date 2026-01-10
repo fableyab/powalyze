@@ -1,0 +1,22 @@
+{
+  "reports": {
+    "title": "Rapporti",
+    "newReport": "Crea rapporto",
+    "noReports": "Nessun rapporto disponibile",
+    "selectReport": "Seleziona un rapporto da visualizzare"
+  },
+  "actions": {
+    "import": "Importa rapporto",
+    "export": "Esporta",
+    "share": "Condividi",
+    "delete": "Elimina",
+    "edit": "Modifica"
+  },
+  "powerbi": {
+    "title": "Power BI — Hub dei rapporti",
+    "subtitle": "I tuoi rapporti commerciali, finanziari e PMO, centralizzati in Powalyze.",
+    "visualization": "Visualizzazione",
+    "loading": "Caricamento del rapporto...",
+    "error": "Errore nel caricamento del rapporto"
+  }
+}

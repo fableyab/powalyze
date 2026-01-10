@@ -1,0 +1,219 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "modules": "Modules",
+    "useCases": "Cas d'usage",
+    "about": "À propos",
+    "contact": "Contact",
+    "login": "Connexion",
+    "signup": "Créer un compte",
+    "demo": "Démo",
+    "dashboard": "Tableau de bord"
+  },
+  "landing": {
+    "module1Title": "Portfolio Manager",
+    "module1Desc": "Structurez vos projets, programmes et portefeuilles avec une clarté totale.",
+    "module2Title": "Cockpit Exécutif",
+    "module2Desc": "Des vues synthétiques, fiables et orientées décision pour vos comités.",
+    "module3Title": "AI Analytics & Predictive",
+    "module3Desc": "Analyse augmentée, cohérence des données, recommandations intelligentes.",
+    "step1Title": "Consolidez vos données",
+    "step1Desc": "Rassemblez projets, KPI, risques et décisions dans une seule plateforme.",
+    "step2Title": "Pilotez avec clarté",
+    "step2Desc": "Vues consolidées, dashboards exécutifs et reporting automatisé.",
+    "step3Title": "Anticipez les risques",
+    "step3Desc": "L'IA détecte les signaux faibles et projette les impacts avant la crise.",
+    "step4Title": "Décidez plus vite",
+    "step4Desc": "Données fiables, scénarios visuels, recommandations intelligentes.",
+    "useCase1Title": "PMO stratégique",
+    "useCase1Desc": "Structure, cohérence, reporting, arbitrages.",
+    "useCase2Title": "Direction générale",
+    "useCase2Desc": "Vue consolidée, risques majeurs, décisions prioritaires.",
+    "useCase3Title": "Data & Analytics",
+    "useCase3Desc": "Fiabilisation, consolidation, automatisation.",
+    "useCase4Title": "Chefs de projets multi-pays",
+    "useCase4Desc": "Harmonisation, suivi, dépendances.",
+    "testimonial1": "Powalyze a transformé notre pilotage stratégique. Les comités sont plus courts, les décisions plus claires.",
+    "testimonial1Author": "Directeur PMO",
+    "testimonial1Company": "Entreprise internationale",
+    "testimonial2": "Enfin une plateforme pensée pour la gouvernance et les données, pas pour la gestion de tâches.",
+    "testimonial2Author": "Responsable Data",
+    "testimonial2Company": "Groupe industriel",
+    "testimonial3": "L'IA prédictive nous a permis d'anticiper des risques que nous ne voyions pas.",
+    "testimonial3Author": "Chef de programme",
+    "testimonial3Company": "Secteur public",
+    "faq1Question": "Powalyze remplace-t-il mon PMO ?",
+    "faq1Answer": "Non, Powalyze amplifie votre PMO. C'est un outil de pilotage stratégique qui structure vos portefeuilles, fiabilise vos données et accélère vos décisions.",
+    "faq2Question": "Dois-je avoir un PMO pour utiliser Powalyze ?",
+    "faq2Answer": "Non. Powalyze s'adapte à votre maturité. Si vous n'avez pas de PMO, nous pouvons vous accompagner pour structurer votre gouvernance.",
+    "faq3Question": "Powalyze est-il compatible avec mes outils actuels ?",
+    "faq3Answer": "Oui. Powalyze s'intègre avec vos outils existants (Jira, Azure DevOps, Excel, Power BI) et consolide vos données.",
+    "faq4Question": "Combien de temps faut-il pour déployer Powalyze ?",
+    "faq4Answer": "Un périmètre pilote peut être opérationnel en quelques semaines. Le déploiement complet dépend de la complexité de vos portefeuilles.",
+    "faq5Question": "Powalyze est-il adapté aux PME ?",
+    "faq5Answer": "Oui. Notre approche modulaire permet de commencer par un périmètre ciblé et d'évoluer au rythme de vos besoins."
+  },
+  "hero": {
+    "title": "La plateforme qui transforme votre gouvernance, vos données et vos décisions",
+    "subtitle": "Powalyze réunit le meilleur du PMO, de l'analyse de données et de l'IA prédictive dans une plateforme SaaS conçue pour structurer vos portefeuilles, fiabiliser vos reportings et accélérer vos arbitrages.",
+    "ctaPlatform": "Découvrir la plateforme",
+    "ctaAccompaniment": "Être accompagné"
+  },
+  "why": {
+    "title": "Pourquoi Powalyze est différent",
+    "tagline": "Parce que la gouvernance moderne exige plus qu'un outil. Elle exige un système.",
+    "description": "Les organisations jonglent avec des projets, des données, des comités, des indicateurs et des décisions critiques. Powalyze apporte une structure claire, une lecture intelligente des données et un pilotage prédictif.",
+    "youGet": "Vous obtenez :",
+    "benefit1": "une gouvernance structurée",
+    "benefit2": "des données fiables et consolidées",
+    "benefit3": "des reportings automatisés",
+    "benefit4": "des décisions plus rapides",
+    "benefit5": "une anticipation des risques",
+    "benefit6": "un alignement PMO / Direction / Terrain",
+    "conclusion": "C'est la fusion parfaite entre méthode, données et technologie."
+  },
+  "hybrid": {
+    "title": "Le modèle hybride : PMO + Data + SaaS + IA",
+    "subtitle": "Votre expertise métier, amplifiée par la technologie.",
+    "saas": {
+      "title": "Le SaaS : votre cockpit de gouvernance",
+      "features": [
+        "Vision consolidée des portefeuilles",
+        "Suivi des risques, dépendances et arbitrages",
+        "Vues exécutives pour les comités",
+        "Traçabilité complète des décisions",
+        "Reporting automatique",
+        "Intelligence prédictive intégrée"
+      ]
+    },
+    "pmo": {
+      "title": "Le PMO : votre colonne vertébrale stratégique",
+      "features": [
+        "Structuration des portefeuilles",
+        "Mise en place des comités",
+        "Définition des indicateurs",
+        "Méthodologie de pilotage",
+        "Alignement des équipes"
+      ]
+    },
+    "data": {
+      "title": "Le Data Analyst : votre vérité opérationnelle",
+      "features": [
+        "Modélisation des données",
+        "Nettoyage, fiabilisation, consolidation",
+        "Construction de référentiels",
+        "Analyse avancée"
+      ]
+    },
+    "powerbi": {
+      "title": "Power BI : votre visibilité totale",
+      "features": [
+        "Dashboards exécutifs",
+        "KPI stratégiques",
+        "Scénarios visuels",
+        "Automatisation du reporting"
+      ]
+    },
+    "ai": {
+      "title": "L'IA prédictive : votre avantage décisif",
+      "features": [
+        "Détection des signaux faibles",
+        "Anticipation des dérives",
+        "Simulation des scénarios",
+        "Recommandations intelligentes"
+      ]
+    }
+  },
+  "predictive": {
+    "title": "Anticipez ce que les autres découvrent trop tard",
+    "description": "L'IA prédictive de Powalyze analyse vos données, détecte les incohérences, projette les impacts et vous alerte avant que les risques ne deviennent critiques.",
+    "helps": "Elle vous aide à :",
+    "benefit1": "anticiper les retards et dérives",
+    "benefit2": "identifier les dépendances critiques",
+    "benefit3": "simuler les impacts budgétaires",
+    "benefit4": "optimiser les arbitrages",
+    "benefit5": "préparer vos comités avec un temps d'avance",
+    "conclusion": "C'est une nouvelle façon de piloter : proactive, intelligente, stratégique."
+  },
+  "modules": {
+    "title": "Modules",
+    "portfolio": {
+      "name": "Portfolio Manager",
+      "description": "Structurez vos projets, programmes et portefeuilles avec une clarté totale."
+    },
+    "cockpit": {
+      "name": "Cockpit Exécutif",
+      "description": "Des vues synthétiques, fiables et orientées décision pour vos comités."
+    },
+    "executive": {
+      "name": "Executive Hub",
+      "description": "Un espace dédié aux décisions, risques, documents et actions."
+    },
+    "analytics": {
+      "name": "AI Analytics & Predictive",
+      "description": "Analyse augmentée, cohérence des données, recommandations intelligentes."
+    },
+    "theater": {
+      "name": "Cognitive Theater",
+      "description": "Des scénarios visuels pour convaincre, aligner et décider."
+    }
+  },
+  "results": {
+    "title": "Ce que vous obtenez réellement",
+    "subtitle": "Des résultats concrets, mesurables et rapides.",
+    "result1": "50 % de temps en moins pour préparer les comités",
+    "result2": "Décisions plus rapides et mieux documentées",
+    "result3": "Alignement entre PMO, direction et terrain",
+    "result4": "Réduction des risques et des dérives",
+    "result5": "Reporting automatisé et fiable",
+    "result6": "Gouvernance structurée et durable",
+    "conclusion": "Powalyze transforme votre pilotage en un avantage stratégique."
+  },
+  "useCases": {
+    "title": "Cas d'usage",
+    "pmo": {
+      "name": "PMO stratégique",
+      "description": "Structure, cohérence, reporting, arbitrages."
+    },
+    "direction": {
+      "name": "Direction générale",
+      "description": "Vue consolidée, risques majeurs, décisions prioritaires."
+    },
+    "data": {
+      "name": "Data & Analytics",
+      "description": "Fiabilisation, consolidation, automatisation."
+    },
+    "multiCountry": {
+      "name": "Chefs de projets multi-pays",
+      "description": "Harmonisation, suivi, dépendances."
+    },
+    "consulting": {
+      "name": "Cabinets de conseil",
+      "description": "Une plateforme premium pour accompagner vos clients."
+    }
+  },
+  "testimonials": {
+    "title": "Ce que disent nos clients",
+    "testimonial1": {
+      "quote": "Powalyze a transformé notre pilotage stratégique. Les comités sont plus courts, les décisions plus claires.",
+      "author": "Directeur PMO",
+      "company": "Groupe international"
+    },
+    "testimonial2": {
+      "quote": "Enfin une plateforme pensée pour la gouvernance et les données, pas pour la gestion de tâches.",
+      "author": "Responsable Data",
+      "company": "Secteur public"
+    },
+    "testimonial3": {
+      "quote": "L'IA prédictive nous a permis d'anticiper des risques que nous ne voyions pas.",
+      "author": "Chef de programme",
+      "company": "Services financiers"
+    }
+  },
+  "finalCta": {
+    "title": "Passez d'un pilotage réactif à un pilotage intelligent",
+    "description": "Powalyze vous aide à structurer vos portefeuilles, fiabiliser vos données et anticiper vos décisions grâce à un système complet : PMO + Data + Power BI + IA + SaaS.",
+    "ctaAccount": "Créer un compte",
+    "ctaAccompaniment": "Être accompagné"
+  }
+}

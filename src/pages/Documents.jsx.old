@@ -1,0 +1,326 @@
+
+import React, { useState, useEffect } from 'react';
+import { FileText, Search, Filter, TrendingUp, HardDrive } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { useToast } from '@/components/ui/use-toast';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useAuth } from '@/contexts/SupabaseAuthContext';
+import { supabase } from '@/lib/customSupabaseClient';
+import UploadBox from '@/components/documents/UploadBox';
+import DocumentsList from '@/components/documents/DocumentsList';
+import StorageUsage from '@/components/StorageUsage';
+
+const Documents = () => {
+    const { t } = useLanguage();
+    const { user } = useAuth();
+    const { toast } = useToast();
+    
+    const [docs, setDocs] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [filterType, setFilterType] = useState('all');
+
+    useEffect(() => {
+        if (user) {
+            fetchDocuments();
+        }
+    }, [user]);
+
+    const fetchDocuments = async () => {
+        setLoading(true);
+        const { data, error } = await supabase
+            .from('documents')
+            .select('*')
+            .order('created_at', { ascending: false });
+        
+        if (!error) {
+            setDocs(data || []);
+        } else {
+            console.error('Fetch documents error:', error);
+            toast({
+                variant: 'destructive',
+                title: 'Erreur',
+                description: 'Impossible de charger les documents.',
+            });
+        }
+        setLoading(false);
+    };
+
+    const handleUploadComplete = (newDoc) => {
+        setDocs([newDoc, ...docs]);
+    };
+
+    const handleDocumentDeleted = (docId) => {
+        setDocs(docs.filter(d => d.id !== docId));
+    };
+
+    const filteredDocs = docs.filter(doc => {
+        const matchesSearch = doc.name.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesFilter = filterType === 'all' || doc.file_type?.includes(filterType);
+        return matchesSearch && matchesFilter;
+    });
+
+    const stats = {
+        total: docs.length,
+        totalSize: docs.reduce((acc, d) => acc + (d.file_size || 0), 0),
+    };
+
+    return (
+        <div className="space-y-6 p-6 max-w-7xl mx-auto">
+            {/* Header */}
+            <div className="flex justify-between items-center">
+                <div>
+                    <h1 className="text-3xl font-bold text-white">{t('documents.title')}</h1>
+                    <p className="text-slate-400 mt-1">
+                        Stockage sécurisé multi-tenant avec Supabase Storage
+                    </p>
+                </div>
+            </div>
+
+            {/* Stats Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="p-5 bg-slate-900/50 border border-slate-800 rounded-xl">
+                    <div className="flex items-center gap-3">
+                        <div className="p-3 rounded-lg bg-[#0066FF]/20">
+                            <FileText className="w-5 h-5 text-[#0066FF]" />
+                        </div>
+                        <div>
+                            <p className="text-sm text-slate-400">Documents</p>
+                            <p className="text-2xl font-bold text-white">{stats.total}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="p-5 bg-slate-900/50 border border-slate-800 rounded-xl">
+                    <div className="flex items-center gap-3">
+                        <div className="p-3 rounded-lg bg-purple-500/20">
+                            <HardDrive className="w-5 h-5 text-purple-400" />
+                        </div>
+                        <div>
+                            <p className="text-sm text-slate-400">Espace utilisé</p>
+                            <p className="text-2xl font-bold text-white">
+                                {(stats.totalSize / 1024 / 1024).toFixed(2)} MB
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="p-5 bg-slate-900/50 border border-slate-800 rounded-xl">
+                    <div className="flex items-center gap-3">
+                        <div className="p-3 rounded-lg bg-green-500/20">
+                            <TrendingUp className="w-5 h-5 text-green-400" />
+                        </div>
+                        <div>
+                            <p className="text-sm text-slate-400">Ce mois</p>
+                            <p className="text-2xl font-bold text-white">+{docs.filter(d => {
+                                const docDate = new Date(d.created_at);
+                                const now = new Date();
+                                return docDate.getMonth() === now.getMonth() && 
+                                       docDate.getFullYear() === now.getFullYear();
+                            }).length}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Upload Box */}
+            <UploadBox onUploadComplete={handleUploadComplete} />
+
+            {/* Search & Filter */}
+            <div className="flex gap-4">
+                <div className="relative flex-1 max-w-md">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                    <Input 
+                        placeholder="Rechercher un document..." 
+                        className="pl-10 bg-slate-900 border-slate-800 text-white"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                </div>
+                <div className="flex gap-2">
+                    <Button
+                        variant={filterType === 'all' ? 'default' : 'outline'}
+                        className={filterType === 'all' ? 'bg-[#0066FF]' : 'border-slate-800 text-slate-300'}
+                        onClick={() => setFilterType('all')}
+                    >
+                        Tous
+                    </Button>
+                    <Button
+                        variant={filterType === 'pdf' ? 'default' : 'outline'}
+                        className={filterType === 'pdf' ? 'bg-[#0066FF]' : 'border-slate-800 text-slate-300'}
+                        onClick={() => setFilterType('pdf')}
+                    >
+                        PDF
+                    </Button>
+                    <Button
+                        variant={filterType === 'image' ? 'default' : 'outline'}
+                        className={filterType === 'image' ? 'bg-[#0066FF]' : 'border-slate-800 text-slate-300'}
+                        onClick={() => setFilterType('image')}
+                    >
+                        Images
+                    </Button>
+                </div>
+            </div>
+
+            {/* Documents List */}
+            {loading ? (
+                <div className="p-12 text-center">
+                    <p className="text-slate-400">Chargement des documents...</p>
+                </div>
+            ) : (
+                <DocumentsList 
+                    documents={filteredDocs} 
+                    onDocumentDeleted={handleDocumentDeleted}
+                />
+            )}
+        </div>
+    );
+};
+
+export default Documents;
+
+    const handleDelete = async (doc) => {
+        if (!window.confirm(t('common.confirmDelete'))) return;
+        
+        if (doc.user_id !== user.id) {
+            toast({ variant: "destructive", title: "Access Denied", description: "You can only delete your own documents." });
+            return;
+        }
+
+        const { error: storageError } = await supabase.storage.from('documents').remove([doc.file_path]);
+        if (storageError) console.warn("Storage delete failed", storageError);
+
+        const { error: dbError } = await supabase.from('documents').delete().eq('id', doc.id);
+        
+        if (!dbError) {
+            setDocs(docs.filter(d => d.id !== doc.id));
+            toast({ title: t('common.success'), description: "Document deleted" });
+        } else {
+             toast({ variant: "destructive", title: t('common.error'), description: dbError.message });
+        }
+    };
+
+    const handleDownload = async (doc) => {
+        try {
+            // Méthode 1: Via signed URL (préférée)
+            const { data, error } = await supabase.storage
+                .from('documents')
+                .createSignedUrl(doc.file_path, 3600); // 1 heure
+            
+            if (error) throw error;
+            
+            // Télécharger le fichier via fetch puis créer un blob
+            const response = await fetch(data.signedUrl);
+            const blob = await response.blob();
+            
+            // Créer un lien de téléchargement et le déclencher
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = doc.name || 'document';
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            
+            // Nettoyer
+            setTimeout(() => {
+                document.body.removeChild(link);
+                window.URL.revokeObjectURL(url);
+            }, 100);
+            
+            toast({ 
+                title: t('common.success'), 
+                description: `${doc.name} downloaded successfully.` 
+            });
+        } catch (error) {
+            console.error("Download error:", error);
+            toast({ 
+                variant: "destructive", 
+                title: t('common.error'), 
+                description: `Failed to download: ${error.message}` 
+            });
+        }
+    };
+
+    const filteredDocs = docs.filter(d => d.name.toLowerCase().includes(searchTerm.toLowerCase()));
+
+    const getFileIcon = (type) => {
+        if (!type) return <FileText className="w-4 h-4 text-slate-500" />;
+        if (type.includes('image')) return <Image className="w-4 h-4 text-purple-500" />;
+        if (type.includes('pdf')) return <FileText className="w-4 h-4 text-red-500" />;
+        if (type.includes('sheet') || type.includes('excel')) return <FileSpreadsheet className="w-4 h-4 text-green-500" />;
+        return <FileCode className="w-4 h-4 text-blue-500" />;
+    };
+
+    return (
+        <div className="space-y-6 p-6 max-w-7xl mx-auto h-full flex flex-col">
+            <div className="flex justify-between items-center">
+                <div>
+                    <h1 className="text-2xl font-bold text-white">{t('documents.title')}</h1>
+                    <p className="text-slate-500">Centralized secure storage</p>
+                </div>
+                <Button className="bg-[#0066FF] text-white" onClick={() => setIsUploadOpen(true)}>
+                    <Upload className="w-4 h-4 mr-2" /> {t('common.upload')}
+                </Button>
+            </div>
+
+            <div className="flex gap-4">
+                 <div className="relative flex-1 max-w-md">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                    <Input 
+                        placeholder={t('common.search')} 
+                        className="pl-10 bg-[#1A1A1A] border-slate-800 text-white"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                </div>
+                <Button variant="outline" className="border-slate-800 text-slate-300">
+                    <Filter className="w-4 h-4 mr-2" /> {t('common.filter')}
+                </Button>
+            </div>
+
+            <div className="bg-[#1A1A1A] border border-slate-800 rounded-xl overflow-hidden flex-1">
+                <table className="w-full text-left text-sm text-slate-400">
+                    <thead className="bg-black text-slate-300 font-medium">
+                        <tr>
+                            <th className="p-4">{t('common.name')}</th>
+                            <th className="p-4">Type</th>
+                            <th className="p-4">Size</th>
+                            <th className="p-4">{t('common.date')}</th>
+                            <th className="p-4 text-right">{t('common.actions')}</th>
+                        </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-800">
+                        {filteredDocs.length === 0 ? (
+                            <tr><td colSpan="5" className="p-8 text-center text-slate-600">{t('documents.noDocuments')}</td></tr>
+                        ) : (
+                            filteredDocs.map(doc => (
+                                <tr key={doc.id} className="hover:bg-slate-800/50 transition-colors">
+                                    <td className="p-4 font-medium text-white flex items-center gap-2">
+                                        {getFileIcon(doc.file_type || '')} {doc.name}
+                                    </td>
+                                    <td className="p-4 max-w-[150px] truncate" title={doc.file_type}>{doc.file_type?.split('/')[1] || 'File'}</td>
+                                    <td className="p-4">{(doc.file_size / 1024 / 1024).toFixed(2)} MB</td>
+                                    <td className="p-4">{format(new Date(doc.created_at), 'MMM d, yyyy')}</td>
+                                    <td className="p-4 text-right flex justify-end gap-2">
+                                        <Button variant="ghost" size="icon" className="h-8 w-8 text-slate-400 hover:text-white" onClick={() => handleDownload(doc)}><Download className="w-4 h-4" /></Button>
+                                        <Button variant="ghost" size="icon" className="h-8 w-8 text-slate-400 hover:text-red-500" onClick={() => handleDelete(doc)}><Trash2 className="w-4 h-4" /></Button>
+                                    </td>
+                                </tr>
+                            ))
+                        )}
+                    </tbody>
+                </table>
+            </div>
+
+            <DocumentUploadModal 
+                isOpen={isUploadOpen} 
+                onClose={() => setIsUploadOpen(false)}
+                onUploadComplete={(doc) => setDocs([doc, ...docs])}
+            />
+        </div>
+    );
+};
+
+export default Documents;
