@@ -154,187 +154,215 @@ export default function CockpitPage() {
       {/* Ligne du haut */}
       <div className="grid gap-5 md:grid-cols-3 mb-6">
         {/* Bloc 1 : Santé globale */}
-        <div className="border border-slate-800 bg-black/40 rounded-md p-4">
-          <h2 className="text-xs font-semibold text-slate-200 mb-3">
-            Santé globale
-          </h2>
-          <div className="flex gap-3">
-            {[
-              { label: "Avancement", value: Math.round(health.avg_progress || 0), color: "from-sky-500 to-sky-300" },
-              { label: "Risques", value: Math.round(health.risk_score || 0), color: "from-amber-500 to-amber-300" },
-              { label: "Engagements", value: Math.round(health.commitments || 0), color: "from-emerald-500 to-emerald-300" },
-            ].map((item) => (
-              <div key={item.label} className="flex-1 text-center">
-                <div className="relative mx-auto h-16 w-16">
-                  <div className="absolute inset-0 rounded-full border border-slate-700" />
-                  <div
-                    className={`absolute inset-[3px] rounded-full bg-gradient-to-tr ${item.color} opacity-60`}
-                  />
-                  <div className="absolute inset-[8px] rounded-full bg-[#050509] flex items-center justify-center">
-                    <span className="text-xs font-semibold text-slate-100">
-                      {item.value}%
-                    </span>
+        <div className="relative group">
+          <div className="absolute inset-0 bg-gradient-to-br from-sky-500/20 to-purple-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all"></div>
+          <div className="relative bg-black/60 backdrop-blur-xl border border-sky-400/30 rounded-2xl p-6 hover:border-sky-400/60 transition-all">
+            <h2 className="text-sm font-semibold text-white mb-6 flex items-center gap-2">
+              <div className="w-2 h-2 bg-sky-500 rounded-full animate-pulse"></div>
+              Global Health
+            </h2>
+            <div className="flex gap-4">
+              {[
+                { label: "Progress", value: Math.round(health.avg_progress || 0), color: "from-sky-400 to-blue-500", icon: TrendingUp },
+                { label: "Risks", value: Math.round(health.risk_score || 0), color: "from-amber-400 to-orange-500", icon: AlertTriangle },
+                { label: "Commitments", value: Math.round(health.commitments || 0), color: "from-emerald-400 to-teal-500", icon: CheckCircle },
+              ].map((item) => (
+                <div key={item.label} className="flex-1 text-center">
+                  <div className="relative mx-auto h-20 w-20 mb-3">
+                    <div className="absolute inset-0 rounded-full border border-white/10" />
+                    <div
+                      className={`absolute inset-[2px] rounded-full bg-gradient-to-tr ${item.color} opacity-70`}
+                    />
+                    <div className="absolute inset-[6px] rounded-full bg-black/80 backdrop-blur-sm flex items-center justify-center">
+                      <span className="text-lg font-bold text-white tabular-nums">
+                        {item.value}%
+                      </span>
+                    </div>
+                  </div>
+                  <div className="text-xs text-white/60 font-medium">
+                    {item.label}
                   </div>
                 </div>
-                <div className="mt-2 text-[0.7rem] text-slate-400">
-                  {item.label}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
 
         {/* Bloc 2 : Pulse des enjeux */}
-        <div className="border border-slate-800 bg-black/40 rounded-md p-4">
-          <h2 className="text-xs font-semibold text-slate-200 mb-3">
-            Pulse des enjeux
-          </h2>
-          <div className="h-20 flex flex-col justify-between">
-            <div className="flex justify-between text-[0.7rem] text-slate-400 mb-1">
-              <span>Cette semaine</span>
-              <span>Prochains jalons</span>
-            </div>
-            <div className="relative h-10">
-              <div className="absolute left-0 right-0 top-1/2 h-px bg-slate-700" />
-              {milestones.slice(0, 4).map((m, idx) => {
-                const pos = 20 + (idx * 20);
-                return (
-                  <div
-                    key={m.id}
-                    className="absolute -translate-x-1/2"
-                    style={{ left: `${pos}%` }}
-                  >
+        <div className="relative group">
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all"></div>
+          <div className="relative bg-black/60 backdrop-blur-xl border border-purple-400/30 rounded-2xl p-6 hover:border-purple-400/60 transition-all">
+            <h2 className="text-sm font-semibold text-white mb-6 flex items-center gap-2">
+              <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
+              Milestones Timeline
+            </h2>
+            <div className="h-24 flex flex-col justify-between">
+              <div className="flex justify-between text-xs text-white/60 mb-2">
+                <span>This Week</span>
+                <span>Next Milestones</span>
+              </div>
+              <div className="relative h-12 flex items-center">
+                <div className="absolute left-0 right-0 top-1/2 h-0.5 bg-gradient-to-r from-purple-500/50 via-pink-500/50 to-purple-500/50" />
+                {milestones.slice(0, 4).map((m, idx) => {
+                  const pos = 15 + (idx * 23);
+                  return (
                     <div
-                      className={`w-2 h-2 rounded-full ${statusDotColor(m.status)} shadow`}
-                    />
-                  </div>
-                );
-              })}
-            </div>
-            <div className="flex justify-between text-[0.65rem] text-slate-500">
-              <span>Now</span>
-              <span>+ 10 jours</span>
+                      key={m.id}
+                      className="absolute -translate-x-1/2 group/milestone"
+                      style={{ left: `${pos}%` }}
+                    >
+                      <div
+                        className={`w-3 h-3 rounded-full ${statusDotColor(m.status)} shadow-lg animate-pulse border border-white/20`}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="flex justify-between text-[0.65rem] text-white/40 font-mono">
+                <span>NOW</span>
+                <span>+10 DAYS</span>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Bloc 3 : Priorités du moment */}
-        <div className="border border-slate-800 bg-black/40 rounded-md p-4">
-          <h2 className="text-xs font-semibold text-slate-200 mb-3">
-            Priorités du moment
-          </h2>
-          <div className="space-y-2 text-[0.8rem]">
-            {decisions.slice(0, 3).map((item) => (
-              <div
-                key={item.id}
-                className="flex items-center justify-between rounded border border-slate-700 bg-slate-950/60 px-3 py-2"
-              >
-                <div>
-                  <div className="text-slate-100 text-[0.8rem]">{item.title}</div>
-                  <div className="text-[0.65rem] text-slate-500">
-                    {item.due_date ? new Date(item.due_date).toLocaleDateString() : "À définir"}
-                  </div>
-                </div>
-                <span
-                  className={`text-[0.6rem] px-2 py-0.5 rounded-full ${impactLevelColor(
-                    item.impact_level
-                  )}`}
+        <div className="relative group">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/20 to-amber-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all"></div>
+          <div className="relative bg-black/60 backdrop-blur-xl border border-[#D4AF37]/30 rounded-2xl p-6 hover:border-[#D4AF37]/60 transition-all">
+            <h2 className="text-sm font-semibold text-white mb-6 flex items-center gap-2">
+              <div className="w-2 h-2 bg-[#D4AF37] rounded-full animate-pulse"></div>
+              Top Priorities
+            </h2>
+            <div className="space-y-3">
+              {decisions.slice(0, 3).map((item) => (
+                <div
+                  key={item.id}
+                  className="group/card flex items-center justify-between rounded-xl border border-white/10 bg-black/40 backdrop-blur-sm px-4 py-3 hover:border-[#D4AF37]/50 hover:bg-black/60 transition-all"
                 >
-                  {item.impact_level}
-                </span>
-              </div>
-            ))}
-            {decisions.length === 0 && (
-              <div className="text-[0.75rem] text-slate-500 text-center py-4">
-                Aucune décision en attente
-              </div>
-            )}
+                  <div className="flex-1">
+                    <div className="text-white text-sm font-medium">{item.title}</div>
+                    <div className="text-xs text-white/50 font-mono mt-1">
+                      {item.due_date ? new Date(item.due_date).toLocaleDateString() : "TBD"}
+                    </div>
+                  </div>
+                  <span
+                    className={`text-xs px-3 py-1 rounded-full font-semibold ${impactLevelColor(
+                      item.impact_level
+                    )}`}
+                  >
+                    {item.impact_level}
+                  </span>
+                </div>
+              ))}
+              {decisions.length === 0 && (
+                <div className="text-sm text-white/40 text-center py-6">
+                  No pending decisions
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Ligne du bas */}
-      <div className="grid gap-5 md:grid-cols-3">\
+      <div className="grid gap-5 md:grid-cols-3">
         {/* Bloc 4 : Risques & tensions */}
-        <div className="border border-slate-800 bg-black/40 rounded-md p-4">
-          <h2 className="text-xs font-semibold text-slate-200 mb-3">
-            Risques & tensions
-          </h2>
-          <div className="grid grid-cols-3 gap-1 text-[0.7rem]">
-            {["strategie", "execution", "ressources", "dependances", "qualite", "conformite"].map((domain) => {
-              const tension = tensions.find((t) => t.domain === domain);
-              const level = tension ? Math.round(tension.avg_level) : 0;
-              
-              return (
-                <div
-                  key={domain}
-                  className={`h-12 rounded border text-center flex flex-col items-center justify-center ${riskLevelColor(
-                    level
-                  )}`}
-                >
-                  <span className="text-[0.6rem] capitalize">{domain}</span>
-                </div>
-              );
-            })}
+        <div className="relative group">
+          <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all"></div>
+          <div className="relative bg-black/60 backdrop-blur-xl border border-red-400/30 rounded-2xl p-6 hover:border-red-400/60 transition-all">
+            <h2 className="text-sm font-semibold text-white mb-6 flex items-center gap-2">
+              <AlertTriangle className="w-4 h-4 text-red-400" />
+              Risks & Tensions
+            </h2>
+            <div className="grid grid-cols-3 gap-2">
+              {["strategie", "execution", "ressources", "dependances", "qualite", "conformite"].map((domain) => {
+                const tension = tensions.find((t) => t.domain === domain);
+                const level = tension ? Math.round(tension.avg_level) : 0;
+                
+                return (
+                  <div
+                    key={domain}
+                    className={`h-14 rounded-lg border border-white/10 text-center flex flex-col items-center justify-center hover:scale-105 transition-transform ${riskLevelColor(
+                      level
+                    )}`}
+                  >
+                    <span className="text-xs capitalize font-semibold">{domain}</span>
+                    <span className="text-[0.65rem] text-white/60 mt-1">{level}%</span>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
 
         {/* Bloc 5 : Capacité & charge */}
-        <div className="border border-slate-800 bg-black/40 rounded-md p-4">
-          <h2 className="text-xs font-semibold text-slate-200 mb-3">
-            Capacité & charge
-          </h2>
-          <div className="space-y-3 text-[0.75rem]">
-            {capacity.slice(0, 3).map((t) => (
-              <div key={t.name}>
-                <div className="flex justify-between mb-1">
-                  <span className="text-slate-300">{t.name}</span>
-                  <span className="text-slate-400">
-                    {Math.round((t.saturation || 0) * 100)}%
-                  </span>
+        <div className="relative group">
+          <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all"></div>
+          <div className="relative bg-black/60 backdrop-blur-xl border border-cyan-400/30 rounded-2xl p-6 hover:border-cyan-400/60 transition-all">
+            <h2 className="text-sm font-semibold text-white mb-6 flex items-center gap-2">
+              <Users className="w-4 h-4 text-cyan-400" />
+              Team Capacity
+            </h2>
+            <div className="space-y-4">
+              {capacity.slice(0, 3).map((t) => (
+                <div key={t.name}>
+                  <div className="flex justify-between mb-2">
+                    <span className="text-white text-sm font-medium">{t.name}</span>
+                    <span className="text-white/60 text-xs font-mono tabular-nums">
+                      {Math.round((t.saturation || 0) * 100)}%
+                    </span>
+                  </div>
+                  <div className="h-2.5 rounded-full bg-black/60 overflow-hidden border border-white/10">
+                    <div
+                      className={`h-full bg-gradient-to-r ${capacityBarGradient(
+                        t.saturation || 0
+                      )} shadow-lg transition-all duration-500`}
+                      style={{ width: `${(t.saturation || 0) * 100}%` }}
+                    />
+                  </div>
                 </div>
-                <div className="h-2 rounded bg-slate-900 overflow-hidden">
-                  <div
-                    className={`h-full bg-gradient-to-r ${capacityBarGradient(
-                      t.saturation || 0
-                    )}`}
-                    style={{ width: `${(t.saturation || 0) * 100}%` }}
-                  />
+              ))}
+              {capacity.length === 0 && (
+                <div className="text-sm text-white/40 text-center py-6">
+                  No teams configured
                 </div>
-              </div>
-            ))}
-            {capacity.length === 0 && (
-              <div className="text-[0.75rem] text-slate-500 text-center py-4">
-                Aucune équipe configurée
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
 
         {/* Bloc 6 : Focus du jour */}
-        <div className="border border-slate-800 bg-black/40 rounded-md p-4">
-          <h2 className="text-xs font-semibold text-slate-200 mb-3">
-            Focus du jour
-          </h2>
-          <div className="space-y-2 text-[0.8rem]">
-            {focus.slice(0, 3).map((f) => (
-              <div
-                key={f.id}
-                className="rounded border border-slate-700 bg-slate-950/70 px-3 py-2"
-              >
-                <div className="text-[0.8rem] text-amber-300 font-semibold capitalize">
-                  {f.type === "secure" ? "À sécuriser" : f.type === "accelerate" ? "À accélérer" : "À arbitrer"}
+        <div className="relative group">
+          <div className="absolute inset-0 bg-gradient-to-br from-amber-500/20 to-yellow-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all"></div>
+          <div className="relative bg-black/60 backdrop-blur-xl border border-amber-400/30 rounded-2xl p-6 hover:border-amber-400/60 transition-all">
+            <h2 className="text-sm font-semibold text-white mb-6 flex items-center gap-2">
+              <Zap className="w-4 h-4 text-amber-400" />
+              Today's Focus
+            </h2>
+            <div className="space-y-3">
+              {focus.slice(0, 3).map((f) => (
+                <div
+                  key={f.id}
+                  className="rounded-xl border border-white/10 bg-black/40 backdrop-blur-sm px-4 py-3 hover:border-amber-400/50 hover:bg-black/60 transition-all"
+                >
+                  <div className="text-sm text-amber-300 font-bold uppercase tracking-wider flex items-center gap-2">
+                    {f.type === "secure" && <CheckCircle className="w-3.5 h-3.5" />}
+                    {f.type === "accelerate" && <TrendingUp className="w-3.5 h-3.5" />}
+                    {f.type === "arbitrate" && <Clock className="w-3.5 h-3.5" />}
+                    {f.type === "secure" ? "Secure" : f.type === "accelerate" ? "Accelerate" : "Arbitrate"}
+                  </div>
+                  <div className="text-xs text-white/70 mt-2 leading-relaxed">
+                    {f.description}
+                  </div>
                 </div>
-                <div className="text-[0.75rem] text-slate-300 mt-1">
-                  {f.description}
+              ))}
+              {focus.length === 0 && (
+                <div className="text-sm text-white/40 text-center py-6">
+                  No focus defined
                 </div>
-              </div>
-            ))}
-            {focus.length === 0 && (
-              <div className="text-[0.75rem] text-slate-500 text-center py-4">
-                Aucun focus défini
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
       </div>
