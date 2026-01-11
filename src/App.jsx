@@ -104,6 +104,7 @@ import Modularite from '@/pages/Modularite';
 const Dashboard = lazy(() => import('@/pages/Dashboard'));
 const DashboardNew = lazy(() => import('@/pages/DashboardNew'));
 const DashboardPremium = lazy(() => import('@/pages/DashboardPremium'));
+const DashboardRevolutionary = lazy(() => import('@/pages/app/DashboardRevolutionary'));
 const Projects = lazy(() => import('@/pages/Projects'));
 const ProjectsNew = lazy(() => import('@/pages/ProjectsNew'));
 const ProjectsList = lazy(() => import('@/pages/ProjectsList'));
@@ -317,6 +318,7 @@ const App = () => {
                 <Route path="/app" element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
                   <Route index element={<Navigate to="/app/cockpit" replace />} />
                   <Route path="cockpit" element={<CockpitPage />} />
+                  <Route path="dashboard-vision" element={<DashboardRevolutionary />} />
                   <Route path="portfolio" element={<PortfolioApp />} />
                   <Route path="projects" element={<ProjectsApp />} />
                   <Route path="documents" element={<DocumentsApp />} />
