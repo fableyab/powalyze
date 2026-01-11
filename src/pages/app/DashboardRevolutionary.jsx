@@ -545,6 +545,337 @@ export default function DashboardRevolutionary() {
                 </motion.section>
               </div>
 
+              {/* PHASE 2: REVOLUTIONARY VISUALS */}
+              
+              {/* 3D Glass Sphere - Portfolio Health */}
+              <motion.section
+                className="relative mx-auto my-6 flex h-96 w-full max-w-5xl items-center justify-center overflow-hidden rounded-3xl border border-white/20 bg-gradient-to-br from-white/5 to-white/10 p-8 backdrop-blur-3xl"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+              >
+                {/* 3D Sphere avec CSS 3D transforms */}
+                <div 
+                  className="relative h-72 w-72"
+                  style={{ 
+                    perspective: '1000px',
+                    transformStyle: 'preserve-3d'
+                  }}
+                >
+                  {/* Sphere layers */}
+                  {[0, 1, 2, 3, 4].map((layer) => (
+                    <motion.div
+                      key={layer}
+                      className="absolute inset-0 rounded-full border-2 border-[#D4AF37]/30 bg-gradient-to-br from-[#D4AF37]/10 to-[#4A9EFF]/10 backdrop-blur-xl"
+                      style={{
+                        transform: `rotateY(${layer * 36}deg) translateZ(${layer * 20}px)`,
+                        transformStyle: 'preserve-3d'
+                      }}
+                      animate={{
+                        rotateY: [layer * 36, layer * 36 + 360],
+                      }}
+                      transition={{
+                        duration: 20 + layer * 5,
+                        repeat: Infinity,
+                        ease: "linear"
+                      }}
+                    />
+                  ))}
+                  
+                  {/* Center content - Portfolio Health */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
+                    <motion.div
+                      className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#D4AF37] to-[#4A9EFF]"
+                      animate={{
+                        scale: [1, 1.05, 1],
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    >
+                      {loading ? "..." : (health?.avg_progress ? Math.round(health.avg_progress) : 94)}%
+                    </motion.div>
+                    <div className="mt-2 text-sm uppercase tracking-[0.2em] text-white/70">
+                      Portfolio Health
+                    </div>
+                    <div className="mt-4 flex gap-3">
+                      <div className="flex flex-col items-center rounded-xl border border-emerald-400/30 bg-emerald-400/10 px-3 py-2 backdrop-blur-sm">
+                        <div className="text-xs text-white/60">On Track</div>
+                        <div className="text-lg font-semibold text-emerald-400">72%</div>
+                      </div>
+                      <div className="flex flex-col items-center rounded-xl border border-amber-400/30 bg-amber-400/10 px-3 py-2 backdrop-blur-sm">
+                        <div className="text-xs text-white/60">At Risk</div>
+                        <div className="text-lg font-semibold text-amber-400">18%</div>
+                      </div>
+                      <div className="flex flex-col items-center rounded-xl border border-rose-400/30 bg-rose-400/10 px-3 py-2 backdrop-blur-sm">
+                        <div className="text-xs text-white/60">Blocked</div>
+                        <div className="text-lg font-semibold text-rose-400">10%</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Glow effect */}
+                  <div className="absolute inset-0 -z-10 animate-pulse rounded-full bg-gradient-to-br from-[#D4AF37]/30 to-[#4A9EFF]/30 blur-3xl" 
+                       style={{ animationDuration: '4s' }} />
+                </div>
+              </motion.section>
+
+              {/* Portfolio Map avec Golden Threads SVG */}
+              <motion.section
+                className="relative mx-auto my-6 h-[500px] w-full max-w-5xl overflow-hidden rounded-3xl border border-white/20 bg-gradient-to-br from-black/40 to-black/60 p-8 backdrop-blur-3xl"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                <div className="mb-4 flex items-center justify-between">
+                  <div>
+                    <h2 className="text-lg font-semibold text-white">Portfolio Map</h2>
+                    <p className="text-xs text-white/60">Strategic initiatives network</p>
+                  </div>
+                  <div className="flex gap-2">
+                    <div className="flex items-center gap-1.5 text-xs">
+                      <div className="h-2 w-2 rounded-full bg-emerald-400" />
+                      <span className="text-white/70">Strategic</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-xs">
+                      <div className="h-2 w-2 rounded-full bg-sky-400" />
+                      <span className="text-white/70">Active</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-xs">
+                      <div className="h-2 w-2 rounded-full bg-amber-400" />
+                      <span className="text-white/70">At Risk</span>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* SVG Map with golden threads */}
+                <svg className="h-full w-full" viewBox="0 0 800 400">
+                  <defs>
+                    {/* Golden gradient for connections */}
+                    <linearGradient id="goldenThread" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.8" />
+                      <stop offset="100%" stopColor="#4A9EFF" stopOpacity="0.6" />
+                    </linearGradient>
+                    
+                    {/* Glow filter */}
+                    <filter id="glow">
+                      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                      <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                      </feMerge>
+                    </filter>
+                  </defs>
+                  
+                  {/* Golden thread connections */}
+                  <motion.path
+                    d="M 100 200 Q 200 150 300 180"
+                    stroke="url(#goldenThread)"
+                    strokeWidth="2"
+                    fill="none"
+                    filter="url(#glow)"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{ pathLength: 1, opacity: 1 }}
+                    transition={{ duration: 1.5, delay: 0.5 }}
+                  />
+                  <motion.path
+                    d="M 300 180 Q 400 160 500 200"
+                    stroke="url(#goldenThread)"
+                    strokeWidth="2"
+                    fill="none"
+                    filter="url(#glow)"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{ pathLength: 1, opacity: 1 }}
+                    transition={{ duration: 1.5, delay: 0.7 }}
+                  />
+                  <motion.path
+                    d="M 300 180 Q 350 280 500 300"
+                    stroke="url(#goldenThread)"
+                    strokeWidth="2"
+                    fill="none"
+                    filter="url(#glow)"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{ pathLength: 1, opacity: 1 }}
+                    transition={{ duration: 1.5, delay: 0.9 }}
+                  />
+                  <motion.path
+                    d="M 500 200 Q 600 180 700 220"
+                    stroke="url(#goldenThread)"
+                    strokeWidth="2"
+                    fill="none"
+                    filter="url(#glow)"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{ pathLength: 1, opacity: 1 }}
+                    transition={{ duration: 1.5, delay: 1.1 }}
+                  />
+                  <motion.path
+                    d="M 500 300 Q 600 280 700 300"
+                    stroke="url(#goldenThread)"
+                    strokeWidth="2"
+                    fill="none"
+                    filter="url(#glow)"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{ pathLength: 1, opacity: 1 }}
+                    transition={{ duration: 1.5, delay: 1.3 }}
+                  />
+                  
+                  {/* Project nodes */}
+                  {[
+                    { x: 100, y: 200, label: "Digital Core", color: "#10B981", size: 24 },
+                    { x: 300, y: 180, label: "Data Platform", color: "#10B981", size: 22 },
+                    { x: 500, y: 200, label: "Cloud Migration", color: "#38BFF8", size: 20 },
+                    { x: 700, y: 220, label: "ERP Groupe", color: "#F59E0B", size: 26 },
+                    { x: 500, y: 300, label: "Portal Clients", color: "#38BFF8", size: 18 },
+                    { x: 700, y: 300, label: "AI PMO", color: "#94A3B8", size: 16 },
+                  ].map((node, idx) => (
+                    <motion.g
+                      key={idx}
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ duration: 0.5, delay: 0.5 + idx * 0.1 }}
+                      whileHover={{ scale: 1.2 }}
+                    >
+                      <circle
+                        cx={node.x}
+                        cy={node.y}
+                        r={node.size}
+                        fill={node.color}
+                        fillOpacity="0.3"
+                        stroke={node.color}
+                        strokeWidth="2"
+                        filter="url(#glow)"
+                        className="cursor-pointer"
+                      />
+                      <circle
+                        cx={node.x}
+                        cy={node.y}
+                        r={node.size / 2}
+                        fill={node.color}
+                        fillOpacity="0.8"
+                        className="cursor-pointer"
+                      />
+                      <text
+                        x={node.x}
+                        y={node.y - node.size - 8}
+                        textAnchor="middle"
+                        fill="white"
+                        fontSize="11"
+                        fontWeight="600"
+                        className="pointer-events-none"
+                      >
+                        {node.label}
+                      </text>
+                    </motion.g>
+                  ))}
+                </svg>
+              </motion.section>
+
+              {/* Holographic Timeline Multi-Layered */}
+              <motion.section
+                className="relative mx-auto my-6 h-96 w-full max-w-5xl overflow-hidden rounded-3xl border border-white/20 bg-gradient-to-br from-purple-950/30 to-pink-950/30 p-8 backdrop-blur-3xl"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+              >
+                <div className="mb-6">
+                  <h2 className="text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+                    Holographic Timeline
+                  </h2>
+                  <p className="text-xs text-white/60">Multi-dimensional governance view</p>
+                </div>
+                
+                {/* 3 Parallel timelines with z-layers */}
+                <div className="relative h-64">
+                  {/* Layer 1 - Committees (top) */}
+                  <motion.div
+                    className="absolute inset-x-0 top-0 h-20 rounded-2xl border border-purple-400/30 bg-gradient-to-r from-purple-500/10 to-purple-600/5 p-3 backdrop-blur-sm"
+                    style={{ zIndex: 3 }}
+                    initial={{ x: -100, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
+                  >
+                    <div className="mb-1 text-xs font-semibold text-purple-300">Committees</div>
+                    <div className="flex gap-2">
+                      {[
+                        { label: "Portfolio", date: "Oct 24", status: "ready" },
+                        { label: "Risk", date: "Oct 28", status: "prep" },
+                        { label: "Board", date: "Nov 05", status: "pending" },
+                      ].map((event, idx) => (
+                        <motion.div
+                          key={idx}
+                          className="flex-1 rounded-lg border border-purple-400/20 bg-purple-500/20 p-1.5 text-center"
+                          whileHover={{ y: -2, boxShadow: "0 0 20px rgba(168, 85, 247, 0.4)" }}
+                        >
+                          <div className="text-[10px] font-medium text-purple-200">{event.label}</div>
+                          <div className="text-[9px] text-purple-300/70">{event.date}</div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
+                  
+                  {/* Layer 2 - Decisions (middle) */}
+                  <motion.div
+                    className="absolute inset-x-0 top-24 h-20 rounded-2xl border border-pink-400/30 bg-gradient-to-r from-pink-500/10 to-pink-600/5 p-3 backdrop-blur-sm"
+                    style={{ zIndex: 2 }}
+                    initial={{ x: -100, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 0.8 }}
+                  >
+                    <div className="mb-1 text-xs font-semibold text-pink-300">Key Decisions</div>
+                    <div className="flex gap-2">
+                      {[
+                        { label: "Budget ERP", due: "Today" },
+                        { label: "Scope Digital", due: "Tomorrow" },
+                        { label: "Risk Cloud", due: "+3 days" },
+                        { label: "Portal Priority", due: "Week" },
+                      ].map((decision, idx) => (
+                        <motion.div
+                          key={idx}
+                          className="flex-1 rounded-lg border border-pink-400/20 bg-pink-500/20 p-1.5 text-center"
+                          whileHover={{ y: -2, boxShadow: "0 0 20px rgba(236, 72, 153, 0.4)" }}
+                        >
+                          <div className="text-[10px] font-medium text-pink-200">{decision.label}</div>
+                          <div className="text-[9px] text-pink-300/70">{decision.due}</div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
+                  
+                  {/* Layer 3 - Risks (bottom) */}
+                  <motion.div
+                    className="absolute inset-x-0 top-48 h-20 rounded-2xl border border-amber-400/30 bg-gradient-to-r from-amber-500/10 to-amber-600/5 p-3 backdrop-blur-sm"
+                    style={{ zIndex: 1 }}
+                    initial={{ x: -100, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 1 }}
+                  >
+                    <div className="mb-1 text-xs font-semibold text-amber-300">Critical Risks</div>
+                    <div className="flex gap-2">
+                      {[
+                        { label: "Budget Overrun", level: "high" },
+                        { label: "Resource Gap", level: "medium" },
+                        { label: "Tech Debt", level: "medium" },
+                      ].map((risk, idx) => (
+                        <motion.div
+                          key={idx}
+                          className="flex-1 rounded-lg border border-amber-400/20 bg-amber-500/20 p-1.5 text-center"
+                          whileHover={{ y: -2, boxShadow: "0 0 20px rgba(251, 191, 36, 0.4)" }}
+                        >
+                          <div className="text-[10px] font-medium text-amber-200">{risk.label}</div>
+                          <div className="text-[9px] text-amber-300/70 uppercase">{risk.level}</div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
+                  
+                  {/* Holographic glow effect */}
+                  <div className="absolute inset-0 -z-10 animate-pulse rounded-3xl bg-gradient-to-br from-purple-500/20 via-pink-500/20 to-amber-500/20 blur-2xl"
+                       style={{ animationDuration: '6s' }} />
+                </div>
+              </motion.section>
+
               {/* Portefeuille (board) */}
               <motion.section
                 className="flex flex-1 gap-3 rounded-3xl border border-white/10 bg-white/5 p-3 backdrop-blur-2xl overflow-hidden"
