@@ -1,7 +1,23 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
-import { Target, Zap, Users, TrendingUp, Calendar, FileText, Settings, Activity, AlertTriangle, CheckCircle } from 'lucide-react';
+import { Target, Zap, Users, TrendingUp, Calendar, FileText, Settings, Activity, AlertTriangle, CheckCircle, X, Filter, Search, GripVertical } from 'lucide-react';
 import { useCockpitData } from "../../hooks/useCockpitData";
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  useSortable,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 
 const kpis = [
   { label: "% On Track", value: "72%", accent: "bg-emerald-400" },
@@ -148,12 +164,183 @@ function riskDot(risk) {
   return "bg-rose-500";
 }
 
+// Phase 3: Draggable Project Card Component
+function DraggableProjectCard({ item, columnId, onClick }) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: `${columnId}-${item.name}` });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+  };
+
+  return (
+    <motion.div
+      ref={setNodeRef}
+      style={style}
+      className="group relative cursor-pointer rounded-xl border border-white/10 bg-black/40 p-2 backdrop-blur-sm"
+      whileHover={{ y: -2, scale: 1.02 }}
+      transition={{ type: "spring", stiffness: 260, damping: 20 }}
+      onClick={() => onClick(item)}
+    >
+      {/* Drag handle */}
+      <div
+        {...attributes}
+        {...listeners}
+        className="absolute left-1 top-1/2 -translate-y-1/2 cursor-grab opacity-0 transition-opacity group-hover:opacity-100 active:cursor-grabbing"
+      >
+        <GripVertical className="h-4 w-4 text-white/40" />
+      </div>
+      
+      <div className="pl-5">
+        <div className="mb-1 text-[11px] font-medium text-white line-clamp-2">
+          {item.name}
+        </div>
+        <div className="mb-1 flex items-center gap-1.5 text-[9px] text-white/60">
+          <span>{item.owner}</span>
+          <span>•</span>
+          <span>{item.budget}</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <div className={`h-1.5 w-1.5 rounded-full ${riskDot(item.risk)}`} />
+          <span className="text-[9px] uppercase text-white/50">
+            {item.risk}
+          </span>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+// Phase 3: Project Detail Modal Component
+function ProjectModal({ project, onClose }) {
+  if (!project) return null;
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
+      >
+        <motion.div
+          className="relative w-full max-w-2xl rounded-3xl border border-white/20 bg-gradient-to-br from-[#050A12] to-[#0A0A20] p-8 shadow-2xl"
+          initial={{ scale: 0.9, y: 20 }}
+          animate={{ scale: 1, y: 0 }}
+          exit={{ scale: 0.9, y: 20 }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Close button */}
+          <button
+            onClick={onClose}
+            className="absolute right-4 top-4 rounded-full border border-white/10 bg-white/5 p-2 transition-all hover:bg-white/10"
+          >
+            <X className="h-5 w-5 text-white" />
+          </button>
+
+          {/* Project header */}
+          <div className="mb-6">
+            <div className="mb-2 flex items-center gap-2">
+              <div className={`h-3 w-3 rounded-full ${riskDot(project.risk)}`} />
+              <span className="text-sm uppercase tracking-wider text-white/50">
+                Project Details
+              </span>
+            </div>
+            <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF]">
+              {project.name}
+            </h2>
+          </div>
+
+          {/* Project info grid */}
+          <div className="grid grid-cols-2 gap-4 mb-6">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+              <div className="mb-1 text-xs uppercase tracking-wider text-white/50">Owner</div>
+              <div className="text-lg font-semibold text-white">{project.owner}</div>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+              <div className="mb-1 text-xs uppercase tracking-wider text-white/50">Budget</div>
+              <div className="text-lg font-semibold text-white">{project.budget}</div>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+              <div className="mb-1 text-xs uppercase tracking-wider text-white/50">Risk Level</div>
+              <div className="flex items-center gap-2">
+                <div className={`h-2 w-2 rounded-full ${riskDot(project.risk)}`} />
+                <span className="text-lg font-semibold capitalize text-white">{project.risk}</span>
+              </div>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+              <div className="mb-1 text-xs uppercase tracking-wider text-white/50">Status</div>
+              <div className="text-lg font-semibold text-white">Active</div>
+            </div>
+          </div>
+
+          {/* Mock progress */}
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+            <div className="mb-3 flex items-center justify-between">
+              <span className="text-sm text-white/70">Overall Progress</span>
+              <span className="text-sm font-bold text-white">67%</span>
+            </div>
+            <div className="h-2 overflow-hidden rounded-full bg-white/10">
+              <motion.div
+                className="h-full rounded-full bg-gradient-to-r from-[#D4AF37] to-emerald-400"
+                initial={{ width: 0 }}
+                animate={{ width: '67%' }}
+                transition={{ duration: 1 }}
+              />
+            </div>
+          </div>
+
+          {/* Mock timeline */}
+          <div className="mt-6">
+            <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-white/70">
+              Recent Activity
+            </h3>
+            <div className="space-y-2">
+              {[
+                { action: 'Budget approved', date: '2 days ago', user: 'CFO' },
+                { action: 'Phase 2 started', date: '5 days ago', user: 'PMO Lead' },
+                { action: 'Kickoff meeting', date: '1 week ago', user: 'Project Manager' },
+              ].map((activity, idx) => (
+                <div
+                  key={idx}
+                  className="flex items-center justify-between rounded-lg border border-white/5 bg-white/5 p-3 text-sm"
+                >
+                  <div>
+                    <div className="font-medium text-white">{activity.action}</div>
+                    <div className="text-xs text-white/50">{activity.user}</div>
+                  </div>
+                  <div className="text-xs text-white/50">{activity.date}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
 export default function DashboardRevolutionary() {
   const canvasRef = useRef(null);
   const [particles, setParticles] = useState([]);
   
   // Data intégration avec Supabase
   const { signal, health, milestones, decisions, capacity, focus, tensions, projects, loading } = useCockpitData();
+  
+  // Phase 3 States
+  const [selectedProject, setSelectedProject] = useState(null); // Modal state
+  const [searchTerm, setSearchTerm] = useState(''); // Search filter
+  const [statusFilter, setStatusFilter] = useState('all'); // Status filter
+  const [riskFilter, setRiskFilter] = useState('all'); // Risk filter
   
   // Map projects to Kanban columns based on status and risk
   const mapProjectsToColumns = (projectsData) => {
@@ -193,6 +380,90 @@ export default function DashboardRevolutionary() {
   };
   
   const portfolioColumns = mapProjectsToColumns(projects);
+  
+  // Phase 3: Drag & Drop handlers
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
+
+  const [kanbanColumns, setKanbanColumns] = useState(portfolioColumns);
+  
+  // Update kanban when projects change
+  useEffect(() => {
+    setKanbanColumns(mapProjectsToColumns(projects));
+  }, [projects]);
+
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
+    
+    if (!over) return;
+    
+    const activeId = active.id;
+    const overId = over.id;
+    
+    // Extract column and item info
+    const [activeCol, activeItem] = activeId.split('-').slice(0, 2);
+    const [overCol, overItem] = overId.split('-').slice(0, 2);
+    
+    if (activeCol === overCol) {
+      // Reordering within same column
+      const columnIndex = kanbanColumns.findIndex(col => col.id === activeCol);
+      const column = kanbanColumns[columnIndex];
+      const oldIndex = column.items.findIndex(item => item.name === activeItem);
+      const newIndex = column.items.findIndex(item => item.name === overItem);
+      
+      if (oldIndex !== newIndex) {
+        const newItems = arrayMove(column.items, oldIndex, newIndex);
+        const newColumns = [...kanbanColumns];
+        newColumns[columnIndex] = { ...column, items: newItems };
+        setKanbanColumns(newColumns);
+      }
+    } else {
+      // Moving between columns
+      const sourceColIndex = kanbanColumns.findIndex(col => col.id === activeCol);
+      const targetColIndex = kanbanColumns.findIndex(col => col.id === overCol);
+      
+      const sourceCol = kanbanColumns[sourceColIndex];
+      const targetCol = kanbanColumns[targetColIndex];
+      
+      const itemIndex = sourceCol.items.findIndex(item => item.name === activeItem);
+      const item = sourceCol.items[itemIndex];
+      
+      const newSourceItems = sourceCol.items.filter((_, idx) => idx !== itemIndex);
+      const newTargetItems = [...targetCol.items, item];
+      
+      const newColumns = [...kanbanColumns];
+      newColumns[sourceColIndex] = { ...sourceCol, items: newSourceItems };
+      newColumns[targetColIndex] = { ...targetCol, items: newTargetItems };
+      setKanbanColumns(newColumns);
+      
+      // TODO: Update Supabase with new status
+      console.log(`Moved ${item.name} from ${activeCol} to ${overCol}`);
+    }
+  };
+
+  // Phase 3: Filter logic
+  const filteredColumns = kanbanColumns.map(col => ({
+    ...col,
+    items: col.items.filter(item => {
+      // Search filter
+      if (searchTerm && !item.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+        return false;
+      }
+      // Risk filter
+      if (riskFilter !== 'all' && item.risk !== riskFilter) {
+        return false;
+      }
+      // Status filter (column-based)
+      if (statusFilter !== 'all' && col.id !== statusFilter) {
+        return false;
+      }
+      return true;
+    })
+  }));
   
   // Particle field background
   useEffect(() => {
@@ -366,6 +637,68 @@ export default function DashboardRevolutionary() {
               </div>
             </div>
           </header>
+
+          {/* Phase 3: Filtres dynamiques */}
+          <div className="flex items-center gap-4 border-b border-white/5 bg-black/20 px-8 py-3 backdrop-blur-xl">
+            {/* Search */}
+            <div className="flex flex-1 items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2">
+              <Search className="h-4 w-4 text-white/40" />
+              <input
+                type="text"
+                placeholder="Rechercher un projet..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="flex-1 bg-transparent text-sm text-white placeholder-white/40 outline-none"
+              />
+              {searchTerm && (
+                <button onClick={() => setSearchTerm('')} className="text-white/40 hover:text-white">
+                  <X className="h-4 w-4" />
+                </button>
+              )}
+            </div>
+
+            {/* Risk Filter */}
+            <div className="flex items-center gap-2">
+              <Filter className="h-4 w-4 text-white/40" />
+              <select
+                value={riskFilter}
+                onChange={(e) => setRiskFilter(e.target.value)}
+                className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white outline-none backdrop-blur-sm"
+              >
+                <option value="all">All Risks</option>
+                <option value="low">Low Risk</option>
+                <option value="medium">Medium Risk</option>
+                <option value="high">High Risk</option>
+              </select>
+            </div>
+
+            {/* Status Filter */}
+            <select
+              value={statusFilter}
+              onChange={(e) => setStatusFilter(e.target.value)}
+              className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white outline-none backdrop-blur-sm"
+            >
+              <option value="all">All Status</option>
+              <option value="strategic">Stratégique</option>
+              <option value="inprogress">En cours</option>
+              <option value="atrisk">À risque</option>
+              <option value="onhold">En pause</option>
+            </select>
+
+            {/* Clear filters */}
+            {(searchTerm || riskFilter !== 'all' || statusFilter !== 'all') && (
+              <button
+                onClick={() => {
+                  setSearchTerm('');
+                  setRiskFilter('all');
+                  setStatusFilter('all');
+                }}
+                className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white hover:bg-white/10"
+              >
+                Clear
+              </button>
+            )}
+          </div>
 
           {/* Corps */}
           <main className="flex flex-1 gap-4 overflow-hidden px-6 py-4">
@@ -876,60 +1209,51 @@ export default function DashboardRevolutionary() {
                 </div>
               </motion.section>
 
-              {/* Portefeuille (board) */}
+              {/* Portefeuille (board) avec Drag & Drop */}
               <motion.section
                 className="flex flex-1 gap-3 rounded-3xl border border-white/10 bg-white/5 p-3 backdrop-blur-2xl overflow-hidden"
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.25 }}
               >
-                {portfolioColumns.map((col) => (
-                  <div key={col.id} className="flex min-w-[0] flex-1 flex-col">
-                    <div className="mb-2 flex items-center justify-between">
-                      <div className="flex items-center gap-1.5">
-                        <div
-                          className={`h-1.5 w-6 rounded-full bg-gradient-to-r ${col.color}`}
-                        />
-                        <h3 className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/70">
-                          {col.title}
-                        </h3>
+                <DndContext
+                  sensors={sensors}
+                  collisionDetection={closestCenter}
+                  onDragEnd={handleDragEnd}
+                >
+                  {filteredColumns.map((col) => (
+                    <div key={col.id} className="flex min-w-[0] flex-1 flex-col">
+                      <div className="mb-2 flex items-center justify-between">
+                        <div className="flex items-center gap-1.5">
+                          <div
+                            className={`h-1.5 w-6 rounded-full bg-gradient-to-r ${col.color}`}
+                          />
+                          <h3 className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/70">
+                            {col.title}
+                          </h3>
+                        </div>
+                        <span className="text-[10px] text-white/40">
+                          {col.items.length} projets
+                        </span>
                       </div>
-                      <span className="text-[10px] text-white/40">
-                        {col.items.length} projets
-                      </span>
-                    </div>
-                    <div className="flex flex-1 flex-col gap-2 overflow-y-auto">
-                      {col.items.map((p) => (
-                        <motion.div
-                          key={p.name}
-                          className="group rounded-2xl border border-white/10 bg-black/40 p-2.5"
-                          whileHover={{ y: -2, scale: 1.01 }}
-                          transition={{ type: "spring", stiffness: 260, damping: 22 }}
+                      <div className="flex flex-1 flex-col gap-2 overflow-y-auto">
+                        <SortableContext
+                          items={col.items.map(item => `${col.id}-${item.name}`)}
+                          strategy={verticalListSortingStrategy}
                         >
-                          <div className="mb-1 flex items-center justify-between gap-2">
-                            <div className="text-[11px] font-medium text-white line-clamp-1">
-                              {p.name}
-                            </div>
-                            <span className="rounded-full bg-white/5 px-2 py-0.5 text-[9px] text-white/60 whitespace-nowrap">
-                              {p.owner}
-                            </span>
-                          </div>
-                          <div className="flex items-center justify-between text-[10px] text-white/60">
-                            <span className="rounded-full bg-white/5 px-2 py-0.5">
-                              Budget · {p.budget}
-                            </span>
-                            <div className="flex items-center gap-1">
-                              <span
-                                className={`h-1.5 w-1.5 rounded-full ${riskDot(p.risk)}`}
-                              />
-                              <span>Risque</span>
-                            </div>
-                          </div>
-                        </motion.div>
-                      ))}
+                          {col.items.map((p) => (
+                            <DraggableProjectCard
+                              key={`${col.id}-${p.name}`}
+                              item={p}
+                              columnId={col.id}
+                              onClick={setSelectedProject}
+                            />
+                          ))}
+                        </SortableContext>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </DndContext>
               </motion.section>
             </div>
 
@@ -997,6 +1321,14 @@ export default function DashboardRevolutionary() {
           </main>
         </div>
       </div>
+
+      {/* Phase 3: Project Detail Modal */}
+      {selectedProject && (
+        <ProjectModal
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
+        />
+      )}
     </div>
   );
 }
