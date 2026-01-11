@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from "framer-motion";
 import { Target, Zap, Users, TrendingUp, Calendar, FileText, Settings, Activity, AlertTriangle, CheckCircle } from 'lucide-react';
+import { useCockpitData } from "../../hooks/useCockpitData";
 
 const kpis = [
   { label: "% On Track", value: "72%", accent: "bg-emerald-400" },
@@ -148,6 +149,122 @@ function riskDot(risk) {
 }
 
 export default function DashboardRevolutionary() {
+  const canvasRef = useRef(null);
+  const [particles, setParticles] = useState([]);
+  
+  // Data intégration avec Supabase
+  const { signal, health, milestones, decisions, capacity, focus, tensions, projects, loading } = useCockpitData();
+  
+  // Map projects to Kanban columns based on status and risk
+  const mapProjectsToColumns = (projectsData) => {
+    if (!projectsData || projectsData.length === 0) return projectsColumns;
+    
+    const strategic = [];
+    const inprogress = [];
+    const atrisk = [];
+    const onhold = [];
+    
+    projectsData.forEach(project => {
+      const item = {
+        name: project.name,
+        owner: project.owner || "N/A",
+        budget: project.budget ? `${(project.budget / 1000).toFixed(0)} k€` : "N/A",
+        risk: project.risk_level || "medium"
+      };
+      
+      // Map based on status and risk
+      if (project.status === "on_hold" || project.status === "paused") {
+        onhold.push(item);
+      } else if (project.risk_level === "high" || project.risk_level === "critical") {
+        atrisk.push(item);
+      } else if (project.strategic_priority === "high" || project.strategic_priority === "critical") {
+        strategic.push(item);
+      } else {
+        inprogress.push(item);
+      }
+    });
+    
+    return [
+      { id: "strategic", title: "Stratégique", color: "from-emerald-400/40 to-emerald-500/10", items: strategic.length > 0 ? strategic : projectsColumns[0].items },
+      { id: "inprogress", title: "En cours", color: "from-sky-400/40 to-sky-500/10", items: inprogress.length > 0 ? inprogress : projectsColumns[1].items },
+      { id: "atrisk", title: "À risque", color: "from-amber-400/40 to-amber-500/10", items: atrisk.length > 0 ? atrisk : projectsColumns[2].items },
+      { id: "onhold", title: "En pause", color: "from-slate-400/30 to-slate-700/10", items: onhold.length > 0 ? onhold : projectsColumns[3].items }
+    ];
+  };
+  
+  const portfolioColumns = mapProjectsToColumns(projects);
+  
+  // Particle field background
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    // Create particles
+    const particleCount = 60;
+    const particlesArray = [];
+    
+    for (let i = 0; i < particleCount; i++) {
+      particlesArray.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        radius: Math.random() * 2 + 1,
+        color: Math.random() > 0.5 ? 'rgba(212, 175, 55, 0.6)' : 'rgba(74, 158, 255, 0.5)'
+      });
+    }
+    
+    setParticles(particlesArray);
+    
+    // Animation loop
+    let animationId;
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particlesArray.forEach((particle, i) => {
+        // Move particle
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+        
+        // Bounce off edges
+        if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
+        if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
+        
+        // Draw particle
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+        ctx.fillStyle = particle.color;
+        ctx.fill();
+        
+        // Draw connections
+        particlesArray.slice(i + 1).forEach(otherParticle => {
+          const dx = particle.x - otherParticle.x;
+          const dy = particle.y - otherParticle.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < 120) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(212, 175, 55, ${0.15 * (1 - distance / 120)})`;
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(particle.x, particle.y);
+            ctx.lineTo(otherParticle.x, otherParticle.y);
+            ctx.stroke();
+          }
+        });
+      });
+      
+      animationId = requestAnimationFrame(animate);
+    };
+    
+    animate();
+    
+    return () => cancelAnimationFrame(animationId);
+  }, []);
+
   const navItems = [
     { label: "Vue", icon: Activity },
     { label: "Portfolio", icon: Target },
@@ -160,12 +277,29 @@ export default function DashboardRevolutionary() {
 
   return (
     <div className="min-h-screen bg-[#050A12] text-white">
-      {/* Fond dynamique */}
+      {/* Particle Field Background */}
+      <canvas 
+        ref={canvasRef}
+        className="fixed inset-0 -z-20 pointer-events-none"
+        style={{ opacity: 0.4 }}
+      />
+      
+      {/* Fond dynamique avec volumetric lighting */}
       <div className="pointer-events-none fixed inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-br from-[#050A12] via-[#050A20] to-black" />
-        <div className="absolute -left-32 top-[-10%] h-96 w-96 rounded-full bg-[#D4AF37]/18 blur-3xl" />
-        <div className="absolute right-[-10%] bottom-[-20%] h-[28rem] w-[28rem] rounded-full bg-[#1E3A8A]/35 blur-3xl" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.06),_transparent_60%)]" />
+        
+        {/* Volumetric light beams */}
+        <div className="absolute left-[-20%] top-[-30%] h-[600px] w-[600px] rounded-full bg-[#D4AF37]/20 blur-[120px] animate-pulse" 
+             style={{ animationDuration: '8s' }} />
+        <div className="absolute right-[-15%] top-[10%] h-[500px] w-[500px] rounded-full bg-[#4A9EFF]/15 blur-[100px] animate-pulse" 
+             style={{ animationDuration: '10s', animationDelay: '2s' }} />
+        <div className="absolute left-[30%] bottom-[-20%] h-[700px] w-[700px] rounded-full bg-[#1E3A8A]/25 blur-[130px] animate-pulse" 
+             style={{ animationDuration: '12s', animationDelay: '4s' }} />
+        
+        {/* Radial gradient overlay */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,_rgba(212,175,55,0.12),_transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,_rgba(74,158,255,0.1),_transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_80%,_rgba(30,58,138,0.15),_transparent_60%)]" />
       </div>
 
       <div className="flex h-screen">
@@ -260,20 +394,45 @@ export default function DashboardRevolutionary() {
 
                   {/* KPIs */}
                   <div className="mb-4 flex gap-2">
-                    {kpis.map((kpi) => (
-                      <div
-                        key={kpi.label}
-                        className="flex flex-1 items-center gap-2 rounded-2xl border border-white/10 bg-black/30 px-3 py-2"
-                      >
-                        <div className={`h-6 w-1.5 rounded-full ${kpi.accent}`} />
-                        <div className="flex flex-col">
-                          <span className="text-[10px] uppercase tracking-[0.12em] text-white/50">
-                            {kpi.label}
-                          </span>
-                          <span className="text-sm font-semibold text-white">{kpi.value}</span>
+                    {loading ? (
+                      <div className="flex-1 text-center text-white/40 py-4">Loading...</div>
+                    ) : (
+                      <>
+                        <div className="flex flex-1 items-center gap-2 rounded-2xl border border-white/10 bg-black/30 px-3 py-2">
+                          <div className="h-6 w-1.5 rounded-full bg-emerald-400" />
+                          <div className="flex flex-col">
+                            <span className="text-[10px] uppercase tracking-[0.12em] text-white/50">
+                              % On Track
+                            </span>
+                            <span className="text-sm font-semibold text-white tabular-nums">
+                              {health.avg_progress ? Math.round(health.avg_progress) : 72}%
+                            </span>
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                        <div className="flex flex-1 items-center gap-2 rounded-2xl border border-white/10 bg-black/30 px-3 py-2">
+                          <div className="h-6 w-1.5 rounded-full bg-amber-400" />
+                          <div className="flex flex-col">
+                            <span className="text-[10px] uppercase tracking-[0.12em] text-white/50">
+                              Budget utilisé
+                            </span>
+                            <span className="text-sm font-semibold text-white tabular-nums">
+                              {health.risk_score ? Math.round(health.risk_score) : 61}%
+                            </span>
+                          </div>
+                        </div>
+                        <div className="flex flex-1 items-center gap-2 rounded-2xl border border-white/10 bg-black/30 px-3 py-2">
+                          <div className="h-6 w-1.5 rounded-full bg-sky-400" />
+                          <div className="flex flex-col">
+                            <span className="text-[10px] uppercase tracking-[0.12em] text-white/50">
+                              Alignement stratégique
+                            </span>
+                            <span className="text-sm font-semibold text-white tabular-nums">
+                              {health.commitments ? Math.round(health.commitments) : 88}%
+                            </span>
+                          </div>
+                        </div>
+                      </>
+                    )}
                   </div>
 
                   {/* Graphique simplifié */}
@@ -344,32 +503,39 @@ export default function DashboardRevolutionary() {
                     </span>
                   </div>
                   <div className="flex flex-1 flex-col gap-3">
-                    {committees.map((c) => (
+                    {loading ? (
+                      <div className="text-center text-white/40 py-4">Loading...</div>
+                    ) : (milestones && milestones.length > 0 ? milestones.slice(0, 3) : committees).map((c, idx) => (
                       <motion.div
-                        key={c.name}
+                        key={c.name || c.id}
                         className="relative overflow-hidden rounded-2xl border border-white/10 bg-black/40 p-3"
                         whileHover={{ y: -2, scale: 1.01 }}
                         transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        style={{ transitionDelay: `${idx * 0.1}s` }}
                       >
                         <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-[#D4AF37]/10 opacity-0 transition-opacity hover:opacity-100" />
                         <div className="relative flex flex-col gap-1">
                           <div className="flex items-center justify-between gap-2">
                             <div className="text-[11px] font-medium text-white">
-                              {c.name}
+                              {c.name || c.title}
                             </div>
                             <span className="rounded-full bg-emerald-500/20 px-2 py-0.5 text-[9px] text-emerald-300">
                               {c.status}
                             </span>
                           </div>
                           <div className="flex items-center justify-between text-[10px] text-white/60">
-                            <span>{c.date}</span>
-                            <span>{c.time}</span>
-                            <span>{c.decisions} décisions</span>
+                            <span>{c.date || (c.due_date ? new Date(c.due_date).toLocaleDateString() : "TBD")}</span>
+                            <span>{c.time || "09:00 – 10:30"}</span>
+                            <span>{c.decisions || "N/A"} décisions</span>
                           </div>
                           <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">
-                            <div
+                            <motion.div
                               className="h-full rounded-full bg-gradient-to-r from-[#D4AF37] to-emerald-400"
-                              style={{ width: `${c.progress}%` }}
+                              initial={{ width: 0 }}
+                              animate={{ width: `${c.progress || 50}%` }}
+                              transition={{ duration: 1, delay: idx * 0.1 }}
                             />
                           </div>
                         </div>
@@ -386,7 +552,7 @@ export default function DashboardRevolutionary() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.25 }}
               >
-                {projectsColumns.map((col) => (
+                {portfolioColumns.map((col) => (
                   <div key={col.id} className="flex min-w-[0] flex-1 flex-col">
                     <div className="mb-2 flex items-center justify-between">
                       <div className="flex items-center gap-1.5">
@@ -455,31 +621,46 @@ export default function DashboardRevolutionary() {
                 </span>
               </div>
               <div className="flex-1 space-y-2 overflow-y-auto pr-1 text-[11px]">
-                {decisionsFeed.map((d, idx) => (
-                  <motion.div
-                    key={d.title}
-                    className="rounded-2xl border border-white/10 bg-black/40 p-3"
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.35 + idx * 0.06 }}
-                  >
-                    <div className="mb-1 text-[11px] font-medium text-white">
-                      {d.title}
-                    </div>
-                    <div className="mb-1 flex items-center justify-between text-[10px] text-white/55">
-                      <span>{d.owner}</span>
-                      <span>{d.due}</span>
-                    </div>
-                    <div className="flex items-center justify-between text-[10px]">
-                      <span className="rounded-full bg-white/5 px-2 py-0.5 text-white/60">
-                        Décision
-                      </span>
-                      <span className="rounded-full bg-amber-500/20 px-2 py-0.5 text-[10px] text-amber-200">
-                        {d.status}
-                      </span>
-                    </div>
-                  </motion.div>
-                ))}
+                <AnimatePresence mode="popLayout">
+                  {(decisions && decisions.length > 0 ? decisions.slice(0, 4) : decisionsFeed).map((d, idx) => (
+                    <motion.div
+                      key={d.title || d.id}
+                      className="rounded-2xl border border-white/10 bg-black/40 p-3 backdrop-blur-sm"
+                      initial={{ opacity: 0, x: 20, scale: 0.95 }}
+                      animate={{ opacity: 1, x: 0, scale: 1 }}
+                      exit={{ opacity: 0, x: -20, scale: 0.95 }}
+                      transition={{ 
+                        duration: 0.4, 
+                        delay: 0.35 + idx * 0.08,
+                        type: "spring",
+                        stiffness: 200,
+                        damping: 20
+                      }}
+                      whileHover={{ 
+                        scale: 1.02, 
+                        y: -2,
+                        boxShadow: "0 0 30px rgba(212, 175, 55, 0.3)",
+                        transition: { duration: 0.2 }
+                      }}
+                    >
+                      <div className="mb-1 text-[11px] font-medium text-white">
+                        {d.title}
+                      </div>
+                      <div className="mb-1 flex items-center justify-between text-[10px] text-white/55">
+                        <span>{d.owner}</span>
+                        <span>{d.due || (d.due_date ? new Date(d.due_date).toLocaleDateString() : "TBD")}</span>
+                      </div>
+                      <div className="flex items-center justify-between text-[10px]">
+                        <span className="rounded-full bg-white/5 px-2 py-0.5 text-white/60">
+                          Décision
+                        </span>
+                        <span className="rounded-full bg-amber-500/20 px-2 py-0.5 text-[10px] text-amber-200">
+                          {d.status || d.impact_level || "En cours"}
+                        </span>
+                      </div>
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
               </div>
             </motion.aside>
           </main>

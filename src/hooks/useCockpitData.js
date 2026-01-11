@@ -13,7 +13,7 @@ export function useCockpitData(orgId) {
       }
 
       try {
-        const [health, signal, milestones, tensions, capacity, decisions, focus] = await Promise.all([
+        const [health, signal, milestones, tensions, capacity, decisions, focus, projects] = await Promise.all([
           supabase
             .from("global_health_view")
             .select("*")
@@ -51,6 +51,12 @@ export function useCockpitData(orgId) {
             .from("focus_items")
             .select("*")
             .eq("organization_id", orgId)
+            .order("created_at", { ascending: false }),
+          
+          supabase
+            .from("projects")
+            .select("id, name, owner, budget, status, risk_level, strategic_priority")
+            .eq("organization_id", orgId)
             .order("created_at", { ascending: false })
         ]);
 
@@ -62,6 +68,7 @@ export function useCockpitData(orgId) {
           capacity: capacity.data || [],
           decisions: decisions.data || [],
           focus: focus.data || [],
+          projects: projects.data || [],
           timestamps: {
             lastUpdate: "il y a 5 min"
           }
