@@ -2,6 +2,12 @@
   "buildCommand": "npm run build:full 2>&1",
   "outputDirectory": "dist",
   "framework": null,
+  "alias": [
+    "www.powalyze.com",
+    "powalyze.com",
+    "www.powalyze.ch",
+    "powalyze.ch"
+  ],
   "rewrites": [
     {
       "source": "/(.*)",
