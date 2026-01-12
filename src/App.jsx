@@ -55,6 +55,10 @@ import ExecutiveDashboardModule from '@/pages/modules/ExecutiveDashboardModule';
 import DecisionHubModule from '@/pages/modules/DecisionHubModule';
 import PredictiveIntelligenceModule from '@/pages/modules/PredictiveIntelligenceModule';
 
+// V2 Projects Pages
+import ProjectsListV2 from '@/pages/projects/ProjectsList';
+import ProjectNewV2 from '@/pages/projects/ProjectNew';
+
 // New Concrete Pages
 // import PlateformePage from '@/pages/PlateformePage';
 import SolutionsPage from '@/pages/SolutionsPage';
@@ -380,6 +384,10 @@ const App = () => {
                   <Route path="audit" element={<AuditLogs />} />
                   <Route path="profile" element={<div>Mon compte</div>} />
                 </Route>
+                
+                {/* V2 ROUTES - New Architecture */}
+                <Route path="/projects-v2" element={<ProtectedRoute><ProjectsListV2 /></ProtectedRoute>} />
+                <Route path="/projects-v2/new" element={<ProtectedRoute><ProjectNewV2 /></ProtectedRoute>} />
                 
                 {/* Legacy Protected Routes - Redirect to new structure */}
                 <Route path="/app/dashboard" element={<Navigate to="/app/cockpit" replace />} />
