@@ -18,6 +18,8 @@ export default function OrganizationSwitcher() {
   useEffect(() => {
     if (user?.id) {
       loadOrganizations();
+    } else {
+      setLoading(false);
     }
   }, [user]);
 
@@ -37,11 +39,7 @@ export default function OrganizationSwitcher() {
       }
     } catch (error) {
       console.error('Error loading organizations:', error);
-      toast({
-        title: "Erreur",
-        description: "Impossible de charger les organisations",
-        variant: "destructive"
-      });
+      // Silencieux en cas d'erreur pour ne pas bloquer l'app
     } finally {
       setLoading(false);
     }
@@ -52,16 +50,20 @@ export default function OrganizationSwitcher() {
     localStorage.setItem('currentOrganizationId', org.id);
     setIsOpen(false);
     
-    toast({
-      title: "Organisation changée",
-      description: `Vous êtes maintenant sur "${org.name}"`
-    });
+    try {
+      toast({
+        title: "Organisation changée",
+        description: `Vous êtes maintenant sur "${org.name}"`
+      });
 
-    // Recharger la page pour mettre à jour toutes les données
-    window.location.reload();
+      // Recharger la page pour mettre à jour toutes les données
+      window.location.reload();
+    } catch (error) {
+      // Silencieux
+    }
   }
 
-  if (loading || !currentOrg) {
+  if (loading || !currentOrg || !user) {
     return null;
   }
 
