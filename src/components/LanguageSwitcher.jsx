@@ -24,7 +24,10 @@ const LanguageSwitcher = () => {
 
   const changeLanguage = (langCode) => {
     i18n.changeLanguage(langCode);
+    // Synchroniser tous les storages
+    localStorage.setItem('i18nextLng', langCode);
     localStorage.setItem('preferredLanguage', langCode);
+    localStorage.setItem('powalyze-locale', langCode);
   };
 
   return (
