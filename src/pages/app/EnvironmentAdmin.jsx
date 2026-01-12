@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/SupabaseAuthContext';
 import environmentService from '@/lib/environmentService';
 import { useToast } from '@/components/ui/use-toast';
+import logger from '@/lib/logger';
 import { Eye, Briefcase, Plus, Users, FileText, Target, CheckCircle2 } from 'lucide-react';
 
 export default function EnvironmentAdmin() {
@@ -41,7 +42,7 @@ export default function EnvironmentAdmin() {
       });
       setStats(statsMap);
     } catch (error) {
-      console.error('Error loading organizations:', error);
+      logger.error('EnvironmentAdmin.loadOrganizations', error, { userId: user?.id });
       toast({
         title: "Erreur",
         description: "Impossible de charger les organisations",
@@ -75,7 +76,7 @@ export default function EnvironmentAdmin() {
       setNewOrgType('prod');
       loadOrganizations();
     } catch (error) {
-      console.error('Error creating organization:', error);
+      logger.error('EnvironmentAdmin.createOrganization', error, { orgName: newOrgName, userId: user?.id });
       toast({
         title: "Erreur",
         description: "Impossible de créer l'organisation",
@@ -99,7 +100,7 @@ export default function EnvironmentAdmin() {
 
       loadOrganizations();
     } catch (error) {
-      console.error('Error giving demo access:', error);
+      logger.error('EnvironmentAdmin.giveDemoAccess', error, { userId: user?.id });
       toast({
         title: "Erreur",
         description: "Impossible d'activer l'accès démo",

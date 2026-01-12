@@ -69,17 +69,17 @@ export default function LandingPage() {
               </button>
               <button 
                 onClick={(e) => scrollToSection(e, 'product')} 
-                className="hidden sm:block text-[10px] text-slate-400 hover:text-slate-100 transition-all duration-500 font-light tracking-[0.2em] uppercase cursor-pointer bg-transparent border-none"
+                className="hidden sm:block text-[10px] text-slate-200 hover:text-slate-100 transition-all duration-500 font-light tracking-[0.2em] uppercase cursor-pointer bg-transparent border-none"
               >
                 {dict.nav.product}
               </button>
               <button 
                 onClick={(e) => scrollToSection(e, 'scenarios')} 
-                className="hidden sm:block text-[10px] text-slate-400 hover:text-slate-100 transition-all duration-500 font-light tracking-[0.2em] uppercase cursor-pointer bg-transparent border-none"
+                className="hidden sm:block text-[10px] text-slate-200 hover:text-slate-100 transition-all duration-500 font-light tracking-[0.2em] uppercase cursor-pointer bg-transparent border-none"
               >
                 {dict.nav.scenarios}
               </button>
-              <Link to="/contact" className="hidden sm:block text-[10px] text-slate-400 hover:text-[#D4AF37] transition-all duration-500 font-light tracking-[0.2em] uppercase">
+              <Link to="/contact" className="hidden sm:block text-[10px] text-slate-200 hover:text-[#D4AF37] transition-all duration-500 font-light tracking-[0.2em] uppercase">
                 Contact
               </Link>
               
@@ -87,7 +87,7 @@ export default function LandingPage() {
               <div className="relative">
                 <button
                   onClick={() => setShowLangMenu(!showLangMenu)}
-                  className="flex items-center gap-2 px-3 py-2 border border-slate-700 rounded-[2px] text-[9px] text-slate-400 hover:border-[#D4AF37] hover:text-slate-100 transition-all duration-500 font-light tracking-[0.2em]"
+                  className="flex items-center gap-2 px-3 py-2 border border-slate-700 rounded-[2px] text-[9px] text-slate-200 hover:border-[#D4AF37] hover:text-slate-100 transition-all duration-500 font-light tracking-[0.2em]"
                 >
                   <Globe className="w-3 h-3" />
                   <span className="uppercase">{locale}</span>
@@ -154,7 +154,7 @@ export default function LandingPage() {
               Swiss Precision
             </span>
             <div className="w-px h-4 bg-[#D4AF37]/30" />
-            <span className="text-xs font-light text-slate-400 tracking-[0.2em] uppercase">
+            <span className="text-xs font-light text-slate-200 tracking-[0.2em] uppercase">
               Made for Excellence
             </span>
           </div>
@@ -169,7 +169,7 @@ export default function LandingPage() {
               <div className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full" />
               <div className="h-[0.5px] w-20 bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent" />
             </div>
-            <p className="text-base text-slate-400 max-w-xl mx-auto leading-relaxed font-light tracking-[0.03em]">
+            <p className="text-base text-slate-200 max-w-xl mx-auto leading-relaxed font-light tracking-[0.03em]">
               {dict?.hero?.subtitle || 'Powalyze réunit le meilleur du PMO et de l\'analyse de données'}
             </p>
           </div>
@@ -206,7 +206,7 @@ export default function LandingPage() {
                     {roi.toFixed(0)}<span className="text-xl text-slate-500">%</span>
                   </div>
                   <div className="h-[1px] w-16 mx-auto bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent" />
-                  <div className="text-[10px] text-slate-400 uppercase tracking-[0.2em] font-light">
+                  <div className="text-[10px] text-slate-200 uppercase tracking-[0.2em] font-light">
                     Return on Investment
                   </div>
                 </div>
@@ -220,7 +220,7 @@ export default function LandingPage() {
                     {months.toFixed(1)}<span className="text-xl text-gray-500">m</span>
                   </div>
                   <div className="h-[1px] w-16 mx-auto bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent" />
-                  <div className="text-[10px] text-gray-600 uppercase tracking-[0.2em] font-light">
+                  <div className="text-[10px] text-slate-300 uppercase tracking-[0.2em] font-light">
                     Time to Value
                   </div>
                 </div>
@@ -234,7 +234,7 @@ export default function LandingPage() {
                     {uptime.toFixed(2)}<span className="text-xl text-gray-500">%</span>
                   </div>
                   <div className="h-[1px] w-16 mx-auto bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent" />
-                  <div className="text-[10px] text-gray-600 uppercase tracking-[0.2em] font-light">
+                  <div className="text-[10px] text-slate-300 uppercase tracking-[0.2em] font-light">
                     Uptime Guarantee
                   </div>
                 </div>
@@ -244,17 +244,17 @@ export default function LandingPage() {
 
           {/* Swiss Trust Indicators */}
           <div className="flex items-center justify-center gap-10 mt-20">
-            <div className="text-[10px] tracking-[0.25em] uppercase text-gray-500">ISO 27001</div>
-            <div className="w-px h-4 bg-gray-300" />
-            <div className="text-[10px] tracking-[0.25em] uppercase text-gray-500">SOC 2 Type II</div>
-            <div className="w-px h-4 bg-gray-300" />
-            <div className="text-[10px] tracking-[0.25em] uppercase text-gray-500">GDPR Compliant</div>
+            <div className="text-[10px] tracking-[0.25em] uppercase text-slate-300">ISO 27001</div>
+            <div className="w-px h-4 bg-slate-400" />
+            <div className="text-[10px] tracking-[0.25em] uppercase text-slate-300">SOC 2 Type II</div>
+            <div className="w-px h-4 bg-slate-400" />
+            <div className="text-[10px] tracking-[0.25em] uppercase text-slate-300">GDPR Compliant</div>
           </div>
         </div>
 
         {/* Precision indicator */}
         <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
-          <div className="text-[7px] text-gray-400 uppercase tracking-[0.4em] font-light">Discover More</div>
+          <div className="text-[7px] text-slate-300 uppercase tracking-[0.4em] font-light">Discover More</div>
           <div className="w-[1px] h-12 bg-gradient-to-b from-[#D4AF37]/50 via-[#D4AF37]/20 to-transparent animate-pulse" />
         </div>
       </section>
@@ -273,7 +273,7 @@ export default function LandingPage() {
               <div className="h-[0.5px] w-20 bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent" />
             </div>
             <h2 className="text-4xl font-extralight mb-6 text-gray-900 tracking-tight">{dict.forWho.title}</h2>
-            <p className="text-base text-gray-600 font-light tracking-[0.02em]">{dict.forWho.subtitle}</p>
+            <p className="text-base text-gray-900 font-light tracking-[0.02em]">{dict.forWho.subtitle}</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -285,10 +285,10 @@ export default function LandingPage() {
                   <GitBranch className="w-7 h-7 text-[#D4AF37]" />
                 </div>
                 <h3 className="text-xl font-light mb-5 text-gray-900 tracking-tight">{dict.forWho.pmo.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed mb-4 font-light">
+                <p className="text-sm text-gray-900 leading-relaxed mb-4 font-light">
                   {dict.forWho.pmo.line1}
                 </p>
-                <p className="text-xs text-gray-500 font-light">
+                <p className="text-xs text-gray-800 font-light">
                   {dict.forWho.pmo.line2}
                 </p>
               </div>
@@ -302,10 +302,10 @@ export default function LandingPage() {
                   <Database className="w-6 h-6 text-[#D4AF37]" />
                 </div>
                 <h3 className="text-xl font-light mb-4 text-gray-900 tracking-tight">{dict.forWho.data.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed mb-4 font-light">
+                <p className="text-sm text-gray-900 leading-relaxed mb-4 font-light">
                   {dict.forWho.data.line1}
                 </p>
-                <p className="text-xs text-gray-500 font-light">
+                <p className="text-xs text-gray-800 font-light">
                   {dict.forWho.data.line2}
                 </p>
               </div>
@@ -319,10 +319,10 @@ export default function LandingPage() {
                   <Users className="w-6 h-6 text-[#D4AF37]" />
                 </div>
                 <h3 className="text-xl font-light mb-4 text-gray-900 tracking-tight">{dict.forWho.direction.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed mb-4 font-light">
+                <p className="text-sm text-gray-900 leading-relaxed mb-4 font-light">
                   {dict.forWho.direction.line1}
                 </p>
-                <p className="text-xs text-gray-500 font-light">
+                <p className="text-xs text-gray-800 font-light">
                   {dict.forWho.direction.line2}
                 </p>
               </div>
@@ -361,7 +361,7 @@ export default function LandingPage() {
                   {dict.replaces.with.items.map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <Check className="w-3 h-3 text-[#D4AF37] mt-0.5 flex-shrink-0" />
-                      <span className="text-xs text-gray-700 leading-relaxed font-light">{item}</span>
+                    <span className="text-xs text-gray-900 leading-relaxed font-light">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -375,7 +375,7 @@ export default function LandingPage() {
                 {dict.replaces.result.items.map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <TrendingUp className="w-3 h-3 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-xs text-gray-600 leading-relaxed font-light">{item}</span>
+                    <span className="text-xs text-gray-900 leading-relaxed font-light">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -432,7 +432,7 @@ export default function LandingPage() {
                   {dict.services.pmo.items.map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <Check className="w-4 h-4 text-[#D4AF37] mt-0.5 flex-shrink-0" />
-                      <span className="text-sm text-gray-700 leading-relaxed font-light">{item}</span>
+                    <span className="text-sm text-gray-900 leading-relaxed font-light">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -451,7 +451,7 @@ export default function LandingPage() {
                   {dict.services.data.items.map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <Check className="w-4 h-4 text-[#D4AF37] mt-0.5 flex-shrink-0" />
-                      <span className="text-sm text-gray-700 leading-relaxed font-light">{item}</span>
+                    <span className="text-sm text-gray-900 leading-relaxed font-light">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -470,7 +470,7 @@ export default function LandingPage() {
                   {dict.services.ai.items.map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <Check className="w-4 h-4 text-[#D4AF37] mt-0.5 flex-shrink-0" />
-                      <span className="text-sm text-gray-700 leading-relaxed font-light">{item}</span>
+                    <span className="text-sm text-gray-900 leading-relaxed font-light">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -494,7 +494,7 @@ export default function LandingPage() {
               <div className="h-[0.5px] w-16 bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent" />
             </div>
             <h2 className="text-5xl font-extralight mb-6 text-gray-900 tracking-tight">{dict.demo.title}</h2>
-            <p className="text-sm text-gray-600 max-w-2xl mx-auto font-light tracking-[0.05em]">{dict.demo.subtitle}</p>
+            <p className="text-sm text-gray-900 max-w-2xl mx-auto font-light tracking-[0.05em]">{dict.demo.subtitle}</p>
           </div>
 
           {/* Scène 1 - Portfolio */}
@@ -525,7 +525,7 @@ export default function LandingPage() {
                 {/* Mock Portfolio Dashboard */}
                 <div className="space-y-6">
                   <div className="flex items-center justify-between pb-4 border-b border-gray-200">
-                    <span className="text-xs font-light text-gray-600 uppercase tracking-wider">Portfolio Health</span>
+                    <span className="text-xs font-light text-gray-900 uppercase tracking-wider">Portfolio Health</span>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                       <span className="text-xs font-medium text-green-500">Healthy</span>
@@ -533,19 +533,19 @@ export default function LandingPage() {
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="bg-gray-50 backdrop-blur-xl rounded-[2px] p-4 border border-gray-200">
-                      <div className="text-xs text-gray-600 mb-2">Active Projects</div>
+                      <div className="text-xs text-gray-900 mb-2">Active Projects</div>
                       <div className="text-3xl font-extralight text-gray-900">847</div>
                       <div className="text-xs text-green-500 mt-2">↑ 12.3%</div>
                     </div>
                     <div className="bg-gray-50 backdrop-blur-xl rounded-[2px] p-4 border border-gray-200">
-                      <div className="text-xs text-gray-600 mb-2">Total Value</div>
+                      <div className="text-xs text-gray-900 mb-2">Total Value</div>
                       <div className="text-3xl font-extralight text-[#D4AF37]">€2.8M</div>
                       <div className="text-xs text-green-500 mt-2">↑ 8.7%</div>
                     </div>
                   </div>
                   <div className="bg-gray-50 backdrop-blur-xl rounded-[2px] p-4 border border-gray-200">
                     <div className="flex items-center justify-between mb-3">
-                      <span className="text-xs text-gray-600">Success Rate</span>
+                      <span className="text-xs text-gray-900">Success Rate</span>
                       <span className="text-sm font-light text-gray-900">94.7%</span>
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-2">
@@ -570,7 +570,7 @@ export default function LandingPage() {
                     </div>
                     <div>
                       <div className="text-sm font-light text-gray-900">Board Meeting Q1 2026</div>
-                      <div className="text-xs text-gray-600">Live • 12 participants</div>
+                      <div className="text-xs text-gray-900">Live • 12 participants</div>
                     </div>
                   </div>
                   <div className="space-y-3">
@@ -655,7 +655,7 @@ export default function LandingPage() {
                       <div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
                       <span className="text-xs font-light text-green-600">Connected</span>
                     </div>
-                    <span className="text-xs text-gray-600">Power BI • Azure Synapse</span>
+                    <span className="text-xs text-gray-900">Power BI • Azure Synapse</span>
                   </div>
                   <div className="grid grid-cols-3 gap-3">
                     {[
@@ -667,14 +667,14 @@ export default function LandingPage() {
                         <div className="text-xl font-extralight text-[#D4AF37] mb-1">
                           {stat.value}
                         </div>
-                        <div className="text-[10px] text-gray-600 mb-1">{stat.label}</div>
+                        <div className="text-[10px] text-gray-900 mb-1">{stat.label}</div>
                         <div className="text-[10px] text-green-500">{stat.trend}</div>
                       </div>
                     ))}
                   </div>
                   <div className="bg-gray-50 backdrop-blur-xl rounded-[2px] p-4 border border-gray-200">
                     <div className="flex items-center justify-between mb-3">
-                      <span className="text-xs text-gray-600">Real-time Sync</span>
+                      <span className="text-xs text-gray-900">Real-time Sync</span>
                       <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                     </div>
                     <div className="flex items-end gap-1 h-16">
@@ -701,7 +701,7 @@ export default function LandingPage() {
                     </div>
                     <div>
                       <div className="text-sm font-light text-gray-900">Decision History</div>
-                      <div className="text-xs text-gray-600">Full audit trail</div>
+                      <div className="text-xs text-gray-900">Full audit trail</div>
                     </div>
                   </div>
                   {[
@@ -718,7 +718,7 @@ export default function LandingPage() {
                       }`}></div>
                       <div className="flex-1 min-w-0">
                         <div className="text-xs font-light text-gray-900">{log.action}</div>
-                        <div className="text-[10px] text-gray-600 mt-1">{log.user} • {log.time}</div>
+                        <div className="text-[10px] text-gray-900 mt-1">{log.user} • {log.time}</div>
                       </div>
                     </div>
                   ))}
@@ -761,7 +761,7 @@ export default function LandingPage() {
             {dict.integrations.items.map((item, i) => (
               <div key={i} className="bg-white rounded-2xl p-6 border border-black/10 text-left">
                 <Zap className="w-8 h-8 text-[#D4AF37] mb-4" />
-                <p className="text-black/80 leading-relaxed">{item}</p>
+                <p className="text-gray-900 leading-relaxed">{item}</p>
               </div>
             ))}
           </div>
@@ -788,7 +788,7 @@ export default function LandingPage() {
                 </div>
                 <div>
                   <h3 className="text-2xl font-semibold mb-3 text-gray-900">{dict.scenarios.scenario1.title}</h3>
-                  <p className="text-gray-700 text-lg leading-relaxed">
+                  <p className="text-gray-900 text-lg leading-relaxed">
                     {dict.scenarios.scenario1.text}
                   </p>
                 </div>
@@ -803,7 +803,7 @@ export default function LandingPage() {
                 </div>
                 <div>
                   <h3 className="text-2xl font-semibold mb-3 text-gray-900">{dict.scenarios.scenario2.title}</h3>
-                  <p className="text-gray-700 text-lg leading-relaxed">
+                  <p className="text-gray-900 text-lg leading-relaxed">
                     {dict.scenarios.scenario2.text}
                   </p>
                 </div>
@@ -818,7 +818,7 @@ export default function LandingPage() {
                 </div>
                 <div>
                   <h3 className="text-2xl font-semibold mb-3 text-gray-900">{dict.scenarios.scenario3.title}</h3>
-                  <p className="text-gray-700 text-lg leading-relaxed">
+                  <p className="text-gray-900 text-lg leading-relaxed">
                     {dict.scenarios.scenario3.text}
                   </p>
                 </div>

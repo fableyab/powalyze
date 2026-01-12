@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '@/contexts/SupabaseAuthContext';
 import initiativeService from '@/lib/initiativeService';
 import CockpitLayout from '@/components/layout/CockpitLayout';
-import { Plus, TrendingUp, AlertCircle, CheckCircle2 } from 'lucide-react';
+import EmptyState from '@/components/EmptyState';
+import logger from '@/lib/logger';
+import { Plus, TrendingUp, AlertCircle, CheckCircle2, FolderOpen } from 'lucide-react';
 
 export default function ProjectsPage() {
   const { user } = useAuth();
@@ -34,7 +36,7 @@ export default function ProjectsPage() {
         completed: data?.filter(p => p.status === 'completed').length || 0,
       });
     } catch (error) {
-      console.error('Erreur chargement projets:', error);
+      logger.error('ProjectsPage.loadProjects', error, { userId: user?.id });
     } finally {
       setLoading(false);
     }
@@ -109,19 +111,13 @@ export default function ProjectsPage() {
 
         {/* Empty state */}
         {!loading && projects.length === 0 && (
-          <div className="border border-white/10 bg-black/30 rounded-2xl p-12 text-center">
-            <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mx-auto mb-4">
-              <AlertCircle className="w-8 h-8 text-white/40" />
-            </div>
-            <p className="text-white/60 mb-4">Aucun projet configuré pour le moment.</p>
-            <Link
-              to="/app/projects/new"
-              className="inline-flex items-center gap-2 rounded-lg bg-[#D4AF37] px-4 py-2 text-sm font-medium text-black hover:bg-[#f2c34d]"
-            >
-              <Plus className="w-4 h-4" />
-              Créer votre premier projet
-            </Link>
-          </div>
+          <EmptyState
+            icon={FolderOpen}
+            title="Aucun projet"
+            description="Créez votre premier projet pour commencer à gérer votre portfolio stratégique."
+            actionLabel="Créer un projet"
+            actionRoute="/app/projects/new"
+          />
         )}
 
         {/* Projects list */}

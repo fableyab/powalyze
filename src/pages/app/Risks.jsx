@@ -4,6 +4,8 @@ import { useAuth } from '@/contexts/SupabaseAuthContext';
 import customSupabaseClient from '@/lib/customSupabaseClient';
 import organizationService from '@/lib/organizationService';
 import CockpitLayout from '@/components/layout/CockpitLayout';
+import EmptyState from '@/components/EmptyState';
+import logger from '@/lib/logger';
 import { Plus, AlertTriangle, Shield, TrendingUp } from 'lucide-react';
 
 export default function RisksPage() {
@@ -140,19 +142,13 @@ export default function RisksPage() {
 
         {/* Empty state */}
         {!loading && risks.length === 0 && (
-          <div className="border border-white/10 bg-black/30 rounded-2xl p-12 text-center">
-            <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mx-auto mb-4">
-              <Shield className="w-8 h-8 text-white/40" />
-            </div>
-            <p className="text-white/60 mb-4">Aucun risque enregistré.</p>
-            <Link
-              to="/app/risks/new"
-              className="inline-flex items-center gap-2 rounded-lg bg-[#D4AF37] px-4 py-2 text-sm font-medium text-black hover:bg-[#f2c34d]"
-            >
-              <Plus className="w-4 h-4" />
-              Créer votre premier risque
-            </Link>
-          </div>
+          <EmptyState
+            icon={Shield}
+            title="Aucun risque"
+            description="Identifiez et suivez les risques potentiels de vos projets pour une gestion proactive."
+            actionLabel="Créer un risque"
+            actionRoute="/app/risks/new"
+          />
         )}
 
         {/* Risks list */}

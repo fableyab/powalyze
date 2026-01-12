@@ -50,6 +50,7 @@ const SignUp = () => {
     setLoading(true);
     
     try {
+      // 1. Créer le compte utilisateur
       const { data, error: signUpError } = await signUp(email, password, {
         full_name: fullName
       });
@@ -64,10 +65,28 @@ const SignUp = () => {
         return;
       }
 
+      // 2. Créer automatiquement une organisation par défaut
+      if (data?.user) {
+        setInfoMessage('Configuration de votre espace...');
+        
+        const { createOrganization } = await import('@/lib/organizationServiceSimple');
+        const orgName = fullName 
+          ? `Organisation ${fullName}` 
+          : `Organisation ${email.split('@')[0]}`;
+        
+        const orgId = await createOrganization(data.user.id, email, orgName);
+        
+        if (!orgId) {
+          console.error('Failed to create organization');
+          // Continuer quand même - l'utilisateur pourra créer une org manuellement
+        }
+      }
+
       setSuccess(true);
       
-      // Si l'email confirmation est désactivée (auto-confirm), redirect immédiatement
+      // 3. Redirection selon confirmation email
       if (data?.session) {
+        // Auto-confirmé, redirect immédiatement
         setTimeout(() => {
           navigate('/app/cockpit', { replace: true });
         }, 1500);

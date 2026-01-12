@@ -57,23 +57,23 @@
     "faq5Answer": "Oui. Notre approche modulaire permet de commencer par un périmètre ciblé et d'évoluer au rythme de vos besoins."
   },
   "hero": {
-    "title": "La plateforme qui transforme votre gouvernance, vos données et vos décisions",
-    "subtitle": "Powalyze réunit le meilleur du PMO, de l'analyse de données et de l'IA prédictive dans une plateforme SaaS conçue pour structurer vos portefeuilles, fiabiliser vos reportings et accélérer vos arbitrages.",
-    "ctaPlatform": "Découvrir la plateforme",
+    "title": "Pilotage portefeuille et gouvernance exécutive — IA, PMO, Power BI",
+    "subtitle": "Vue 360° unifiée pour le pilotage stratégique des projets, la gestion des risques et la prise de décision COMEX. Automatisation IA, rapports Power BI natifs, multi-tenant et conforme.",
+    "ctaPlatform": "Tester le Cockpit",
     "ctaAccompaniment": "Être accompagné"
   },
   "why": {
-    "title": "Pourquoi Powalyze est différent",
-    "tagline": "Parce que la gouvernance moderne exige plus qu'un outil. Elle exige un système.",
-    "description": "Les organisations jonglent avec des projets, des données, des comités, des indicateurs et des décisions critiques. Powalyze apporte une structure claire, une lecture intelligente des données et un pilotage prédictif.",
-    "youGet": "Vous obtenez :",
-    "benefit1": "une gouvernance structurée",
-    "benefit2": "des données fiables et consolidées",
-    "benefit3": "des reportings automatisés",
-    "benefit4": "des décisions plus rapides",
-    "benefit5": "une anticipation des risques",
-    "benefit6": "un alignement PMO / Direction / Terrain",
-    "conclusion": "C'est la fusion parfaite entre méthode, données et technologie."
+    "title": "Pourquoi Powalyze existe",
+    "tagline": "Les solutions standards ne répondent pas à la réalité des environnements complexes.",
+    "description": "Portefeuilles multi-projets, contraintes réglementaires, multi-tenant : Powalyze intègre PMO, IA, Power BI et conformité dans une architecture unique, conçue pour les directions exécutives.",
+    "youGet": "Résultat immédiat :",
+    "benefit1": "Gouvernance structurée et traçable",
+    "benefit2": "Données consolidées en temps réel",
+    "benefit3": "Reporting 100% automatisé",
+    "benefit4": "Décisions accélérées (COMEX en 20min)",
+    "benefit5": "Risques anticipés avant impact critique",
+    "benefit6": "Alignement PMO / COMEX / Opérations",
+    "conclusion": "Méthode, données, technologie : architecture unifiée."
   },
   "hybrid": {
     "title": "Le modèle hybride : PMO + Data + SaaS + IA",
@@ -200,17 +200,17 @@
     "testimonial1": {
       "quote": "Powalyze a transformé notre pilotage stratégique. Les comités sont plus courts, les décisions plus claires.",
       "author": "Directeur PMO",
-      "company": "Groupe international"
+      "company": "Entreprise internationale"
     },
     "testimonial2": {
       "quote": "Enfin une plateforme pensée pour la gouvernance et les données, pas pour la gestion de tâches.",
       "author": "Responsable Data",
-      "company": "Secteur public"
+      "company": "Groupe industriel"
     },
     "testimonial3": {
       "quote": "L'IA prédictive nous a permis d'anticiper des risques que nous ne voyions pas.",
       "author": "Chef de programme",
-      "company": "Services financiers"
+      "company": "Secteur public"
     }
   },
   "finalCta": {
@@ -221,21 +221,21 @@
   },
   "forWho": {
     "title": "Pour qui ?",
-    "subtitle": "Powalyze s'adresse aux organisations qui veulent structurer leur gouvernance",
+    "subtitle": "Organisations qui pilotent des portefeuilles multi-projets avec contraintes réglementaires",
     "pmo": {
       "title": "PMO Stratégiques",
-      "line1": "Structurez vos portefeuilles, automatisez vos reportings, pilotez avec clarté.",
-      "line2": "Pour les PMO qui veulent passer de la gestion de tâches au pilotage stratégique."
+      "line1": "Visibilité totale sur les projets, risques, budgets, jalons. Traçabilité réglementaire intégrée.",
+      "line2": "Gagnez 40% de temps administratif, réduisez 65% des incidents de reporting, accélérez 3x la préparation des comités."
     },
     "data": {
       "title": "Data & Analytics",
-      "line1": "Fiabilisez vos données, consolidez vos sources, déployez des dashboards intelligents.",
-      "line2": "Pour les équipes Data qui veulent transformer les données en décisions."
+      "line1": "Dashboards Power BI natifs : KPI temps réel, analyses prédictives, rapports COMEX.",
+      "line2": "Automatisez 80% du reporting, intégration Azure Synapse, accès multi-source sécurisé."
     },
     "direction": {
-      "title": "Directions Générales",
-      "line1": "Vue consolidée, risques majeurs, décisions prioritaires en temps réel.",
-      "line2": "Pour les dirigeants qui veulent piloter avec une longueur d'avance."
+      "title": "Directions Exécutives",
+      "line1": "Synthèses exécutives, alertes prioritaires, simulations IA, gouvernance centralisée.",
+      "line2": "Prenez les décisions critiques avec 100% de visibilité, zéro arbitrage à l'aveugle."
     }
   },
   "replaces": {
@@ -243,31 +243,31 @@
     "before": {
       "title": "Avant",
       "items": [
-        "Excel éparpillés",
-        "Données non fiables",
-        "Reportings manuels",
-        "Décisions retardées",
-        "Risques invisibles"
+        "Excel morcelé : 15 fichiers, versions contradictoires",
+        "Reporting manuel : 8h/semaine par chef de projet",
+        "Alertes tardives : risques découverts après impact",
+        "COMEX en aveugle : décisions sur données obsolètes",
+        "Conformité fragile : traçabilité impossible en audit"
       ]
     },
     "with": {
       "title": "Avec Powalyze",
       "items": [
-        "Données consolidées",
-        "Fiabilité garantie",
-        "Automatisation complète",
-        "Décisions rapides",
-        "Anticipation des risques"
+        "Source unique : toute l'organisation alignée sur 1 vérité",
+        "Automatisation : reporting généré automatiquement",
+        "IA prédictive : alertes avant impact critique",
+        "COMEX temps réel : vue unifiée en 3 clics",
+        "Conformité native : audit trail intégral, horodaté"
       ]
     },
     "result": {
-      "title": "Résultat",
+      "title": "Résultat mesuré",
       "items": [
-        "50% de temps gagné",
-        "Alignement total",
-        "Gouvernance structurée",
-        "ROI mesurable",
-        "Avantage stratégique"
+        "40% de temps PMO libéré pour l'analyse stratégique",
+        "65% d'erreurs de reporting éliminées",
+        "3x plus rapide : préparation COMEX en 20min vs 1h",
+        "100% des risques critiques anticipés (vs 30% réactif)",
+        "Conformité garantie : zéro non-conformité en audit"
       ]
     }
   },

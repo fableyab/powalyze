@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/SupabaseAuthContext';
+import { useNavigate } from 'react-router-dom';
 import customSupabaseClient from '@/lib/customSupabaseClient';
 import { 
   getAlerts, 
@@ -8,6 +9,10 @@ import {
   deleteAlert,
   generateAllAlerts
 } from '@/lib/alertService';
+import { ErrorMessages, logError } from '@/lib/errorMessages';
+import logger from '@/lib/logger';
+import { useToast } from '@/components/ui/use-toast';
+import { Button } from '@/components/ui/button';
 import CockpitLayout from '@/components/layout/CockpitLayout';
 import { 
   Bell, 
@@ -23,6 +28,8 @@ import {
 
 const AlertsPage = () => {
   const { user } = useAuth();
+  const { toast } = useToast();
+  const navigate = useNavigate();
   const [alerts, setAlerts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all'); // 'all', 'unread', 'critical', 'high'
@@ -48,7 +55,7 @@ const AlertsPage = () => {
       if (userOrgsError) throw userOrgsError;
 
       if (!userOrgs || userOrgs.length === 0) {
-        console.warn('⚠️ Aucune organisation trouvée pour charger les alertes');
+        logger.warn('Aucune organisation trouvée pour charger les alertes', { userId: user?.id });
         setAlerts([]);
         setLoading(false);
         return;
@@ -70,7 +77,7 @@ const AlertsPage = () => {
       if (error) throw error;
       setAlerts(data || []);
     } catch (error) {
-      console.error('Error loading alerts:', error);
+      logger.error('AlertsPage.loadAlerts', error, { userId: user?.id });
       setAlerts([]);
     } finally {
       setLoading(false);
@@ -84,7 +91,7 @@ const AlertsPage = () => {
         alert.id === alertId ? { ...alert, is_read: true } : alert
       ));
     } catch (error) {
-      console.error('Error marking alert as read:', error);
+      logger.error('AlertsPage.handleMarkAsRead', error, { alertId });
     }
   };
 
@@ -100,7 +107,7 @@ const AlertsPage = () => {
       await markAllAlertsAsRead(userOrgs.organization_id);
       setAlerts(alerts.map(alert => ({ ...alert, is_read: true })));
     } catch (error) {
-      console.error('Error marking all as read:', error);
+      logger.error('AlertsPage.handleMarkAllAsRead', error, { userId: user?.id });
     }
   };
 
@@ -109,7 +116,7 @@ const AlertsPage = () => {
       await deleteAlert(alertId);
       setAlerts(alerts.filter(alert => alert.id !== alertId));
     } catch (error) {
-      console.error('Error deleting alert:', error);
+      logger.error('AlertsPage.handleDelete', error, { alertId });
     }
   };
 
@@ -123,18 +130,36 @@ const AlertsPage = () => {
         .select('organization_id')
         .eq('user_id', user.id);
 
-      console.log('🔍 Recherche organisations pour user:', user.id);
-      console.log('📋 Résultat:', { userOrgs, orgError });
+      logger.debug('Recherche organisations pour user', { userId: user.id, userOrgs, orgError });
 
       if (orgError) {
-        console.error('❌ Erreur SQL:', orgError);
-        alert(`❌ Erreur SQL lors de la récupération de votre organisation.\n\nDétails: ${orgError.message}\n\nCode: ${orgError.code}\n\n➡️ Contactez l'administrateur pour vous associer à une organisation.`);
+        logError('AlertsPage.generateAlerts', orgError, { userId: user.id });
+        toast({
+          variant: "destructive",
+          title: ErrorMessages.DATA_LOAD_FAILED.title,
+          description: "Impossible de charger vos organisations. Veuillez réessayer."
+        });
         return;
       }
 
       if (!userOrgs || userOrgs.length === 0) {
-        console.error('❌ Aucune organisation trouvée');
-        alert(`❌ Aucune organisation trouvée pour votre compte.\n\nEmail: ${user.email}\nUser ID: ${user.id}\n\n➡️ Solution:\n1. Contactez votre administrateur\n2. Ou exécutez ce script SQL dans Supabase:\n\nINSERT INTO user_organizations (user_id, organization_id, role)\nSELECT '${user.id}', id, 'admin'\nFROM organizations\nLIMIT 1;`);
+        logError('AlertsPage.generateAlerts', new Error('No organization found'), { 
+          userId: user.id, 
+          email: user.email 
+        });
+        toast({
+          variant: "destructive",
+          title: ErrorMessages.NO_ORGANIZATION.title,
+          description: ErrorMessages.NO_ORGANIZATION.description,
+          action: (
+            <Button 
+              size="sm"
+              onClick={() => window.location.href = ErrorMessages.NO_ORGANIZATION.actionRoute}
+            >
+              {ErrorMessages.NO_ORGANIZATION.action}
+            </Button>
+          )
+        });
         return;
       }
 
@@ -142,17 +167,17 @@ const AlertsPage = () => {
       const organizationId = userOrgs[0].organization_id;
       
       if (userOrgs.length > 1) {
-        console.warn(`⚠️ ${userOrgs.length} organisations trouvées, utilisation de la première`);
+        logger.warn(`${userOrgs.length} organisations trouvées, utilisation de la première`, { userOrgs });
       }
 
-      console.log('🔄 Génération des alertes pour l\'organisation:', organizationId);
+      logger.debug('Génération des alertes pour organisation', { organizationId });
 
       const result = await generateAllAlerts(organizationId);
       
-      console.log('✅ Résultat génération:', result);
+      logger.debug('Résultat génération', result);
 
       if (result.error) {
-        console.error('Erreur génération:', result.error);
+        logger.error('AlertsPage.generateAlerts', result.error, { organizationId });
         alert(`❌ Erreur lors de la génération des alertes:\n\n${result.error.message || 'Erreur inconnue'}\n\n➡️ Vérifiez les logs de la console (F12) pour plus de détails.`);
       } else if (result.total > 0) {
         alert(`✅ ${result.total} alertes générées avec succès!\n\n📊 Détails:\n- 🔴 Risques: ${result.risks}\n- 📋 Décisions: ${result.decisions}\n- 📁 Projets: ${result.projects}`);
@@ -161,7 +186,7 @@ const AlertsPage = () => {
         alert(`ℹ️ Aucune nouvelle alerte à générer.\n\n➡️ Vérifiez que vous avez des données:\n\n1. Risques avec status='open'\n2. Décisions avec due_date définie\n3. Projets avec status='in_progress' ou 'at_risk'\n\n💡 Astuce: Créez d'abord des risques, décisions ou projets dans les pages correspondantes.`);
       }
     } catch (error) {
-      console.error('❌ Erreur inattendue:', error);
+      logger.error('AlertsPage.handleGenerateAlerts', error, { userId: user?.id });
       alert(`❌ Erreur inattendue:\n\n${error.message || 'Erreur inconnue'}\n\nStack: ${error.stack || 'N/A'}\n\n➡️ Consultez la console (F12) pour plus de détails.`);
     } finally {
       setGenerating(false);

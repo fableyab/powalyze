@@ -4,6 +4,8 @@ import { useAuth } from '@/contexts/SupabaseAuthContext';
 import decisionService from '@/lib/decisionService';
 import organizationService from '@/lib/organizationService';
 import CockpitLayout from '@/components/layout/CockpitLayout';
+import EmptyState from '@/components/EmptyState';
+import logger from '@/lib/logger';
 import { Plus, CheckCircle2, Clock, AlertCircle, XCircle } from 'lucide-react';
 
 export default function DecisionsPage() {
@@ -159,19 +161,13 @@ export default function DecisionsPage() {
 
         {/* Empty state */}
         {!loading && decisions.length === 0 && (
-          <div className="border border-white/10 bg-black/30 rounded-2xl p-12 text-center">
-            <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mx-auto mb-4">
-              <CheckCircle2 className="w-8 h-8 text-white/40" />
-            </div>
-            <p className="text-white/60 mb-4">Aucune décision enregistrée.</p>
-            <Link
-              to="/app/decisions/new"
-              className="inline-flex items-center gap-2 rounded-lg bg-[#D4AF37] px-4 py-2 text-sm font-medium text-black hover:bg-[#f2c34d]"
-            >
-              <Plus className="w-4 h-4" />
-              Créer votre première décision
-            </Link>
-          </div>
+          <EmptyState
+            icon={CheckCircle2}
+            title="Aucune décision"
+            description="Suivez et documentez les décisions clés de votre organisation pour un meilleur suivi."
+            actionLabel="Créer une décision"
+            actionRoute="/app/decisions/new"
+          />
         )}
 
         {/* Decisions list */}

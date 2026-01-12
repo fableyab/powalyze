@@ -13,12 +13,11 @@ export const environmentService = {
    */
   async createOrganization(name, environment = 'prod', userId) {
     try {
-      // Créer l'organisation
+      // Créer l'organisation (note: environment n'est pas stocké en DB)
       const { data: org, error: orgError } = await customSupabaseClient
         .from('organizations')
         .insert([{ 
-          name, 
-          environment 
+          name
         }])
         .select()
         .single();
@@ -54,7 +53,6 @@ export const environmentService = {
         .from('organizations')
         .select('*')
         .eq('id', DEMO_ORG_ID)
-        .eq('environment', 'demo')
         .single();
 
       if (error) throw error;

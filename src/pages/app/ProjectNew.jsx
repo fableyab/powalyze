@@ -305,7 +305,6 @@ const ProjectNew = () => {
           .from('organizations')
           .insert([{
             name: `Organisation de ${user.email}`,
-            owner_id: user.id,
             created_at: new Date().toISOString(),
           }])
           .select()
@@ -317,7 +316,7 @@ const ProjectNew = () => {
 
         organizationId = newOrg.id;
 
-        // Lier l'utilisateur à l'organisation
+        // Lier l'utilisateur à l'organisation en tant qu'admin
         await customSupabaseClient
           .from('user_organizations')
           .insert([{

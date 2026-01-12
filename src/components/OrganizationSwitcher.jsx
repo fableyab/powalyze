@@ -2,14 +2,17 @@
  * Sélecteur d'organisation - Permet de basculer entre Demo et Prod
  */
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/SupabaseAuthContext';
 import environmentService from '@/lib/environmentService';
 import { useToast } from '@/components/ui/use-toast';
+import logger from '@/lib/logger';
 import { Building2, Eye, Briefcase, ChevronDown } from 'lucide-react';
 
 export default function OrganizationSwitcher() {
   const { user } = useAuth();
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [organizations, setOrganizations] = useState([]);
   const [currentOrg, setCurrentOrg] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -38,7 +41,7 @@ export default function OrganizationSwitcher() {
         localStorage.setItem('currentOrganizationId', current.id);
       }
     } catch (error) {
-      console.error('Error loading organizations:', error);
+      logger.error('OrganizationSwitcher.loadOrganizations', error, { userId: user?.id });
       // Silencieux en cas d'erreur pour ne pas bloquer l'app
     } finally {
       setLoading(false);
@@ -56,10 +59,11 @@ export default function OrganizationSwitcher() {
         description: `Vous êtes maintenant sur "${org.name}"`
       });
 
-      // Recharger la page pour mettre à jour toutes les données
-      window.location.reload();
+      // Naviguer vers cockpit pour refresh
+      navigate('/app/cockpit');
+      window.location.reload(); // Reload nécessaire pour context update
     } catch (error) {
-      // Silencieux
+      logger.error('OrganizationSwitcher.switchOrganization', error, { orgId: org.id });
     }
   }
 

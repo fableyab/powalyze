@@ -4,6 +4,9 @@ import CockpitLayout from "../../components/layout/CockpitLayout";
 import customSupabaseClient from '@/lib/customSupabaseClient';
 import { initiativeService } from '@/lib/initiativeService';
 import { Link } from 'react-router-dom';
+import EmptyState from '@/components/EmptyState';
+import logger from '@/lib/logger';
+import { Briefcase } from 'lucide-react';
 
 export default function PortfolioPage() {
   const { user } = useAuth();
@@ -151,19 +154,15 @@ export default function PortfolioPage() {
 
       {/* Liste des initiatives */}
       {initiatives.length === 0 ? (
-        <div className="border border-slate-800 bg-black/30 rounded-lg p-8 text-center">
-          <div className="text-slate-400 mb-4">
-            {filter === 'all' 
-              ? 'Aucune initiative dans votre portfolio.'
-              : `Aucune initiative avec le statut "${getStatusLabel(filter)}".`}
-          </div>
-          <Link
-            to="/app/projects/new"
-            className="inline-block px-6 py-3 bg-gradient-to-r from-[#D4AF37] to-[#4A9EFF] text-black font-medium rounded hover:opacity-90 transition-opacity"
-          >
-            Créer votre première initiative
-          </Link>
-        </div>
+        <EmptyState
+          icon={Briefcase}
+          title="Portfolio vide"
+          description={filter === 'all' 
+            ? 'Aucune initiative dans votre portfolio. Créez votre première initiative pour démarrer.'
+            : `Aucune initiative avec le statut "${getStatusLabel(filter)}". Essayez un autre filtre.`}
+          actionLabel={filter === 'all' ? "Créer une initiative" : undefined}
+          actionRoute={filter === 'all' ? "/app/projects/new" : undefined}
+        />
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {initiatives.map((initiative) => (

@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
+import { Link, useNavigate } from 'react-router-dom';
 import { Bell, AlertTriangle, AlertCircle, Info, CheckCircle2, Filter } from "lucide-react";
 import { getAlerts, getAlertStats } from '@/lib/alertsService';
 import { toast } from 'react-hot-toast';
+import logger from '@/lib/logger';
 
 export default function AlertesSensible() {
   const [filter, setFilter] = useState("all");
@@ -29,7 +31,7 @@ export default function AlertesSensible() {
           setStats(statsResult.data);
         }
       } catch (error) {
-        console.error('Erreur chargement alertes:', error);
+        logger.error('AlertesSensible.loadAlerts', error);
         toast.error('Erreur de connexion');
       } finally {
         setLoading(false);
@@ -159,8 +161,8 @@ export default function AlertesSensible() {
 
 function NavButton({ href, children, active }) {
   return (
-    <a
-      href={href}
+    <Link
+      to={href}
       className={[
         "flex items-center gap-2 rounded-xl px-3 py-2 text-white/70 hover:bg-white/10 hover:text-white transition text-xs",
         active ? "bg-white/10 text-white" : "",
@@ -168,7 +170,7 @@ function NavButton({ href, children, active }) {
     >
       <span className="h-1.5 w-1.5 rounded-full bg-[#D4AF37]/70" />
       <span>{children}</span>
-    </a>
+    </Link>
   );
 }
 
@@ -245,10 +247,11 @@ function AlertCard({ alert }) {
   };
 
   const config = typeConfig[alert.type];
+  const navigate = useNavigate();
 
   const handleClick = () => {
     // Navigation vers le projet concerné
-    window.location.href = '/app/projets-sensible';
+    navigate('/app/projets-sensible');
   };
   
   return (

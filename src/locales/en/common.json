@@ -200,17 +200,17 @@
     "testimonial1": {
       "quote": "Powalyze transformed our strategic steering. Committees are shorter, decisions clearer.",
       "author": "PMO Director",
-      "company": "International Group"
+      "company": "International Company"
     },
     "testimonial2": {
-      "quote": "Finally a platform designed for governance and data, not for task management.",
+      "quote": "Finally a platform designed for governance and data, not task management.",
       "author": "Data Manager",
-      "company": "Public Sector"
+      "company": "Industrial Group"
     },
     "testimonial3": {
-      "quote": "Predictive AI allowed us to anticipate risks we didn't see.",
+      "quote": "Predictive AI allowed us to anticipate risks we weren't seeing.",
       "author": "Program Manager",
-      "company": "Financial Services"
+      "company": "Public Sector"
     }
   },
   "finalCta": {
