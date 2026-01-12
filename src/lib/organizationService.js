@@ -10,18 +10,20 @@ export const organizationService = {
    * Obtenir ou créer automatiquement l'organisation de l'utilisateur
    * Cette fonction assure qu'un utilisateur a toujours une organisation
    */
-  async getOrCreateUserOrganization(userId, userEmail) {
+  async getOrCreateUserOrganization(userId, userEmail, environment = 'prod') {
     try {
       // 1. Vérifier si l'utilisateur a déjà une organisation
-      const { data: existingOrg, error: orgError } = await customSupabaseClient
+      const { data: existingOrgs, error: orgError } = await customSupabaseClient
         .from('user_organizations')
         .select('organization_id, organizations(*)')
-        .eq('user_id', userId)
-        .single();
+        .eq('user_id', userId);
 
-      if (!orgError && existingOrg) {
-        console.log('✅ Organisation existante trouvée:', existingOrg.organization_id);
-        return existingOrg.organization_id;
+      if (!orgError && existingOrgs && existingOrgs.length > 0) {
+        // Prioriser l'org prod si plusieurs existent
+        const prodOrg = existingOrgs.find(o => o.organizations?.environment === 'prod');
+        const selectedOrg = prodOrg || existingOrgs[0];
+        console.log('✅ Organisation existante trouvée:', selectedOrg.organization_id);
+        return selectedOrg.organization_id;
       }
 
       // 2. Pas d'organisation trouvée - on en crée une automatiquement
@@ -34,7 +36,10 @@ export const organizationService = {
 
       const { data: newOrg, error: createOrgError } = await customSupabaseClient
         .from('organizations')
-        .insert([{ name: orgName }])
+        .insert([{ 
+          name: orgName,
+          environment: environment 
+        }])
         .select()
         .single();
 

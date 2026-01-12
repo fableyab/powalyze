@@ -198,6 +198,7 @@ const PortfolioReport = lazy(() => import('@/pages/app/PortfolioReport'));
 const ProjectNewApp = lazy(() => import('@/pages/app/ProjectNew'));
 const RiskNewApp = lazy(() => import('@/pages/app/RiskNew'));
 const DecisionNewApp = lazy(() => import('@/pages/app/DecisionNew'));
+const EnvironmentAdmin = lazy(() => import('@/pages/app/EnvironmentAdmin'));
 const DocumentsApp = lazy(() => import('@/pages/app/Documents'));
 const SettingsApp = lazy(() => import('@/pages/app/Settings'));
 // LoginAuth supprimé (doublon de Login.jsx principal)
@@ -468,6 +469,7 @@ const App = () => {
                 <Route path="/app/connectors" element={<ProtectedRoute><Connectors /></ProtectedRoute>} />
                 <Route path="/app/custom-dashboard" element={<ProtectedRoute><CustomDashboard /></ProtectedRoute>} />
                 <Route path="/app/admin" element={<ProtectedRoute requiredRole="Admin"><Admin /></ProtectedRoute>} />
+                <Route path="/app/admin/environments" element={<ProtectedRoute><EnvironmentAdmin /></ProtectedRoute>} />
                 <Route path="/app/system-health" element={<ProtectedRoute requiredRole="Admin"><SystemHealth /></ProtectedRoute>} />
                 <Route path="/app/audit" element={<ProtectedRoute requiredRole="Admin"><AuditLogs /></ProtectedRoute>} />
                 <Route path="/app/team" element={<ProtectedRoute><Team /></ProtectedRoute>} />

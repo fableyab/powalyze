@@ -7,6 +7,7 @@ import AnimatedLogo from '@/components/AnimatedLogo';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/contexts/SupabaseAuthContext';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
+import OrganizationSwitcher from '@/components/OrganizationSwitcher';
 import gsap from 'gsap';
 
 const Header = () => {
@@ -208,6 +209,9 @@ const Header = () => {
           {/* Desktop Actions */}
           <div className='hidden lg:flex items-center gap-3'>
             <LanguageSwitcher />
+            
+            {/* Sélecteur d'organisation (visible uniquement si connecté) */}
+            {user && <OrganizationSwitcher />}
 
             {/* Bouton Démo toujours visible */}
             <Button

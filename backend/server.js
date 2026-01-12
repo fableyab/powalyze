@@ -7,9 +7,25 @@ const decisionEngineRouter = require('./routes/decisionEngine');
 
 const app = express();
 
-// Middleware
+// Middleware - CORS avec domaines de production
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:3000',
+  'https://www.powalyze.com',
+  'https://powalyze.com',
+  'https://powalyze.ch',
+  'https://www.powalyze.ch',
+  process.env.FRONTEND_URL
+].filter(Boolean);
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
 app.use(express.json());

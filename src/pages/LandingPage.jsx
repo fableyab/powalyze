@@ -591,7 +591,7 @@ export default function LandingPage() {
                         <span className={`text-xs font-light px-3 py-1 rounded-[2px] ${
                           item.status === 'done' ? 'bg-green-100 text-green-600 border border-green-200' :
                           item.status === 'live' ? 'bg-blue-100 text-[#4A9EFF] border border-blue-200' :
-                          'bg-gray-100 text-gray-600 border border-gray-200'
+                          'bg-slate-800 text-white border border-slate-700'
                         }`}>
                           {item.status.toUpperCase()}
                         </span>
@@ -829,7 +829,7 @@ export default function LandingPage() {
       </section>
 
       {/* Marchés - Suisse + France */}
-      <section className="py-32 px-6 bg-gray-100 text-gray-900 relative overflow-hidden">
+      <section className="py-32 px-6 bg-slate-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.05]">
           <div className="absolute inset-0 bg-[linear-gradient(rgba(212,175,55,0.4)_0.5px,transparent_0.5px),linear-gradient(90deg,rgba(212,175,55,0.4)_0.5px,transparent_0.5px)] bg-[size:40px_40px]" />
         </div>
