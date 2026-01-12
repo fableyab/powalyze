@@ -21,11 +21,14 @@ i18n
   .init({
     resources,
     defaultNS: 'common',
+    lng: 'fr',
     fallbackLng: 'fr',
     supportedLngs: ['fr', 'en', 'de', 'no'],
     detection: {
-      order: ['localStorage', 'navigator'],
-      caches: ['localStorage']
+      order: ['localStorage', 'cookie', 'navigator'],
+      lookupLocalStorage: 'i18nextLng',
+      lookupCookie: 'i18next',
+      caches: ['localStorage', 'cookie']
     },
     interpolation: {
       escapeValue: false

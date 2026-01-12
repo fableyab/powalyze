@@ -7,6 +7,14 @@ import App from '@/App';
 import '@/index.css';
 import '@/lib/i18n'; // Import i18n configuration
 
+// Force French as default language if none is set
+if (!localStorage.getItem('i18nextLng')) {
+  localStorage.setItem('i18nextLng', 'fr');
+}
+if (!localStorage.getItem('powalyze-locale')) {
+  localStorage.setItem('powalyze-locale', 'fr');
+}
+
 // Capacitor plugins
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { SplashScreen } from '@capacitor/splash-screen';
