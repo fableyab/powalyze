@@ -58,6 +58,14 @@ import PredictiveIntelligenceModule from '@/pages/modules/PredictiveIntelligence
 // V2 Projects Pages
 import ProjectsListV2 from '@/pages/projects/ProjectsList';
 import ProjectNewV2 from '@/pages/projects/ProjectNew';
+import ProjectDetailV2 from '@/pages/projects/ProjectDetail';
+
+// V2 Portfolios Pages
+import PortfoliosListV2 from '@/pages/portfolios/PortfoliosList';
+import PortfolioDetailV2 from '@/pages/portfolios/PortfolioDetail';
+
+// V2 Dashboard Executive
+import DashboardExecutiveV2 from '@/pages/DashboardExecutive';
 
 // New Concrete Pages
 // import PlateformePage from '@/pages/PlateformePage';
@@ -386,8 +394,14 @@ const App = () => {
                 </Route>
                 
                 {/* V2 ROUTES - New Architecture */}
+                <Route path="/dashboard-executive" element={<ProtectedRoute><DashboardExecutiveV2 /></ProtectedRoute>} />
+                
+                <Route path="/portfolios" element={<ProtectedRoute><PortfoliosListV2 /></ProtectedRoute>} />
+                <Route path="/portfolios/:id" element={<ProtectedRoute><PortfolioDetailV2 /></ProtectedRoute>} />
+                
                 <Route path="/projects-v2" element={<ProtectedRoute><ProjectsListV2 /></ProtectedRoute>} />
                 <Route path="/projects-v2/new" element={<ProtectedRoute><ProjectNewV2 /></ProtectedRoute>} />
+                <Route path="/projects-v2/:id" element={<ProtectedRoute><ProjectDetailV2 /></ProtectedRoute>} />
                 
                 {/* Legacy Protected Routes - Redirect to new structure */}
                 <Route path="/app/dashboard" element={<Navigate to="/app/cockpit" replace />} />
