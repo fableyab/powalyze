@@ -16,6 +16,15 @@ export default function LandingPage() {
   const [months, setMonths] = useState(3.7);
   const [uptime, setUptime] = useState(99.9);
 
+  // Fonction de scroll smooth sans hash dans l'URL
+  const scrollToSection = (e, sectionId) => {
+    e.preventDefault();
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   useEffect(() => {
     const interval = setInterval(() => {
       setRoi(prev => {
@@ -52,15 +61,24 @@ export default function LandingPage() {
           <div className="flex items-center justify-between h-20">
             <LogoWithText size="default" />
             <div className="flex items-center gap-10">
-              <a href="#for-who" className="hidden sm:block text-xs text-slate-300 hover:text-slate-100 transition-all duration-500 font-light tracking-[0.15em] uppercase">
+              <button 
+                onClick={(e) => scrollToSection(e, 'for-who')} 
+                className="hidden sm:block text-xs text-slate-300 hover:text-slate-100 transition-all duration-500 font-light tracking-[0.15em] uppercase cursor-pointer bg-transparent border-none"
+              >
                 {dict.nav.forWho}
-              </a>
-              <a href="#product" className="hidden sm:block text-[10px] text-slate-400 hover:text-slate-100 transition-all duration-500 font-light tracking-[0.2em] uppercase">
+              </button>
+              <button 
+                onClick={(e) => scrollToSection(e, 'product')} 
+                className="hidden sm:block text-[10px] text-slate-400 hover:text-slate-100 transition-all duration-500 font-light tracking-[0.2em] uppercase cursor-pointer bg-transparent border-none"
+              >
                 {dict.nav.product}
-              </a>
-              <a href="#scenarios" className="hidden sm:block text-[10px] text-slate-400 hover:text-slate-100 transition-all duration-500 font-light tracking-[0.2em] uppercase">
+              </button>
+              <button 
+                onClick={(e) => scrollToSection(e, 'scenarios')} 
+                className="hidden sm:block text-[10px] text-slate-400 hover:text-slate-100 transition-all duration-500 font-light tracking-[0.2em] uppercase cursor-pointer bg-transparent border-none"
+              >
                 {dict.nav.scenarios}
-              </a>
+              </button>
               <Link to="/contact" className="hidden sm:block text-[10px] text-slate-400 hover:text-[#D4AF37] transition-all duration-500 font-light tracking-[0.2em] uppercase">
                 Contact
               </Link>
