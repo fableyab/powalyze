@@ -1,6 +1,5 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
 
 // Import translations
 import frCommon from '@/locales/fr/common.json';
@@ -15,21 +14,15 @@ const resources = {
   no: { common: noCommon }
 };
 
+// FORCE FRENCH - NO LANGUAGE DETECTION
 i18n
-  .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources,
     defaultNS: 'common',
-    lng: 'fr',
+    lng: 'fr', // HARDCODED FRENCH
     fallbackLng: 'fr',
     supportedLngs: ['fr', 'en', 'de', 'no'],
-    detection: {
-      order: ['localStorage', 'cookie', 'navigator'],
-      lookupLocalStorage: 'i18nextLng',
-      lookupCookie: 'i18next',
-      caches: ['localStorage', 'cookie']
-    },
     interpolation: {
       escapeValue: false
     },

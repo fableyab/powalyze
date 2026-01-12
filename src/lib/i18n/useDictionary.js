@@ -13,14 +13,22 @@ const dictionaries = {
 };
 
 export function useDictionary() {
-  const [locale, setLocaleState] = useState(
-    () => localStorage.getItem('powalyze-locale') || defaultLocale
-  );
-  const [dict, setDict] = useState(() => dictionaries[locale] || dictionaries[defaultLocale]);
+  // FORCE FRENCH BY DEFAULT - NO DETECTION
+  const [locale, setLocaleState] = useState(() => {
+    const stored = localStorage.getItem('powalyze-locale');
+    // Si pas de locale stockée, forcer français
+    if (!stored) {
+      localStorage.setItem('powalyze-locale', 'fr');
+      return 'fr';
+    }
+    return stored;
+  });
+  
+  const [dict, setDict] = useState(() => dictionaries[locale] || dictionaries.fr);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const newDict = dictionaries[locale] || dictionaries[defaultLocale];
+    const newDict = dictionaries[locale] || dictionaries.fr;
     setDict(newDict);
   }, [locale]);
 
