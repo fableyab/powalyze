@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import CockpitLayout from "../../components/layout/CockpitLayout";
 import { useCockpitData } from "../../hooks/useCockpitData";
 import { useAuth } from "../../contexts/SupabaseAuthContext";
@@ -13,6 +14,7 @@ import { AreaChart, Area, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis
 export default function CockpitPage() {
   const { orgId } = useAuth();
   const { data, loading, isDemoMode } = useCockpitData(orgId);
+  const navigate = useNavigate();
   const [selectedView, setSelectedView] = useState('galaxy'); // galaxy, radar, waves, timeline
   const [waveAnimation, setWaveAnimation] = useState(0);
 
