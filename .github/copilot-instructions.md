@@ -1,5 +1,7 @@
 # Powalyze Codebase Guidelines
 
+> **Quick Start**: Terminal 1: `npm run dev` (frontend port 3000) | Terminal 2: `cd backend && npm run dev` (Power BI API port 3001)
+
 ## Architecture Overview
 
 **Powalyze** is a hybrid SaaS platform for strategic portfolio management and executive governance, built with:
@@ -9,6 +11,8 @@
 - **Mobile**: Capacitor 8.x for iOS/Android native builds (AppId: `com.powalyze.app`)
 - **Styling**: TailwindCSS + custom brand system (gold/blue gradients)
 - **Animations**: Framer Motion (page transitions) + GSAP (interactive UI)
+
+**⚠️ Security Note**: Supabase credentials are currently hardcoded in `src/lib/customSupabaseClient.js` (not env vars) - production consideration needed
 
 ### Key Structure
 - `src/pages/` — All routes (~100+ pages): public landing, services, modules, auth-gated app
@@ -86,12 +90,23 @@ npm run deploy:prod        # Deploy to production (runs scripts/deploy.js --prod
 ### Multi-Language (i18n)
 - **Library**: i18next + react-i18next + i18next-browser-languagedetector
 - **Config**: `/src/i18n.js` (imported in `src/lib/i18n.js`, then imported in main.jsx before React render)
-- **Supported**: `fr` (default/fallback), `en`, `de`, `no` (Norwegian), `es`, `it` (non-functional but files exist)
+- **Supported**: `fr` (default/fallback), `en`, `de`, `no` (Norwegian); `es`, `it` exist but non-functional
 - **JSON structure**: `src/locales/{lang}/common.json` (single namespace: 'common') + `public/locales/` mirror
 - **Detection**: Order is `localStorage` → `navigator.language` (browser language)
-- **Usage**: `const { t } = useTranslation('common'); t('key.path')` or use deprecated `useLanguage()` hook from LanguageContext
+- **Usage**: `const { t } = useTranslation('common'); t('key.path')` or deprecated `useLanguage()` hook from LanguageContext
 - **Language switching**: Updates localStorage → auto-detects on page reload
 - **CRITICAL**: When adding new translation keys, update ALL active language files simultaneously (fr, en, de, no minimum)
+- **Example translation structure**:
+  ```javascript
+  // src/locales/fr/common.json
+  {
+    "nav": {
+      "home": "Accueil",
+      "about": "À propos"
+    }
+  }
+  // Component usage: {t('nav.home')}
+  ```
 
 ### Power BI Integration
 - **Architecture**: Frontend → Backend (localhost:3001) → Azure AD → Power BI Service
@@ -129,10 +144,29 @@ npm run deploy:prod        # Deploy to production (runs scripts/deploy.js --prod
 
 ### Supabase Schema
 - **Schema file**: `SUPABASE_SCHEMA_COMPLETE.sql` (complete DDL with RLS policies)
-- **Key tables**: profiles, organizations, projects, committees, decisions, documents, teams
+- **Key tables**: 
+  - `organizations` — Multi-tenant root entity
+  - `user_organizations` — User-to-org mapping with roles
+  - `initiatives` — Projects/portfolios (linked to org)
+  - `milestones` — Timeline events for initiatives
+  - `risks` + `risk_actions` — Risk management
+  - `decisions` — COMEX decision tracking
+  - `committees`, `documents`, `teams` — Governance modules
 - **RLS enabled**: ALL tables have Row Level Security policies for multi-tenant isolation
-- **Foreign keys**: organization_id links most entities, user_id from auth.users
-- **IMPORTANT**: Never query without proper organization_id filtering (RLS enforces this, but be explicit)
+- **Foreign keys**: `organization_id` links most entities, `user_id` from `auth.users`
+- **IMPORTANT**: Never query without proper `organization_id` filtering (RLS enforces this, but be explicit)
+- **Query pattern example**:
+  ```javascript
+  // src/lib/projectService.js
+  export async function getProjects(organizationId) {
+    const { data, error } = await supabase
+      .from('initiatives')
+      .select('*')
+      .eq('organization_id', organizationId); // ALWAYS filter by org
+    if (error) throw error;
+    return data;
+  }
+  ```
 
 ## Custom Vite Plugins
 
@@ -235,6 +269,23 @@ All plugins are registered in `vite.config.js` and only active in development mo
 - ❌ **Generic button colors** — Use brand gradients or explicit brand color classes
 - ❌ **Inline styles over Tailwind** — Add utilities to tailwind.config.js if needed
 - ❌ **Direct Capacitor API calls** — Use plugins/ abstractions or defer to mobile-specific pages
+- ❌ **Changing Supabase credentials location** — Currently hardcoded in customSupabaseClient.js (not using .env) by design
+- ❌ **Creating .ts files in src/lib/** — This breaks the established pattern (everything is .js except capacitor.config.ts)
+
+## PowerShell Deployment Patterns
+
+**Critical**: Many deployment scripts are PowerShell (.ps1). To run them:
+```powershell
+# If execution policy error, run:
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+# Deploy examples:
+.\deploy.ps1                    # General deployment
+.\DEPLOY_NOW.ps1               # Immediate deployment
+.\deploy-vercel-prod.ps1       # Vercel production deploy
+```
+
+**Common deployment files**: `deploy.ps1`, `deploy-supabase-tables.ps1`, `deploy-vercel-prod.ps1`, `apply-organizations-fix.ps1`
 
 
 ## Key Files Reference
@@ -245,3 +296,53 @@ All plugins are registered in `vite.config.js` and only active in development mo
 - Styling: `/tailwind.config.js`, `/src/index.css`
 - Power BI backend: `/backend/server.js`
 - Deployment: `/deploy/` directory, `/DEPLOYMENT_GUIDE.md`
+
+## Important Context Windows Notes
+
+When working with large files (App.jsx has 513 lines, SUPABASE_SCHEMA_COMPLETE.sql has 322 lines):
+- Read files in sections if needed, don't try to load everything at once
+- App.jsx contains ALL routes (~100+ pages) - search for specific routes instead of reading entire file
+- Use grep_search to find patterns across multiple files efficiently
+- For Supabase schema changes, always reference SUPABASE_SCHEMA_COMPLETE.sql first
+
+## Error Handling Patterns
+
+### Toast notifications (preferred)
+```javascript
+import { useToast } from '@/components/ui/use-toast';
+
+const { toast } = useToast();
+toast({
+  title: "Success",
+  description: "Operation completed successfully"
+});
+```
+
+### Service layer error handling
+```javascript
+// src/lib/myService.js
+export async function fetchData(orgId) {
+  try {
+    const { data, error } = await supabase
+      .from('table')
+      .select('*')
+      .eq('organization_id', orgId);
+    
+    if (error) throw error;
+    return { data, error: null };
+  } catch (err) {
+    console.error('fetchData error:', err);
+    return { data: null, error: err.message };
+  }
+}
+```
+
+## Testing Strategy
+
+**Manual testing only** - no automated test suite exists:
+1. Run `npm run dev` for frontend
+2. Run `cd backend && npm run dev` for Power BI features
+3. Test responsive layouts using browser DevTools (mobile/tablet/desktop)
+4. Use `/demo-mode` route for sandbox testing without auth
+5. Check console for errors (Vite overlay will show build errors automatically)
+6. Reference `TEST_GUIDE_RESPONSIVE.md` and `GUIDE_TEST_COMPLET.md` for checklists
