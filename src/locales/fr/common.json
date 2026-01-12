@@ -8,7 +8,10 @@
     "login": "Connexion",
     "signup": "Créer un compte",
     "demo": "Démo",
-    "dashboard": "Tableau de bord"
+    "dashboard": "Tableau de bord",
+    "forWho": "Pour qui",
+    "product": "Produit",
+    "scenarios": "Scénarios"
   },
   "landing": {
     "module1Title": "Portfolio Manager",
@@ -215,5 +218,189 @@
     "description": "Powalyze vous aide à structurer vos portefeuilles, fiabiliser vos données et anticiper vos décisions grâce à un système complet : PMO + Data + Power BI + IA + SaaS.",
     "ctaAccount": "Créer un compte",
     "ctaAccompaniment": "Être accompagné"
+  },
+  "forWho": {
+    "title": "Pour qui ?",
+    "subtitle": "Powalyze s'adresse aux organisations qui veulent structurer leur gouvernance",
+    "pmo": {
+      "title": "PMO Stratégiques",
+      "line1": "Structurez vos portefeuilles, automatisez vos reportings, pilotez avec clarté.",
+      "line2": "Pour les PMO qui veulent passer de la gestion de tâches au pilotage stratégique."
+    },
+    "data": {
+      "title": "Data & Analytics",
+      "line1": "Fiabilisez vos données, consolidez vos sources, déployez des dashboards intelligents.",
+      "line2": "Pour les équipes Data qui veulent transformer les données en décisions."
+    },
+    "direction": {
+      "title": "Directions Générales",
+      "line1": "Vue consolidée, risques majeurs, décisions prioritaires en temps réel.",
+      "line2": "Pour les dirigeants qui veulent piloter avec une longueur d'avance."
+    }
+  },
+  "replaces": {
+    "title": "Ce que Powalyze remplace",
+    "before": {
+      "title": "Avant",
+      "items": [
+        "Excel éparpillés",
+        "Données non fiables",
+        "Reportings manuels",
+        "Décisions retardées",
+        "Risques invisibles"
+      ]
+    },
+    "with": {
+      "title": "Avec Powalyze",
+      "items": [
+        "Données consolidées",
+        "Fiabilité garantie",
+        "Automatisation complète",
+        "Décisions rapides",
+        "Anticipation des risques"
+      ]
+    },
+    "result": {
+      "title": "Résultat",
+      "items": [
+        "50% de temps gagné",
+        "Alignement total",
+        "Gouvernance structurée",
+        "ROI mesurable",
+        "Avantage stratégique"
+      ]
+    }
+  },
+  "services": {
+    "title": "Services d'excellence",
+    "pilotage": {
+      "title": "Pilotage stratégique",
+      "items": [
+        "Structuration des portefeuilles",
+        "Mise en place des comités",
+        "Définition des indicateurs",
+        "Méthodologie de pilotage"
+      ]
+    },
+    "pmo": {
+      "title": "PMO as a Service",
+      "items": [
+        "PMO externalisé",
+        "Expertise métier",
+        "Support continu",
+        "Montée en compétence"
+      ]
+    },
+    "data": {
+      "title": "Data & Analytics",
+      "items": [
+        "Modélisation des données",
+        "Consolidation des sources",
+        "Construction de référentiels",
+        "Analyse avancée"
+      ]
+    },
+    "ai": {
+      "title": "IA Prédictive",
+      "items": [
+        "Détection des signaux faibles",
+        "Anticipation des dérives",
+        "Simulation des scénarios",
+        "Recommandations intelligentes"
+      ]
+    }
+  },
+  "demo": {
+    "title": "Découvrez Powalyze en action",
+    "scene1": {
+      "title": "Portfolio Manager",
+      "description": "Vision consolidée de tous vos projets",
+      "portfolioNav": [
+        { "title": "Vue d'ensemble", "active": true },
+        { "title": "Projets critiques", "active": false },
+        { "title": "Budget", "active": false },
+        { "title": "Risques", "active": false }
+      ]
+    },
+    "scene2": {
+      "title": "Cockpit Exécutif",
+      "description": "Préparez vos comités en quelques clics"
+    },
+    "scene3": {
+      "title": "Data Intelligence",
+      "description": "Consolidation automatique de vos données"
+    },
+    "scene4": {
+      "title": "IA Prédictive",
+      "description": "Anticipez les risques avant qu'ils ne surviennent"
+    }
+  },
+  "integrations": {
+    "title": "Intégrations natives",
+    "description": "Connectez Powalyze à vos outils existants"
+  },
+  "scenarios": {
+    "title": "Scénarios d'usage",
+    "subtitle": "Comment Powalyze transforme votre pilotage au quotidien",
+    "scenario1": {
+      "title": "Préparer un comité stratégique",
+      "description": "Consolidez vos données, générez des vues synthétiques et préparez vos comités en quelques clics au lieu de plusieurs jours."
+    },
+    "scenario2": {
+      "title": "Piloter un portefeuille complexe",
+      "description": "Suivez tous vos projets, identifiez les dépendances critiques et anticipez les impacts sur le budget et les délais."
+    },
+    "scenario3": {
+      "title": "Détecter les risques cachés",
+      "description": "L'IA analyse vos données en continu et vous alerte avant que les risques ne deviennent critiques."
+    }
+  },
+  "markets": {
+    "title": "Nos marchés prioritaires",
+    "switzerland": {
+      "title": "Suisse",
+      "description": "Excellence opérationnelle et précision stratégique"
+    },
+    "france": {
+      "title": "France",
+      "description": "Innovation et transformation digitale"
+    }
+  },
+  "finalCTA": {
+    "title": "Passez d'un pilotage réactif à un pilotage intelligent",
+    "description": "Structurez vos portefeuilles, fiabilisez vos données et anticipez vos décisions.",
+    "ctaAccount": "Créer un compte",
+    "ctaDemo": "Voir une démo"
+  },
+  "footer": {
+    "product": {
+      "title": "Produit",
+      "platform": "Plateforme",
+      "modules": "Modules",
+      "integrations": "Intégrations",
+      "pricing": "Tarifs"
+    },
+    "company": {
+      "title": "Entreprise",
+      "about": "À propos",
+      "careers": "Carrières",
+      "contact": "Contact",
+      "blog": "Blog"
+    },
+    "resources": {
+      "title": "Ressources",
+      "documentation": "Documentation",
+      "helpCenter": "Centre d'aide",
+      "community": "Communauté",
+      "status": "Statut"
+    },
+    "legal": {
+      "title": "Légal",
+      "privacy": "Confidentialité",
+      "terms": "Conditions",
+      "security": "Sécurité",
+      "gdpr": "RGPD"
+    },
+    "copyright": "© 2026 Powalyze. Tous droits réservés."
   }
 }

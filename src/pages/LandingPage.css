@@ -1,0 +1,57 @@
+/* Powalyze Landing Page - Dark Theme Override */
+
+/* Force dark background for entire landing page */
+.landing-page-dark {
+  background-color: #000000 !important;
+  color: #e2e8f0 !important;
+}
+
+/* Override white backgrounds to dark */
+.landing-page-dark .bg-white {
+  background-color: rgba(15, 23, 42, 0.5) !important;
+  border-color: rgba(71, 85, 105, 0.3) !important;
+}
+
+/* Override gray text to light text */
+.landing-page-dark .text-gray-900 {
+  color: #f1f5f9 !important;
+}
+
+.landing-page-dark .text-gray-800 {
+  color: #e2e8f0 !important;
+}
+
+.landing-page-dark .text-gray-700 {
+  color: #cbd5e1 !important;
+}
+
+.landing-page-dark .text-gray-600 {
+  color: #94a3b8 !important;
+}
+
+.landing-page-dark .text-gray-500 {
+  color: #64748b !important;
+}
+
+/* Override borders */
+.landing-page-dark .border-gray-200 {
+  border-color: rgba(71, 85, 105, 0.5) !important;
+}
+
+.landing-page-dark .border-gray-300 {
+  border-color: rgba(71, 85, 105, 0.6) !important;
+}
+
+/* Section backgrounds */
+.landing-page-dark section {
+  background-color: #000000 !important;
+}
+
+/* Override specific gray backgrounds */
+.landing-page-dark .bg-gray-50 {
+  background: linear-gradient(to bottom right, #0f172a, #000000, #1e293b) !important;
+}
+
+.landing-page-dark .bg-gray-100 {
+  background-color: rgba(30, 41, 59, 0.3) !important;
+}

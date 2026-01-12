@@ -8,7 +8,10 @@
     "login": "Anmelden",
     "signup": "Konto erstellen",
     "demo": "Demo",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "forWho": "Für wen",
+    "product": "Produkt",
+    "scenarios": "Szenarien"
   },
   "landing": {
     "module1Title": "Portfolio Manager",
@@ -215,5 +218,189 @@
     "description": "Powalyze hilft Ihnen, Ihre Portfolios zu strukturieren, Ihre Daten zuverlässig zu machen und Ihre Entscheidungen mit einem vollständigen System zu antizipieren: PMO + Daten + Power BI + KI + SaaS.",
     "ctaAccount": "Konto erstellen",
     "ctaAccompaniment": "Unterstützung erhalten"
+  },
+  "forWho": {
+    "title": "Für wen?",
+    "subtitle": "Powalyze richtet sich an Organisationen, die ihre Governance strukturieren möchten",
+    "pmo": {
+      "title": "Strategische PMOs",
+      "line1": "Strukturieren Sie Ihre Portfolios, automatisieren Sie Ihr Reporting, steuern Sie mit Klarheit.",
+      "line2": "Für PMOs, die vom Task-Management zur strategischen Steuerung übergehen möchten."
+    },
+    "data": {
+      "title": "Data & Analytics",
+      "line1": "Machen Sie Ihre Daten zuverlässig, konsolidieren Sie Ihre Quellen, implementieren Sie intelligente Dashboards.",
+      "line2": "Für Data-Teams, die Daten in Entscheidungen umwandeln möchten."
+    },
+    "direction": {
+      "title": "Geschäftsführung",
+      "line1": "Konsolidierte Ansicht, Hauptrisiken, prioritäre Entscheidungen in Echtzeit.",
+      "line2": "Für Führungskräfte, die mit Vorsprung steuern möchten."
+    }
+  },
+  "replaces": {
+    "title": "Was Powalyze ersetzt",
+    "before": {
+      "title": "Vorher",
+      "items": [
+        "Verstreute Excel-Dateien",
+        "Unzuverlässige Daten",
+        "Manuelles Reporting",
+        "Verzögerte Entscheidungen",
+        "Unsichtbare Risiken"
+      ]
+    },
+    "with": {
+      "title": "Mit Powalyze",
+      "items": [
+        "Konsolidierte Daten",
+        "Garantierte Zuverlässigkeit",
+        "Vollständige Automatisierung",
+        "Schnelle Entscheidungen",
+        "Risikoantizipation"
+      ]
+    },
+    "result": {
+      "title": "Ergebnis",
+      "items": [
+        "50% Zeitersparnis",
+        "Totale Ausrichtung",
+        "Strukturierte Governance",
+        "Messbarer ROI",
+        "Strategischer Vorteil"
+      ]
+    }
+  },
+  "services": {
+    "title": "Exzellenz-Services",
+    "pilotage": {
+      "title": "Strategische Steuerung",
+      "items": [
+        "Portfolio-Strukturierung",
+        "Komitee-Setup",
+        "KPI-Definition",
+        "Steuerungsmethodik"
+      ]
+    },
+    "pmo": {
+      "title": "PMO as a Service",
+      "items": [
+        "Ausgelagertes PMO",
+        "Business-Expertise",
+        "Kontinuierliche Unterstützung",
+        "Kompetenzentwicklung"
+      ]
+    },
+    "data": {
+      "title": "Data & Analytics",
+      "items": [
+        "Datenmodellierung",
+        "Quellenkonsolidierung",
+        "Referenzaufbau",
+        "Erweiterte Analyse"
+      ]
+    },
+    "ai": {
+      "title": "Prädiktive KI",
+      "items": [
+        "Schwache Signale erkennen",
+        "Abweichungen antizipieren",
+        "Szenarien simulieren",
+        "Intelligente Empfehlungen"
+      ]
+    }
+  },
+  "demo": {
+    "title": "Entdecken Sie Powalyze in Aktion",
+    "scene1": {
+      "title": "Portfolio Manager",
+      "description": "Konsolidierte Ansicht aller Ihrer Projekte",
+      "portfolioNav": [
+        { "title": "Übersicht", "active": true },
+        { "title": "Kritische Projekte", "active": false },
+        { "title": "Budget", "active": false },
+        { "title": "Risiken", "active": false }
+      ]
+    },
+    "scene2": {
+      "title": "Executive Cockpit",
+      "description": "Bereiten Sie Ihre Komitees mit wenigen Klicks vor"
+    },
+    "scene3": {
+      "title": "Data Intelligence",
+      "description": "Automatische Konsolidierung Ihrer Daten"
+    },
+    "scene4": {
+      "title": "Prädiktive KI",
+      "description": "Risiken antizipieren, bevor sie auftreten"
+    }
+  },
+  "integrations": {
+    "title": "Native Integrationen",
+    "description": "Verbinden Sie Powalyze mit Ihren vorhandenen Tools"
+  },
+  "scenarios": {
+    "title": "Nutzungsszenarien",
+    "subtitle": "Wie Powalyze Ihre tägliche Steuerung transformiert",
+    "scenario1": {
+      "title": "Ein strategisches Komitee vorbereiten",
+      "description": "Konsolidieren Sie Ihre Daten, erstellen Sie synthetische Ansichten und bereiten Sie Ihre Komitees in wenigen Klicks vor, anstatt in mehreren Tagen."
+    },
+    "scenario2": {
+      "title": "Ein komplexes Portfolio steuern",
+      "description": "Verfolgen Sie alle Ihre Projekte, identifizieren Sie kritische Abhängigkeiten und antizipieren Sie Auswirkungen auf Budget und Fristen."
+    },
+    "scenario3": {
+      "title": "Versteckte Risiken erkennen",
+      "description": "KI analysiert kontinuierlich Ihre Daten und warnt Sie, bevor Risiken kritisch werden."
+    }
+  },
+  "markets": {
+    "title": "Unsere Prioritätsmärkte",
+    "switzerland": {
+      "title": "Schweiz",
+      "description": "Operative Exzellenz und strategische Präzision"
+    },
+    "france": {
+      "title": "Frankreich",
+      "description": "Innovation und digitale Transformation"
+    }
+  },
+  "finalCTA": {
+    "title": "Von reaktiver zu intelligenter Steuerung",
+    "description": "Strukturieren Sie Ihre Portfolios, machen Sie Ihre Daten zuverlässig und antizipieren Sie Ihre Entscheidungen.",
+    "ctaAccount": "Konto erstellen",
+    "ctaDemo": "Demo ansehen"
+  },
+  "footer": {
+    "product": {
+      "title": "Produkt",
+      "platform": "Plattform",
+      "modules": "Module",
+      "integrations": "Integrationen",
+      "pricing": "Preise"
+    },
+    "company": {
+      "title": "Unternehmen",
+      "about": "Über uns",
+      "careers": "Karriere",
+      "contact": "Kontakt",
+      "blog": "Blog"
+    },
+    "resources": {
+      "title": "Ressourcen",
+      "documentation": "Dokumentation",
+      "helpCenter": "Hilfecenter",
+      "community": "Community",
+      "status": "Status"
+    },
+    "legal": {
+      "title": "Rechtliches",
+      "privacy": "Datenschutz",
+      "terms": "Bedingungen",
+      "security": "Sicherheit",
+      "gdpr": "DSGVO"
+    },
+    "copyright": "© 2026 Powalyze. Alle Rechte vorbehalten."
   }
 }

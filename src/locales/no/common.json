@@ -8,7 +8,10 @@
     "login": "Logg inn",
     "signup": "Opprett konto",
     "demo": "Demo",
-    "dashboard": "Dashbord"
+    "dashboard": "Dashbord",
+    "forWho": "For hvem",
+    "product": "Produkt",
+    "scenarios": "Scenarioer"
   },
   "landing": {
     "module1Title": "Portfolio Manager",
@@ -215,5 +218,189 @@
     "description": "Powalyze hjelper deg med å strukturere dine porteføljer, gjøre dataene dine pålitelige og anticipere dine beslutninger med et komplett system: PMO + Data + Power BI + AI + SaaS.",
     "ctaAccount": "Opprett konto",
     "ctaAccompaniment": "Få støtte"
+  },
+  "forWho": {
+    "title": "For hvem?",
+    "subtitle": "Powalyze er for organisasjoner som ønsker å strukturere sin styring",
+    "pmo": {
+      "title": "Strategiske PMOer",
+      "line1": "Strukturer porteføljene dine, automatiser rapporteringen, styr med klarhet.",
+      "line2": "For PMOer som ønsker å gå fra oppgavehåndtering til strategisk styring."
+    },
+    "data": {
+      "title": "Data & Analytics",
+      "line1": "Gjør dataene dine pålitelige, konsolider kildene dine, implementer intelligente dashboards.",
+      "line2": "For datateam som ønsker å transformere data til beslutninger."
+    },
+    "direction": {
+      "title": "Ledelse",
+      "line1": "Konsolidert visning, store risikoer, prioriterte beslutninger i sanntid.",
+      "line2": "For ledere som ønsker å styre med et forsprang."
+    }
+  },
+  "replaces": {
+    "title": "Hva Powalyze erstatter",
+    "before": {
+      "title": "Før",
+      "items": [
+        "Spredt Excel",
+        "Upålitelige data",
+        "Manuell rapportering",
+        "Forsinkede beslutninger",
+        "Usynlige risikoer"
+      ]
+    },
+    "with": {
+      "title": "Med Powalyze",
+      "items": [
+        "Konsoliderte data",
+        "Garantert pålitelighet",
+        "Fullstendig automatisering",
+        "Raske beslutninger",
+        "Risikoantisipering"
+      ]
+    },
+    "result": {
+      "title": "Resultat",
+      "items": [
+        "50% tidsbesparelse",
+        "Total tilpasning",
+        "Strukturert styring",
+        "Målbar ROI",
+        "Strategisk fordel"
+      ]
+    }
+  },
+  "services": {
+    "title": "Eksellente tjenester",
+    "pilotage": {
+      "title": "Strategisk styring",
+      "items": [
+        "Porteføljestrukturering",
+        "Komitéoppsett",
+        "KPI-definisjon",
+        "Styringsmetodikk"
+      ]
+    },
+    "pmo": {
+      "title": "PMO som en tjeneste",
+      "items": [
+        "Utkontraktert PMO",
+        "Forretningsekspertise",
+        "Kontinuerlig støtte",
+        "Kompetanseutvikling"
+      ]
+    },
+    "data": {
+      "title": "Data & Analytics",
+      "items": [
+        "Datamodellering",
+        "Kildekonsolidering",
+        "Referansebygging",
+        "Avansert analyse"
+      ]
+    },
+    "ai": {
+      "title": "Prediktiv AI",
+      "items": [
+        "Svake signaler deteksjon",
+        "Driftsantisipering",
+        "Scenariosimulering",
+        "Intelligente anbefalinger"
+      ]
+    }
+  },
+  "demo": {
+    "title": "Oppdag Powalyze i aksjon",
+    "scene1": {
+      "title": "Portfolio Manager",
+      "description": "Konsolidert visning av alle prosjektene dine",
+      "portfolioNav": [
+        { "title": "Oversikt", "active": true },
+        { "title": "Kritiske prosjekter", "active": false },
+        { "title": "Budsjett", "active": false },
+        { "title": "Risikoer", "active": false }
+      ]
+    },
+    "scene2": {
+      "title": "Executive Cockpit",
+      "description": "Forbered komiteene dine med noen få klikk"
+    },
+    "scene3": {
+      "title": "Data Intelligence",
+      "description": "Automatisk konsolidering av dataene dine"
+    },
+    "scene4": {
+      "title": "Prediktiv AI",
+      "description": "Forutse risikoer før de oppstår"
+    }
+  },
+  "integrations": {
+    "title": "Native integrasjoner",
+    "description": "Koble Powalyze til dine eksisterende verktøy"
+  },
+  "scenarios": {
+    "title": "Bruksscenarioer",
+    "subtitle": "Hvordan Powalyze transformerer din daglige styring",
+    "scenario1": {
+      "title": "Forberede en strategisk komité",
+      "description": "Konsolider dataene dine, generer syntetiske visninger og forbered komiteene dine på noen klikk i stedet for flere dager."
+    },
+    "scenario2": {
+      "title": "Styre en kompleks portefølje",
+      "description": "Spor alle prosjektene dine, identifiser kritiske avhengigheter og forutse konsekvenser for budsjett og frister."
+    },
+    "scenario3": {
+      "title": "Oppdage skjulte risikoer",
+      "description": "AI analyserer dataene dine kontinuerlig og varsler deg før risikoer blir kritiske."
+    }
+  },
+  "markets": {
+    "title": "Våre prioritetsmarkeder",
+    "switzerland": {
+      "title": "Sveits",
+      "description": "Operasjonell fortreffelighet og strategisk presisjon"
+    },
+    "france": {
+      "title": "Frankrike",
+      "description": "Innovasjon og digital transformasjon"
+    }
+  },
+  "finalCTA": {
+    "title": "Gå fra reaktiv til intelligent styring",
+    "description": "Strukturer porteføljene dine, gjør dataene dine pålitelige og forutse dine beslutninger.",
+    "ctaAccount": "Opprett konto",
+    "ctaDemo": "Se demo"
+  },
+  "footer": {
+    "product": {
+      "title": "Produkt",
+      "platform": "Plattform",
+      "modules": "Moduler",
+      "integrations": "Integrasjoner",
+      "pricing": "Priser"
+    },
+    "company": {
+      "title": "Selskap",
+      "about": "Om oss",
+      "careers": "Karriere",
+      "contact": "Kontakt",
+      "blog": "Blogg"
+    },
+    "resources": {
+      "title": "Ressurser",
+      "documentation": "Dokumentasjon",
+      "helpCenter": "Hjelpesenter",
+      "community": "Fellesskap",
+      "status": "Status"
+    },
+    "legal": {
+      "title": "Juridisk",
+      "privacy": "Personvern",
+      "terms": "Vilkår",
+      "security": "Sikkerhet",
+      "gdpr": "GDPR"
+    },
+    "copyright": "© 2026 Powalyze. Alle rettigheter reservert."
   }
 }

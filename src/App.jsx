@@ -25,10 +25,12 @@ import Methode from '@/pages/Methode';
 import DemoPage from '@/pages/DemoPage';
 import Login from '@/pages/Login';
 import SignUp from '@/pages/SignUp';
+import AcceptInvitation from '@/pages/auth/AcceptInvitation';
 import About from '@/pages/About';
 import ConsultingAndSaaS from '@/pages/ConsultingAndSaaS';
 import AICore from '@/pages/AICore';
-// Blog supprimé - pas de blog sur le site
+import Blog from '@/pages/Blog';
+import BlogArticle from '@/pages/BlogArticle';
 import Contact from '@/pages/Contact';
 import Legal from '@/pages/Legal';
 import FAQ from '@/pages/FAQ';
@@ -105,6 +107,12 @@ const Dashboard = lazy(() => import('@/pages/Dashboard'));
 const DashboardNew = lazy(() => import('@/pages/DashboardNew'));
 const DashboardPremium = lazy(() => import('@/pages/DashboardPremium'));
 const DashboardRevolutionary = lazy(() => import('@/pages/app/DashboardRevolutionary'));
+const DashboardSensible = lazy(() => import('@/pages/app/DashboardSensible'));
+const ProjetsSensible = lazy(() => import('@/pages/app/ProjetsSensible'));
+const PortfolioSensible = lazy(() => import('@/pages/app/PortfolioSensible'));
+const AlertesSensible = lazy(() => import('@/pages/app/AlertesSensible'));
+const EquipeSensible = lazy(() => import('@/pages/app/EquipeSensible'));
+const DocumentsSensible = lazy(() => import('@/pages/app/DocumentsSensible'));
 const Projects = lazy(() => import('@/pages/Projects'));
 const ProjectsNew = lazy(() => import('@/pages/ProjectsNew'));
 const ProjectsList = lazy(() => import('@/pages/ProjectsList'));
@@ -145,6 +153,7 @@ const DecisionHub = lazy(() => import('@/pages/DecisionHub'));
 const RiskIntelligence = lazy(() => import('@/pages/RiskIntelligence'));
 const ReportBuilder = lazy(() => import('@/pages/ReportBuilder'));
 const Reports = lazy(() => import('@/pages/Reports'));
+const ReportsList = lazy(() => import('@/pages/ReportsList'));
 const ReportsHome = lazy(() => import('@/pages/ReportsHome'));
 const ReportViewer = lazy(() => import('@/pages/ReportViewer'));
 const ReportDetail = lazy(() => import('@/pages/ReportDetail'));
@@ -160,12 +169,20 @@ const RiskHeatmap = lazy(() => import('@/pages/RiskHeatmap'));
 
 // App Layout & Pages
 const AppLayout = lazy(() => import('@/layouts/AppLayout'));
-const CockpitPage = lazy(() => import('@/pages/app/CockpitPage'));
+// CockpitPage supprimé (doublon de Cockpit.jsx)
+const CockpitPageData = lazy(() => import('@/pages/app/CockpitPageData'));
 const ProjectsApp = lazy(() => import('@/pages/app/Projects'));
+const RisksApp = lazy(() => import('@/pages/app/Risks'));
+const DecisionsApp = lazy(() => import('@/pages/app/Decisions'));
+const AlertsPageApp = lazy(() => import('@/pages/app/AlertsPage'));
 const PortfolioApp = lazy(() => import('@/pages/app/Portfolio'));
+const PortfolioReport = lazy(() => import('@/pages/app/PortfolioReport'));
+const ProjectNewApp = lazy(() => import('@/pages/app/ProjectNew'));
+const RiskNewApp = lazy(() => import('@/pages/app/RiskNew'));
+const DecisionNewApp = lazy(() => import('@/pages/app/DecisionNew'));
 const DocumentsApp = lazy(() => import('@/pages/app/Documents'));
 const SettingsApp = lazy(() => import('@/pages/app/Settings'));
-const LoginAuth = lazy(() => import('@/pages/auth/Login'));
+// LoginAuth supprimé (doublon de Login.jsx principal)
 const RegisterAuth = lazy(() => import('@/pages/auth/Register'));
 
 // Mobile Pages
@@ -204,10 +221,10 @@ const App = () => {
         <ThemeProvider>
           <Router>
             <ScrollToTop />
-          <DeviceRedirect>
-            <DesktopLayoutWrapper>
-              <Suspense fallback={<LoadingFallback />}>
-                <Routes>
+            <DeviceRedirect>
+              <DesktopLayoutWrapper>
+                <Suspense fallback={<LoadingFallback />}>
+                  <Routes>
                 {/* Public Website Routes */}
                 <Route path="/" element={<LandingPage />} />
                 
@@ -238,7 +255,6 @@ const App = () => {
                 <Route path="/ai-core" element={<AICore />} />
                 {/* Blog supprimé - pas de blog sur le site */}
                 {/* New Premium Pages */}
-                <Route path="/product" element={<Product />} />
                 <Route path="/features" element={<Features />} />
                 <Route path="/platform" element={<Platform />} />
                 <Route path="/governance" element={<Governance />} />
@@ -248,10 +264,13 @@ const App = () => {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/legal" element={<Legal />} />
                 <Route path="/faq" element={<FAQ />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:slug" element={<BlogArticle />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/register" element={<SignUp />} />
-                <Route path="/auth/login" element={<LoginAuth />} />
+                <Route path="/accept-invitation" element={<AcceptInvitation />} />
+                <Route path="/auth/login" element={<Login />} />
                 <Route path="/auth/register" element={<RegisterAuth />} />
 
                 {/* Services Pages */}
@@ -309,29 +328,46 @@ const App = () => {
                 {/* About Page */}
                 <Route path="/about" element={<About />} />
 
-                {/* SaaS Access Redirects - Protected Routes */}
+                {/* SaaS Access Redirects */}
                 <Route path="/saas" element={<Navigate to="/signup" replace />} />
-                <Route path="/platform" element={<Navigate to="/signup" replace />} />
-                <Route path="/dashboard" element={<Navigate to="/signup" replace />} />
                 
                 {/* Protected App Routes */}
                 <Route path="/app" element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
                   <Route index element={<Navigate to="/app/cockpit" replace />} />
-                  <Route path="cockpit" element={<CockpitPage />} />
+                  <Route path="cockpit" element={<DashboardSensible />} />
+                  <Route path="cockpit-14kpis" element={<CockpitPageData />} />
+                  {/* cockpit-static supprimé (doublon CockpitPage.jsx) */}
                   <Route path="dashboard-vision" element={<DashboardRevolutionary />} />
+                  <Route path="dashboard-sensible" element={<DashboardSensible />} />
+                  <Route path="projets-sensible" element={<ProjetsSensible />} />
+                  <Route path="portfolio-sensible" element={<PortfolioSensible />} />
+                  <Route path="alertes-sensible" element={<AlertesSensible />} />
+                  <Route path="equipe-sensible" element={<EquipeSensible />} />
+                  <Route path="documents-sensible" element={<DocumentsSensible />} />
                   <Route path="portfolio" element={<PortfolioApp />} />
                   <Route path="projects" element={<ProjectsApp />} />
+                  <Route path="projects/new" element={<ProjectNewApp />} />
                   <Route path="documents" element={<DocumentsApp />} />
                   <Route path="settings" element={<SettingsApp />} />
+                  <Route path="team" element={<Team />} />
+                  <Route path="notifications" element={<Notifications />} />
+                  <Route path="messages" element={<Messages />} />
+                  <Route path="integrations" element={<Integrations />} />
+                  <Route path="powerbi-hub" element={<PowerBIHub />} />
+                  <Route path="predictive-intelligence" element={<PredictiveIntelligence />} />
+                  <Route path="reports" element={<ReportsHome />} />
                   <Route path="portfolios" element={<PortfolioView />} />
                   <Route path="programs" element={<div>Programmes</div>} />
                   <Route path="committees" element={<CommitteeView />} />
                   <Route path="committees/preparation" element={<div>Préparation comités</div>} />
                   <Route path="committees/history" element={<div>Historique comités</div>} />
-                  <Route path="decisions" element={<DecisionHub />} />
+                  <Route path="decisions" element={<DecisionsApp />} />
+                  <Route path="decisions/new" element={<DecisionNewApp />} />
                   <Route path="actions" element={<div>Actions</div>} />
                   <Route path="impacts" element={<div>Impacts</div>} />
-                  <Route path="risks" element={<RiskIntelligence />} />
+                  <Route path="risks" element={<RisksApp />} />
+                  <Route path="risks/new" element={<RiskNewApp />} />
+                  <Route path="alerts" element={<AlertsPageApp />} />
                   <Route path="maitrise-risques" element={<MaitriseRisques />} />
                   <Route path="signals" element={<div>Signaux IA</div>} />
                   <Route path="recommendations" element={<div>Recommandations</div>} />
@@ -371,10 +407,14 @@ const App = () => {
                 <Route path="/app/risk-intelligence" element={<ProtectedRoute><RiskIntelligence /></ProtectedRoute>} />
                 
                 <Route path="/app/predictive-intelligence" element={<ProtectedRoute><PredictiveIntelligence /></ProtectedRoute>} />
-                <Route path="/app/reports" element={<ProtectedRoute><ReportsHome /></ProtectedRoute>} />
+                <Route path="/app/reports" element={<ProtectedRoute><ReportsList /></ProtectedRoute>} />
+                <Route path="/app/reports/powerbi" element={<ProtectedRoute><ReportsHome /></ProtectedRoute>} />
+                <Route path="/app/report-builder" element={<ProtectedRoute><ReportBuilder /></ProtectedRoute>} />
+                <Route path="/app/report-detail/:id" element={<ProtectedRoute><ReportViewer /></ProtectedRoute>} />
                 <Route path="/app/reports/:id" element={<ProtectedRoute><ReportViewer /></ProtectedRoute>} />
                 <Route path="/app/reports/builder" element={<ProtectedRoute><ReportBuilder /></ProtectedRoute>} />
                 <Route path="/app/reports/legacy" element={<ProtectedRoute><Reports /></ProtectedRoute>} />
+                <Route path="/app/reports/portfolio" element={<ProtectedRoute><PortfolioReport /></ProtectedRoute>} />
                 <Route path="/app/powerbi" element={<ProtectedRoute><PowerBIReports /></ProtectedRoute>} />
                 <Route path="/app/powerbi/:id" element={<ProtectedRoute><PowerBIReportViewer /></ProtectedRoute>} />
                 <Route path="/app/alerts" element={<ProtectedRoute><Alerts /></ProtectedRoute>} />
@@ -425,14 +465,14 @@ const App = () => {
                 {/* Catch-all Redirect */}
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
-              </Suspense>
-            </DesktopLayoutWrapper>
-          </DeviceRedirect>
-            <Toaster />
-          </Router>
-        </ThemeProvider>
-      </LanguageProvider>
-    </AuthProvider>
+            </Suspense>
+          </DesktopLayoutWrapper>
+        </DeviceRedirect>
+        <Toaster />
+      </Router>
+    </ThemeProvider>
+  </LanguageProvider>
+</AuthProvider>
   );
 };
 

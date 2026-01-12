@@ -8,7 +8,10 @@
     "login": "Login",
     "signup": "Sign Up",
     "demo": "Demo",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "forWho": "For whom",
+    "product": "Product",
+    "scenarios": "Scenarios"
   },
   "landing": {
     "module1Title": "Portfolio Manager",
@@ -215,5 +218,189 @@
     "description": "Powalyze helps you structure your portfolios, make your data reliable and anticipate your decisions with a complete system: PMO + Data + Power BI + AI + SaaS.",
     "ctaAccount": "Create account",
     "ctaAccompaniment": "Get support"
+  },
+  "forWho": {
+    "title": "For Whom?",
+    "subtitle": "Powalyze is for organizations that want to structure their governance",
+    "pmo": {
+      "title": "Strategic PMOs",
+      "line1": "Structure your portfolios, automate your reporting, steer with clarity.",
+      "line2": "For PMOs who want to move from task management to strategic steering."
+    },
+    "data": {
+      "title": "Data & Analytics",
+      "line1": "Make your data reliable, consolidate your sources, deploy intelligent dashboards.",
+      "line2": "For Data teams who want to transform data into decisions."
+    },
+    "direction": {
+      "title": "Executive Management",
+      "line1": "Consolidated view, major risks, priority decisions in real time.",
+      "line2": "For leaders who want to steer with a head start."
+    }
+  },
+  "replaces": {
+    "title": "What Powalyze replaces",
+    "before": {
+      "title": "Before",
+      "items": [
+        "Scattered Excel",
+        "Unreliable data",
+        "Manual reporting",
+        "Delayed decisions",
+        "Invisible risks"
+      ]
+    },
+    "with": {
+      "title": "With Powalyze",
+      "items": [
+        "Consolidated data",
+        "Guaranteed reliability",
+        "Complete automation",
+        "Fast decisions",
+        "Risk anticipation"
+      ]
+    },
+    "result": {
+      "title": "Result",
+      "items": [
+        "50% time saved",
+        "Total alignment",
+        "Structured governance",
+        "Measurable ROI",
+        "Strategic advantage"
+      ]
+    }
+  },
+  "services": {
+    "title": "Excellence Services",
+    "pilotage": {
+      "title": "Strategic Steering",
+      "items": [
+        "Portfolio structuring",
+        "Committee setup",
+        "KPI definition",
+        "Steering methodology"
+      ]
+    },
+    "pmo": {
+      "title": "PMO as a Service",
+      "items": [
+        "Outsourced PMO",
+        "Business expertise",
+        "Continuous support",
+        "Skills development"
+      ]
+    },
+    "data": {
+      "title": "Data & Analytics",
+      "items": [
+        "Data modeling",
+        "Source consolidation",
+        "Reference building",
+        "Advanced analysis"
+      ]
+    },
+    "ai": {
+      "title": "Predictive AI",
+      "items": [
+        "Weak signal detection",
+        "Drift anticipation",
+        "Scenario simulation",
+        "Intelligent recommendations"
+      ]
+    }
+  },
+  "demo": {
+    "title": "Discover Powalyze in action",
+    "scene1": {
+      "title": "Portfolio Manager",
+      "description": "Consolidated view of all your projects",
+      "portfolioNav": [
+        { "title": "Overview", "active": true },
+        { "title": "Critical projects", "active": false },
+        { "title": "Budget", "active": false },
+        { "title": "Risks", "active": false }
+      ]
+    },
+    "scene2": {
+      "title": "Executive Cockpit",
+      "description": "Prepare your committees in a few clicks"
+    },
+    "scene3": {
+      "title": "Data Intelligence",
+      "description": "Automatic consolidation of your data"
+    },
+    "scene4": {
+      "title": "Predictive AI",
+      "description": "Anticipate risks before they occur"
+    }
+  },
+  "integrations": {
+    "title": "Native integrations",
+    "description": "Connect Powalyze to your existing tools"
+  },
+  "scenarios": {
+    "title": "Usage scenarios",
+    "subtitle": "How Powalyze transforms your daily steering",
+    "scenario1": {
+      "title": "Prepare a strategic committee",
+      "description": "Consolidate your data, generate synthetic views and prepare your committees in a few clicks instead of several days."
+    },
+    "scenario2": {
+      "title": "Steer a complex portfolio",
+      "description": "Track all your projects, identify critical dependencies and anticipate impacts on budget and deadlines."
+    },
+    "scenario3": {
+      "title": "Detect hidden risks",
+      "description": "AI continuously analyzes your data and alerts you before risks become critical."
+    }
+  },
+  "markets": {
+    "title": "Our priority markets",
+    "switzerland": {
+      "title": "Switzerland",
+      "description": "Operational excellence and strategic precision"
+    },
+    "france": {
+      "title": "France",
+      "description": "Innovation and digital transformation"
+    }
+  },
+  "finalCTA": {
+    "title": "Move from reactive to intelligent steering",
+    "description": "Structure your portfolios, make your data reliable and anticipate your decisions.",
+    "ctaAccount": "Create account",
+    "ctaDemo": "See demo"
+  },
+  "footer": {
+    "product": {
+      "title": "Product",
+      "platform": "Platform",
+      "modules": "Modules",
+      "integrations": "Integrations",
+      "pricing": "Pricing"
+    },
+    "company": {
+      "title": "Company",
+      "about": "About",
+      "careers": "Careers",
+      "contact": "Contact",
+      "blog": "Blog"
+    },
+    "resources": {
+      "title": "Resources",
+      "documentation": "Documentation",
+      "helpCenter": "Help Center",
+      "community": "Community",
+      "status": "Status"
+    },
+    "legal": {
+      "title": "Legal",
+      "privacy": "Privacy",
+      "terms": "Terms",
+      "security": "Security",
+      "gdpr": "GDPR"
+    },
+    "copyright": "© 2026 Powalyze. All rights reserved."
   }
 }
