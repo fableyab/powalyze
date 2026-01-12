@@ -1,7 +1,7 @@
 {
-  "buildCommand": "vite build",
+  "buildCommand": "npm run build:full 2>&1",
   "outputDirectory": "dist",
-  "framework": "vite",
+  "framework": null,
   "rewrites": [
     {
       "source": "/(.*)",
