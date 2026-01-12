@@ -2,98 +2,8 @@
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 
-const INITIAL_REPORTS = [
-  {
-    id: "r1",
-    name: "Dashboard Commercial",
-    description: "Vue d'ensemble des performances commerciales, pipeline et KPIs ventes en temps réel",
-    domain: "Ventes",
-    views: 249,
-    date: "2025-01-15",
-    level: "orange",
-    demoMetrics: {
-      ca: "2.4M€",
-      croissance: "+18%",
-      deals: "47",
-      taux: "68%"
-    }
-  },
-  {
-    id: "r2",
-    name: "Analyse Financière Q4",
-    description: "Indicateurs financiers, marges, budgets et prévisions consolidées",
-    domain: "Finance",
-    views: 156,
-    date: "2025-01-10",
-    level: "red",
-    demoMetrics: {
-      revenue: "8.7M€",
-      marge: "34%",
-      ebitda: "1.9M€",
-      var: "-5%"
-    }
-  },
-  {
-    id: "r3",
-    name: "Portefeuille Projets PMO",
-    description: "Suivi temps réel des projets, risques, ressources et livrables",
-    domain: "PMO",
-    views: 98,
-    date: "2025-01-08",
-    level: "gold",
-    demoMetrics: {
-      projets: "23",
-      onTime: "17",
-      risques: "8",
-      budget: "94%"
-    }
-  },
-  {
-    id: "r4",
-    name: "Analyse Risques Opérationnels",
-    description: "Cartographie des risques, impacts financiers et plans d'action",
-    domain: "Risques",
-    views: 87,
-    date: "2025-01-12",
-    level: "red",
-    demoMetrics: {
-      critiques: "12",
-      majeurs: "24",
-      exposition: "3.2M€",
-      mitigation: "76%"
-    }
-  },
-  {
-    id: "r5",
-    name: "Performance Équipes",
-    description: "Productivité, charge, satisfaction et développement des talents",
-    domain: "RH",
-    views: 134,
-    date: "2025-01-14",
-    level: "gold",
-    demoMetrics: {
-      effectif: "127",
-      satisfaction: "8.2/10",
-      turnover: "4%",
-      formation: "85%"
-    }
-  },
-  {
-    id: "r6",
-    name: "Synthèse Executive",
-    description: "Vue stratégique consolidée pour comité de direction",
-    domain: "Stratégie",
-    views: 312,
-    date: "2025-01-16",
-    level: "gold",
-    demoMetrics: {
-      score: "8.7/10",
-      objectifs: "92%",
-      cash: "4.2M€",
-      croissance: "+23%"
-    }
-  }
-];
+// Environnement vide - pas de rapports de test
+const INITIAL_REPORTS = [];
 
 const levelColor = (level) => {
   switch (level) {
@@ -110,7 +20,7 @@ const levelColor = (level) => {
 export default function PowerBIHub() {
   const { t } = useTranslation(['saas', 'common']);
   const [reports, setReports] = useState(INITIAL_REPORTS);
-  const [selectedReport, setSelectedReport] = useState(INITIAL_REPORTS[0]);
+  const [selectedReport, setSelectedReport] = useState(INITIAL_REPORTS[0] || null);
   const [showCreate, setShowCreate] = useState(false);
   const [newReport, setNewReport] = useState({
     name: "",
@@ -119,9 +29,8 @@ export default function PowerBIHub() {
   });
 
   const handleImport = () => {
-    alert(
-      "📊 Mode Démo Actif\n\nEn production, cette fonctionnalité permet d'importer vos propres dashboards depuis vos outils BI (Power BI, Metabase, Tableau, etc.)\n\nContactez-nous pour une démonstration avec vos données réelles."
-    );
+    // Fonctionnalité d'import - À implémenter
+    console.log("Import de rapport demandé");
   };
 
   const handleCreateReport = (e) => {
@@ -135,7 +44,13 @@ export default function PowerBIHub() {
       domain: newReport.domain,
       views: 0,
       date: new Date().toISOString().slice(0, 10),
-      level: "gold"
+      level: "gold",
+      demoMetrics: {
+        vues: "0",
+        utilisateurs: "1",
+        données: "N/A",
+        statut: "Nouveau"
+      }
     };
 
     setReports([created, ...reports]);
@@ -150,7 +65,7 @@ export default function PowerBIHub() {
       <header className="px-8 pt-6 pb-4 flex items-center justify-between border-b border-[#1A1A1A] flex-shrink-0">
         <div>
           <h1 className="text-2xl font-light text-[#D4AF37]">
-            Analytics Hub — Démonstration
+            Analytics Hub
           </h1>
           <p className="text-sm text-gray-300 mt-1">
             Plateforme d'analyse décisionnelle pour pilotage stratégique et opérationnel
@@ -239,7 +154,7 @@ export default function PowerBIHub() {
                 <div className="h-full flex flex-col">
                   {/* Header Metrics */}
                   <div className="grid grid-cols-4 gap-4 mb-6">
-                    {Object.entries(selectedReport.demoMetrics).map(([key, value]) => (
+                    {selectedReport?.demoMetrics && Object.entries(selectedReport.demoMetrics).map(([key, value]) => (
                       <div key={key} className="bg-black border border-[#1A1A1A] rounded-lg p-4">
                         <div className="text-xs text-gray-500 uppercase mb-1">{key}</div>
                         <div className="text-2xl font-light text-[#D4AF37]">{value}</div>
@@ -251,10 +166,9 @@ export default function PowerBIHub() {
                   <div className="flex-1 bg-black border border-[#1A1A1A] rounded-lg p-6 flex flex-col items-center justify-center">
                     <div className="text-center space-y-4">
                       <div className="text-6xl mb-4">📊</div>
-                      <div className="text-xl text-[#D4AF37]">Dashboard de Démonstration</div>
+                      <div className="text-xl text-[#D4AF37]">Zone de visualisation</div>
                       <div className="text-sm text-gray-400 max-w-md">
-                        Cette vue présente une simulation des métriques clés.
-                        <br/>En production, vous verrez ici vos dashboards analytics temps réel connectés à vos sources de données.
+                        Vos dashboards analytics seront affichés ici une fois connectés à vos sources de données.
                       </div>
                       <div className="flex gap-4 mt-6 justify-center">
                         <div className="px-4 py-2 bg-[#000000] border border-[#1A1A1A] rounded-lg text-xs text-gray-400">

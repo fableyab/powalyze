@@ -67,6 +67,12 @@ import PortfolioDetailV2 from '@/pages/portfolios/PortfolioDetail';
 // V2 Dashboard Executive
 import DashboardExecutiveV2 from '@/pages/DashboardExecutive';
 
+// Cockpit Demo
+import CockpitDemo from '@/pages/CockpitDemo';
+
+// Demo Complete pour clients
+import DemoComplete from '@/pages/DemoComplete';
+
 // New Concrete Pages
 // import PlateformePage from '@/pages/PlateformePage';
 import SolutionsPage from '@/pages/SolutionsPage';
@@ -395,6 +401,11 @@ const App = () => {
                 
                 {/* V2 ROUTES - New Architecture */}
                 <Route path="/dashboard-executive" element={<ProtectedRoute><DashboardExecutiveV2 /></ProtectedRoute>} />
+                
+                {/* Demo Routes */}
+                <Route path="/cockpit-demo" element={<CockpitDemo />} />
+                <Route path="/demo-complete" element={<DemoComplete />} />
+                <Route path="/demo" element={<DemoComplete />} />
                 
                 <Route path="/portfolios" element={<ProtectedRoute><PortfoliosListV2 /></ProtectedRoute>} />
                 <Route path="/portfolios/:id" element={<ProtectedRoute><PortfolioDetailV2 /></ProtectedRoute>} />

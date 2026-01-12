@@ -1,27 +1,90 @@
-import React, { useState } from 'react';
-import { FileText, Download, Calendar, Filter, CheckSquare, Settings } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { FileText, Download, Calendar, Filter, CheckSquare, Settings, Save, Eye } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
+import { useNavigate } from 'react-router-dom';
 import { exportToPDF, exportToPPTX } from '@/lib/exportUtils';
+import { createReport, generateReportData, getReports } from '@/lib/reportService';
 
 const ReportBuilder = ({ language }) => {
     const { toast } = useToast();
+    const navigate = useNavigate();
     const [selectedSections, setSelectedSections] = useState({
         execSummary: true,
         financials: true,
         risks: true,
         projectList: false
     });
+    const [reportTitle, setReportTitle] = useState('Rapport Stratégique Q1 2026');
+    const [period, setPeriod] = useState('Q1 2026');
+    const [reportData, setReportData] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [savedReports, setSavedReports] = useState([]);
+
+    // Charger les données au montage
+    useEffect(() => {
+        loadReportData();
+        loadSavedReports();
+    }, []);
+
+    const loadReportData = async () => {
+        setLoading(true);
+        const result = await generateReportData('strategic', period);
+        if (result.success) {
+            setReportData(result.data);
+        } else {
+            toast({ 
+                title: "Erreur", 
+                description: "Impossible de charger les données",
+                variant: "destructive"
+            });
+        }
+        setLoading(false);
+    };
+
+    const loadSavedReports = async () => {
+        const result = await getReports({ report_type: 'custom' });
+        if (result.success) {
+            setSavedReports(result.data || []);
+        }
+    };
+
+    const handleSaveReport = async () => {
+        setLoading(true);
+        const result = await createReport({
+            title: reportTitle,
+            description: `Rapport stratégique pour la période ${period}`,
+            report_type: 'strategic',
+            period: period,
+            sections: selectedSections,
+            data: reportData
+        });
+
+        if (result.success) {
+            toast({ 
+                title: "Rapport sauvegardé", 
+                description: "Votre rapport a été enregistré avec succès"
+            });
+            loadSavedReports();
+        } else {
+            toast({ 
+                title: "Erreur", 
+                description: result.error || "Impossible de sauvegarder le rapport",
+                variant: "destructive"
+            });
+        }
+        setLoading(false);
+    };
 
     const handleGenerate = (format) => {
-        toast({ title: "Generating Report...", description: "This might take a few seconds." });
+        toast({ title: "Génération du rapport...", description: "Cela peut prendre quelques secondes." });
         setTimeout(() => {
             if (format === 'pdf') {
-                exportToPDF('report-preview', 'Custom_Strategic_Report.pdf');
+                exportToPDF('report-preview', `${reportTitle.replace(/\s+/g, '_')}.pdf`);
             } else {
-                exportToPPTX({ name: 'Strategic Report' }, 'Generated via Report Builder');
+                exportToPPTX({ name: reportTitle }, 'Généré via Report Builder');
             }
-            toast({ title: "Success", description: "Report downloaded successfully." });
+            toast({ title: "Succès", description: "Rapport téléchargé avec succès." });
         }, 1500);
     };
 
@@ -29,8 +92,18 @@ const ReportBuilder = ({ language }) => {
         <div className="space-y-6">
             <div className="flex justify-between items-center">
                 <div>
-                    <h1 className="text-2xl font-bold text-[#D4AF37]">Report Builder</h1>
-                    <p className="text-slate-500">Create custom strategic reports for your stakeholders.</p>
+                    <h1 className="text-2xl font-bold text-[#D4AF37]">Créateur de Rapports</h1>
+                    <p className="text-slate-500">Créez des rapports stratégiques personnalisés pour vos parties prenantes.</p>
+                </div>
+                <div className="flex gap-2">
+                    <Button 
+                        variant="outline" 
+                        onClick={() => navigate('/app/reports')}
+                        className="border-slate-700 text-slate-300 hover:bg-slate-800"
+                    >
+                        <Eye className="w-4 h-4 mr-2" />
+                        Voir mes rapports
+                    </Button>
                 </div>
             </div>
 
@@ -43,11 +116,43 @@ const ReportBuilder = ({ language }) => {
                     
                     <div className="space-y-6">
                         <div>
-                            <label className="text-sm text-slate-400 mb-2 block">Report Period</label>
+                            <label className="text-sm text-slate-400 mb-2 block">Titre du rapport</label>
+                            <input
+                                type="text"
+                                value={reportTitle}
+                                onChange={(e) => setReportTitle(e.target.value)}
+                                className="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded text-white text-sm focus:outline-none focus:border-[#D4AF37]"
+                                placeholder="Ex: Rapport Stratégique Q1 2026"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="text-sm text-slate-400 mb-2 block">Période du rapport</label>
                             <div className="flex gap-2">
-                                <Button variant="outline" size="sm" className="flex-1 bg-slate-900 border-slate-700 text-white hover:bg-slate-800">Q1 2026</Button>
-                                <Button variant="ghost" size="sm" className="flex-1 text-slate-500">Q2</Button>
-                                <Button variant="ghost" size="sm" className="flex-1 text-slate-500">Q3</Button>
+                                <Button 
+                                    variant={period === 'Q1 2026' ? "outline" : "ghost"}
+                                    size="sm" 
+                                    onClick={() => setPeriod('Q1 2026')}
+                                    className={period === 'Q1 2026' ? "flex-1 bg-slate-900 border-slate-700 text-white hover:bg-slate-800" : "flex-1 text-slate-500"}
+                                >
+                                    Q1 2026
+                                </Button>
+                                <Button 
+                                    variant={period === 'Q2 2026' ? "outline" : "ghost"}
+                                    size="sm" 
+                                    onClick={() => setPeriod('Q2 2026')}
+                                    className={period === 'Q2 2026' ? "flex-1 bg-slate-900 border-slate-700 text-white hover:bg-slate-800" : "flex-1 text-slate-500"}
+                                >
+                                    Q2
+                                </Button>
+                                <Button 
+                                    variant={period === 'Q3 2026' ? "outline" : "ghost"}
+                                    size="sm" 
+                                    onClick={() => setPeriod('Q3 2026')}
+                                    className={period === 'Q3 2026' ? "flex-1 bg-slate-900 border-slate-700 text-white hover:bg-slate-800" : "flex-1 text-slate-500"}
+                                >
+                                    Q3
+                                </Button>
                             </div>
                         </div>
 
@@ -64,11 +169,28 @@ const ReportBuilder = ({ language }) => {
                         </div>
 
                         <div className="pt-4 border-t border-slate-800 space-y-3">
-                            <Button className="w-full bg-[#1E3A8A] hover:bg-[#172554] text-white" onClick={() => handleGenerate('pdf')}>
-                                <Download className="w-4 h-4 mr-2" /> Export as PDF
+                            <Button 
+                                className="w-full bg-[#D4AF37] hover:bg-[#B8941F] text-black font-semibold" 
+                                onClick={handleSaveReport}
+                                disabled={loading}
+                            >
+                                <Save className="w-4 h-4 mr-2" /> 
+                                {loading ? 'Sauvegarde...' : 'Sauvegarder le rapport'}
                             </Button>
-                            <Button variant="outline" className="w-full border-slate-700 text-slate-300 hover:bg-slate-800" onClick={() => handleGenerate('pptx')}>
-                                <FileText className="w-4 h-4 mr-2" /> Export as PPTX
+                            <Button 
+                                className="w-full bg-[#1E3A8A] hover:bg-[#172554] text-white" 
+                                onClick={() => handleGenerate('pdf')}
+                                disabled={loading}
+                            >
+                                <Download className="w-4 h-4 mr-2" /> Exporter en PDF
+                            </Button>
+                            <Button 
+                                variant="outline" 
+                                className="w-full border-slate-700 text-slate-300 hover:bg-slate-800" 
+                                onClick={() => handleGenerate('pptx')}
+                                disabled={loading}
+                            >
+                                <FileText className="w-4 h-4 mr-2" /> Exporter en PPTX
                             </Button>
                         </div>
                     </div>
@@ -79,35 +201,41 @@ const ReportBuilder = ({ language }) => {
                     {/* A4 Page Simulation */}
                     <div className="border-b-4 border-[#D4AF37] pb-4 mb-8 flex justify-between items-end">
                         <div>
-                            <h1 className="text-4xl font-bold text-[#1E3A8A]">Strategic Review</h1>
-                            <p className="text-slate-500 mt-1">Q1 2026 • Private Banking Division</p>
+                            <h1 className="text-4xl font-bold text-[#1E3A8A]">{reportTitle}</h1>
+                            <p className="text-slate-500 mt-1">{period} • {reportData?.metrics?.totalProjects || 0} Projets</p>
                         </div>
                         <div className="text-right">
                              <div className="text-[#D4AF37] font-bold text-xl tracking-wider">POWALYZE</div>
-                             <div className="text-xs text-slate-400">CONFIDENTIAL</div>
+                             <div className="text-xs text-slate-400">CONFIDENTIEL</div>
                         </div>
                     </div>
 
                     {selectedSections.execSummary && (
                         <div className="mb-8">
-                            <h2 className="text-xl font-bold text-[#1E3A8A] mb-4 border-l-4 border-[#1E3A8A] pl-3">Executive Summary</h2>
+                            <h2 className="text-xl font-bold text-[#1E3A8A] mb-4 border-l-4 border-[#1E3A8A] pl-3">Résumé Exécutif</h2>
                             <p className="text-sm text-slate-700 leading-relaxed mb-4">
-                                The portfolio is currently performing within expected risk tolerances (Risk Score: 42/100). 
-                                Key strategic initiatives "Digital Front" and "Core Migration" are progressing on schedule. 
-                                Budget consumption is 2% below forecast, allowing for potential reallocation to acceleration tracks in Q2.
+                                Le portefeuille performe actuellement dans les tolérances de risque attendues. 
+                                Les initiatives stratégiques clés progressent selon le calendrier prévu. 
+                                La consommation budgétaire est sous contrôle, permettant une réallocation potentielle en Q2.
                             </p>
                             <div className="grid grid-cols-3 gap-4">
                                 <div className="bg-slate-50 p-4 border border-slate-200">
-                                    <div className="text-xs text-slate-500 uppercase">Portfolio Health</div>
-                                    <div className="text-2xl font-bold text-emerald-600">94/100</div>
+                                    <div className="text-xs text-slate-500 uppercase">Santé du Portfolio</div>
+                                    <div className="text-2xl font-bold text-emerald-600">
+                                        {reportData?.metrics?.activeProjects || 0}/{reportData?.metrics?.totalProjects || 0}
+                                    </div>
                                 </div>
                                 <div className="bg-slate-50 p-4 border border-slate-200">
-                                    <div className="text-xs text-slate-500 uppercase">Budget Consumed</div>
-                                    <div className="text-2xl font-bold text-[#1E3A8A]">CHF 4.2M</div>
+                                    <div className="text-xs text-slate-500 uppercase">Budget Consommé</div>
+                                    <div className="text-2xl font-bold text-[#1E3A8A]">
+                                        {((reportData?.metrics?.budgetConsumed || 0) / 1000).toFixed(1)}K €
+                                    </div>
                                 </div>
                                 <div className="bg-slate-50 p-4 border border-slate-200">
-                                    <div className="text-xs text-slate-500 uppercase">Open Risks</div>
-                                    <div className="text-2xl font-bold text-amber-600">3 High</div>
+                                    <div className="text-xs text-slate-500 uppercase">Risques Ouverts</div>
+                                    <div className="text-2xl font-bold text-amber-600">
+                                        {reportData?.metrics?.highRisks || 0} Élevés
+                                    </div>
                                 </div>
                             </div>
                         </div>

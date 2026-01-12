@@ -37,12 +37,12 @@ const Sidebar = () => {
   const userRole = user?.user_metadata?.role || 'Viewer';
 
   const navItems = [
-    { icon: LayoutDashboard, label: 'Tableau de bord', path: '/app', exact: true },
+    { icon: LayoutDashboard, label: 'Tableau de bord', path: '/app/cockpit' },
     { icon: Briefcase, label: 'Projets', path: '/app/projects' },
     { icon: FolderOpen, label: 'Portfolio', path: '/app/portfolio' },
     { icon: TrendingUp, label: 'Intelligence prédictive', path: '/app/predictive-intelligence' },
     { icon: BarChart2, label: 'Rapports', path: '/app/reports' },
-    { icon: BarChart2, label: 'Power BI', path: '/app/powerbi' },
+    { icon: BarChart2, label: 'Power BI', path: '/app/powerbi-hub' },
     { icon: Activity, label: 'Alertes', path: '/app/alerts' },
     { icon: Users, label: 'Équipe', path: '/app/team' },
     { icon: Layers, label: 'Intégrations', path: '/app/integrations' },

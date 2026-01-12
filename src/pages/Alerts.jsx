@@ -1,13 +1,13 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import CockpitLayout from '@/components/layout/CockpitLayout';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useAuth } from '@/contexts/SupabaseAuthContext';
 import { supabase } from '@/lib/customSupabaseClient';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/components/ui/use-toast';
-import PageActions from '@/components/PageActions';
 import { 
   Search, 
   Flame, 
@@ -20,9 +20,10 @@ import {
   CheckCircle2,
   XCircle,
   AlertCircle,
-  ChevronRight
+  ChevronRight,
+  Filter,
+  Download
 } from 'lucide-react';
-import Footer from '@/components/Footer';
 
 // Mock data - Risk Intelligence
 const mockRisks = [
@@ -228,75 +229,82 @@ const RiskIntelligenceCenter = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50">
-      <div className="p-6 lg:p-8 space-y-8 flex-1">
-        
-        {/* Header */}
-        <div className="flex justify-between items-start">
-          <div>
-            <h1 className="text-4xl font-bold text-slate-900">Risk Intelligence Center</h1>
-            <p className="text-slate-600 mt-2">Centre de renseignement stratégique · Pas une liste d'alertes</p>
-          </div>
-          <PageActions />
+    <CockpitLayout>
+      {/* Header */}
+      <div className="flex justify-between items-start mb-8">
+        <div>
+          <h1 className="text-2xl font-extralight text-white tracking-tight mb-2">Risk Intelligence Center</h1>
+          <p className="text-xs text-white/40 tracking-[0.1em] uppercase">Strategic Risk Analytics</p>
         </div>
+        <div className="flex items-center gap-3">
+          <button className="px-4 py-2 bg-black/40 backdrop-blur-xl border border-white/5 rounded-[2px] text-xs text-white/60 hover:text-white hover:border-white/10 transition-all duration-500 flex items-center gap-2">
+            <Filter className="w-3 h-3" />
+            Filter
+          </button>
+          <button className="px-6 py-2 bg-[#D4AF37] text-black rounded-[2px] text-xs font-light hover:shadow-[0_0_40px_rgba(212,175,55,0.4)] transition-all duration-500 tracking-[0.2em] uppercase flex items-center gap-2">
+            <Download className="w-3 h-3" />
+            Export
+          </button>
+        </div>
+      </div>
 
-        {/* A. Executive Risk Pulse */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      {/* A. Executive Risk Pulse */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
           
           {/* Tensions critiques */}
-          <div className="bg-slate-900 text-white rounded-xl p-6 shadow-lg">
+          <div className="bg-black/40 backdrop-blur-xl border border-white/5 rounded-[2px] p-6 hover:border-white/10 transition-all duration-500">
             <div className="flex items-center gap-3 mb-3">
-              <div className="p-2 bg-rose-500/20 rounded-lg">
-                <Flame className="w-6 h-6 text-rose-400" />
+              <div className="w-10 h-10 border border-rose-500/20 rounded-[2px] flex items-center justify-center">
+                <Flame className="w-5 h-5 text-rose-400" />
               </div>
-              <span className="text-sm font-medium text-slate-300">Tensions critiques</span>
+              <span className="text-xs font-light text-white/40 tracking-[0.15em] uppercase">Critical Tensions</span>
             </div>
-            <div className="text-3xl font-bold">{criticalTensions}</div>
-            <div className="text-xs text-slate-400 mt-2">Nécessitent action immédiate</div>
+            <div className="text-3xl font-extralight text-white">{criticalTensions}</div>
+            <div className="text-xs text-white/40 mt-2">Require immediate action</div>
           </div>
 
           {/* Risques émergents */}
-          <div className="bg-slate-900 text-white rounded-xl p-6 shadow-lg">
+          <div className="bg-black/40 backdrop-blur-xl border border-white/5 rounded-[2px] p-6 hover:border-white/10 transition-all duration-500">
             <div className="flex items-center gap-3 mb-3">
-              <div className="p-2 bg-orange-500/20 rounded-lg">
-                <AlertTriangle className="w-6 h-6 text-orange-400" />
+              <div className="w-10 h-10 border border-orange-500/20 rounded-[2px] flex items-center justify-center">
+                <AlertTriangle className="w-5 h-5 text-orange-400" />
               </div>
-              <span className="text-sm font-medium text-slate-300">Risques émergents</span>
+              <span className="text-xs font-light text-white/40 tracking-[0.15em] uppercase">Emerging Risks</span>
             </div>
-            <div className="text-3xl font-bold">{emergingRisks}</div>
-            <div className="text-xs text-slate-400 mt-2">À surveiller de près</div>
+            <div className="text-3xl font-extralight text-white">{emergingRisks}</div>
+            <div className="text-xs text-white/40 mt-2">To monitor closely</div>
           </div>
 
           {/* Dérives détectées */}
-          <div className="bg-slate-900 text-white rounded-xl p-6 shadow-lg">
+          <div className="bg-black/40 backdrop-blur-xl border border-white/5 rounded-[2px] p-6 hover:border-white/10 transition-all duration-500">
             <div className="flex items-center gap-3 mb-3">
-              <div className="p-2 bg-yellow-500/20 rounded-lg">
-                <TrendingDown className="w-6 h-6 text-yellow-400" />
+              <div className="w-10 h-10 border border-yellow-500/20 rounded-[2px] flex items-center justify-center">
+                <TrendingDown className="w-5 h-5 text-yellow-400" />
               </div>
-              <span className="text-sm font-medium text-slate-300">Dérives détectées</span>
+              <span className="text-xs font-light text-white/40 tracking-[0.15em] uppercase">Detected Drifts</span>
             </div>
-            <div className="text-3xl font-bold">{derivesDetectees}</div>
-            <div className="text-xs text-slate-400 mt-2">Écarts budgétaires/marges</div>
+            <div className="text-3xl font-extralight text-white">{derivesDetectees}</div>
+            <div className="text-xs text-white/40 mt-2">Budget/Margin deviations</div>
           </div>
 
           {/* Impacts potentiels */}
-          <div className="bg-slate-900 text-white rounded-xl p-6 shadow-lg">
+          <div className="bg-black/40 backdrop-blur-xl border border-white/5 rounded-[2px] p-6 hover:border-white/10 transition-all duration-500">
             <div className="flex items-center gap-3 mb-3">
-              <div className="p-2 bg-blue-500/20 rounded-lg">
-                <Target className="w-6 h-6 text-blue-400" />
+              <div className="w-10 h-10 border border-blue-500/20 rounded-[2px] flex items-center justify-center">
+                <Target className="w-5 h-5 text-blue-400" />
               </div>
-              <span className="text-sm font-medium text-slate-300">Impact cumulé</span>
+              <span className="text-xs font-light text-white/40 tracking-[0.15em] uppercase">Total Impact</span>
             </div>
-            <div className="text-3xl font-bold">{impactsPotentiels}</div>
-            <div className="text-xs text-slate-400 mt-2">Score d'impact total</div>
+            <div className="text-3xl font-extralight text-white">{impactsPotentiels}</div>
+            <div className="text-xs text-white/40 mt-2">Cumulative impact score</div>
           </div>
 
         </div>
 
         {/* B. Risk Radar */}
-        <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-8">
-          <h2 className="text-2xl font-bold text-slate-900 mb-6">Risk Radar</h2>
-          <p className="text-sm text-slate-600 mb-6">Distribution des risques par domaine</p>
+        <div className="bg-black/40 backdrop-blur-xl border border-white/5 rounded-[2px] p-8 mb-8">
+          <h2 className="text-xl font-light text-white mb-6 tracking-tight">Risk Radar</h2>
+          <p className="text-sm text-white/50 mb-6">Risk distribution by domain</p>
           
           <div className="flex items-end justify-between gap-4 h-64">
             {radarDomains.map((item, idx) => (
@@ -589,9 +597,7 @@ const RiskIntelligenceCenter = () => {
           </div>
         </div>
 
-      </div>
-      <Footer />
-    </div>
+    </CockpitLayout>
   );
 };
 

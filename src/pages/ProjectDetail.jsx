@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   ArrowLeft, 
@@ -17,15 +17,18 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { exportToPDF, exportToPPTX, exportToExcel } from '@/lib/exportUtils';
-import { projectService } from '@/lib/portfolioService';
+import { initiativeService } from '@/lib/initiativeService';
+import customSupabaseClient from '@/lib/customSupabaseClient';
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from 'recharts';
 
 const ProjectDetail = ({ language }) => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState('overview');
 
   // Mock data for burnup/burndown since we might not have it in DB yet
@@ -42,37 +45,58 @@ const ProjectDetail = ({ language }) => {
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        // Use projectService.getProjectFull for 360° view
-        const fullProject = await projectService.getProjectFull(id);
+        console.log('🔍 Chargement projet:', id);
         
-        if (fullProject) {
-          setProject(fullProject);
-        } else {
-          // Fallback data for demo
-          setProject({
-            id: id || '1',
-            name: "Core Banking Migration Phase 2",
-            description: "Migrating legacy mainframe to cloud-native microservices architecture.",
-            progress: 65,
-            budget_actual: 4200000,
-            budget_planned: 5000000,
-            start_date: '2023-01-01',
-            end_date: '2023-12-31',
-            status: 'IN_PROGRESS',
-            health: 'AMBER',
-            risks: [],
-            decisions: [],
-            documents: [],
-            comments: []
-          });
+        // Récupérer l'initiative directement depuis Supabase
+        const { data, error } = await customSupabaseClient
+          .from('initiatives')
+          .select('*')
+          .eq('id', id)
+          .single();
+        
+        if (error) {
+          console.error('❌ Erreur Supabase:', error);
+          throw error;
         }
+
+        if (!data) {
+          console.error('❌ Projet introuvable');
+          setError('Projet introuvable');
+          return;
+        }
+
+        console.log('✅ Projet chargé:', data);
+        
+        // Mapper les données au format attendu
+        setProject({
+          id: data.id,
+          name: data.name,
+          description: data.description || '',
+          progress: data.progress || 0,
+          budget_actual: data.budget || 0,
+          budget_planned: data.budget || 0,
+          start_date: data.start_date,
+          end_date: data.end_date,
+          status: data.status || 'planned',
+          priority: data.priority || 'medium',
+          health: data.status === 'at_risk' ? 'RED' : data.status === 'in_progress' ? 'AMBER' : 'GREEN',
+          risks: [],
+          decisions: [],
+          documents: [],
+          comments: []
+        });
+        
       } catch (error) {
-        console.error('Error loading project:', error);
+        console.error('❌ Error loading project:', error);
+        setError(error.message || 'Erreur lors du chargement du projet');
       } finally {
         setLoading(false);
       }
     };
-    fetchProject();
+    
+    if (id) {
+      fetchProject();
+    }
   }, [id]);
 
 
@@ -113,14 +137,54 @@ const ProjectDetail = ({ language }) => {
 
   if (loading) {
     return (
-      <div className="p-10 text-[#D4AF37]">Chargement des données du projet...</div>
+      <div className="min-h-screen bg-[#0A1A2F] flex items-center justify-center">
+        <div className="text-[#D4AF37]">Chargement des données du projet...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-[#0A1A2F] p-6">
+        <Link to="/app/portfolio" className="inline-flex items-center text-slate-400 hover:text-[#D4AF37] mb-4 transition-colors">
+          <ArrowLeft className="w-4 h-4 mr-2" /> Retour au portfolio
+        </Link>
+        <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-6 mt-4">
+          <div className="flex items-center gap-3 text-red-400">
+            <AlertTriangle className="w-5 h-5" />
+            <div>
+              <div className="font-semibold">Erreur</div>
+              <div className="text-sm">{error}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!project) {
+    return (
+      <div className="min-h-screen bg-[#0A1A2F] p-6">
+        <Link to="/app/portfolio" className="inline-flex items-center text-slate-400 hover:text-[#D4AF37] mb-4 transition-colors">
+          <ArrowLeft className="w-4 h-4 mr-2" /> Retour au portfolio
+        </Link>
+        <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-6 mt-4">
+          <div className="flex items-center gap-3 text-amber-400">
+            <AlertTriangle className="w-5 h-5" />
+            <div>
+              <div className="font-semibold">Projet introuvable</div>
+              <div className="text-sm">Le projet demandé n'existe pas ou a été supprimé.</div>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 
   return (
     <div className="space-y-6 bg-[#0A1A2F] min-h-screen p-6" id="project-report">
-      <Link to="/app/portfolio-view" className="inline-flex items-center text-slate-400 hover:text-[#D4AF37] mb-4 transition-colors">
-        <ArrowLeft className="w-4 h-4 mr-2" /> Retour aux projets
+      <Link to="/app/portfolio" className="inline-flex items-center text-slate-400 hover:text-[#D4AF37] mb-4 transition-colors">
+        <ArrowLeft className="w-4 h-4 mr-2" /> Retour au portfolio
       </Link>
 
       {/* Header with Project Info */}

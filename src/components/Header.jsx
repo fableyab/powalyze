@@ -150,10 +150,10 @@ const Header = () => {
       dropdown: [
         { name: 'Vision', path: '/apropos/vision' },
         { name: 'Gouvernance moderne', path: '/apropos/gouvernance' },
-        { name: 'Sécurité', path: '/apropos/securite' },
-        { name: 'Contact', path: '/contact' }
+        { name: 'Sécurité', path: '/apropos/securite' }
       ]
-    }
+    },
+    { name: 'Contact', path: '/contact' }
   ];
 
   return (
@@ -208,6 +208,16 @@ const Header = () => {
           {/* Desktop Actions */}
           <div className='hidden lg:flex items-center gap-3'>
             <LanguageSwitcher />
+
+            {/* Bouton Démo toujours visible */}
+            <Button
+              onClick={() => navigate('/demo-complete')}
+              variant="ghost"
+              size="sm"
+              className='text-white/70 hover:text-[#D4AF37] hover:bg-[#D4AF37]/10 transition-all border border-[#D4AF37]/30 hover:border-[#D4AF37]/60'
+            >
+              ✨ Démo
+            </Button>
 
             {!user ? (
               <div className="flex items-center gap-2">
@@ -309,6 +319,14 @@ const Header = () => {
             </div>
 
             <div className="mt-auto space-y-4 pt-6 border-t border-white/10">
+              <Button
+                onClick={() => { navigate('/demo-complete'); setIsMobileMenuOpen(false); }}
+                variant="ghost"
+                className='w-full text-white/70 hover:text-[#D4AF37] hover:bg-[#D4AF37]/10 border border-[#D4AF37]/30 hover:border-[#D4AF37]/60'
+              >
+                ✨ Démo
+              </Button>
+
               {!user ? (
                 <>
                   <Button 

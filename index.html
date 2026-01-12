@@ -2,15 +2,79 @@
 <html lang="fr">
 	<head>
 		<meta charset="UTF-8" />
-		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
-		<link rel="apple-touch-icon" href="/vite.svg" />
+		<link rel="icon" type="image/svg+xml" href="/icon-192.svg" />
+		<link rel="apple-touch-icon" href="/icon-192.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 		<meta name="theme-color" content="#D4AF37" />
+		<meta name="mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 		<meta name="apple-mobile-web-app-title" content="Powalyze" />
 		<link rel="manifest" href="/manifest.json" />
-		<title>Powalyze - Intelligence Décisionnelle</title>
+		
+		<!-- SEO Meta Tags -->
+		<title>Powalyze — Cockpit de Gouvernance Augmentée | PMO, Power BI, IA | Suisse & France</title>
+		<meta name="description" content="Cockpit de gouvernance premium pour dirigeants exigeants. Pilotage stratégique, PMO opérationnel, Data Analytics et Power BI augmentés par l'IA. Une précision suisse, une exécution française. Consultant PMO expert Suisse et France." />
+		<meta name="keywords" content="PMO Suisse, PMO France, Power BI Expert Suisse, Gouvernance projet IA, Consultant PMO indépendant, Expert Power BI Genève, Pilotage stratégique, Data Analytics, Gouvernance augmentée, Cockpit exécutif, PMO Genève, PMO Lausanne, PMO Paris, Tableau de bord Power BI, IA gouvernance" />
+		<meta name="author" content="Powalyze" />
+		<meta name="robots" content="index, follow" />
+		<link rel="canonical" href="https://www.powalyze.com" />
+		
+		<!-- Open Graph Meta Tags (Facebook, LinkedIn) -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="Powalyze — Cockpit de Gouvernance Augmentée pour Dirigeants Exigeants" />
+		<meta property="og:description" content="Pilotage stratégique, PMO, Data Analytics et Power BI augmentés par l'IA. Une précision suisse, une exécution française. Votre gouvernance mérite mieux qu'un fichier Excel." />
+		<meta property="og:url" content="https://www.powalyze.com" />
+		<meta property="og:site_name" content="Powalyze" />
+		<meta property="og:locale" content="fr_FR" />
+		<meta property="og:locale:alternate" content="fr_CH" />
+		<meta property="og:image" content="https://www.powalyze.com/og-image.jpg" />
+		
+		<!-- Twitter Card Meta Tags -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Powalyze — Cockpit de Gouvernance Augmentée" />
+		<meta name="twitter:description" content="Pilotage stratégique, PMO, Data Analytics et Power BI augmentés par l'IA. Suisse & France." />
+		<meta name="twitter:image" content="https://www.powalyze.com/og-image.jpg" />
+		
+		<!-- Structured Data (JSON-LD) -->
+		<script type="application/ld+json">
+		{
+		  "@context": "https://schema.org",
+		  "@type": "SoftwareApplication",
+		  "name": "Powalyze",
+		  "applicationCategory": "BusinessApplication",
+		  "description": "Cockpit de gouvernance augmentée pour dirigeants exigeants. Pilotage stratégique, PMO, Data Analytics et Power BI augmentés par l'IA.",
+		  "offers": {
+		    "@type": "Offer",
+		    "price": "0",
+		    "priceCurrency": "EUR"
+		  },
+		  "creator": {
+		    "@type": "Organization",
+		    "name": "Powalyze",
+		    "areaServed": ["CH", "FR"],
+		    "serviceType": ["PMO", "Data Analytics", "Power BI", "Gouvernance IA"]
+		  }
+		}
+		</script>
+		
+		<!-- Google Analytics 4 -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		  gtag('config', 'G-XXXXXXXXXX', {
+		    'page_title': document.title,
+		    'page_location': window.location.href,
+		    'page_path': window.location.pathname
+		  });
+		  
+		  // Custom event tracking
+		  window.trackEvent = function(eventName, eventParams) {
+		    gtag('event', eventName, eventParams);
+		  };
+		</script>
 	</head>
 	<body>
 		<div id="root"></div>

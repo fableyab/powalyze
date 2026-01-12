@@ -4,12 +4,25 @@ import { supabase } from '@/lib/customSupabaseClient';
 export const storageService = {
   async getStorageUsage(userId) {
     try {
-      // In a real scenario, we might query a 'documents' table to sum file_size
-      // For this implementation, we will mock/calculate based on the documents table provided in schema
+      // Get user's organization first
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return { used: 0, total: 10 * 1024 * 1024 * 1024, percentage: 0 };
+
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('organization_id')
+        .eq('id', user.id)
+        .single();
+
+      if (!profile?.organization_id) {
+        return { used: 0, total: 10 * 1024 * 1024 * 1024, percentage: 0 };
+      }
+
+      // Query documents by organization
       const { data, error } = await supabase
         .from('documents')
         .select('file_size')
-        .eq('user_id', userId);
+        .eq('organization_id', profile.organization_id);
 
       if (error) throw error;
 

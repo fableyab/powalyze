@@ -1,15 +1,81 @@
-<svg width="192" height="192" xmlns="http://www.w3.org/2000/svg">
-  <rect width="192" height="192" fill="#000000" rx="43.2"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="192" height="192" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="192" height="192" fill="#000000"/>
+  
+  <!-- Gradient definition -->
   <defs>
-    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
-      <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#3B82F6" stroke-width="0.5" opacity="0.2"/>
-    </pattern>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#F59E0B;stop-opacity:1" />
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4A9EFF;stop-opacity:1" />
     </linearGradient>
+    
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
   </defs>
-  <rect width="192" height="192" fill="url(#grid)"/>
-  <text x="96" y="96" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" dominant-baseline="middle" fill="url(#grad)">P</text>
-  <text x="96" y="128" font-family="Arial, sans-serif" font-size="12.8" font-weight="bold" text-anchor="middle" fill="url(#grad)">Powalyze</text>
+  
+  <!-- Swiss Precision Grid (subtle) -->
+  
+  <g opacity="0.1" stroke="#D4AF37" stroke-width="0.5" fill="none">
+    
+      <line x1="0" y1="0" x2="0" y2="192"/>
+      <line x1="0" y1="0" x2="192" y2="0"/>
+    
+      <line x1="40" y1="0" x2="40" y2="192"/>
+      <line x1="0" y1="40" x2="192" y2="40"/>
+    
+      <line x1="80" y1="0" x2="80" y2="192"/>
+      <line x1="0" y1="80" x2="192" y2="80"/>
+    
+      <line x1="120" y1="0" x2="120" y2="192"/>
+      <line x1="0" y1="120" x2="192" y2="120"/>
+    
+  </g>
+  
+  <!-- Central Logo: P letter with dashboard element -->
+  <g transform="translate(96, 96)">
+    <!-- P Letter -->
+    <path 
+      d="M -28.799999999999997 -48 
+         L -28.799999999999997 48 
+         M -28.799999999999997 -48 
+         L 9.600000000000001 -48 
+         Q 28.799999999999997 -48 28.799999999999997 -28.799999999999997
+         Q 28.799999999999997 -9.600000000000001 9.600000000000001 -9.600000000000001
+         L -28.799999999999997 -9.600000000000001"
+      stroke="url(#goldGrad)" 
+      stroke-width="3.84" 
+      fill="none"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      filter="url(#glow)"
+    />
+    
+    <!-- Dashboard accent -->
+    <circle 
+      cx="28.799999999999997" 
+      cy="19.200000000000003" 
+      r="7.68" 
+      fill="#4A9EFF" 
+      opacity="0.8"
+    />
+    <circle 
+      cx="28.799999999999997" 
+      cy="19.200000000000003" 
+      r="3.84" 
+      fill="#D4AF37"
+    />
+  </g>
+  
+  <!-- Corner accent lines -->
+  <line x1="20" y1="20" x2="28.799999999999997" y2="20" stroke="#D4AF37" stroke-width="2" opacity="0.6"/>
+  <line x1="20" y1="20" x2="20" y2="28.799999999999997" stroke="#D4AF37" stroke-width="2" opacity="0.6"/>
+  
+  <line x1="172" y1="20" x2="163.2" y2="20" stroke="#4A9EFF" stroke-width="2" opacity="0.6"/>
+  <line x1="172" y1="20" x2="172" y2="28.799999999999997" stroke="#4A9EFF" stroke-width="2" opacity="0.6"/>
 </svg>

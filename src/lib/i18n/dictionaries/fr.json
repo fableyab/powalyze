@@ -6,32 +6,32 @@
     "login": "Connexion"
   },
   "hero": {
-    "tagline": "Powalyze — Le Système d'Exploitation de la Gouvernance pour Dirigeants PMO et Data",
-    "title": "Le système d'exploitation de votre gouvernance, PMO et Data.",
-    "subtitle": "Alignez projets, décisions et données dans un seul espace vivant — sans multiplier les outils, slides et fichiers Excel.",
-    "line1": "Une vue unique pour votre portefeuille, vos comités, vos KPIs et vos risques.",
-    "line2": "Conçu pour les PMO, data leaders et dirigeants qui refusent le bruit.",
-    "primaryCTA": "Voir la démo en 7 minutes",
-    "secondaryCTA": "Réserver une session live",
-    "reassurance": "Utilisé pour structurer comités, portefeuilles et transformations dans des organisations exigeantes."
+    "tagline": "Powalyze — Le cockpit de gouvernance augmentée pour dirigeants exigeants",
+    "title": "Le cockpit de gouvernance augmentée pour dirigeants exigeants",
+    "subtitle": "Pilotage stratégique, PMO, Data Analytics et Power BI augmentés par l'IA. Une précision suisse, une exécution française, un impact immédiat pour vos décisions.",
+    "line1": "Je conçois et déploie des systèmes de pilotage haut de gamme pour les organisations qui refusent l'approximation.",
+    "line2": "Powalyze transforme vos données, vos projets et vos risques en un cockpit exécutif clair, fiable et actionnable — en temps réel.",
+    "primaryCTA": "Voir la démo",
+    "secondaryCTA": "Réserver une consultation",
+    "reassurance": "Votre gouvernance mérite mieux qu'un fichier Excel. Elle mérite un cockpit."
   },
   "forWho": {
     "title": "À qui s'adresse Powalyze ?",
-    "subtitle": "Trois rôles. Un seul système d'exploitation.",
+    "subtitle": "Trois expertises. Un seul cockpit.",
     "pmo": {
-      "title": "PMO & Portfolio Managers",
-      "line1": "Un OS pour vos comités, vos arbitrages et vos plans d'actions.",
-      "line2": "Fini les slides à refaire avant chaque réunion."
+      "title": "PMO augmenté par l'IA",
+      "line1": "Structure, cadence, gouvernance, arbitrages. Je transforme vos portefeuilles projets en un système lisible, mesurable et prédictif.",
+      "line2": "Décisions plus rapides, risques anticipés, budgets maîtrisés."
     },
     "data": {
-      "title": "Data & Analytics / Responsables Power BI",
-      "line1": "Une vitrine de gouvernance au-dessus de vos modèles Power BI.",
-      "line2": "Vos chiffres deviennent des décisions, pas des fichiers."
+      "title": "Data Analyst & Power BI Expert",
+      "line1": "Vos données deviennent un actif stratégique. Je construis des modèles Power BI premium, automatisés, multilingues, avec une narration exécutive.",
+      "line2": "Chaque tableau de bord raconte une histoire claire, orientée décision."
     },
     "direction": {
-      "title": "Direction / COMEX / DSI",
-      "line1": "Une vue simple, stable, partagée.",
-      "line2": "Toujours le même récit, quel que soit l'outil sous-jacent."
+      "title": "IA appliquée à la gouvernance",
+      "line1": "Je conçois des assistants IA sur mesure pour vos comités, vos PMO et vos équipes. Analyse automatique, synthèse, alertes intelligentes, recommandations.",
+      "line2": "Votre organisation gagne en vitesse, en cohérence et en précision."
     }
   },
   "replaces": {
@@ -141,14 +141,70 @@
     }
   },
   "finalCTA": {
-    "title": "Passez d'une collection d'outils à un OS de gouvernance.",
-    "subtitle": "Vous avez déjà assez d'outils. Ce qui manque, c'est un espace pour aligner projets, données et décisions.",
-    "primaryBtn": "Voir la démo en 7 minutes",
-    "secondaryBtn": "Réserver une session avec un humain",
-    "footer": "Pas de carte de crédit requise. Pas de pression commerciale. Juste de la clarté."
+    "title": "Votre gouvernance mérite mieux qu'un fichier Excel. Elle mérite un cockpit.",
+    "subtitle": "Transformez vos données, vos projets et vos risques en décisions stratégiques claires et actionnables.",
+    "primaryBtn": "Voir la démo",
+    "secondaryBtn": "Réserver une consultation stratégique",
+    "footer": "Architecture SaaS premium : multilingue, sécurisé, modulaire, élégant, et pensé pour l'exécutif."
+  },
+  "markets": {
+    "title": "Suisse + France : Une double expertise",
+    "switzerland": {
+      "title": "Pour la Suisse",
+      "subtitle": "Rigueur, précision, conformité.",
+      "text": "J'accompagne les organisations suisses dans la mise en place de systèmes de pilotage fiables, auditables et multilingues (FR/DE/EN). Powalyze répond aux exigences des banques, assurances, institutions publiques et entreprises industrielles."
+    },
+    "france": {
+      "title": "Pour la France",
+      "subtitle": "Impact, clarté, accélération.",
+      "text": "Je transforme vos données et vos projets en un cockpit exécutif qui fluidifie les décisions et renforce la performance. Un accompagnement premium pour les directions générales, DSI, PMO et équipes Data."
+    }
+  },
+  "services": {
+    "title": "Services d'excellence",
+    "pilotage": {
+      "title": "Pilotage stratégique",
+      "items": [
+        "Vision consolidée du portefeuille",
+        "Analyse automatique des risques",
+        "Prévisions d'atterrissage",
+        "Arbitrages assistés par IA",
+        "Alignement stratégique instantané"
+      ]
+    },
+    "pmo": {
+      "title": "PMO opérationnel",
+      "items": [
+        "Structuration du portefeuille",
+        "Modèles de gouvernance",
+        "Rituels exécutifs",
+        "Roadmaps intelligentes",
+        "Reporting automatisé"
+      ]
+    },
+    "data": {
+      "title": "Data & Power BI",
+      "items": [
+        "Modélisation DAX avancée",
+        "Tableaux de bord exécutifs",
+        "Automatisation des flux",
+        "Gouvernance des données",
+        "Intégration multi-sources"
+      ]
+    },
+    "ai": {
+      "title": "IA & Automatisation",
+      "items": [
+        "Assistants IA pour comités",
+        "Résumés automatiques",
+        "Détection d'anomalies",
+        "Génération de rapports",
+        "Analyse prédictive"
+      ]
+    }
   },
   "footer": {
-    "tagline": "Le système d'exploitation de la gouvernance pour dirigeants PMO et data.",
+    "tagline": "Le cockpit de gouvernance augmentée pour dirigeants exigeants. Une précision suisse, une exécution française.",
     "product": {
       "title": "Produit",
       "links": ["Fonctionnalités", "Intégrations", "Démo", "Tarifs"]
@@ -161,6 +217,6 @@
       "title": "Légal",
       "links": ["Confidentialité", "Conditions", "Sécurité"]
     },
-    "copyright": "La précision suisse rencontre l'ambition de la Silicon Valley."
+    "copyright": "Une précision suisse, une exécution française, un impact immédiat."
   }
 }
