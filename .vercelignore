@@ -16,3 +16,34 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+
+# Build artifacts (Vercel rebuilds from source)
+dist/
+build/
+.cache/
+
+# Development & tooling
+node_modules/
+.vscode/
+.idea/
+
+# Documentation & scripts
+*.md
+*.sql
+*.ps1
+*.log
+*.txt
+.git/
+
+# Backend & mobile
+backend/
+android/
+ios/
+plugins/
+
+# Supabase & data
+supabase/
+backups/
+deploy*/
+scripts/
+tools/
