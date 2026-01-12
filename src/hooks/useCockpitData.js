@@ -1,9 +1,21 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/customSupabaseClient";
+import { getCockpitDemoData, calculateRealCockpitData } from "../lib/cockpitDemoData";
+import logger from "../lib/logger";
 
+/**
+ * Hook pour charger les données du Cockpit PMO
+ * - Tente de charger données réelles depuis Supabase
+ * - Active automatiquement le mode démo si tables manquantes
+ * - Calcule métriques réelles depuis initiatives si disponibles
+ * 
+ * @param {string} orgId - ID de l'organisation
+ * @returns {Object} { data, loading, isDemoMode }
+ */
 export function useCockpitData(orgId) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isDemoMode, setIsDemoMode] = useState(false);
 
   useEffect(() => {
     async function load() {
@@ -13,69 +25,65 @@ export function useCockpitData(orgId) {
       }
 
       try {
-        const [health, signal, milestones, tensions, capacity, decisions, focus, projects] = await Promise.all([
-          supabase
-            .from("global_health_view")
-            .select("*")
-            .eq("organization_id", orgId)
-            .single(),
+        // Tenter de charger initiatives réelles (table principale)
+        const { data: initiatives, error: initiativesError } = await supabase
+          .from("initiatives")
+          .select("id, name, status, progress, budget, risk_level, organization_id, created_at")
+          .eq("organization_id", orgId)
+          .order("created_at", { ascending: false });
+
+        // Si erreur ou pas de données → Mode démo
+        if (initiativesError || !initiatives || initiatives.length === 0) {
+          logger.warn('useCockpitData: Activation mode démo (pas de données réelles)', { 
+            orgId, 
+            error: initiativesError?.message,
+            hasInitiatives: !!initiatives,
+            count: initiatives?.length || 0
+          });
           
+          setIsDemoMode(true);
+          setData(getCockpitDemoData(orgId));
+          setLoading(false);
+          return;
+        }
+
+        // Charger données complémentaires
+        const [risksResult, decisionsResult] = await Promise.all([
           supabase
-            .from("global_signal")
-            .select("*")
-            .eq("organization_id", orgId)
-            .single(),
-          
-          supabase
-            .from("pulse_milestones")
-            .select("*")
-            .eq("organization_id", orgId)
-            .order("due_date", { ascending: true }),
-          
-          supabase
-            .from("tension_heatmap")
-            .select("*")
+            .from("risks")
+            .select("id, severity, status, title, organization_id")
             .eq("organization_id", orgId),
           
           supabase
-            .from("team_load")
-            .select("*")
-            .eq("organization_id", orgId),
-          
-          supabase
-            .from("priority_decisions")
-            .select("*")
-            .eq("organization_id", orgId),
-          
-          supabase
-            .from("focus_items")
-            .select("*")
+            .from("decisions")
+            .select("id, title, due_date, impact_level, status, organization_id")
             .eq("organization_id", orgId)
-            .order("created_at", { ascending: false }),
-          
-          supabase
-            .from("projects")
-            .select("id, name, owner, budget, status, risk_level, strategic_priority")
-            .eq("organization_id", orgId)
-            .order("created_at", { ascending: false })
+            .order("due_date", { ascending: true })
+            .limit(10)
         ]);
 
-        setData({
-          health: health.data,
-          signal: signal.data,
-          milestones: milestones.data || [],
-          tensions: tensions.data || [],
-          capacity: capacity.data || [],
-          decisions: decisions.data || [],
-          focus: focus.data || [],
-          projects: projects.data || [],
-          timestamps: {
-            lastUpdate: "il y a 5 min"
-          }
+        const risks = risksResult.data || [];
+        const decisions = decisionsResult.data || [];
+
+        // Calculer métriques réelles depuis données existantes
+        const realData = await calculateRealCockpitData(initiatives, risks, decisions, orgId);
+        
+        setData(realData);
+        setIsDemoMode(false);
+        
+        logger.info('useCockpitData: Données réelles chargées', {
+          orgId,
+          initiatives: initiatives.length,
+          risks: risks.length,
+          decisions: decisions.length
         });
+
       } catch (error) {
-        console.error("Error loading cockpit data:", error);
-        setData(null);
+        logger.error('useCockpitData.load', error, { orgId });
+        
+        // Fallback mode démo en cas d'erreur
+        setIsDemoMode(true);
+        setData(getCockpitDemoData(orgId));
       } finally {
         setLoading(false);
       }
@@ -84,5 +92,5 @@ export function useCockpitData(orgId) {
     load();
   }, [orgId]);
 
-  return { data, loading };
+  return { data, loading, isDemoMode };
 }

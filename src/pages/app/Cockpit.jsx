@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import CockpitLayout from "../../components/layout/CockpitLayout";
 import { useCockpitData } from "../../hooks/useCockpitData";
 import { useAuth } from "../../contexts/SupabaseAuthContext";
+import EmptyState from '@/components/EmptyState';
 import { signalColor, riskLevelColor, capacityBarGradient, impactLevelColor, statusDotColor } from "../../utils/cockpitColors";
 import { 
   TrendingUp, TrendingDown, AlertTriangle, CheckCircle, Clock, Users, Target, Zap,
@@ -11,63 +12,61 @@ import { AreaChart, Area, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis
 
 export default function CockpitPage() {
   const { orgId } = useAuth();
-  const { data, loading } = useCockpitData(orgId);
-  const [liveMetrics, setLiveMetrics] = useState({ projects: 847, budget: 2.8, team: 124 });
-  const [aiInsights, setAiInsights] = useState([]);
+  const { data, loading, isDemoMode } = useCockpitData(orgId);
   const [selectedView, setSelectedView] = useState('galaxy'); // galaxy, radar, waves, timeline
   const [waveAnimation, setWaveAnimation] = useState(0);
 
-  // Animation des vagues de données
+  // ✅ CALCUL RÉEL des métriques (pas de useState factice)
+  const liveMetrics = useMemo(() => {
+    if (!data || !data.projects) return { projects: 0, budget: 0, team: 0 };
+    
+    const totalBudget = data.projects.reduce((sum, p) => sum + (parseFloat(p.budget) || 0), 0);
+    const teamSize = data.capacity?.reduce((sum, team) => sum + (team.members_count || 0), 0) || 0;
+    
+    return {
+      projects: data.projects.length,
+      budget: +(totalBudget / 1000000).toFixed(1), // Convertir en millions
+      team: teamSize || data.projects.length * 3 // Fallback estimation
+    };
+  }, [data]);
+
+  // Animation des vagues de données (performance optimisée)
   useEffect(() => {
     const interval = setInterval(() => {
       setWaveAnimation(prev => (prev + 1) % 100);
-    }, 50);
+    }, 100); // 100ms au lieu de 50ms pour réduire charge CPU
     return () => clearInterval(interval);
   }, []);
 
-  // Métriques temps réel
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setLiveMetrics(prev => ({
-        projects: Math.round(prev.projects + (Math.random() - 0.5) * 5),
-        budget: +(prev.budget + (Math.random() - 0.5) * 0.1).toFixed(1),
-        team: Math.round(prev.team + (Math.random() - 0.5) * 3)
-      }));
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
-  // Intelligence prédictive (insights IA)
-  useEffect(() => {
-    if (data && data.health) {
-      const insights = [
-        {
-          type: 'prediction',
-          icon: Brain,
-          title: 'Prédiction Budget',
-          message: `${Math.round(data.health.avg_progress)}% de progression détectée. Budget optimal atteint dans 12 jours.`,
-          confidence: 87,
-          color: 'from-purple-500 to-pink-500'
-        },
-        {
-          type: 'risk',
-          icon: Shield,
-          title: 'Risque Identifié',
-          message: `${data.tensions.filter(t => t.avg_level > 70).length} domaines en tension. Action recommandée: réaffectation ressources.`,
-          confidence: 92,
-          color: 'from-red-500 to-orange-500'
-        },
-        {
-          type: 'opportunity',
-          icon: Sparkles,
-          title: 'Opportunité Détectée',
-          message: `${data.capacity.filter(t => t.saturation < 0.6).length} équipes sous-utilisées. Potentiel d'accélération de 23%.`,
-          confidence: 78,
-          color: 'from-emerald-500 to-teal-500'
-        }
-      ];
-      setAiInsights(insights);
-    }
+  // ✅ Quick Insights réels (pas fake IA)
+  const quickInsights = useMemo(() => {
+    if (!data || !data.health) return [];
+    
+    const pendingDecisions = data.decisions?.filter(d => d.status === 'pending' || d.status === 'urgent').length || 0;
+    
+    return [
+      {
+        icon: TrendingUp,
+        title: 'Progression Moyenne',
+        value: `${Math.round(data.health.avg_progress)}%`,
+        message: data.health.avg_progress > 70 ? 'Portfolio en bonne voie' : 'Attention: retards détectés',
+        color: data.health.avg_progress > 70 ? 'text-sky-400' : 'text-amber-400'
+      },
+      {
+        icon: AlertTriangle,
+        title: 'Score de Risque',
+        value: `${Math.round(data.health.risk_score)}%`,
+        message: data.health.risk_score > 50 ? 'Actions correctives nécessaires' : 'Risques sous contrôle',
+        color: data.health.risk_score > 50 ? 'text-amber-400' : 'text-emerald-400'
+      },
+      {
+        icon: CheckCircle,
+        title: 'Décisions Pendantes',
+        value: pendingDecisions,
+        message: pendingDecisions > 5 ? 'Arbitrage COMEX requis' : 'Flux décisionnel fluide',
+        color: pendingDecisions > 5 ? 'text-purple-400' : 'text-emerald-400'
+      }
+    ];
   }, [data]);
 
   // Données pour le radar multi-dimensionnel
@@ -107,8 +106,8 @@ export default function CockpitPage() {
               <div className="absolute inset-0 w-24 h-24 border-4 border-t-[#D4AF37] rounded-full animate-spin"></div>
               <Brain className="absolute inset-0 m-auto w-8 h-8 text-[#D4AF37] animate-pulse" />
             </div>
-            <div className="text-white/60 mt-6 font-light">Initialisation du cockpit intelligent...</div>
-            <div className="text-white/40 text-sm mt-2">Analyse des données en cours</div>
+            <div className="text-white/80 mt-6 font-light">Initialisation du cockpit intelligent...</div>
+            <div className="text-white/60 text-sm mt-2">Analyse des données en cours</div>
           </div>
         </div>
       </CockpitLayout>
@@ -118,9 +117,13 @@ export default function CockpitPage() {
   if (!data || !data.health) {
     return (
       <CockpitLayout>
-        <div className="text-white/60">
-          Aucune donnée disponible. Veuillez configurer votre organisation.
-        </div>
+        <EmptyState
+          icon={Activity}
+          title="Cockpit vide"
+          description="Configurez votre organisation et ajoutez des données pour voir votre tableau de bord intelligent."
+          actionLabel="Gérer l'organisation"
+          actionRoute="/app/settings"
+        />
       </CockpitLayout>
     );
   }
@@ -145,7 +148,7 @@ export default function CockpitPage() {
                     Cockpit
                   </span>
                 </h1>
-                <p className="text-white/50 text-sm font-light mt-1">
+                <p className="text-white/70 text-sm font-light mt-1">
                   Powered by AI • Real-time strategic governance
                 </p>
               </div>
@@ -162,7 +165,7 @@ export default function CockpitPage() {
                     <span className="text-4xl font-bold bg-gradient-to-br from-emerald-400 via-sky-400 to-purple-400 bg-clip-text text-transparent tabular-nums">
                       {Math.round(signal.global_score)}%
                     </span>
-                    <span className="text-[0.65rem] text-white/40 uppercase tracking-widest mt-1">Health Score</span>
+                    <span className="text-[0.65rem] text-white/70 uppercase tracking-widest mt-1">Health Score</span>
                   </div>
                   <div className="flex flex-col gap-1.5">
                     <div className={`w-2 h-2 rounded-full ${
@@ -200,31 +203,34 @@ export default function CockpitPage() {
           </div>
         </div>
 
-        {/* IA Insights - Barre d'intelligence prédictive */}
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-purple-950/50 via-blue-950/50 to-purple-950/50 border border-purple-500/30 p-1 mb-6">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-shimmer"></div>
+        {/* Quick Insights - Métriques calculées en temps réel */}
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-slate-900/50 to-slate-950/50 border border-white/10 p-1 mb-6">
           <div className="relative bg-black/60 backdrop-blur-xl rounded-xl p-4">
             <div className="flex items-center gap-3 mb-3">
-              <Brain className="w-5 h-5 text-purple-400 animate-pulse" />
-              <span className="text-sm font-semibold text-white">Intelligence Prédictive</span>
-              <span className="text-xs text-white/40">• Mise à jour il y a {timestamps.lastUpdate}</span>
+              <Activity className="w-5 h-5 text-sky-400" />
+              <span className="text-sm font-semibold text-white">Quick Insights</span>
+              <span className="text-xs text-white/70">• Mis à jour {timestamps.lastUpdate}</span>
+              {isDemoMode && (
+                <div className="ml-auto flex items-center gap-2 px-3 py-1 bg-amber-500/20 border border-amber-400/60 rounded-lg">
+                  <Sparkles className="w-3 h-3 text-amber-300" />
+                  <span className="text-[0.65rem] font-semibold text-amber-200">Mode Démonstration</span>
+                </div>
+              )}
             </div>
             <div className="grid grid-cols-3 gap-4">
-              {aiInsights.map((insight, idx) => {
+              {quickInsights.map((insight, idx) => {
                 const Icon = insight.icon;
                 return (
                   <div key={idx} className="group relative">
-                    <div className={`absolute inset-0 bg-gradient-to-br ${insight.color} opacity-20 rounded-xl blur-xl group-hover:opacity-30 transition-all`}></div>
-                    <div className="relative bg-black/40 backdrop-blur-sm border border-white/10 rounded-xl p-4 hover:border-white/20 transition-all">
+                    <div className="relative bg-black/40 backdrop-blur-sm border border-white/10 rounded-xl p-4 hover:border-sky-400/50 transition-all">
                       <div className="flex items-start justify-between mb-2">
-                        <Icon className="w-5 h-5 text-white/80" />
-                        <div className="flex items-center gap-1.5">
-                          <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
-                          <span className="text-[0.65rem] text-green-400 font-mono">{insight.confidence}%</span>
+                        <Icon className={`w-5 h-5 ${insight.color}`} />
+                        <div className={`text-[0.65rem] ${insight.color} font-mono`}>
+                          {insight.value}
                         </div>
                       </div>
                       <div className="text-xs font-semibold text-white mb-1">{insight.title}</div>
-                      <div className="text-[0.7rem] text-white/60 leading-relaxed">{insight.message}</div>
+                      <div className="text-[0.7rem] text-white/80 leading-relaxed">{insight.message}</div>
                     </div>
                   </div>
                 );
@@ -251,8 +257,14 @@ export default function CockpitPage() {
                     <Target className="w-8 h-8 text-black" />
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-ping"></div>
-                    <span className="text-xs text-green-400 font-bold tracking-wider">LIVE</span>
+                    {!isDemoMode ? (
+                      <>
+                        <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-ping"></div>
+                        <span className="text-xs text-green-400 font-bold tracking-wider">LIVE</span>
+                      </>
+                    ) : (
+                      <span className="text-xs text-amber-400 font-bold tracking-wider">DEMO</span>
+                    )}
                   </div>
                 </div>
                 <div className="text-6xl font-extralight text-white mb-3 tabular-nums">{liveMetrics.projects}</div>
@@ -279,8 +291,14 @@ export default function CockpitPage() {
                     <Zap className="w-8 h-8 text-white" />
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="w-2.5 h-2.5 bg-blue-500 rounded-full animate-ping"></div>
-                    <span className="text-xs text-blue-400 font-bold tracking-wider">LIVE</span>
+                    {!isDemoMode ? (
+                      <>
+                        <div className="w-2.5 h-2.5 bg-blue-500 rounded-full animate-ping"></div>
+                        <span className="text-xs text-blue-400 font-bold tracking-wider">LIVE</span>
+                      </>
+                    ) : (
+                      <span className="text-xs text-amber-400 font-bold tracking-wider">DEMO</span>
+                    )}
                   </div>
                 </div>
                 <div className="text-6xl font-extralight text-white mb-3 tabular-nums">€{liveMetrics.budget}M</div>
@@ -307,8 +325,14 @@ export default function CockpitPage() {
                     <Users className="w-8 h-8 text-white" />
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-ping"></div>
-                    <span className="text-xs text-emerald-400 font-bold tracking-wider">LIVE</span>
+                    {!isDemoMode ? (
+                      <>
+                        <div className="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-ping"></div>
+                        <span className="text-xs text-emerald-400 font-bold tracking-wider">LIVE</span>
+                      </>
+                    ) : (
+                      <span className="text-xs text-amber-400 font-bold tracking-wider">DEMO</span>
+                    )}
                   </div>
                 </div>
                 <div className="text-6xl font-extralight text-white mb-3 tabular-nums">{liveMetrics.team}</div>
@@ -360,7 +384,7 @@ export default function CockpitPage() {
                 </div>
 
                 {/* Orbites de projets */}
-                {decisions.slice(0, 8).map((project, idx) => {
+                {(projects || []).slice(0, 8).map((project, idx) => {
                   const angle = (idx / 8) * 2 * Math.PI;
                   const radius = 150 + (idx % 2) * 30;
                   const x = Math.cos(angle + waveAnimation * 0.01) * radius;
@@ -378,27 +402,43 @@ export default function CockpitPage() {
                     >
                       <div className="group relative">
                         <div className={`absolute inset-0 rounded-full blur-xl opacity-70 ${
-                          project.impact_level === 'high' ? 'bg-red-500' :
-                          project.impact_level === 'medium' ? 'bg-amber-500' : 'bg-emerald-500'
+                          project.risk_level === 'high' ? 'bg-red-500' :
+                          project.risk_level === 'medium' ? 'bg-amber-500' : 'bg-emerald-500'
                         }`}></div>
                         <div className="relative w-16 h-16 bg-black/80 backdrop-blur-xl border-2 border-white/30 rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-transform">
                           <Rocket className="w-6 h-6 text-white" />
                         </div>
                         <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
                           <div className="bg-black/90 backdrop-blur-xl border border-white/20 rounded-lg px-3 py-1.5">
-                            <div className="text-xs text-white font-semibold">{project.title}</div>
+                            <div className="text-xs text-white font-semibold">{project.name}</div>
+                            <div className="text-[0.6rem] text-white/70">
+                              {project.status} • {Math.round(project.progress || 0)}%
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   );
                 })}
+
+                {/* Fallback si aucun projet */}
+                {(!projects || projects.length === 0) && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-center">
+                      <Layers className="w-16 h-16 text-white/20 mx-auto mb-4" />
+                      <p className="text-white/60 text-sm">Aucun projet à afficher</p>
+                      <p className="text-white/40 text-xs mt-2">
+                        Créez votre premier projet pour le voir apparaître en orbite
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 
             {/* Légende */}
             <div className="absolute bottom-6 left-6 bg-black/60 backdrop-blur-xl border border-white/10 rounded-xl p-4">
-              <div className="text-xs text-white/60 uppercase tracking-wider mb-3">Galaxy View</div>
+              <div className="text-xs text-white/80 uppercase tracking-wider mb-3">Galaxy View</div>
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 bg-red-500 rounded-full"></div>
@@ -455,7 +495,7 @@ export default function CockpitPage() {
             </div>
             
             <div className="absolute top-6 left-6 bg-black/60 backdrop-blur-xl border border-white/10 rounded-xl p-4">
-              <div className="text-xs text-white/60 uppercase tracking-wider mb-2">Radar View</div>
+              <div className="text-xs text-white/80 uppercase tracking-wider mb-2">Radar View</div>
               <div className="text-sm text-white font-semibold">Multi-Dimensional Analysis</div>
             </div>
           </div>
@@ -489,7 +529,7 @@ export default function CockpitPage() {
             </div>
             
             <div className="absolute top-6 left-6 bg-black/60 backdrop-blur-xl border border-white/10 rounded-xl p-4">
-              <div className="text-xs text-white/60 uppercase tracking-wider mb-2">Waves View</div>
+              <div className="text-xs text-white/80 uppercase tracking-wider mb-2">Waves View</div>
               <div className="text-sm text-white font-semibold">Data Flow Visualization</div>
               <div className="mt-3 space-y-1.5">
                 <div className="flex items-center gap-2">
@@ -508,6 +548,84 @@ export default function CockpitPage() {
             </div>
           </div>
         )}
+
+        {/* Vue Timeline - Chronologie des projets */}
+        {selectedView === 'timeline' && (
+          <div className="relative h-[500px] bg-gradient-to-br from-slate-950/30 via-slate-900/30 to-slate-950/30 rounded-3xl border border-white/10 overflow-hidden p-8">
+            <div className="absolute top-6 left-6 bg-black/60 backdrop-blur-xl border border-white/10 rounded-xl p-4 z-10">
+              <div className="text-xs text-white/80 uppercase tracking-wider mb-2">Timeline View</div>
+              <div className="text-sm text-white font-semibold">Project Roadmap</div>
+            </div>
+            
+            <div className="h-full pt-20">
+              {/* Ligne de temps horizontale */}
+              <div className="relative h-full flex flex-col justify-center">
+                <div className="absolute left-0 right-0 top-1/2 h-0.5 bg-gradient-to-r from-[#D4AF37]/30 via-[#4A9EFF]/50 to-[#D4AF37]/30"></div>
+                
+                {/* Points de temps avec projets */}
+                <div className="relative flex justify-between items-center px-12">
+                  {milestones.slice(0, 5).map((milestone, idx) => {
+                    const colors = [
+                      { border: 'border-emerald-500', bg: 'bg-emerald-500/20', glow: 'from-emerald-500/30 to-emerald-500/10' },
+                      { border: 'border-sky-500', bg: 'bg-sky-500/20', glow: 'from-sky-500/30 to-sky-500/10' },
+                      { border: 'border-amber-500', bg: 'bg-amber-500/20', glow: 'from-amber-500/30 to-amber-500/10' },
+                      { border: 'border-purple-500', bg: 'bg-purple-500/20', glow: 'from-purple-500/30 to-purple-500/10' },
+                      { border: 'border-pink-500', bg: 'bg-pink-500/20', glow: 'from-pink-500/30 to-pink-500/10' }
+                    ];
+                    const color = colors[idx % colors.length];
+                    
+                    return (
+                      <div key={milestone.id} className="flex flex-col items-center group">
+                        {/* Point sur la timeline */}
+                        <div className="relative mb-4">
+                          <div className={`absolute inset-0 bg-gradient-to-br ${color.glow} blur-xl opacity-70 group-hover:opacity-100 transition-all`}></div>
+                          <div className={`relative w-16 h-16 ${color.bg} backdrop-blur-xl border-2 ${color.border} rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-transform`}>
+                            <Target className="w-6 h-6 text-white" />
+                          </div>
+                        </div>
+                        
+                        {/* Info milestone */}
+                        <div className="text-center opacity-0 group-hover:opacity-100 transition-opacity absolute top-24">
+                          <div className="bg-black/90 backdrop-blur-xl border border-white/20 rounded-xl px-4 py-3 whitespace-nowrap">
+                            <div className="text-sm text-white font-semibold mb-1">{milestone.title}</div>
+                            <div className="text-xs text-white/70">{milestone.due_date ? new Date(milestone.due_date).toLocaleDateString('fr-FR') : 'À définir'}</div>
+                            <div className={`text-[0.65rem] mt-2 px-2 py-1 rounded-full ${statusDotColor(milestone.status)}`}>
+                              {milestone.status}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+                
+                {/* Légende en bas */}
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-6">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-emerald-500 rounded-full"></div>
+                    <span className="text-xs text-white/70">Q1 2026</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-sky-500 rounded-full"></div>
+                    <span className="text-xs text-white/70">Q2 2026</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-amber-500 rounded-full"></div>
+                    <span className="text-xs text-white/70">Q3 2026</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+                    <span className="text-xs text-white/70">Q4 2026</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Ligne du haut - Blocs principaux */}
+      <div className="grid gap-5 md:grid-cols-3 mb-8">
         {/* Bloc 1 : Santé globale */}
         <div className="relative group">
           <div className="absolute inset-0 bg-gradient-to-br from-sky-500/20 to-purple-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all"></div>
@@ -534,7 +652,7 @@ export default function CockpitPage() {
                       </span>
                     </div>
                   </div>
-                  <div className="text-xs text-white/60 font-medium">
+                  <div className="text-xs text-white/80 font-medium">
                     {item.label}
                   </div>
                 </div>
@@ -552,7 +670,7 @@ export default function CockpitPage() {
               Milestones Timeline
             </h2>
             <div className="h-24 flex flex-col justify-between">
-              <div className="flex justify-between text-xs text-white/60 mb-2">
+              <div className="flex justify-between text-xs text-white/80 mb-2">
                 <span>This Week</span>
                 <span>Next Milestones</span>
               </div>
@@ -573,7 +691,7 @@ export default function CockpitPage() {
                   );
                 })}
               </div>
-              <div className="flex justify-between text-[0.65rem] text-white/40 font-mono">
+              <div className="flex justify-between text-[0.65rem] text-white/70 font-mono">
                 <span>NOW</span>
                 <span>+10 DAYS</span>
               </div>
@@ -597,7 +715,7 @@ export default function CockpitPage() {
                 >
                   <div className="flex-1">
                     <div className="text-white text-sm font-medium">{item.title}</div>
-                    <div className="text-xs text-white/50 font-mono mt-1">
+                    <div className="text-xs text-white/70 font-mono mt-1">
                       {item.due_date ? new Date(item.due_date).toLocaleDateString() : "TBD"}
                     </div>
                   </div>
@@ -611,7 +729,7 @@ export default function CockpitPage() {
                 </div>
               ))}
               {decisions.length === 0 && (
-                <div className="text-sm text-white/40 text-center py-6">
+                <div className="text-sm text-white/70 text-center py-6">
                   No pending decisions
                 </div>
               )}
@@ -643,7 +761,7 @@ export default function CockpitPage() {
                     )}`}
                   >
                     <span className="text-xs capitalize font-semibold">{domain}</span>
-                    <span className="text-[0.65rem] text-white/60 mt-1">{level}%</span>
+                    <span className="text-[0.65rem] text-white/80 mt-1">{level}%</span>
                   </div>
                 );
               })}
@@ -664,7 +782,7 @@ export default function CockpitPage() {
                 <div key={t.name}>
                   <div className="flex justify-between mb-2">
                     <span className="text-white text-sm font-medium">{t.name}</span>
-                    <span className="text-white/60 text-xs font-mono tabular-nums">
+                    <span className="text-white/80 text-xs font-mono tabular-nums">
                       {Math.round((t.saturation || 0) * 100)}%
                     </span>
                   </div>
@@ -679,7 +797,7 @@ export default function CockpitPage() {
                 </div>
               ))}
               {capacity.length === 0 && (
-                <div className="text-sm text-white/40 text-center py-6">
+                <div className="text-sm text-white/70 text-center py-6">
                   No teams configured
                 </div>
               )}
@@ -713,7 +831,7 @@ export default function CockpitPage() {
                 </div>
               ))}
               {focus.length === 0 && (
-                <div className="text-sm text-white/40 text-center py-6">
+                <div className="text-sm text-white/70 text-center py-6">
                   No focus defined
                 </div>
               )}
