@@ -140,6 +140,7 @@ const main = () => {
   const args = process.argv.slice(2);
   const isProduction = args.includes('--prod') || args.includes('-p');
   const skipBuild = args.includes('--skip-build');
+  const force = args.includes('--force');
 
   try {
     checkPrerequisites();
@@ -151,6 +152,25 @@ const main = () => {
       log.warning('Skipping build (--skip-build flag)');
     }
     
+    // Guardrail: prevent accidental production deployments unless explicitly allowed
+    if (isProduction) {
+      const allowEnv = process.env.ALLOW_PROD_DEPLOY === 'true';
+      const lockFilePath = path.join(process.cwd(), '.prod-lock');
+      const lockFileExists = fs.existsSync(lockFilePath);
+
+      if (!force && (!allowEnv || lockFileExists)) {
+        log.error('Production deployment is locked for safety.');
+        if (lockFileExists) {
+          log.warning('A .prod-lock file is present in the repository root. Remove it to allow production deploys.');
+        }
+        log.info('To override intentionally, either:');
+        log.info(' - run with the --force flag, or');
+        log.info(' - set environment variable ALLOW_PROD_DEPLOY=true for this command');
+        log.info('Example (PowerShell): $env:ALLOW_PROD_DEPLOY="true"; npm run deploy:prod');
+        process.exit(1);
+      }
+    }
+
     deployToVercel(isProduction);
     
     console.log(`\n${colors.green}═══════════════════════════════════════${colors.reset}`);

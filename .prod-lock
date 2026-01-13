@@ -1,0 +1,7 @@
+Production deployments are locked.
+This file prevents accidental `npm run deploy:prod` from promoting a new version to www.powalyze.com.
+
+To allow a production deploy, either:
+- Delete this file, or
+- Run with `--force`, or
+- Set ALLOW_PROD_DEPLOY=true for the command.
