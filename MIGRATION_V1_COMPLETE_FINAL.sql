@@ -6,8 +6,20 @@
 -- =====================================================================
 
 -- =====================================================================
--- PARTIE 1: FONCTION ET TRIGGER OWNER_ID
+-- PARTIE 1: FONCTIONS ET TRIGGER OWNER_ID
 -- =====================================================================
+
+-- Fonction pour vérifier l'accès workspace (bypass RLS recursion)
+CREATE OR REPLACE FUNCTION user_has_workspace_access(workspace_uuid uuid)
+RETURNS boolean AS $$
+BEGIN
+  RETURN EXISTS (
+    SELECT 1 FROM public.memberships
+    WHERE workspace_id = workspace_uuid
+    AND user_id = auth.uid()
+  );
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
 
 -- Créer fonction auto-remplissage owner_id
 CREATE OR REPLACE FUNCTION auto_set_owner_id()
@@ -248,60 +260,78 @@ DROP POLICY IF EXISTS gov_templates_insert ON governance_templates;
 DROP POLICY IF EXISTS gov_templates_select ON governance_templates;
 DROP POLICY IF EXISTS gov_templates_update ON governance_templates;
 DROP POLICY IF EXISTS gov_templates_delete ON governance_templates;
+DROP POLICY IF EXISTS gov_templates_all ON governance_templates;
 
 CREATE POLICY gov_templates_all ON governance_templates FOR ALL TO authenticated
-USING (workspace_id IN (SELECT workspace_id FROM memberships WHERE user_id = auth.uid()))
-WITH CHECK (workspace_id IN (SELECT workspace_id FROM memberships WHERE user_id = auth.uid()));
+USING (user_has_workspace_access(workspace_id))
+WITH CHECK (user_has_workspace_access(workspace_id));
 
 -- Rituals
 DROP POLICY IF EXISTS rituals_insert ON rituals;
 DROP POLICY IF EXISTS rituals_select ON rituals;
 DROP POLICY IF EXISTS rituals_update ON rituals;
 DROP POLICY IF EXISTS rituals_delete ON rituals;
+DROP POLICY IF EXISTS rituals_all ON rituals;
 
 CREATE POLICY rituals_all ON rituals FOR ALL TO authenticated
-USING (workspace_id IN (SELECT workspace_id FROM memberships WHERE user_id = auth.uid()))
-WITH CHECK (workspace_id IN (SELECT workspace_id FROM memberships WHERE user_id = auth.uid()));
+USING (user_has_workspace_access(workspace_id))
+WITH CHECK (user_has_workspace_access(workspace_id));
 
 -- Roadmap Items
 DROP POLICY IF EXISTS roadmap_items_insert ON roadmap_items;
 DROP POLICY IF EXISTS roadmap_items_select ON roadmap_items;
 DROP POLICY IF EXISTS roadmap_items_update ON roadmap_items;
 DROP POLICY IF EXISTS roadmap_items_delete ON roadmap_items;
+DROP POLICY IF EXISTS roadmap_items_all ON roadmap_items;
 
 CREATE POLICY roadmap_items_all ON roadmap_items FOR ALL TO authenticated
-USING (initiative_id IN (SELECT i.id FROM initiatives i WHERE i.workspace_id IN (SELECT workspace_id FROM memberships WHERE user_id = auth.uid())))
-WITH CHECK (initiative_id IN (SELECT i.id FROM initiatives i WHERE i.workspace_id IN (SELECT workspace_id FROM memberships WHERE user_id = auth.uid())));
+USING (
+  EXISTS (
+    SELECT 1 FROM initiatives i 
+    WHERE i.id = roadmap_items.initiative_id 
+    AND user_has_workspace_access(i.workspace_id)
+  )
+)
+WITH CHECK (
+  EXISTS (
+    SELECT 1 FROM initiatives i 
+    WHERE i.id = roadmap_items.initiative_id 
+    AND user_has_workspace_access(i.workspace_id)
+  )
+);
 
 -- Data Catalog
 DROP POLICY IF EXISTS data_catalog_insert ON data_catalog;
 DROP POLICY IF EXISTS data_catalog_select ON data_catalog;
 DROP POLICY IF EXISTS data_catalog_update ON data_catalog;
 DROP POLICY IF EXISTS data_catalog_delete ON data_catalog;
+DROP POLICY IF EXISTS data_catalog_all ON data_catalog;
 
 CREATE POLICY data_catalog_all ON data_catalog FOR ALL TO authenticated
-USING (workspace_id IN (SELECT workspace_id FROM memberships WHERE user_id = auth.uid()))
-WITH CHECK (workspace_id IN (SELECT workspace_id FROM memberships WHERE user_id = auth.uid()));
+USING (user_has_workspace_access(workspace_id))
+WITH CHECK (user_has_workspace_access(workspace_id));
 
 -- Data Jobs
 DROP POLICY IF EXISTS data_jobs_insert ON data_jobs;
 DROP POLICY IF EXISTS data_jobs_select ON data_jobs;
 DROP POLICY IF EXISTS data_jobs_update ON data_jobs;
 DROP POLICY IF EXISTS data_jobs_delete ON data_jobs;
+DROP POLICY IF EXISTS data_jobs_all ON data_jobs;
 
 CREATE POLICY data_jobs_all ON data_jobs FOR ALL TO authenticated
-USING (workspace_id IN (SELECT workspace_id FROM memberships WHERE user_id = auth.uid()))
-WITH CHECK (workspace_id IN (SELECT workspace_id FROM memberships WHERE user_id = auth.uid()));
+USING (user_has_workspace_access(workspace_id))
+WITH CHECK (user_has_workspace_access(workspace_id));
 
 -- External Sources
 DROP POLICY IF EXISTS external_sources_insert ON external_sources;
 DROP POLICY IF EXISTS external_sources_select ON external_sources;
 DROP POLICY IF EXISTS external_sources_update ON external_sources;
 DROP POLICY IF EXISTS external_sources_delete ON external_sources;
+DROP POLICY IF EXISTS external_sources_all ON external_sources;
 
 CREATE POLICY external_sources_all ON external_sources FOR ALL TO authenticated
-USING (workspace_id IN (SELECT workspace_id FROM memberships WHERE user_id = auth.uid()))
-WITH CHECK (workspace_id IN (SELECT workspace_id FROM memberships WHERE user_id = auth.uid()));
+USING (user_has_workspace_access(workspace_id))
+WITH CHECK (user_has_workspace_access(workspace_id));
 
 -- =====================================================================
 -- PARTIE 10: VUES ANALYTIQUES
