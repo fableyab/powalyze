@@ -61,11 +61,19 @@ END $$;
 
 -- Ajouter colonnes sans GENERATED ALWAYS
 ALTER TABLE public.risks
+ADD COLUMN IF NOT EXISTS initiative_id uuid REFERENCES public.initiatives(id) ON DELETE CASCADE,
+ADD COLUMN IF NOT EXISTS name text,
+ADD COLUMN IF NOT EXISTS probability integer,
+ADD COLUMN IF NOT EXISTS impact integer,
+ADD COLUMN IF NOT EXISTS status text DEFAULT 'open',
 ADD COLUMN IF NOT EXISTS category text,
 ADD COLUMN IF NOT EXISTS mitigation text,
 ADD COLUMN IF NOT EXISTS owner_id uuid REFERENCES auth.users(id) ON DELETE SET NULL,
-ADD COLUMN IF NOT EXISTS created_by uuid REFERENCES auth.users(id) ON DELETE SET NULL;
+ADD COLUMN IF NOT EXISTS created_by uuid REFERENCES auth.users(id) ON DELETE SET NULL,
+ADD COLUMN IF NOT EXISTS updated_at timestamptz DEFAULT now();
 
+CREATE INDEX IF NOT EXISTS risks_initiative_idx ON public.risks (initiative_id);
+CREATE INDEX IF NOT EXISTS risks_status_idx ON public.risks (status);
 CREATE INDEX IF NOT EXISTS risks_category_idx ON public.risks (category);
 CREATE INDEX IF NOT EXISTS risks_owner_idx ON public.risks (owner_id);
 
