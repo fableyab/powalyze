@@ -29,6 +29,11 @@ export const organizationService = {
       // 2. Pas d'organisation trouvée - on en crée une automatiquement
       console.log('⚠️ Aucune organisation trouvée - création automatique...');
 
+      // Générer nom d'organisation à partir de l'email
+      const orgName = userEmail 
+        ? `Organisation de ${userEmail.split('@')[0]}` 
+        : `Organisation ${userId.slice(0, 8)}`;
+
       // Créer l'organisation avec owner_id (OBLIGATOIRE pour NOT NULL constraint)
       const { data: newOrg, error: createOrgError } = await customSupabaseClient
         .from('organizations')
