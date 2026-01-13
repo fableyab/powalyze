@@ -252,8 +252,8 @@ export default function LandingPage() {
           </div>
 
           {/* Manifeste Video */}
-          <div className="flex items-center justify-center mt-16 px-6">
-            <div className="relative w-full max-w-4xl aspect-video rounded-lg overflow-hidden border border-slate-800 shadow-2xl">
+          <div className="flex items-center justify-center mt-12 px-6">
+            <div className="relative w-full max-w-2xl aspect-video rounded-lg overflow-hidden border border-slate-700/50 shadow-xl">
               <video
                 className="w-full h-full object-cover"
                 controls
