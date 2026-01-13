@@ -5,10 +5,12 @@ import BoardSelector from '@/components/cockpit/BoardSelector';
 import ViewSelector from '@/components/cockpit/ViewSelector';
 import BoardTableView from '@/components/cockpit/BoardTableView';
 import BoardKanbanView from '@/components/cockpit/BoardKanbanView';
+import CreateItemModal from '@/components/cockpit/CreateItemModal';
 import EmptyState from '@/components/EmptyState';
 import { useCockpitItems } from '@/hooks/useCockpitItems';
 import { getBoardConfig, getBoardViews, getDefaultView, BOARDS_CONFIG } from '@/types/cockpit';
 import { Rocket } from 'lucide-react';
+import { useToast } from '@/components/ui/use-toast';
 
 /**
  * 🎯 NOUVEAU COCKPIT PMO - Type monday.com
@@ -21,10 +23,12 @@ import { Rocket } from 'lucide-react';
  */
 export default function CockpitPageV2() {
   const { orgId } = useAuth();
+  const { toast } = useToast();
   
   // État navigation
   const [activeBoard, setActiveBoard] = useState('initiatives');
   const [activeView, setActiveView] = useState(null);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
   // Chargement données (avec mode démo/prod auto)
   const { items, loading, isDemoMode, createItem, updateItem, deleteItem } = useCockpitItems(orgId, activeBoard);
@@ -54,29 +58,61 @@ export default function CockpitPageV2() {
   }, [activeBoard, items]);
 
   const handleItemClick = (item) => {
-    console.log('Item clicked:', item);
+    // TODO: Ouvrir panneau détails
   };
 
-  const handleItemCreate = async (defaultValues = {}) => {
-    const newItem = {
-      type: boardConfig.item_type,
-      title: 'Nouvel item',
-      status: 'planned',
-      progress: 0,
-      priority: 'medium',
-      ...defaultValues
-    };
-    
-    await createItem(newItem);
+  const handleItemCreate = async (itemData) => {
+    try {
+      await createItem(itemData);
+      toast({
+        title: "✅ Item créé",
+        description: `${itemData?.title || 'Item'} a été ajouté avec succès`
+      });
+      setIsCreateModalOpen(false);
+    } catch (err) {
+      console.error('Erreur création:', err);
+      toast({
+        title: "❌ Erreur",
+        description: err.message || "Impossible de créer l'item",
+        variant: "destructive"
+      });
+      throw err; // Repropager pour le modal
+    }
   };
 
   const handleItemUpdate = async (itemId, updates) => {
-    await updateItem(itemId, updates);
+    try {
+      await updateItem(itemId, updates);
+      toast({
+        title: "✅ Mis à jour",
+        description: "Modifications enregistrées"
+      });
+    } catch (err) {
+      console.error('Erreur mise à jour:', err);
+      toast({
+        title: "❌ Erreur",
+        description: "Impossible de mettre à jour",
+        variant: "destructive"
+      });
+    }
   };
 
   const handleItemDelete = async (itemId) => {
-    if (confirm('Supprimer cet item ?')) {
+    if (!confirm('Supprimer cet item ?')) return;
+    
+    try {
       await deleteItem(itemId);
+      toast({
+        title: "🗑️ Supprimé",
+        description: "Item supprimé avec succès"
+      });
+    } catch (err) {
+      console.error('Erreur suppression:', err);
+      toast({
+        title: "❌ Erreur",
+        description: "Impossible de supprimer",
+        variant: "destructive"
+      });
     }
   };
 
@@ -150,7 +186,7 @@ export default function CockpitPageV2() {
               board={boardConfig}
               items={items}
               onItemClick={handleItemClick}
-              onItemCreate={handleItemCreate}
+              onItemCreate={() => setIsCreateModalOpen(true)}
               onItemUpdate={handleItemUpdate}
               onItemDelete={handleItemDelete}
             />
@@ -162,7 +198,7 @@ export default function CockpitPageV2() {
               items={items}
               viewConfig={viewConfig.config}
               onItemClick={handleItemClick}
-              onItemCreate={handleItemCreate}
+              onItemCreate={() => setIsCreateModalOpen(true)}
               onItemUpdate={handleItemUpdate}
             />
           )}
@@ -180,6 +216,14 @@ export default function CockpitPageV2() {
           )}
         </div>
       </div>
+
+      {/* Modal création item */}
+      <CreateItemModal
+        isOpen={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        onCreate={handleItemCreate}
+        itemType={boardConfig.item_type}
+      />
     </CockpitLayout>
   );
 }

@@ -284,7 +284,7 @@ const PowerBI = () => {
             <LayoutGrid className="w-5 h-5" />
           </button>
           <div className="min-w-0 flex-1">
-            <h1 className="text-xl sm:text-2xl font-light text-white truncate">{selectedReport?.title}</h1>
+            <h1 className="text-xl sm:text-2xl font-light text-white truncate">{selectedReport?.title || 'Rapport Power BI'}</h1>
             <p className="text-white/50 text-xs sm:text-sm font-light line-clamp-1">{selectedReport?.description}</p>
           </div>
         </div>

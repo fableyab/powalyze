@@ -13,7 +13,6 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const handleSession = useCallback(async (currentSession) => {
-    console.log('✅ [AUTH] handleSession:', currentSession ? 'Session active' : 'Pas de session');
     setSession(currentSession);
     setUser(currentSession?.user ?? null);
     setLoading(false);
@@ -24,9 +23,7 @@ export const AuthProvider = ({ children }) => {
 
     const getSession = async () => {
       try {
-        console.log('🔍 [AUTH] Récupération session...');
         const { data: { session }, error } = await supabase.auth.getSession();
-        console.log('📦 [AUTH] Session récupérée:', session ? 'OUI' : 'NON', session);
         if (error) {
           console.error('❌ [AUTH] Erreur getSession:', error);
           // If refresh token is invalid, we just clear the session and let the user login again

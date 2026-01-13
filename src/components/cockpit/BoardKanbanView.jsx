@@ -85,7 +85,7 @@ export default function BoardKanbanView({
                     onClick={() => onItemClick?.(item)}
                     className="p-4 bg-white/5 hover:bg-white/10 rounded-lg border border-white/10 cursor-move transition-colors"
                   >
-                    <div className="font-medium text-white text-sm mb-2">{item.title}</div>
+                    <div className="font-medium text-white text-sm mb-2">{item?.title || 'Sans titre'}</div>
                     
                     {item.owner && (
                       <div className="text-xs text-white/60 mb-2">👤 {item.owner}</div>

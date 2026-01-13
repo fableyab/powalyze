@@ -22,7 +22,7 @@ export default function ItemDetailPanel({ item, onClose, onUpdate, onDelete }) {
       {/* Header */}
       <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
         <h3 className="text-lg font-semibold text-white truncate flex-1 mr-4">
-          {item.title}
+          {item?.title || 'Sans titre'}
         </h3>
         <button
           onClick={onClose}

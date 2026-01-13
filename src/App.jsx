@@ -10,6 +10,7 @@ import ScrollToTop from '@/components/ScrollToTop';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import DeviceRedirect from '@/components/DeviceRedirect';
 import DesktopLayoutWrapper from '@/components/layout/DesktopLayoutWrapper';
+import ErrorBoundary from '@/components/ErrorBoundary';
 
 // Public Pages
 import LandingPage from '@/pages/LandingPage';
@@ -187,6 +188,7 @@ const RiskHeatmap = lazy(() => import('@/pages/RiskHeatmap'));
 
 // App Layout & Pages
 const AppLayout = lazy(() => import('@/layouts/AppLayout'));
+const CockpitV2 = lazy(() => import('@/pages/app/CockpitV2'));
 // CockpitPage supprimé (doublon de Cockpit.jsx)
 const CockpitPageData = lazy(() => import('@/pages/app/CockpitPageData'));
 const ProjectsApp = lazy(() => import('@/pages/app/Projects'));
@@ -235,15 +237,16 @@ const LoadingFallback = () => (
 
 const App = () => {
   return (
-    <AuthProvider>
-      <LanguageProvider>
-        <ThemeProvider>
-          <Router>
-            <ScrollToTop />
-            <DeviceRedirect>
-              <DesktopLayoutWrapper>
-                <Suspense fallback={<LoadingFallback />}>
-                  <Routes>
+    <ErrorBoundary>
+      <AuthProvider>
+        <LanguageProvider>
+          <ThemeProvider>
+            <Router>
+              <ScrollToTop />
+              <DeviceRedirect>
+                <DesktopLayoutWrapper>
+                  <Suspense fallback={<LoadingFallback />}>
+                    <Routes>
                 {/* Public Website Routes */}
                 <Route path="/" element={<LandingPage />} />
                 
@@ -354,6 +357,7 @@ const App = () => {
                 <Route path="/app" element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
                   <Route index element={<Navigate to="/app/cockpit" replace />} />
                   <Route path="cockpit" element={<DashboardSensible />} />
+                  <Route path="cockpit-v2" element={<CockpitV2 />} />
                   <Route path="cockpit-14kpis" element={<CockpitPageData />} />
                   {/* cockpit-static supprimé (doublon CockpitPage.jsx) */}
                   <Route path="dashboard-vision" element={<DashboardRevolutionary />} />
@@ -508,6 +512,7 @@ const App = () => {
     </ThemeProvider>
   </LanguageProvider>
 </AuthProvider>
+    </ErrorBoundary>
   );
 };
 
