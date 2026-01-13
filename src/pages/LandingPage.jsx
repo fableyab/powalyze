@@ -79,6 +79,9 @@ export default function LandingPage() {
               >
                 {dict.nav.scenarios}
               </button>
+              <Link to="/demo" className="hidden sm:block text-[10px] text-slate-200 hover:text-[#D4AF37] transition-all duration-500 font-light tracking-[0.2em] uppercase">
+                Démo
+              </Link>
               <Link to="/contact" className="hidden sm:block text-[10px] text-slate-200 hover:text-[#D4AF37] transition-all duration-500 font-light tracking-[0.2em] uppercase">
                 Contact
               </Link>
