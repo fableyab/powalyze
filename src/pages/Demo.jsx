@@ -52,18 +52,30 @@ export default function Demo() {
             la transparence exécutive et l'intelligence décisionnelle.
           </p>
 
-          {/* Video Container */}
-          <div className="flex items-center justify-center mt-12 px-4 sm:px-6 mb-12">
-            <div className="relative w-full max-w-4xl aspect-video rounded-lg overflow-hidden border border-slate-700/50 shadow-2xl">
-              <video
-                className="w-full h-full object-cover bg-black"
-                controls
-                preload="metadata"
-                poster="/images/video-poster.jpg"
-              >
-                <source src="/videos/manifeste.mp4" type="video/mp4" />
-                Votre navigateur ne supporte pas la lecture de vidéos.
-              </video>
+          {/* Video Container - Autoplay Grand Format */}
+          <div className="flex items-center justify-center mt-16 mb-16">
+            <div className="relative w-full max-w-7xl">
+              {/* Glow Effect */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#D4AF37] via-[#4A9EFF] to-[#D4AF37] rounded-2xl blur-2xl opacity-20 animate-pulse" />
+              
+              {/* Video Wrapper */}
+              <div className="relative aspect-video rounded-2xl overflow-hidden border-2 border-[#D4AF37]/20 shadow-[0_0_80px_rgba(212,175,55,0.3)]">
+                <video
+                  className="w-full h-full object-cover bg-black"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controls
+                  preload="auto"
+                >
+                  <source src="/videos/manifeste.mp4" type="video/mp4" />
+                  Votre navigateur ne supporte pas la lecture de vidéos.
+                </video>
+                
+                {/* Subtle Overlay Border */}
+                <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/5 pointer-events-none" />
+              </div>
             </div>
           </div>
 

@@ -107,6 +107,7 @@ import CockpitExecutif from '@/pages/CockpitExecutif';
 import CGU from '@/pages/CGU';
 import PrivacyPolicy from '@/pages/PrivacyPolicy';
 import TermsOfService from '@/pages/TermsOfService';
+import CognitiveTheater from '@/pages/CognitiveTheater';
 
 // Value proposition pages
 import VisionClaire from '@/pages/VisionClaire';
@@ -318,6 +319,8 @@ const App = () => {
                 <Route path="/cgu" element={<CGU />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms-of-service" element={<TermsOfService />} />
+                <Route path="/cognitive-theater" element={<CognitiveTheater />} />
+                <Route path="/how-it-works" element={<HowItWorks />} />
                 
                 {/* Value Proposition Pages */}
                 <Route path="/vision-claire" element={<VisionClaire />} />
