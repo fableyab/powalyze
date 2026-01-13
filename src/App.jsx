@@ -198,6 +198,24 @@ const RisksApp = lazy(() => import('@/pages/app/Risks'));
 const DecisionsApp = lazy(() => import('@/pages/app/Decisions'));
 const AlertsPageApp = lazy(() => import('@/pages/app/AlertsPage'));
 const PortfolioApp = lazy(() => import('@/pages/app/Portfolio'));
+
+// V1 Architecture Complete Pages
+const PortfolioRisks = lazy(() => import('@/pages/PortfolioRisks'));
+const PortfolioForecast = lazy(() => import('@/pages/PortfolioForecast'));
+const PortfolioArbitrage = lazy(() => import('@/pages/PortfolioArbitrage'));
+const PortfolioAlignment = lazy(() => import('@/pages/PortfolioAlignment'));
+const ProjectGovernance = lazy(() => import('@/pages/ProjectGovernance'));
+const ProjectRoadmap = lazy(() => import('@/pages/ProjectRoadmap'));
+const ProjectReport = lazy(() => import('@/pages/ProjectReport'));
+const DataCatalog = lazy(() => import('@/pages/DataCatalog'));
+const DataQuality = lazy(() => import('@/pages/DataQuality'));
+const DataFlows = lazy(() => import('@/pages/DataFlows'));
+const DataPowerBI = lazy(() => import('@/pages/DataPowerBI'));
+const AIAssistant = lazy(() => import('@/pages/AIAssistant'));
+const AISummarize = lazy(() => import('@/pages/AISummarize'));
+const AIAnomalies = lazy(() => import('@/pages/AIAnomalies'));
+const AIReports = lazy(() => import('@/pages/AIReports'));
+const AIPredict = lazy(() => import('@/pages/AIPredict'));
 const PortfolioReport = lazy(() => import('@/pages/app/PortfolioReport'));
 const ProjectNewApp = lazy(() => import('@/pages/app/ProjectNew'));
 const RiskNewApp = lazy(() => import('@/pages/app/RiskNew'));
@@ -423,6 +441,33 @@ const App = () => {
                 <Route path="/projects-v2" element={<ProtectedRoute><ProjectsListV2 /></ProtectedRoute>} />
                 <Route path="/projects-v2/new" element={<ProtectedRoute><ProjectNewV2 /></ProtectedRoute>} />
                 <Route path="/projects-v2/:id" element={<ProtectedRoute><ProjectDetailV2 /></ProtectedRoute>} />
+                
+                {/* V1 ARCHITECTURE COMPLETE ROUTES */}
+                {/* Portfolio Module */}
+                <Route path="/portfolio/risks/:workspaceId" element={<ProtectedRoute><PortfolioRisks /></ProtectedRoute>} />
+                <Route path="/portfolio/forecast/:workspaceId" element={<ProtectedRoute><PortfolioForecast /></ProtectedRoute>} />
+                <Route path="/portfolio/arbitrage/:workspaceId" element={<ProtectedRoute><PortfolioArbitrage /></ProtectedRoute>} />
+                <Route path="/portfolio/alignment/:workspaceId" element={<ProtectedRoute><PortfolioAlignment /></ProtectedRoute>} />
+                
+                {/* Project Module */}
+                <Route path="/project/governance/:workspaceId" element={<ProtectedRoute><ProjectGovernance /></ProtectedRoute>} />
+                <Route path="/project/roadmap/:workspaceId" element={<ProtectedRoute><ProjectRoadmap /></ProtectedRoute>} />
+                <Route path="/project/roadmap/:workspaceId/:initiativeId" element={<ProtectedRoute><ProjectRoadmap /></ProtectedRoute>} />
+                <Route path="/project/report/:workspaceId" element={<ProtectedRoute><ProjectReport /></ProtectedRoute>} />
+                <Route path="/project/report/:workspaceId/:initiativeId" element={<ProtectedRoute><ProjectReport /></ProtectedRoute>} />
+                
+                {/* Data Module */}
+                <Route path="/data/catalog/:workspaceId" element={<ProtectedRoute><DataCatalog /></ProtectedRoute>} />
+                <Route path="/data/quality/:workspaceId" element={<ProtectedRoute><DataQuality /></ProtectedRoute>} />
+                <Route path="/data/flows/:workspaceId" element={<ProtectedRoute><DataFlows /></ProtectedRoute>} />
+                <Route path="/data/powerbi/:workspaceId" element={<ProtectedRoute><DataPowerBI /></ProtectedRoute>} />
+                
+                {/* AI Module */}
+                <Route path="/ai/assistant/:workspaceId" element={<ProtectedRoute><AIAssistant /></ProtectedRoute>} />
+                <Route path="/ai/summarize/:workspaceId" element={<ProtectedRoute><AISummarize /></ProtectedRoute>} />
+                <Route path="/ai/anomalies/:workspaceId" element={<ProtectedRoute><AIAnomalies /></ProtectedRoute>} />
+                <Route path="/ai/reports/:workspaceId" element={<ProtectedRoute><AIReports /></ProtectedRoute>} />
+                <Route path="/ai/predict/:workspaceId" element={<ProtectedRoute><AIPredict /></ProtectedRoute>} />
                 
                 {/* Legacy Protected Routes - Redirect to new structure */}
                 <Route path="/app/dashboard" element={<Navigate to="/app/cockpit" replace />} />
