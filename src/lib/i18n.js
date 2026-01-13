@@ -37,9 +37,9 @@ i18n
     fallbackLng: 'fr',
     supportedLngs: ['fr', 'en', 'de', 'no'],
     detection: {
-      order: ['localStorage', 'querystring', 'cookie', 'navigator', 'htmlTag'],
+      order: ['localStorage', 'cookie', 'querystring', 'navigator', 'htmlTag'],
       lookupLocalStorage: 'i18nextLng',
-      lookupCookie: 'i18next',
+      lookupCookie: 'lang', // align with app cookie
       lookupQuerystring: 'lng',
       caches: ['localStorage', 'cookie']
     },
