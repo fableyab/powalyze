@@ -250,20 +250,6 @@ export default function LandingPage() {
             <div className="w-px h-4 bg-slate-400" />
             <div className="text-[10px] tracking-[0.25em] uppercase text-slate-300">GDPR Compliant</div>
           </div>
-
-          {/* Manifeste Video */}
-          <div className="flex items-center justify-center mt-8 px-4 sm:px-6 mb-16">
-            <div className="relative w-full max-w-md sm:max-w-lg aspect-video rounded-md overflow-hidden border border-slate-700/30 shadow-lg">
-              <video
-                className="w-full h-full object-contain bg-black"
-                controls
-                preload="metadata"
-              >
-                <source src="/videos/manifeste.mp4" type="video/mp4" />
-                Votre navigateur ne supporte pas la lecture de vidéos.
-              </video>
-            </div>
-          </div>
         </div>
 
         {/* Precision indicator */}

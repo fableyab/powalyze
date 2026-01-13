@@ -146,6 +146,7 @@ const Header = () => {
         { name: 'Guides PMO', path: '/ressources/guides' }
       ]
     },
+    { name: 'Démo', path: '/demo' },
     { 
       name: 'À propos',
       dropdown: [

@@ -24,6 +24,7 @@ import CaseStudies from '@/pages/CaseStudies';
 // import Services from '@/pages/Services';
 import Methode from '@/pages/Methode';
 import DemoPage from '@/pages/DemoPage';
+import Demo from '@/pages/Demo';
 import Login from '@/pages/Login';
 import SignUp from '@/pages/SignUp';
 import AcceptInvitation from '@/pages/auth/AcceptInvitation';
@@ -272,7 +273,8 @@ const App = () => {
                 <Route path="/services/automation" element={<SolutionAutomation />} />
                 <Route path="/solutions/executive" element={<SolutionExecutive />} />
                 <Route path="/solutions/teams" element={<SolutionTeams />} />
-                <Route path="/demo" element={<DemoPage />} />
+                <Route path="/demo" element={<Demo />} />
+                <Route path="/demo-page" element={<DemoPage />} />
                 <Route path="/consulting" element={<ConsultingAndSaaS />} />
                 <Route path="/ai-core" element={<AICore />} />
                 {/* Blog supprimé - pas de blog sur le site */}
