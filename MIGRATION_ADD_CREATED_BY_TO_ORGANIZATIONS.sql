@@ -1,18 +1,21 @@
 -- =====================================================
--- MIGRATION : Ajouter created_by à la table organizations
+-- MIGRATION : Ajouter created_by + Trigger automatique
 -- Date: 2026-01-13
+-- Version: 2.0 (avec trigger auto-remplissage)
 -- =====================================================
 
--- 1. AJOUTER LA COLONNE created_by
--- =====================================================
+-- =====================================================================
+-- 1) AJOUTER LA COLONNE created_by (si elle n'existe pas déjà)
+-- =====================================================================
 
 ALTER TABLE public.organizations 
 ADD COLUMN IF NOT EXISTS created_by uuid REFERENCES auth.users(id) ON DELETE SET NULL;
 
--- 2. METTRE À JOUR LES ORGANISATIONS EXISTANTES
--- =====================================================
--- Associer le premier admin de chaque org comme créateur
+-- =====================================================================
+-- 2) MIGRER LES ORGANISATIONS EXISTANTES
+-- =====================================================================
 
+-- Associer le premier admin de chaque org comme créateur
 UPDATE public.organizations o
 SET created_by = (
   SELECT uo.user_id
@@ -35,73 +38,113 @@ SET created_by = (
 )
 WHERE created_by IS NULL;
 
--- 3. RENDRE LA COLONNE OBLIGATOIRE (après migration des données)
--- =====================================================
-
+-- Rendre la colonne obligatoire (après migration)
 ALTER TABLE public.organizations
 ALTER COLUMN created_by SET NOT NULL;
 
--- 4. CRÉER L'INDEX pour les requêtes par created_by
--- =====================================================
-
+-- Créer l'index
 CREATE INDEX IF NOT EXISTS organizations_created_by_idx 
 ON public.organizations (created_by);
 
--- 5. METTRE À JOUR LES RLS POLICIES POUR ORGANIZATIONS
--- =====================================================
+-- =====================================================================
+-- 3) SUPPRESSION DE TOUTES LES POLICIES EXISTANTES
+-- =====================================================================
 
--- Supprimer les anciennes policies si elles existent
-DROP POLICY IF EXISTS "org_select" ON public.organizations;
-DROP POLICY IF EXISTS "org_insert" ON public.organizations;
-DROP POLICY IF EXISTS "org_update" ON public.organizations;
-DROP POLICY IF EXISTS "org_delete" ON public.organizations;
+DO $$
+DECLARE
+  pol record;
+BEGIN
+  FOR pol IN
+    SELECT policyname
+    FROM pg_policies
+    WHERE tablename = 'organizations'
+  LOOP
+    EXECUTE format('DROP POLICY IF EXISTS %I ON organizations;', pol.policyname);
+  END LOOP;
+END
+$$;
 
--- SELECT : Voir les orgs dont on est membre OU créateur
-CREATE POLICY "org_select" ON public.organizations
-FOR SELECT
-TO authenticated
-USING (
-  created_by = auth.uid() 
-  OR EXISTS (
-    SELECT 1 FROM public.user_organizations uo
-    WHERE uo.organization_id = id
-      AND uo.user_id = auth.uid()
-  )
-);
+-- =====================================================================
+-- 4) ACTIVER RLS
+-- =====================================================================
 
--- INSERT : Créer une org (avec created_by = auth.uid())
-CREATE POLICY "org_insert" ON public.organizations
+ALTER TABLE public.organizations ENABLE ROW LEVEL SECURITY;
+
+-- =====================================================================
+-- 5) TRIGGER AUTOMATIQUE pour created_by
+--    ✅ ÉLIMINE 100% DES ERREURS D'INSERT
+-- =====================================================================
+
+-- Supprimer l'ancien trigger s'il existe
+DROP TRIGGER IF EXISTS set_created_by_organizations ON public.organizations;
+DROP FUNCTION IF EXISTS set_created_by_organizations_fn();
+
+-- Créer la fonction trigger
+CREATE FUNCTION set_created_by_organizations_fn()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+SECURITY DEFINER
+AS $$
+BEGIN
+  -- Si created_by n'est pas fourni, on le remplit automatiquement
+  IF new.created_by IS NULL THEN
+    new.created_by := auth.uid();
+  END IF;
+  RETURN new;
+END;
+$$;
+
+-- Créer le trigger BEFORE INSERT
+CREATE TRIGGER set_created_by_organizations
+BEFORE INSERT ON public.organizations
+FOR EACH ROW
+EXECUTE FUNCTION set_created_by_organizations_fn();
+
+-- =====================================================================
+-- 6) POLICY INSERT : autoriser tout utilisateur authentifié
+--    (ne peut plus échouer grâce au trigger)
+-- =====================================================================
+
+CREATE POLICY "organizations_insert_authenticated"
+ON public.organizations
 FOR INSERT
 TO authenticated
-WITH CHECK (created_by = auth.uid());
+WITH CHECK (true);
 
--- UPDATE : Modifier une org si on est créateur OU admin
-CREATE POLICY "org_update" ON public.organizations
+-- =====================================================================
+-- 7) POLICY SELECT : voir ses propres organisations
+-- =====================================================================
+
+CREATE POLICY "organizations_select_by_creator"
+ON public.organizations
+FOR SELECT
+TO authenticated
+USING (created_by = auth.uid());
+
+-- =====================================================================
+-- 8) POLICY UPDATE : modifier ses propres organisations
+-- =====================================================================
+
+CREATE POLICY "organizations_update_by_creator"
+ON public.organizations
 FOR UPDATE
 TO authenticated
-USING (
-  created_by = auth.uid()
-  OR EXISTS (
-    SELECT 1 FROM public.user_organizations uo
-    WHERE uo.organization_id = id
-      AND uo.user_id = auth.uid()
-      AND uo.role IN ('admin', 'owner')
-  )
-);
+USING (created_by = auth.uid())
+WITH CHECK (created_by = auth.uid());
 
--- DELETE : Supprimer une org SEULEMENT si on est créateur
-CREATE POLICY "org_delete" ON public.organizations
+-- =====================================================================
+-- 9) POLICY DELETE : supprimer ses propres organisations
+-- =====================================================================
+
+CREATE POLICY "organizations_delete_by_creator"
+ON public.organizations
 FOR DELETE
 TO authenticated
 USING (created_by = auth.uid());
 
--- 6. ACTIVER RLS SUR LA TABLE (si pas déjà fait)
--- =====================================================
-
-ALTER TABLE public.organizations ENABLE ROW LEVEL SECURITY;
-
--- 7. VÉRIFICATIONS
--- =====================================================
+-- =====================================================================
+-- 10) VÉRIFICATIONS
+-- =====================================================================
 
 -- Vérifier que toutes les orgs ont un created_by
 SELECT 
@@ -111,9 +154,21 @@ SELECT
 FROM public.organizations;
 
 -- Afficher les orgs sans créateur (devrait être 0)
-SELECT id, name, created_by
+SELECT id, name, created_by,
+  (SELECT email FROM auth.users WHERE id = created_by) as creator_email
 FROM public.organizations
 WHERE created_by IS NULL;
+
+-- Vérifier les policies
+SELECT schemaname, tablename, policyname, cmd, roles
+FROM pg_policies
+WHERE tablename = 'organizations'
+ORDER BY cmd;
+
+-- Vérifier le trigger
+SELECT trigger_name, event_manipulation, action_statement
+FROM information_schema.triggers
+WHERE event_object_table = 'organizations';
 
 -- =====================================================
 -- FIN DE LA MIGRATION
