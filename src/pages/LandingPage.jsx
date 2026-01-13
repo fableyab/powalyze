@@ -243,7 +243,7 @@ export default function LandingPage() {
           </div>
 
           {/* Swiss Trust Indicators */}
-          <div className="flex items-center justify-center gap-10 mt-20">
+          <div className="flex items-center justify-center gap-10 mt-16">
             <div className="text-[10px] tracking-[0.25em] uppercase text-slate-300">ISO 27001</div>
             <div className="w-px h-4 bg-slate-400" />
             <div className="text-[10px] tracking-[0.25em] uppercase text-slate-300">SOC 2 Type II</div>
@@ -252,10 +252,10 @@ export default function LandingPage() {
           </div>
 
           {/* Manifeste Video */}
-          <div className="flex items-center justify-center mt-12 px-6">
-            <div className="relative w-full max-w-2xl aspect-video rounded-lg overflow-hidden border border-slate-700/50 shadow-xl">
+          <div className="flex items-center justify-center mt-8 px-4 sm:px-6 mb-16">
+            <div className="relative w-full max-w-md sm:max-w-lg aspect-video rounded-md overflow-hidden border border-slate-700/30 shadow-lg">
               <video
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain bg-black"
                 controls
                 preload="metadata"
               >
