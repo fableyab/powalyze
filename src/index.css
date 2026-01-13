@@ -25,12 +25,7 @@
 
 /* HOLOGRAPHIC BACKGROUND */
 .holo-grid {
-  background-image:
-    radial-gradient(circle at 0% 0%, rgba(212, 175, 55, 0.18), transparent 55%),
-    radial-gradient(circle at 100% 0%, rgba(56, 189, 248, 0.18), transparent 55%),
-    radial-gradient(circle at 0% 100%, rgba(129, 140, 248, 0.18), transparent 55%),
-    radial-gradient(circle at 100% 100%, rgba(212, 175, 55, 0.18), transparent 55%);
-  background-color: #020617;
+  background-color: #000000;
 }
 
 .holo-noise {

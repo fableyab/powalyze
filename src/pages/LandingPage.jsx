@@ -126,7 +126,7 @@ export default function LandingPage() {
       {/* Hero - Swiss Precision Design */}
       <section className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden bg-black">
         {/* Fond dégradé avec couleurs visibles */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-black to-slate-900" />
+        <div className="absolute inset-0 bg-[#000000]" />
         
         {/* Gradient gold intense haut gauche */}
         <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-[#D4AF37]/20 rounded-full blur-[120px]" />
@@ -250,6 +250,20 @@ export default function LandingPage() {
             <div className="w-px h-4 bg-slate-400" />
             <div className="text-[10px] tracking-[0.25em] uppercase text-slate-300">GDPR Compliant</div>
           </div>
+
+          {/* Manifeste Video */}
+          <div className="flex items-center justify-center mt-16 px-6">
+            <div className="relative w-full max-w-4xl aspect-video rounded-lg overflow-hidden border border-slate-800 shadow-2xl">
+              <video
+                className="w-full h-full object-cover"
+                controls
+                preload="metadata"
+              >
+                <source src="/videos/manifeste.mp4" type="video/mp4" />
+                Votre navigateur ne supporte pas la lecture de vidéos.
+              </video>
+            </div>
+          </div>
         </div>
 
         {/* Precision indicator */}
@@ -260,7 +274,7 @@ export default function LandingPage() {
       </section>
 
       {/* Pour qui - Swiss Precision Personas */}
-      <section id="for-who" className="py-32 px-6 bg-gradient-to-b from-gray-50 via-white to-gray-50 relative overflow-hidden">
+      <section id="for-who" className="py-32 px-6 bg-[#000000] relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.05]">
           <div className="absolute inset-0 bg-[linear-gradient(rgba(212,175,55,0.4)_0.5px,transparent_0.5px),linear-gradient(90deg,rgba(212,175,55,0.4)_0.5px,transparent_0.5px)] bg-[size:40px_40px]" />
         </div>
@@ -385,7 +399,7 @@ export default function LandingPage() {
       </section>
 
       {/* Services d'excellence - Swiss Precision */}
-      <section className="py-32 px-6 bg-gray-50 relative overflow-hidden">
+      <section className="py-32 px-6 bg-[#000000] relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.05]">
           <div className="absolute inset-0 bg-[linear-gradient(rgba(212,175,55,0.4)_0.5px,transparent_0.5px),linear-gradient(90deg,rgba(212,175,55,0.4)_0.5px,transparent_0.5px)] bg-[size:40px_40px]" />
         </div>
@@ -481,7 +495,7 @@ export default function LandingPage() {
       </section>
 
       {/* Démo guidée - Swiss Precision Scenes */}
-      <section id="product" className="py-32 px-6 bg-gradient-to-b from-white via-gray-50 to-white relative overflow-hidden">
+      <section id="product" className="py-32 px-6 bg-[#000000] relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.05]">
           <div className="absolute inset-0 bg-[linear-gradient(rgba(212,175,55,0.4)_0.5px,transparent_0.5px),linear-gradient(90deg,rgba(212,175,55,0.4)_0.5px,transparent_0.5px)] bg-[size:40px_40px]" />
         </div>
