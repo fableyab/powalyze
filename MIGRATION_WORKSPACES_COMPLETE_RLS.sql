@@ -5,7 +5,95 @@
 -- =====================================================================
 
 -- =====================================================================
--- 0) RESET DES POLICIES (pour repartir propre)
+-- 0) CRÉER LES TABLES MANQUANTES
+-- =====================================================================
+
+-- WORKSPACES
+CREATE TABLE IF NOT EXISTS public.workspaces (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  organization_id uuid NOT NULL REFERENCES public.organizations(id) ON DELETE CASCADE,
+  name text NOT NULL,
+  description text,
+  owner_id uuid NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  created_by uuid REFERENCES auth.users(id) ON DELETE SET NULL,
+  created_at timestamptz NOT NULL DEFAULT now(),
+  updated_at timestamptz NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS workspaces_org_idx ON public.workspaces (organization_id);
+CREATE INDEX IF NOT EXISTS workspaces_owner_idx ON public.workspaces (owner_id);
+CREATE INDEX IF NOT EXISTS workspaces_created_by_idx ON public.workspaces (created_by);
+
+-- MEMBERSHIPS
+CREATE TABLE IF NOT EXISTS public.memberships (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  workspace_id uuid NOT NULL REFERENCES public.workspaces(id) ON DELETE CASCADE,
+  user_id uuid NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  role text NOT NULL DEFAULT 'member',
+  created_at timestamptz NOT NULL DEFAULT now(),
+  UNIQUE (workspace_id, user_id)
+);
+
+CREATE INDEX IF NOT EXISTS memberships_workspace_idx ON public.memberships (workspace_id);
+CREATE INDEX IF NOT EXISTS memberships_user_idx ON public.memberships (user_id);
+
+-- PORTFOLIOS
+CREATE TABLE IF NOT EXISTS public.portfolios (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  workspace_id uuid NOT NULL REFERENCES public.workspaces(id) ON DELETE CASCADE,
+  name text NOT NULL,
+  description text,
+  created_by uuid REFERENCES auth.users(id) ON DELETE SET NULL,
+  created_at timestamptz NOT NULL DEFAULT now(),
+  updated_at timestamptz NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS portfolios_workspace_idx ON public.portfolios (workspace_id);
+CREATE INDEX IF NOT EXISTS portfolios_created_by_idx ON public.portfolios (created_by);
+
+-- =====================================================================
+-- 1) AJOUTER/MODIFIER COLONNES EXISTANTES
+-- =====================================================================
+
+-- Ajouter created_by à organizations (si pas déjà fait)
+ALTER TABLE public.organizations 
+ADD COLUMN IF NOT EXISTS created_by uuid REFERENCES auth.users(id) ON DELETE SET NULL;
+
+CREATE INDEX IF NOT EXISTS organizations_created_by_idx ON public.organizations (created_by);
+
+-- Ajouter workspace_id et created_by à initiatives
+ALTER TABLE public.initiatives 
+ADD COLUMN IF NOT EXISTS workspace_id uuid REFERENCES public.workspaces(id) ON DELETE CASCADE,
+ADD COLUMN IF NOT EXISTS created_by uuid REFERENCES auth.users(id) ON DELETE SET NULL;
+
+CREATE INDEX IF NOT EXISTS initiatives_workspace_idx ON public.initiatives (workspace_id);
+CREATE INDEX IF NOT EXISTS initiatives_created_by_idx ON public.initiatives (created_by);
+
+-- Mettre à jour les organizations existantes (migration created_by)
+UPDATE public.organizations o
+SET created_by = (
+  SELECT uo.user_id
+  FROM public.user_organizations uo
+  WHERE uo.organization_id = o.id
+    AND uo.role IN ('admin', 'owner')
+  ORDER BY uo.created_at ASC
+  LIMIT 1
+)
+WHERE created_by IS NULL;
+
+-- Si pas d'admin, prendre le premier membre
+UPDATE public.organizations o
+SET created_by = (
+  SELECT uo.user_id
+  FROM public.user_organizations uo
+  WHERE uo.organization_id = o.id
+  ORDER BY uo.created_at ASC
+  LIMIT 1
+)
+WHERE created_by IS NULL;
+
+-- =====================================================================
+-- 2) RESET DES POLICIES (pour repartir propre)
 -- =====================================================================
 
 DO $$
@@ -23,17 +111,17 @@ END
 $$;
 
 -- =====================================================================
--- 1) ACTIVER RLS SUR TOUTES LES TABLES
+-- 3) ACTIVER RLS SUR TOUTES LES TABLES
 -- =====================================================================
 
-ALTER TABLE organizations ENABLE ROW LEVEL SECURITY;
-ALTER TABLE workspaces   ENABLE ROW LEVEL SECURITY;
-ALTER TABLE memberships  ENABLE ROW LEVEL SECURITY;
-ALTER TABLE initiatives  ENABLE ROW LEVEL SECURITY;
-ALTER TABLE portfolios   ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.organizations ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.workspaces   ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.memberships  ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.initiatives  ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.portfolios   ENABLE ROW LEVEL SECURITY;
 
 -- =====================================================================
--- 2) TRIGGER GLOBAL : AUTO-SET created_by = auth.uid()
+-- 4) TRIGGER GLOBAL : AUTO-SET created_by = auth.uid()
 -- =====================================================================
 
 DROP FUNCTION IF EXISTS auto_set_created_by CASCADE;
@@ -75,7 +163,7 @@ BEFORE INSERT ON portfolios
 FOR EACH ROW EXECUTE FUNCTION auto_set_created_by();
 
 -- =====================================================================
--- 3) ORGANIZATIONS — RLS
+-- 5) ORGANIZATIONS — RLS
 -- =====================================================================
 
 CREATE POLICY org_insert
@@ -104,7 +192,7 @@ TO authenticated
 USING (created_by = auth.uid());
 
 -- =====================================================================
--- 4) WORKSPACES — RLS
+-- 6) WORKSPACES — RLS
 -- =====================================================================
 
 CREATE POLICY ws_insert
@@ -136,7 +224,7 @@ TO authenticated
 USING (owner_id = auth.uid());
 
 -- =====================================================================
--- 5) MEMBERSHIPS — RLS
+-- 7) MEMBERSHIPS — RLS
 -- =====================================================================
 
 CREATE POLICY mem_insert
@@ -175,7 +263,7 @@ USING (
 );
 
 -- =====================================================================
--- 6) INITIATIVES — RLS
+-- 8) INITIATIVES — RLS
 -- =====================================================================
 
 CREATE POLICY init_insert
@@ -227,7 +315,7 @@ USING (
 );
 
 -- =====================================================================
--- 7) PORTFOLIOS — RLS
+-- 9) PORTFOLIOS — RLS
 -- =====================================================================
 
 CREATE POLICY port_insert
@@ -279,7 +367,7 @@ USING (
 );
 
 -- =====================================================================
--- 8) VÉRIFICATIONS
+-- 10) VÉRIFICATIONS
 -- =====================================================================
 
 -- Vérifier les triggers
