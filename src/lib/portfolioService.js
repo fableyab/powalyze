@@ -355,3 +355,108 @@ export const projectService = {
     };
   }
 };
+
+// ==============================================================
+// EXPORTS NOMMÉS POUR ARCHITECTURE V1
+// ==============================================================
+
+export const getRiskMatrix = async (workspaceId) => {
+  const { data, error } = await supabase
+    .from('risk_matrix_view')
+    .select('*')
+    .eq('workspace_id', workspaceId);
+  
+  if (error) throw error;
+  return data || [];
+};
+
+export const getForecastData = async (workspaceId) => {
+  const { data: forecasts, error: forecastError } = await supabase
+    .from('forecast_view')
+    .select('*')
+    .eq('workspace_id', workspaceId);
+  
+  const { data: initiatives, error: initiativesError } = await supabase
+    .from('initiatives')
+    .select('*')
+    .eq('workspace_id', workspaceId);
+  
+  if (forecastError) throw forecastError;
+  if (initiativesError) throw initiativesError;
+  
+  return { forecasts: forecasts || [], initiatives: initiatives || [] };
+};
+
+export const generateArbitrageScenarios = async (workspaceId, options = {}) => {
+  // Pour l'instant, retourne des scénarios mockés
+  // TODO: Intégrer backend IA pour génération réelle
+  return [
+    {
+      id: 1,
+      name: 'Scénario Optimisé Budget',
+      description: 'Réduction de 15% du budget global',
+      impacts: { budget: -150000, resources: -5, timeline: 30 }
+    },
+    {
+      id: 2,
+      name: 'Scénario Accéléré',
+      description: 'Livraison 3 mois plus tôt',
+      impacts: { budget: 200000, resources: 8, timeline: -90 }
+    }
+  ];
+};
+
+export const getStrategicAlignment = async (workspaceId) => {
+  const { data, error } = await supabase
+    .from('initiatives')
+    .select('*')
+    .eq('workspace_id', workspaceId);
+  
+  if (error) throw error;
+  
+  const initiatives = data || [];
+  const totalAlignment = initiatives.reduce((sum, i) => sum + (i.strategic_alignment || 0), 0);
+  const avgAlignment = initiatives.length > 0 ? totalAlignment / initiatives.length : 0;
+  
+  return {
+    score: Math.round(avgAlignment),
+    initiatives,
+    distribution: {
+      high: initiatives.filter(i => (i.strategic_alignment || 0) >= 70).length,
+      medium: initiatives.filter(i => (i.strategic_alignment || 0) >= 40 && (i.strategic_alignment || 0) < 70).length,
+      low: initiatives.filter(i => (i.strategic_alignment || 0) < 40).length
+    }
+  };
+};
+
+export const getAnomalies = async (workspaceId) => {
+  const { data, error } = await supabase
+    .from('anomalies_view')
+    .select('*')
+    .eq('workspace_id', workspaceId);
+  
+  if (error) throw error;
+  return data || [];
+};
+
+export const getInitiatives = async (workspaceId) => {
+  const { data, error } = await supabase
+    .from('initiatives')
+    .select('*')
+    .eq('workspace_id', workspaceId)
+    .order('created_at', { ascending: false });
+  
+  if (error) throw error;
+  return data || [];
+};
+
+export const getPortfolioOverview = async (workspaceId) => {
+  const { data, error } = await supabase
+    .from('portfolio_overview')
+    .select('*')
+    .eq('workspace_id', workspaceId)
+    .single();
+  
+  if (error) throw error;
+  return data || null;
+};
