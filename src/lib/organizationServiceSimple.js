@@ -44,10 +44,13 @@ export async function createOrganization(userId, userEmail, orgName = null) {
     // Générer un nom par défaut si non fourni
     const defaultName = orgName || `Organisation ${userEmail.split('@')[0]}`;
 
-    // 1. Créer l'organisation
+    // 1. Créer l'organisation avec created_by (OBLIGATOIRE pour RLS)
     const { data: newOrg, error: createError } = await customSupabaseClient
       .from('organizations')
-      .insert([{ name: defaultName }])
+      .insert([{ 
+        name: defaultName,
+        created_by: userId  // ✅ OBLIGATOIRE - sans ça, aucune policy ne fonctionne
+      }])
       .select()
       .single();
 

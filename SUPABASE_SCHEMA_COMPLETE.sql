@@ -10,8 +10,11 @@
 create table if not exists public.organizations (
   id uuid primary key default gen_random_uuid(),
   name text not null,
+  created_by uuid not null references auth.users(id) on delete set null,
   created_at timestamptz not null default now()
 );
+
+create index if not exists organizations_created_by_idx on public.organizations (created_by);
 
 -- LIEN UTILISATEURS <-> ORGANISATIONS
 create table if not exists public.user_organizations (
@@ -249,6 +252,7 @@ order by
 -- 10. RLS (ROW LEVEL SECURITY)
 -- =====================================================
 
+alter table public.organizations enable row level security;
 alter table public.user_organizations enable row level security;
 alter table public.initiatives enable row level security;
 alter table public.milestones enable row level security;
@@ -274,6 +278,37 @@ as $$
       and uo.user_id = auth.uid()
   );
 $$;
+
+-- Policies pour organizations
+create policy "org_select" on public.organizations
+  for select to authenticated
+  using (
+    created_by = auth.uid() 
+    or exists (
+      select 1 from public.user_organizations uo
+      where uo.organization_id = id and uo.user_id = auth.uid()
+    )
+  );
+
+create policy "org_insert" on public.organizations
+  for insert to authenticated
+  with check (created_by = auth.uid());
+
+create policy "org_update" on public.organizations
+  for update to authenticated
+  using (
+    created_by = auth.uid()
+    or exists (
+      select 1 from public.user_organizations uo
+      where uo.organization_id = id 
+        and uo.user_id = auth.uid()
+        and uo.role in ('admin', 'owner')
+    )
+  );
+
+create policy "org_delete" on public.organizations
+  for delete to authenticated
+  using (created_by = auth.uid());
 
 -- Policies pour initiatives
 create policy "select_initiatives_by_org" on public.initiatives
