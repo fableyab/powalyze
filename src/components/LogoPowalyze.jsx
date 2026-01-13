@@ -34,7 +34,7 @@ export function LogoWithText({ size = "default" }) {
         <div className="text-sm font-light tracking-[0.25em] text-white uppercase">
           POWALYZE
         </div>
-        <div className="text-[8px] text-white/30 tracking-[0.3em] uppercase font-extralight">
+        <div className="text-[8px] text-white tracking-[0.3em] uppercase font-extralight">
           Swiss Precision
         </div>
       </div>
