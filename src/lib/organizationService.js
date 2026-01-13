@@ -29,13 +29,14 @@ export const organizationService = {
       // 2. Pas d'organisation trouvée - on en crée une automatiquement
       console.log('⚠️ Aucune organisation trouvée - création automatique...');
 
-      // Créer l'organisation avec created_by (OBLIGATOIRE pour RLS)
+      // Créer l'organisation avec owner_id (OBLIGATOIRE pour NOT NULL constraint)
       const { data: newOrg, error: createOrgError } = await customSupabaseClient
         .from('organizations')
         .insert([{ 
           name: orgName,
           environment: environment,
-          created_by: userId  // ✅ OBLIGATOIRE - sans ça, aucune policy ne fonctionne
+          owner_id: userId,  // ✅ OBLIGATOIRE - colonne NOT NULL
+          created_by: userId  // ✅ Pour RLS
         }])
         .select()
         .single();
