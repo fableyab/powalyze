@@ -7,18 +7,42 @@ import customSupabaseClient from './customSupabaseClient';
 
 export const initiativeService = {
   /**
-   * Créer une nouvelle initiative (organization_id OPTIONNEL)
+   * Créer une nouvelle initiative (organization_id REQUIS)
    */
   async createInitiative(initiativeData) {
+    // Récupérer l'utilisateur connecté
+    const { data: { user }, error: authError } = await customSupabaseClient.auth.getUser();
+    if (authError || !user) {
+      throw new Error('Non authentifié');
+    }
+
+    // Récupérer l'organization_id de l'utilisateur si non fourni
+    let organizationId = initiativeData.organization_id;
+    
+    if (!organizationId) {
+      const { data: userOrg, error: orgError } = await customSupabaseClient
+        .from('user_organizations')
+        .select('organization_id')
+        .eq('user_id', user.id)
+        .single();
+
+      if (orgError || !userOrg) {
+        throw new Error('Organisation non trouvée pour cet utilisateur');
+      }
+      
+      organizationId = userOrg.organization_id;
+    }
+
+    // Créer l'initiative avec organization_id obligatoire
     const { data, error } = await customSupabaseClient
       .from('initiatives')
       .insert([{
-        organization_id: initiativeData.organization_id || null,
+        organization_id: organizationId,
         name: initiativeData.name,
         description: initiativeData.description || null,
         status: initiativeData.status || 'planned',
         progress: initiativeData.progress || 0,
-        owner_id: initiativeData.owner_id || null,
+        owner_id: initiativeData.owner_id || user.id,
         start_date: initiativeData.start_date || null,
         end_date: initiativeData.end_date || null,
         budget: initiativeData.budget || null,
@@ -32,19 +56,38 @@ export const initiativeService = {
   },
 
   /**
-   * Récupérer toutes les initiatives (optionnel: filtrer par organisation)
+   * Récupérer toutes les initiatives (filtre automatique par organisation de l'utilisateur)
    */
   async getInitiatives(organizationId = null) {
-    let query = customSupabaseClient
-      .from('initiatives')
-      .select('*');
-
-    // Filtrer par organisation si fourni
-    if (organizationId) {
-      query = query.eq('organization_id', organizationId);
+    // Récupérer l'utilisateur connecté
+    const { data: { user }, error: authError } = await customSupabaseClient.auth.getUser();
+    if (authError || !user) {
+      throw new Error('Non authentifié');
     }
 
-    const { data, error } = await query.order('created_at', { ascending: false });
+    // Si pas d'organizationId fourni, récupérer celui de l'utilisateur
+    let orgId = organizationId;
+    
+    if (!orgId) {
+      const { data: userOrg, error: orgError } = await customSupabaseClient
+        .from('user_organizations')
+        .select('organization_id')
+        .eq('user_id', user.id)
+        .single();
+
+      if (orgError || !userOrg) {
+        throw new Error('Organisation non trouvée pour cet utilisateur');
+      }
+      
+      orgId = userOrg.organization_id;
+    }
+
+    // Récupérer les initiatives de l'organisation
+    const { data, error } = await customSupabaseClient
+      .from('initiatives')
+      .select('*')
+      .eq('organization_id', orgId)
+      .order('created_at', { ascending: false });
 
     if (error) throw error;
     return data || [];

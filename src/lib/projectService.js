@@ -13,20 +13,20 @@ export async function getProjects(filters = {}) {
     const { data: { user } } = await customSupabaseClient.auth.getUser();
     if (!user) throw new Error('Non authentifié');
 
-    const { data: profile } = await customSupabaseClient
-      .from('profiles')
+    const { data: userOrg } = await customSupabaseClient
+      .from('user_organizations')
       .select('organization_id')
-      .eq('id', user.id)
+      .eq('user_id', user.id)
       .single();
 
-    if (!profile?.organization_id) {
+    if (!userOrg?.organization_id) {
       throw new Error('Organisation non trouvée');
     }
 
     let query = customSupabaseClient
       .from('projects')
       .select('*')
-      .eq('organization_id', profile.organization_id)
+      .eq('organization_id', userOrg.organization_id)
       .order('created_at', { ascending: false });
 
     // Filtres optionnels
@@ -77,20 +77,20 @@ export async function createProject(projectData) {
     const { data: { user } } = await customSupabaseClient.auth.getUser();
     if (!user) throw new Error('Non authentifié');
 
-    const { data: profile } = await customSupabaseClient
-      .from('profiles')
+    const { data: userOrg } = await customSupabaseClient
+      .from('user_organizations')
       .select('organization_id')
-      .eq('id', user.id)
+      .eq('user_id', user.id)
       .single();
 
-    if (!profile?.organization_id) {
+    if (!userOrg?.organization_id) {
       throw new Error('Organisation non trouvée');
     }
 
     const { data, error } = await customSupabaseClient
       .from('projects')
       .insert([{
-        organization_id: profile.organization_id,
+        organization_id: userOrg.organization_id,
         user_id: user.id,
         name: projectData.name,
         description: projectData.description,
@@ -172,20 +172,20 @@ export async function getProjectStats() {
     const { data: { user } } = await customSupabaseClient.auth.getUser();
     if (!user) throw new Error('Non authentifié');
 
-    const { data: profile } = await customSupabaseClient
-      .from('profiles')
+    const { data: userOrg } = await customSupabaseClient
+      .from('user_organizations')
       .select('organization_id')
-      .eq('id', user.id)
+      .eq('user_id', user.id)
       .single();
 
-    if (!profile?.organization_id) {
+    if (!userOrg?.organization_id) {
       throw new Error('Organisation non trouvée');
     }
 
     const { data: projects } = await customSupabaseClient
       .from('projects')
       .select('*')
-      .eq('organization_id', profile.organization_id);
+      .eq('organization_id', userOrg.organization_id);
 
     const stats = {
       total: projects?.length || 0,
